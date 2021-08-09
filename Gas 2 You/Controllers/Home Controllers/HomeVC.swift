@@ -62,7 +62,8 @@ class HomeVC: BaseVC {
     
     
     @IBAction func parkingLocatioButtonPressed(_ sender: UIButton) {
-        
+        let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
+        navigationController?.pushViewController(carParkingLocationVC, animated: true)
     }
     
     @IBAction func timeSlotButtonPressed(_ sender: themeButton) {
@@ -109,8 +110,7 @@ class HomeVC: BaseVC {
     
     @IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
         
-        let mapVC = storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapVC
-        navigationController?.pushViewController(mapVC, animated: true)
+       
         
     }
     

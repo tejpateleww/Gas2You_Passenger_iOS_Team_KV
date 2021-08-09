@@ -7,10 +7,12 @@
 
 import UIKit
 
-class SignUpVC: UIViewController {
+class SignUpVC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
         
     }
     

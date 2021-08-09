@@ -1,0 +1,6 @@
+framework module Pods_Gas_2_You {
+  umbrella header "Pods-Gas 2 You-umbrella.h"
+
+  export *
+  module * { export * }
+}

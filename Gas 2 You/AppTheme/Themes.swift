@@ -19,7 +19,7 @@ class themeLabel: UILabel{
     @IBInspectable public var isLight: Bool = false
     @IBInspectable public var isMedium: Bool = false
     @IBInspectable public var isRegular: Bool = false
-    @IBInspectable public var fontColor: UIColor = .white
+    @IBInspectable public var fontColor: UIColor = .label
     @IBInspectable public var isThemeColour : Bool = false
     @IBInspectable public var is50Oppacity : Bool = false
     @IBInspectable public var is8ppacity : Bool = false
@@ -405,6 +405,39 @@ class themeTextfield : UITextField{
         }
         
     }
+}
+
+
+class themeSearchBar: UITextField {
+
+    
+
+    let padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 25);
+
+    
+
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+
+        return bounds.inset(by: padding)
+
+    }
+
+    
+
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+
+        return bounds.inset(by: padding)
+
+    }
+
+    
+
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+
+        return bounds.inset(by: padding)
+
+    }
+
 }
 
 

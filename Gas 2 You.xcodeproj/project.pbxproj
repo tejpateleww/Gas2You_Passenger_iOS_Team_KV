@@ -3,14 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		374101F56D8DDE9F328C0A28 /* Pods_Gas_2_You.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C4E5B44100AA96306EC391 /* Pods_Gas_2_You.framework */; };
+		9A3A912426C128E90041D7D9 /* AddAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912326C128E90041D7D9 /* AddAddressVC.swift */; };
+		9A3A912F26C133AC0041D7D9 /* SideMenuItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */; };
+		9A3A913026C133AC0041D7D9 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912726C133AB0041D7D9 /* Options.swift */; };
+		9A3A913126C133AC0041D7D9 /* MenuContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912826C133AC0041D7D9 /* MenuContainerViewController.swift */; };
+		9A3A913226C133AC0041D7D9 /* MenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912A26C133AC0041D7D9 /* MenuAnimator.swift */; };
+		9A3A913326C133AC0041D7D9 /* SideMenuItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912B26C133AC0041D7D9 /* SideMenuItemContent.swift */; };
+		9A3A913426C133AC0041D7D9 /* MenuTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912C26C133AC0041D7D9 /* MenuTransitioningDelegate.swift */; };
+		9A3A913626C133AC0041D7D9 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912E26C133AC0041D7D9 /* MenuViewController.swift */; };
+		9A3A913926C13B860041D7D9 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A913826C13B860041D7D9 /* AddressCell.swift */; };
+		9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A913A26C140AA0041D7D9 /* ChatListCell.swift */; };
+		9A3A913D26C141700041D7D9 /* ChatListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A913C26C141700041D7D9 /* ChatListVC.swift */; };
 		9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */; };
 		9A5B08AB26B266E800BA0CB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */; };
 		9A5B08B026B266E800BA0CB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B08AE26B266E800BA0CB4 /* Main.storyboard */; };
-		9A5B08B326B266E800BA0CB4 /* Gas_2_You.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08B126B266E800BA0CB4 /* Gas_2_You.xcdatamodeld */; };
 		9A5B08B526B266EA00BA0CB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B08B426B266EA00BA0CB4 /* Assets.xcassets */; };
 		9A5B08B826B266EA00BA0CB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B08B626B266EA00BA0CB4 /* LaunchScreen.storyboard */; };
 		9A5B08E826B26C7800BA0CB4 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08E726B26C7800BA0CB4 /* Themes.swift */; };
@@ -68,7 +79,7 @@
 		9A5B094226B279AE00BA0CB4 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B094126B279AE00BA0CB4 /* Storyboards.swift */; };
 		9A5B094626B27AB400BA0CB4 /* ThemeShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B094526B27AB400BA0CB4 /* ThemeShadow.swift */; };
 		9A5B094A26B2C9FC00BA0CB4 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B094926B2C9FC00BA0CB4 /* LogInVC.swift */; };
-		9A6CA2BA26B92BFD00EFFA97 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6CA2B926B92BFD00EFFA97 /* MapVC.swift */; };
+		9A81083726B963B5003DE6CC /* CarParkingLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */; };
 		9AC568BF26B7B1020039FCCF /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568BE26B7B1020039FCCF /* SignUpVC.swift */; };
 		9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568C126B7C0B70039FCCF /* BaseVC.swift */; };
 		9AC568C626B7C25C0039FCCF /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568C526B7C25C0039FCCF /* HomeVC.swift */; };
@@ -76,11 +87,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23FBE9F64945D7195FB03CB0 /* Pods-Gas 2 You.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gas 2 You.release.xcconfig"; path = "Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You.release.xcconfig"; sourceTree = "<group>"; };
+		30C4E5B44100AA96306EC391 /* Pods_Gas_2_You.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gas_2_You.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EC1E0F1665E6CA6F8419210 /* Pods-Gas 2 You.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gas 2 You.debug.xcconfig"; path = "Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You.debug.xcconfig"; sourceTree = "<group>"; };
+		9A3A912326C128E90041D7D9 /* AddAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressVC.swift; sourceTree = "<group>"; };
+		9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemOptions.swift; sourceTree = "<group>"; };
+		9A3A912726C133AB0041D7D9 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		9A3A912826C133AC0041D7D9 /* MenuContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContainerViewController.swift; sourceTree = "<group>"; };
+		9A3A912926C133AC0041D7D9 /* InteractiveSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveSideMenu.h; sourceTree = "<group>"; };
+		9A3A912A26C133AC0041D7D9 /* MenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAnimator.swift; sourceTree = "<group>"; };
+		9A3A912B26C133AC0041D7D9 /* SideMenuItemContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemContent.swift; sourceTree = "<group>"; };
+		9A3A912C26C133AC0041D7D9 /* MenuTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTransitioningDelegate.swift; sourceTree = "<group>"; };
+		9A3A912E26C133AC0041D7D9 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		9A3A913826C13B860041D7D9 /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
+		9A3A913A26C140AA0041D7D9 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		9A3A913C26C141700041D7D9 /* ChatListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListVC.swift; sourceTree = "<group>"; };
 		9A5B08A526B266E800BA0CB4 /* Gas 2 You.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gas 2 You.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9A5B08AF26B266E800BA0CB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9A5B08B226B266E800BA0CB4 /* Gas_2_You.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gas_2_You.xcdatamodel; sourceTree = "<group>"; };
 		9A5B08B426B266EA00BA0CB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A5B08B726B266EA00BA0CB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A5B08B926B266EA00BA0CB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -120,7 +145,7 @@
 		9A5B094126B279AE00BA0CB4 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		9A5B094526B27AB400BA0CB4 /* ThemeShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeShadow.swift; sourceTree = "<group>"; };
 		9A5B094926B2C9FC00BA0CB4 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
-		9A6CA2B926B92BFD00EFFA97 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkingLocationVC.swift; sourceTree = "<group>"; };
 		9AC568BE26B7B1020039FCCF /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		9AC568C126B7C0B70039FCCF /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		9AC568C526B7C25C0039FCCF /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -132,17 +157,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				374101F56D8DDE9F328C0A28 /* Pods_Gas_2_You.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A3A912526C133AB0041D7D9 /* InteractiveSideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */,
+				9A3A912726C133AB0041D7D9 /* Options.swift */,
+				9A3A912826C133AC0041D7D9 /* MenuContainerViewController.swift */,
+				9A3A912926C133AC0041D7D9 /* InteractiveSideMenu.h */,
+				9A3A912A26C133AC0041D7D9 /* MenuAnimator.swift */,
+				9A3A912B26C133AC0041D7D9 /* SideMenuItemContent.swift */,
+				9A3A912C26C133AC0041D7D9 /* MenuTransitioningDelegate.swift */,
+				9A3A912E26C133AC0041D7D9 /* MenuViewController.swift */,
+			);
+			path = InteractiveSideMenu;
+			sourceTree = "<group>";
+		};
+		9A3A913726C13B540041D7D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A3A913826C13B860041D7D9 /* AddressCell.swift */,
+				9A3A913A26C140AA0041D7D9 /* ChatListCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9A5B089C26B266E800BA0CB4 = {
 			isa = PBXGroup;
 			children = (
 				9A5B08A726B266E800BA0CB4 /* Gas 2 You */,
 				9A5B08A626B266E800BA0CB4 /* Products */,
+				9FD2DE6B926B97EEA6E8D2E6 /* Pods */,
+				FF34F073B17981A77FBBE10C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,7 +209,9 @@
 		9A5B08A726B266E800BA0CB4 /* Gas 2 You */ = {
 			isa = PBXGroup;
 			children = (
+				9A3A912526C133AB0041D7D9 /* InteractiveSideMenu */,
 				9AC568C026B7C08A0039FCCF /* Base class */,
+				9A3A913726C13B540041D7D9 /* View */,
 				9A5B08F326B2721A00BA0CB4 /* Controllers */,
 				9A5B08F426B2725300BA0CB4 /* StoryBoards */,
 				9A5B08EE26B26FCD00BA0CB4 /* Extension */,
@@ -168,7 +222,6 @@
 				9AC568C726B7C7B60039FCCF /* Web Services */,
 				9A5B08B426B266EA00BA0CB4 /* Assets.xcassets */,
 				9A5B08B926B266EA00BA0CB4 /* Info.plist */,
-				9A5B08B126B266E800BA0CB4 /* Gas_2_You.xcdatamodeld */,
 			);
 			path = "Gas 2 You";
 			sourceTree = "<group>";
@@ -284,7 +337,9 @@
 			isa = PBXGroup;
 			children = (
 				9AC568C526B7C25C0039FCCF /* HomeVC.swift */,
-				9A6CA2B926B92BFD00EFFA97 /* MapVC.swift */,
+				9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */,
+				9A3A912326C128E90041D7D9 /* AddAddressVC.swift */,
+				9A3A913C26C141700041D7D9 /* ChatListVC.swift */,
 			);
 			path = "Home Controllers";
 			sourceTree = "<group>";
@@ -305,6 +360,23 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		9FD2DE6B926B97EEA6E8D2E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3EC1E0F1665E6CA6F8419210 /* Pods-Gas 2 You.debug.xcconfig */,
+				23FBE9F64945D7195FB03CB0 /* Pods-Gas 2 You.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF34F073B17981A77FBBE10C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30C4E5B44100AA96306EC391 /* Pods_Gas_2_You.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,9 +384,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A5B08BC26B266EA00BA0CB4 /* Build configuration list for PBXNativeTarget "Gas 2 You" */;
 			buildPhases = (
+				DD0747F71584E9F2991EA4FE /* [CP] Check Pods Manifest.lock */,
 				9A5B08A126B266E800BA0CB4 /* Sources */,
 				9A5B08A226B266E800BA0CB4 /* Frameworks */,
 				9A5B08A326B266E800BA0CB4 /* Resources */,
+				D6F9104560D23486A9C860D2 /* [CP] Embed Pods Frameworks */,
+				9966D57DBBFCC95C310E6E39 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -389,6 +464,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9966D57DBBFCC95C310E6E39 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6F9104560D23486A9C860D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD0747F71584E9F2991EA4FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gas 2 You-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9A5B08A126B266E800BA0CB4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -398,12 +532,14 @@
 				9A5B093826B2788500BA0CB4 /* UIImageView+Extension.swift in Sources */,
 				9A5B094A26B2C9FC00BA0CB4 /* LogInVC.swift in Sources */,
 				9A5B091C26B274D600BA0CB4 /* OFL.txt in Sources */,
+				9A3A913426C133AC0041D7D9 /* MenuTransitioningDelegate.swift in Sources */,
 				9A5B091D26B274D600BA0CB4 /* Poppins-Black.ttf in Sources */,
-				9A6CA2BA26B92BFD00EFFA97 /* MapVC.swift in Sources */,
 				9A5B091E26B274D600BA0CB4 /* Poppins-BlackItalic.ttf in Sources */,
+				9A3A913626C133AC0041D7D9 /* MenuViewController.swift in Sources */,
 				9A5B091F26B274D600BA0CB4 /* Poppins-Bold.ttf in Sources */,
 				9A5B093726B2788500BA0CB4 /* UIViewController+Extension.swift in Sources */,
 				9AC568CA26B7C8020039FCCF /* Constants.swift in Sources */,
+				9A3A913126C133AC0041D7D9 /* MenuContainerViewController.swift in Sources */,
 				9AC568BF26B7B1020039FCCF /* SignUpVC.swift in Sources */,
 				9A5B092026B274D600BA0CB4 /* Poppins-BoldItalic.ttf in Sources */,
 				9A5B092126B274D600BA0CB4 /* Poppins-ExtraBold.ttf in Sources */,
@@ -414,26 +550,34 @@
 				9AC568C626B7C25C0039FCCF /* HomeVC.swift in Sources */,
 				9A5B092526B274D600BA0CB4 /* Poppins-Italic.ttf in Sources */,
 				9A5B092626B274D600BA0CB4 /* Poppins-Light.ttf in Sources */,
+				9A3A912426C128E90041D7D9 /* AddAddressVC.swift in Sources */,
 				9A5B094026B278B800BA0CB4 /* Validation.swift in Sources */,
+				9A3A913026C133AC0041D7D9 /* Options.swift in Sources */,
 				9A5B092726B274D600BA0CB4 /* Poppins-LightItalic.ttf in Sources */,
 				9A5B092826B274D600BA0CB4 /* Poppins-Medium.ttf in Sources */,
 				9A5B092926B274D600BA0CB4 /* Poppins-MediumItalic.ttf in Sources */,
 				9A5B092A26B274D600BA0CB4 /* Poppins-Regular.ttf in Sources */,
 				9A5B092B26B274D600BA0CB4 /* Poppins-SemiBold.ttf in Sources */,
+				9A81083726B963B5003DE6CC /* CarParkingLocationVC.swift in Sources */,
+				9A3A912F26C133AC0041D7D9 /* SideMenuItemOptions.swift in Sources */,
 				9A5B093B26B2788500BA0CB4 /* userDefaults+Extension.swift in Sources */,
 				9A5B092C26B274D600BA0CB4 /* Poppins-SemiBoldItalic.ttf in Sources */,
 				9A5B093D26B2788500BA0CB4 /* Extension+CLLocation.swift in Sources */,
 				9A5B092D26B274D600BA0CB4 /* Poppins-Thin.ttf in Sources */,
+				9A3A913326C133AC0041D7D9 /* SideMenuItemContent.swift in Sources */,
 				9A5B093A26B2788500BA0CB4 /* Date+Extension.swift in Sources */,
+				9A3A913926C13B860041D7D9 /* AddressCell.swift in Sources */,
+				9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */,
 				9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */,
 				9A5B092E26B274D600BA0CB4 /* Poppins-ThinItalic.ttf in Sources */,
 				9A5B094226B279AE00BA0CB4 /* Storyboards.swift in Sources */,
 				9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */,
-				9A5B08B326B266E800BA0CB4 /* Gas_2_You.xcdatamodeld in Sources */,
 				9A5B08AB26B266E800BA0CB4 /* SceneDelegate.swift in Sources */,
 				9A5B08EB26B26CEF00BA0CB4 /* Fonts.swift in Sources */,
+				9A3A913D26C141700041D7D9 /* ChatListVC.swift in Sources */,
 				9A5B093C26B2788500BA0CB4 /* UIImage+Extension.swift in Sources */,
 				9A5B08E826B26C7800BA0CB4 /* Themes.swift in Sources */,
+				9A3A913226C133AC0041D7D9 /* MenuAnimator.swift in Sources */,
 				9A5B08F226B2718500BA0CB4 /* Colors.swift in Sources */,
 				9A5B093E26B2788500BA0CB4 /* UITextField+Extensions.swift in Sources */,
 				9A5B08F026B2703000BA0CB4 /* String+extension.swift in Sources */,
@@ -581,13 +725,14 @@
 		};
 		9A5B08BD26B266EA00BA0CB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EC1E0F1665E6CA6F8419210 /* Pods-Gas 2 You.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LNR2265795;
 				INFOPLIST_FILE = "Gas 2 You/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -601,13 +746,14 @@
 		};
 		9A5B08BE26B266EA00BA0CB4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23FBE9F64945D7195FB03CB0 /* Pods-Gas 2 You.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LNR2265795;
 				INFOPLIST_FILE = "Gas 2 You/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -641,19 +787,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		9A5B08B126B266E800BA0CB4 /* Gas_2_You.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9A5B08B226B266E800BA0CB4 /* Gas_2_You.xcdatamodel */,
-			);
-			currentVersion = 9A5B08B226B266E800BA0CB4 /* Gas_2_You.xcdatamodel */;
-			path = Gas_2_You.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 9A5B089D26B266E800BA0CB4 /* Project object */;
 }
