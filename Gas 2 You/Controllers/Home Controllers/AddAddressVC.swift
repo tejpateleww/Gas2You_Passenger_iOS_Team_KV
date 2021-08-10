@@ -2,50 +2,52 @@
 //  AddAddressVC.swift
 //  Gas 2 You
 //
-//  Created by MacMini on 09/08/21.
+//  Created by MacMini on 10/08/21.
 //
 
 import UIKit
 
 class AddAddressVC: BaseVC {
-
-    @IBOutlet weak var addressListTV: UITableView!
+    
+    @IBOutlet var locationButtons: [ThemeButton]! {
+        didSet {
+            for i in 0..<locationButtons.count {
+                locationButtons[i].tag = i
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Address", controller: self)
+        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Add Address", controller: self)
     }
     
-    @IBAction func addAdressBtnPressed(_ sender: ThemeButton) {
-        
-    }
-    
-}
+    @IBAction func locationButtonPressed(_ sender: ThemeButton) {
 
-extension AddAddressVC: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch sender.tag {
+        case 0:
+            deSelectOtherButtons(tag: sender.tag)
+            break
+        case 1:
+            deSelectOtherButtons(tag: sender.tag)
+            break
+        default:
+            break
+        }
         
-        let cell = addressListTV.dequeueReusableCell(withIdentifier: "cell") as! AddressCell
-        
-        return cell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-         
-        if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
+    
+    func deSelectOtherButtons(tag: Int) {
+        
+        for i in 0..<locationButtons.count {
+            if tag == i {
+                locationButtons[i].setImage(#imageLiteral(resourceName: "IC_selected"), for: .normal)
+            } else {
+                locationButtons[i].setImage(#imageLiteral(resourceName: "IC_boxUnselected"), for: .normal)
+            }
         }
     }
-   
     
 }

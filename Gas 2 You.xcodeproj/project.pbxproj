@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		374101F56D8DDE9F328C0A28 /* Pods_Gas_2_You.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C4E5B44100AA96306EC391 /* Pods_Gas_2_You.framework */; };
-		9A3A912426C128E90041D7D9 /* AddAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912326C128E90041D7D9 /* AddAddressVC.swift */; };
+		9A21857226C28AE8005BAAA1 /* AddAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21857126C28AE8005BAAA1 /* AddAddressVC.swift */; };
+		9A3A912426C128E90041D7D9 /* AddressListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912326C128E90041D7D9 /* AddressListVC.swift */; };
 		9A3A912F26C133AC0041D7D9 /* SideMenuItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */; };
 		9A3A913026C133AC0041D7D9 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912726C133AB0041D7D9 /* Options.swift */; };
 		9A3A913126C133AC0041D7D9 /* MenuContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912826C133AC0041D7D9 /* MenuContainerViewController.swift */; };
@@ -19,6 +20,10 @@
 		9A3A913926C13B860041D7D9 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A913826C13B860041D7D9 /* AddressCell.swift */; };
 		9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A913A26C140AA0041D7D9 /* ChatListCell.swift */; };
 		9A3A913D26C141700041D7D9 /* ChatListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A913C26C141700041D7D9 /* ChatListVC.swift */; };
+		9A3A913F26C14ABF0041D7D9 /* CompleteJobVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A913E26C14ABF0041D7D9 /* CompleteJobVC.swift */; };
+		9A3A914126C1671E0041D7D9 /* NotificationListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A914026C1671E0041D7D9 /* NotificationListVC.swift */; };
+		9A3A914326C16C4C0041D7D9 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A914226C16C4C0041D7D9 /* ForgotPasswordVC.swift */; };
+		9A3A914526C16E690041D7D9 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A914426C16E690041D7D9 /* ChangePasswordVC.swift */; };
 		9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */; };
 		9A5B08AB26B266E800BA0CB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */; };
 		9A5B08B026B266E800BA0CB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B08AE26B266E800BA0CB4 /* Main.storyboard */; };
@@ -79,6 +84,11 @@
 		9A5B094226B279AE00BA0CB4 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B094126B279AE00BA0CB4 /* Storyboards.swift */; };
 		9A5B094626B27AB400BA0CB4 /* ThemeShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B094526B27AB400BA0CB4 /* ThemeShadow.swift */; };
 		9A5B094A26B2C9FC00BA0CB4 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B094926B2C9FC00BA0CB4 /* LogInVC.swift */; };
+		9A70292C26C2452800DB1040 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70292B26C2452800DB1040 /* MyProfileVC.swift */; };
+		9A70292E26C2514F00DB1040 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70292D26C2514F00DB1040 /* SettingsVC.swift */; };
+		9A70293026C259DE00DB1040 /* MyGarageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70292F26C259DE00DB1040 /* MyGarageVC.swift */; };
+		9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70293126C25B2000DB1040 /* VehicleListCell.swift */; };
+		9A70293426C279EE00DB1040 /* AddVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70293326C279EE00DB1040 /* AddVehicleVC.swift */; };
 		9A81083726B963B5003DE6CC /* CarParkingLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */; };
 		9AC568BF26B7B1020039FCCF /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568BE26B7B1020039FCCF /* SignUpVC.swift */; };
 		9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568C126B7C0B70039FCCF /* BaseVC.swift */; };
@@ -90,7 +100,8 @@
 		23FBE9F64945D7195FB03CB0 /* Pods-Gas 2 You.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gas 2 You.release.xcconfig"; path = "Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You.release.xcconfig"; sourceTree = "<group>"; };
 		30C4E5B44100AA96306EC391 /* Pods_Gas_2_You.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gas_2_You.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC1E0F1665E6CA6F8419210 /* Pods-Gas 2 You.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gas 2 You.debug.xcconfig"; path = "Target Support Files/Pods-Gas 2 You/Pods-Gas 2 You.debug.xcconfig"; sourceTree = "<group>"; };
-		9A3A912326C128E90041D7D9 /* AddAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressVC.swift; sourceTree = "<group>"; };
+		9A21857126C28AE8005BAAA1 /* AddAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressVC.swift; sourceTree = "<group>"; };
+		9A3A912326C128E90041D7D9 /* AddressListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListVC.swift; sourceTree = "<group>"; };
 		9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemOptions.swift; sourceTree = "<group>"; };
 		9A3A912726C133AB0041D7D9 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		9A3A912826C133AC0041D7D9 /* MenuContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContainerViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +113,10 @@
 		9A3A913826C13B860041D7D9 /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
 		9A3A913A26C140AA0041D7D9 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		9A3A913C26C141700041D7D9 /* ChatListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListVC.swift; sourceTree = "<group>"; };
+		9A3A913E26C14ABF0041D7D9 /* CompleteJobVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteJobVC.swift; sourceTree = "<group>"; };
+		9A3A914026C1671E0041D7D9 /* NotificationListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListVC.swift; sourceTree = "<group>"; };
+		9A3A914226C16C4C0041D7D9 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		9A3A914426C16E690041D7D9 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		9A5B08A526B266E800BA0CB4 /* Gas 2 You.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gas 2 You.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +160,11 @@
 		9A5B094126B279AE00BA0CB4 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		9A5B094526B27AB400BA0CB4 /* ThemeShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeShadow.swift; sourceTree = "<group>"; };
 		9A5B094926B2C9FC00BA0CB4 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
+		9A70292B26C2452800DB1040 /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
+		9A70292D26C2514F00DB1040 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		9A70292F26C259DE00DB1040 /* MyGarageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGarageVC.swift; sourceTree = "<group>"; };
+		9A70293126C25B2000DB1040 /* VehicleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListCell.swift; sourceTree = "<group>"; };
+		9A70293326C279EE00DB1040 /* AddVehicleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleVC.swift; sourceTree = "<group>"; };
 		9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkingLocationVC.swift; sourceTree = "<group>"; };
 		9AC568BE26B7B1020039FCCF /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		9AC568C126B7C0B70039FCCF /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -184,6 +204,7 @@
 			children = (
 				9A3A913826C13B860041D7D9 /* AddressCell.swift */,
 				9A3A913A26C140AA0041D7D9 /* ChatListCell.swift */,
+				9A70293126C25B2000DB1040 /* VehicleListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -329,6 +350,8 @@
 			children = (
 				9A5B094926B2C9FC00BA0CB4 /* LogInVC.swift */,
 				9AC568BE26B7B1020039FCCF /* SignUpVC.swift */,
+				9A3A914226C16C4C0041D7D9 /* ForgotPasswordVC.swift */,
+				9A3A914426C16E690041D7D9 /* ChangePasswordVC.swift */,
 			);
 			path = "Login Controllers";
 			sourceTree = "<group>";
@@ -338,8 +361,15 @@
 			children = (
 				9AC568C526B7C25C0039FCCF /* HomeVC.swift */,
 				9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */,
-				9A3A912326C128E90041D7D9 /* AddAddressVC.swift */,
+				9A3A912326C128E90041D7D9 /* AddressListVC.swift */,
 				9A3A913C26C141700041D7D9 /* ChatListVC.swift */,
+				9A3A913E26C14ABF0041D7D9 /* CompleteJobVC.swift */,
+				9A3A914026C1671E0041D7D9 /* NotificationListVC.swift */,
+				9A70292B26C2452800DB1040 /* MyProfileVC.swift */,
+				9A70292D26C2514F00DB1040 /* SettingsVC.swift */,
+				9A70292F26C259DE00DB1040 /* MyGarageVC.swift */,
+				9A70293326C279EE00DB1040 /* AddVehicleVC.swift */,
+				9A21857126C28AE8005BAAA1 /* AddAddressVC.swift */,
 			);
 			path = "Home Controllers";
 			sourceTree = "<group>";
@@ -528,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */,
 				9A5B093926B2788500BA0CB4 /* UIButton+Extension.swift in Sources */,
 				9A5B093826B2788500BA0CB4 /* UIImageView+Extension.swift in Sources */,
 				9A5B094A26B2C9FC00BA0CB4 /* LogInVC.swift in Sources */,
@@ -535,6 +566,7 @@
 				9A3A913426C133AC0041D7D9 /* MenuTransitioningDelegate.swift in Sources */,
 				9A5B091D26B274D600BA0CB4 /* Poppins-Black.ttf in Sources */,
 				9A5B091E26B274D600BA0CB4 /* Poppins-BlackItalic.ttf in Sources */,
+				9A70293426C279EE00DB1040 /* AddVehicleVC.swift in Sources */,
 				9A3A913626C133AC0041D7D9 /* MenuViewController.swift in Sources */,
 				9A5B091F26B274D600BA0CB4 /* Poppins-Bold.ttf in Sources */,
 				9A5B093726B2788500BA0CB4 /* UIViewController+Extension.swift in Sources */,
@@ -546,15 +578,19 @@
 				9A5B092226B274D600BA0CB4 /* Poppins-ExtraBoldItalic.ttf in Sources */,
 				9A5B092326B274D600BA0CB4 /* Poppins-ExtraLight.ttf in Sources */,
 				9A5B092426B274D600BA0CB4 /* Poppins-ExtraLightItalic.ttf in Sources */,
+				9A70292C26C2452800DB1040 /* MyProfileVC.swift in Sources */,
+				9A21857226C28AE8005BAAA1 /* AddAddressVC.swift in Sources */,
 				9A5B094626B27AB400BA0CB4 /* ThemeShadow.swift in Sources */,
 				9AC568C626B7C25C0039FCCF /* HomeVC.swift in Sources */,
 				9A5B092526B274D600BA0CB4 /* Poppins-Italic.ttf in Sources */,
 				9A5B092626B274D600BA0CB4 /* Poppins-Light.ttf in Sources */,
-				9A3A912426C128E90041D7D9 /* AddAddressVC.swift in Sources */,
+				9A3A912426C128E90041D7D9 /* AddressListVC.swift in Sources */,
 				9A5B094026B278B800BA0CB4 /* Validation.swift in Sources */,
 				9A3A913026C133AC0041D7D9 /* Options.swift in Sources */,
 				9A5B092726B274D600BA0CB4 /* Poppins-LightItalic.ttf in Sources */,
+				9A3A914326C16C4C0041D7D9 /* ForgotPasswordVC.swift in Sources */,
 				9A5B092826B274D600BA0CB4 /* Poppins-Medium.ttf in Sources */,
+				9A70292E26C2514F00DB1040 /* SettingsVC.swift in Sources */,
 				9A5B092926B274D600BA0CB4 /* Poppins-MediumItalic.ttf in Sources */,
 				9A5B092A26B274D600BA0CB4 /* Poppins-Regular.ttf in Sources */,
 				9A5B092B26B274D600BA0CB4 /* Poppins-SemiBold.ttf in Sources */,
@@ -563,12 +599,14 @@
 				9A5B093B26B2788500BA0CB4 /* userDefaults+Extension.swift in Sources */,
 				9A5B092C26B274D600BA0CB4 /* Poppins-SemiBoldItalic.ttf in Sources */,
 				9A5B093D26B2788500BA0CB4 /* Extension+CLLocation.swift in Sources */,
+				9A3A913F26C14ABF0041D7D9 /* CompleteJobVC.swift in Sources */,
 				9A5B092D26B274D600BA0CB4 /* Poppins-Thin.ttf in Sources */,
 				9A3A913326C133AC0041D7D9 /* SideMenuItemContent.swift in Sources */,
 				9A5B093A26B2788500BA0CB4 /* Date+Extension.swift in Sources */,
 				9A3A913926C13B860041D7D9 /* AddressCell.swift in Sources */,
 				9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */,
 				9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */,
+				9A3A914526C16E690041D7D9 /* ChangePasswordVC.swift in Sources */,
 				9A5B092E26B274D600BA0CB4 /* Poppins-ThinItalic.ttf in Sources */,
 				9A5B094226B279AE00BA0CB4 /* Storyboards.swift in Sources */,
 				9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */,
@@ -579,9 +617,11 @@
 				9A5B08E826B26C7800BA0CB4 /* Themes.swift in Sources */,
 				9A3A913226C133AC0041D7D9 /* MenuAnimator.swift in Sources */,
 				9A5B08F226B2718500BA0CB4 /* Colors.swift in Sources */,
+				9A70293026C259DE00DB1040 /* MyGarageVC.swift in Sources */,
 				9A5B093E26B2788500BA0CB4 /* UITextField+Extensions.swift in Sources */,
 				9A5B08F026B2703000BA0CB4 /* String+extension.swift in Sources */,
 				9A5B08ED26B26DF100BA0CB4 /* AppTheme_FontColor.swift in Sources */,
+				9A3A914126C1671E0041D7D9 /* NotificationListVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

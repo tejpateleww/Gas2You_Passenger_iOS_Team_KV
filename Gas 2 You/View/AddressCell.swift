@@ -11,7 +11,8 @@ class AddressCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = 8
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
