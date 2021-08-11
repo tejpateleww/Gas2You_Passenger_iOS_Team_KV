@@ -13,8 +13,24 @@ class CompleteJobVC: BaseVC {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var completeLabel: themeLabel!
     @IBOutlet weak var mainView: UIView!
-    @IBOutlet var borderedButtons: [themeButton]!
-    @IBOutlet var borderedViews: [UIView]!
+    @IBOutlet var borderedButtons: [UIButton]! {
+        didSet {
+            for i in 0..<borderedButtons.count {
+                borderedButtons[i].titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(13)
+                borderedButtons[i].layer.borderWidth = 1
+                borderedButtons[i].layer.borderColor = #colorLiteral(red: 0.462745098, green: 0.462745098, blue: 0.5019607843, alpha: 0.12)
+            }
+        }
+    }
+    @IBOutlet var borderedViews: [UIView]! {
+        didSet {
+            for i in 0..<borderedViews.count {
+                borderedViews[i].layer.cornerRadius = 5
+                borderedViews[i].layer.borderWidth = 1
+                borderedViews[i].layer.borderColor = #colorLiteral(red: 0.462745098, green: 0.462745098, blue: 0.5019607843, alpha: 0.12)
+            }
+        }
+    }
     
     var locationManager = CLLocationManager()
     
@@ -42,16 +58,6 @@ class CompleteJobVC: BaseVC {
         completeLabel.layer.masksToBounds = true
         completeLabel.layer.cornerRadius = 5
         
-        for i in 0..<borderedViews.count {
-            
-            borderedButtons[i].layer.borderWidth = 1
-            borderedButtons[i].layer.borderColor = #colorLiteral(red: 0.462745098, green: 0.462745098, blue: 0.5019607843, alpha: 0.12)
-            
-            borderedViews[i].layer.cornerRadius = 5
-            borderedViews[i].layer.borderWidth = 1
-            borderedViews[i].layer.borderColor = #colorLiteral(red: 0.462745098, green: 0.462745098, blue: 0.5019607843, alpha: 0.12)
-            
-        }
     }
     
     func drawImageWithProfilePic(pp: UIImage?, image: UIImage) -> UIImage {
