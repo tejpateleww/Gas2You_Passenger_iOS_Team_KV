@@ -97,4 +97,18 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if isInProcess == 1 {
+            print("Upcoming cell pressed")
+        } else if isInProcess == 2 {
+            print("InProgress cell pressed")
+        } else if isInProcess == 3 {
+            let ratingPopUpVC: RatingPopUpVC = RatingPopUpVC.instantiate(fromAppStoryboard: .Main)
+            ratingPopUpVC.modalPresentationStyle = .overFullScreen
+            present(ratingPopUpVC, animated: false, completion: nil)
+        }
+        
+    }
 }

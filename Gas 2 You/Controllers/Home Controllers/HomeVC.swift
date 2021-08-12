@@ -11,15 +11,15 @@ class HomeVC: BaseVC {
 
     //MARK:- OUTLETS
     
-    @IBOutlet weak var selectServiceButton: UIButton!
+    @IBOutlet weak var imgSelctService: UIImageView!
     @IBOutlet weak var gasServiceView: UIView!
     @IBOutlet var octaneButtons: [themeButton]!
     @IBOutlet weak var priceTagLabel: themeLabel!
-    @IBOutlet weak var selectParkingLocationButton: UIButton!
+    @IBOutlet weak var imgParkingLocation: UIImageView!
     @IBOutlet weak var locationLabel: themeLabel!
     @IBOutlet weak var selectDateButton: UIButton!
     @IBOutlet var timeSlotButtons: [themeButton]!
-    @IBOutlet weak var selectVehicleButton: UIButton!
+    @IBOutlet weak var imgSelectVehicle: UIImageView!
     @IBOutlet weak var checkTirePressureButton: UIButton!
     @IBOutlet weak var windshieldRefillButton: UIButton!
     
@@ -39,10 +39,22 @@ class HomeVC: BaseVC {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    
     
     //MARK:- ACTIONS
     
-    @IBAction func selectServiceButtonPressed(_ sender: UIButton) {
+    @IBAction func btnSelectServiceTap(_ sender: UIButton) {
         
     }
     
@@ -61,7 +73,7 @@ class HomeVC: BaseVC {
     }
     
     
-    @IBAction func parkingLocatioButtonPressed(_ sender: UIButton) {
+    @IBAction func btnParkingLocationTap(_ sender: UIButton) {
         let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
         navigationController?.pushViewController(carParkingLocationVC, animated: true)
     }
@@ -87,7 +99,9 @@ class HomeVC: BaseVC {
         
     }
     
-    @IBAction func selectVehicleButtonPressed(_ sender: UIButton) {
+    @IBAction func btnSelectVehicleTap(_ sender: UIButton) {
+        let myGarageVC = storyboard?.instantiateViewController(identifier: MyGarageVC.className) as! MyGarageVC
+        navigationController?.pushViewController(myGarageVC, animated: true)
     }
     
     @IBAction func tirePressureButtonPressed(_ sender: UIButton) {
@@ -108,9 +122,18 @@ class HomeVC: BaseVC {
         }
     }
     
+    
     @IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
         
+        let slideToConfirmVC: SlideToConfirmVC = SlideToConfirmVC.instantiate(fromAppStoryboard: .Main)
+        slideToConfirmVC.completion = {
+            let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+            self.navigationController?.pushViewController(myOrdersVC, animated: true)
+        }
+        
        
+        slideToConfirmVC.modalPresentationStyle = .overFullScreen
+        present(slideToConfirmVC, animated: false, completion: nil)
         
     }
     
@@ -136,6 +159,12 @@ class HomeVC: BaseVC {
                 octaneButtons[i].setImage(#imageLiteral(resourceName: "IC_unselectedGray"), for: .normal)
             }
         }
+    }
+    
+    func navigateToMyOrders() {
+        
+        let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(myOrdersVC, animated: true)
     }
     
     

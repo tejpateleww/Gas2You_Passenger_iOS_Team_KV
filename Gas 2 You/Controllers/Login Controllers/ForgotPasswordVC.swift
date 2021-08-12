@@ -14,5 +14,9 @@ class ForgotPasswordVC: BaseVC {
 
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Forgot Password", controller: self)
     }
-
+    @IBAction func btnSubmitTap(_ sender: ThemeButton) {
+        let changePassVC: ChangePasswordVC = ChangePasswordVC.instantiate(fromAppStoryboard: .Login)
+        navigationController?.pushViewController(changePassVC, animated: true)
+    }
+    
 }

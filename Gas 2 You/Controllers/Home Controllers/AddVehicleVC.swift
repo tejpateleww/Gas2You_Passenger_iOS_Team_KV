@@ -14,4 +14,7 @@ class AddVehicleVC: BaseVC {
 
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Add Vehicle", controller: self)
     }
+    @IBAction func btnSaveTap(_ sender: ThemeButton) {
+        navigationController?.popViewController(animated: true)
+    }
 }

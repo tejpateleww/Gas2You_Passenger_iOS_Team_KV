@@ -321,7 +321,7 @@ protocol textFieldDelegate {
     func didTapRightButton()
 }
 
-class themeTextfield : UITextField{
+class themeTextfield : UITextField {
     
     @IBInspectable public var Font_Size: CGFloat = FontSize.size15.rawValue
     @IBInspectable public var Border_Width: CGFloat = 1.0
@@ -335,7 +335,7 @@ class themeTextfield : UITextField{
                 let button = UIButton(frame: CGRect(x: 10, y: 0, width: 60, height: 40))
                 button.setTitle(titleText, for: .normal)
                 button.setColorFont(color: .gray , font: FontBook.regular.staticFont(size: Font_Size - 2))
-                button.addTarget(self, action: #selector(rightImageAction), for: .touchUpInside)
+                button.addTarget(self, action: #selector(rightBtnAction), for: .touchUpInside)
                 let view = UIView(frame : CGRect(x: 0, y: 0, width: 80, height: 40))
                 view.addSubview(button)
                 rightView = view
@@ -345,8 +345,13 @@ class themeTextfield : UITextField{
         }
     }
 
-    @objc func rightImageAction() {
-        print("button pressed")
+    @objc func rightBtnAction() {
+//        print("forgot pressed")
+//        let loginStory = UIStoryboard(name: "Login", bundle: nil)
+//        let loginVC = LogInVC()
+//        let forgotPassVC = loginStory.instantiateViewController(identifier: ForgotPasswordVC.className) as! ForgotPasswordVC
+//        loginVC.navigationController?.pushViewController(forgotPassVC, animated: true)
+        
     }
     
     @IBInspectable var LeftImage: UIImage? {

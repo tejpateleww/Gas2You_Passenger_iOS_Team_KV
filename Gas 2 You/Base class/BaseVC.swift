@@ -79,9 +79,9 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
     }
     
     
+    
     @objc func rightButtonAction(_ sender: UIBarButtonItem?) {
-        
-        
+//        let chatListVC: ChatListVC 
     }
     
     
@@ -132,8 +132,11 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
                 button.addTarget(self, action: #selector(menuButtonPressed(button:)), for: .touchUpInside)
             } else {
                 button.setImage(#imageLiteral(resourceName: "IC_back"), for: .normal)
+                
                 button.addTarget(self, action: #selector(BackButtonWithTitle(button:)), for: .touchUpInside)
             }
+            
+            
             
             
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 40)) // width: 250

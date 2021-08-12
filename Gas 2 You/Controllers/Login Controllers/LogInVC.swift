@@ -8,8 +8,10 @@
 import UIKit
 
 class LogInVC: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var firstTF: themeTextfield!
+    
+    
+    @IBOutlet weak var txtEmail: themeTextfield!
+    @IBOutlet weak var txtPassword: themeTextfield!
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -19,21 +21,43 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupTextfields(textfield: txtPassword)
     }
     
     
     @IBAction func logInButtonPreesed(_ sender: ThemeButton) {
         
-        let homeVC = storyboard?.instantiateViewController(identifier: HomeVC.className) as! HomeVC
+        let mainStory = UIStoryboard(name: "Main", bundle: nil)
+        let homeVC = mainStory.instantiateViewController(identifier: HomeVC.className) as! HomeVC
         navigationController?.pushViewController(homeVC, animated: true)
         
     }
     
-    @IBAction func signUpButtonPressed(_ sender: themeButton) {
+    func setupTextfields(textfield : UITextField) {
         
-        let signUpVC = storyboard?.instantiateViewController(identifier: "SignUpVC") as! SignUpVC
+        textfield.rightViewMode = .always
+        let button = UIButton(frame: CGRect(x: 10, y: 0, width: 60, height: 40))
+        button.setTitle("Forgot?", for: .normal)
+        button.setColorFont(color: .gray , font: CustomFont.PoppinsMedium.returnFont(14))
+        button.addTarget(self, action: #selector(navigateToForgotPassword), for: .touchUpInside)
+        let view = UIView(frame : CGRect(x: 0, y: 0, width: 80, height: 40))
+        view.addSubview(button)
+        textfield.rightView = view
+        
+        
+        
+    }
+    
+    @IBAction func signUpButtonPressed(_ sender: themeButton) {
+        let loginStory = UIStoryboard(name: "Login", bundle: nil)
+        let signUpVC = loginStory.instantiateViewController(identifier: SignUpVC.className) as! SignUpVC
         navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    
+    @objc func navigateToForgotPassword(){
+        let loginStory = UIStoryboard(name: "Login", bundle: nil)
+        let forgotpassVC = loginStory.instantiateViewController(identifier: ForgotPasswordVC.className) as! ForgotPasswordVC
+        navigationController?.pushViewController(forgotpassVC, animated: true)
     }
     
     

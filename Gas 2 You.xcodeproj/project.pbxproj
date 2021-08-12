@@ -30,6 +30,8 @@
 		9A4A8B9626C3DEF500966B2D /* MyOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4A8B9526C3DEF500966B2D /* MyOrdersVC.swift */; };
 		9A4A8B9926C3E70500966B2D /* InProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4A8B9726C3E70500966B2D /* InProgressCell.swift */; };
 		9A4A8B9A26C3E70500966B2D /* InProgressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A4A8B9826C3E70500966B2D /* InProgressCell.xib */; };
+		9A5512BD26C4D86800DDA313 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5512BC26C4D86800DDA313 /* Login.storyboard */; };
+		9A5512C026C505C100DDA313 /* GasDoorOpenPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5512BF26C505C100DDA313 /* GasDoorOpenPopUpVC.swift */; };
 		9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */; };
 		9A5B08AB26B266E800BA0CB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */; };
 		9A5B08B026B266E800BA0CB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B08AE26B266E800BA0CB4 /* Main.storyboard */; };
@@ -92,12 +94,14 @@
 		9A5B094A26B2C9FC00BA0CB4 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B094926B2C9FC00BA0CB4 /* LogInVC.swift */; };
 		9A64EB4C26C3F8EB0098D222 /* CompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A64EB4A26C3F8EB0098D222 /* CompletedCell.swift */; };
 		9A64EB4D26C3F8EB0098D222 /* CompletedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A64EB4B26C3F8EB0098D222 /* CompletedCell.xib */; };
+		9A65A6BA26C51E3500F0592A /* SlideToConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A65A6B926C51E3500F0592A /* SlideToConfirmVC.swift */; };
 		9A70292C26C2452800DB1040 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70292B26C2452800DB1040 /* MyProfileVC.swift */; };
 		9A70292E26C2514F00DB1040 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70292D26C2514F00DB1040 /* SettingsVC.swift */; };
 		9A70293026C259DE00DB1040 /* MyGarageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70292F26C259DE00DB1040 /* MyGarageVC.swift */; };
 		9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70293126C25B2000DB1040 /* VehicleListCell.swift */; };
 		9A70293426C279EE00DB1040 /* AddVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70293326C279EE00DB1040 /* AddVehicleVC.swift */; };
 		9A81083726B963B5003DE6CC /* CarParkingLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */; };
+		9A8591A526C53F1C00830B59 /* RatingPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8591A426C53F1C00830B59 /* RatingPopUpVC.swift */; };
 		9AC568BF26B7B1020039FCCF /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568BE26B7B1020039FCCF /* SignUpVC.swift */; };
 		9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568C126B7C0B70039FCCF /* BaseVC.swift */; };
 		9AC568C626B7C25C0039FCCF /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568C526B7C25C0039FCCF /* HomeVC.swift */; };
@@ -131,6 +135,8 @@
 		9A4A8B9526C3DEF500966B2D /* MyOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrdersVC.swift; sourceTree = "<group>"; };
 		9A4A8B9726C3E70500966B2D /* InProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressCell.swift; sourceTree = "<group>"; };
 		9A4A8B9826C3E70500966B2D /* InProgressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InProgressCell.xib; sourceTree = "<group>"; };
+		9A5512BC26C4D86800DDA313 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		9A5512BF26C505C100DDA313 /* GasDoorOpenPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasDoorOpenPopUpVC.swift; sourceTree = "<group>"; };
 		9A5B08A526B266E800BA0CB4 /* Gas 2 You.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gas 2 You.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,12 +182,14 @@
 		9A5B094926B2C9FC00BA0CB4 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		9A64EB4A26C3F8EB0098D222 /* CompletedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedCell.swift; sourceTree = "<group>"; };
 		9A64EB4B26C3F8EB0098D222 /* CompletedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletedCell.xib; sourceTree = "<group>"; };
+		9A65A6B926C51E3500F0592A /* SlideToConfirmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideToConfirmVC.swift; sourceTree = "<group>"; };
 		9A70292B26C2452800DB1040 /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
 		9A70292D26C2514F00DB1040 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		9A70292F26C259DE00DB1040 /* MyGarageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGarageVC.swift; sourceTree = "<group>"; };
 		9A70293126C25B2000DB1040 /* VehicleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListCell.swift; sourceTree = "<group>"; };
 		9A70293326C279EE00DB1040 /* AddVehicleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleVC.swift; sourceTree = "<group>"; };
 		9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkingLocationVC.swift; sourceTree = "<group>"; };
+		9A8591A426C53F1C00830B59 /* RatingPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingPopUpVC.swift; sourceTree = "<group>"; };
 		9AC568BE26B7B1020039FCCF /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		9AC568C126B7C0B70039FCCF /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		9AC568C526B7C25C0039FCCF /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -229,6 +237,16 @@
 				9A64EB4B26C3F8EB0098D222 /* CompletedCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9A5512BE26C5057600DDA313 /* Popups Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A5512BF26C505C100DDA313 /* GasDoorOpenPopUpVC.swift */,
+				9A65A6B926C51E3500F0592A /* SlideToConfirmVC.swift */,
+				9A8591A426C53F1C00830B59 /* RatingPopUpVC.swift */,
+			);
+			path = "Popups Controllers";
 			sourceTree = "<group>";
 		};
 		9A5B089C26B266E800BA0CB4 = {
@@ -335,6 +353,7 @@
 		9A5B08F326B2721A00BA0CB4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A5512BE26C5057600DDA313 /* Popups Controllers */,
 				9AC568C426B7C2450039FCCF /* Home Controllers */,
 				9AC568C326B7C2350039FCCF /* Login Controllers */,
 			);
@@ -346,6 +365,7 @@
 			children = (
 				9A5B08B626B266EA00BA0CB4 /* LaunchScreen.storyboard */,
 				9A5B08AE26B266E800BA0CB4 /* Main.storyboard */,
+				9A5512BC26C4D86800DDA313 /* Login.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -503,6 +523,7 @@
 				9A5B091126B274A800BA0CB4 /* Poppins-ExtraBold.ttf in Resources */,
 				9A5B090C26B274A800BA0CB4 /* Poppins-Bold.ttf in Resources */,
 				9A5B091526B274A800BA0CB4 /* Poppins-Regular.ttf in Resources */,
+				9A5512BD26C4D86800DDA313 /* Login.storyboard in Resources */,
 				9A5B091326B274A800BA0CB4 /* Poppins-ExtraLight.ttf in Resources */,
 				9A5B090F26B274A800BA0CB4 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				9A5B091926B274A800BA0CB4 /* Poppins-ExtraLightItalic.ttf in Resources */,
@@ -593,6 +614,7 @@
 				9A5B091C26B274D600BA0CB4 /* OFL.txt in Sources */,
 				9A3A913426C133AC0041D7D9 /* MenuTransitioningDelegate.swift in Sources */,
 				9A5B091D26B274D600BA0CB4 /* Poppins-Black.ttf in Sources */,
+				9A8591A526C53F1C00830B59 /* RatingPopUpVC.swift in Sources */,
 				9A5B091E26B274D600BA0CB4 /* Poppins-BlackItalic.ttf in Sources */,
 				9A70293426C279EE00DB1040 /* AddVehicleVC.swift in Sources */,
 				9A3A913626C133AC0041D7D9 /* MenuViewController.swift in Sources */,
@@ -628,12 +650,14 @@
 				9A3A912F26C133AC0041D7D9 /* SideMenuItemOptions.swift in Sources */,
 				9A5B093B26B2788500BA0CB4 /* userDefaults+Extension.swift in Sources */,
 				9A5B092C26B274D600BA0CB4 /* Poppins-SemiBoldItalic.ttf in Sources */,
+				9A65A6BA26C51E3500F0592A /* SlideToConfirmVC.swift in Sources */,
 				9A5B093D26B2788500BA0CB4 /* Extension+CLLocation.swift in Sources */,
 				9A3A913F26C14ABF0041D7D9 /* CompleteJobVC.swift in Sources */,
 				9A5B092D26B274D600BA0CB4 /* Poppins-Thin.ttf in Sources */,
 				9A3A913326C133AC0041D7D9 /* SideMenuItemContent.swift in Sources */,
 				9A5B093A26B2788500BA0CB4 /* Date+Extension.swift in Sources */,
 				9A3A913926C13B860041D7D9 /* AddressCell.swift in Sources */,
+				9A5512C026C505C100DDA313 /* GasDoorOpenPopUpVC.swift in Sources */,
 				9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */,
 				9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */,
 				9A3A914526C16E690041D7D9 /* ChangePasswordVC.swift in Sources */,

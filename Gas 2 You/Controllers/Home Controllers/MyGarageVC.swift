@@ -17,6 +17,11 @@ class MyGarageVC: BaseVC {
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Garage", controller: self)
     }
     
+    @IBAction func btnAddVehicleTap(_ sender: ThemeButton) {
+        let addVehicleVC = storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
+        navigationController?.pushViewController(addVehicleVC, animated: true)
+    }
+    
 }
 
 extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
@@ -46,7 +51,8 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         deleteAction.image = #imageLiteral(resourceName: "IC_bin")
         editAction.image = #imageLiteral(resourceName: "IC_pencil")
         editAction.backgroundColor = UIColor.appColor(.themeBlue)
-        deleteAction.backgroundColor = UIColor.red
+        deleteAction.backgroundColor = .red
+        editAction.backgroundColor = .red
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
     

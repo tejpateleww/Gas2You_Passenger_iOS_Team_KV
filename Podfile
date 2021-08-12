@@ -9,5 +9,7 @@ target 'Gas 2 You' do
 
 pod 'IQKeyboardManagerSwift'
 pod 'GoogleMaps'
+pod 'MTSlideToOpen'
+pod 'Cosmos', '~> 23.0'
 
 end
