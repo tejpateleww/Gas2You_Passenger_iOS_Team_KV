@@ -2437,6 +2437,9 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                                        <connections>
+                                                                            <outlet property="delegate" destination="QRg-At-tTs" id="JP4-A6-HNQ"/>
+                                                                        </connections>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_arrowDownBlack" translatesAutoresizingMaskIntoConstraints="NO" id="2Vp-60-BgK">
                                                                         <rect key="frame" x="349" y="0.0" width="25" height="48"/>
@@ -2483,6 +2486,9 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                                        <connections>
+                                                                            <outlet property="delegate" destination="QRg-At-tTs" id="dKR-QT-e3O"/>
+                                                                        </connections>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_arrowDownBlack" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-pq-AbM">
                                                                         <rect key="frame" x="349" y="0.0" width="25" height="48"/>
@@ -2529,6 +2535,9 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                                        <connections>
+                                                                            <outlet property="delegate" destination="QRg-At-tTs" id="6GK-z4-7vA"/>
+                                                                        </connections>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_arrowDownBlack" translatesAutoresizingMaskIntoConstraints="NO" id="cWp-67-7c2">
                                                                         <rect key="frame" x="349" y="0.0" width="25" height="48"/>
@@ -2575,6 +2584,9 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                                        <connections>
+                                                                            <outlet property="delegate" destination="QRg-At-tTs" id="8ov-oa-9YV"/>
+                                                                        </connections>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_arrowDownBlack" translatesAutoresizingMaskIntoConstraints="NO" id="qUR-la-0Hf">
                                                                         <rect key="frame" x="349" y="0.0" width="25" height="48"/>
@@ -2621,6 +2633,9 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                                        <connections>
+                                                                            <outlet property="delegate" destination="QRg-At-tTs" id="4Rl-A9-FrI"/>
+                                                                        </connections>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -2669,6 +2684,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZSf-qc-PKO"/>
+                    <connections>
+                        <outlet property="btnSave" destination="ieC-1Z-Nlo" id="aOM-6a-I0P"/>
+                        <outlet property="lblColor" destination="LQq-ci-vX6" id="GuH-u0-FRw"/>
+                        <outlet property="lblLicencePlateNum" destination="KXp-RZ-PVn" id="YgN-od-E0J"/>
+                        <outlet property="lblMake" destination="o3X-lQ-x8d" id="ZK3-of-qU6"/>
+                        <outlet property="lblModel" destination="Dcr-BS-W1w" id="0wb-pa-Z0k"/>
+                        <outlet property="lblYear" destination="pDA-Pb-fLM" id="bZ1-Zv-AUs"/>
+                        <outlet property="txtEnterColor" destination="AGg-lW-WHa" id="QJS-Nj-xMO"/>
+                        <outlet property="txtEnterMake" destination="fXE-4f-R7a" id="FYb-VK-pmq"/>
+                        <outlet property="txtEnterModel" destination="RBW-lG-0lq" id="sKU-ZR-Sgo"/>
+                        <outlet property="txtEnterYear" destination="uln-A1-SIQ" id="dcs-3x-49H"/>
+                        <outlet property="txtLicencePlateNo" destination="CCi-yj-ZDG" id="Ebl-66-kKM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cU6-co-Q28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3832,9 +3860,9 @@ Open Today</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgR-P1-7Q0">
-                                        <rect key="frame" x="25" y="211.5" width="364" height="395"/>
+                                        <rect key="frame" x="25" y="211.5" width="364" height="395.5"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b7g-3W-6E7">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="395"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="396"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="WT0-Qq-jb8">
@@ -3969,9 +3997,9 @@ is complete</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0B8-GA-aav">
-                                        <rect key="frame" x="25" y="202.5" width="364" height="413"/>
+                                        <rect key="frame" x="25" y="202.5" width="364" height="413.5"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RTV-vg-W9B">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="413"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="414"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="5xb-s6-u9Y">

@@ -100,6 +100,7 @@
 		9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70293126C25B2000DB1040 /* VehicleListCell.swift */; };
 		9A70293426C279EE00DB1040 /* AddVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70293326C279EE00DB1040 /* AddVehicleVC.swift */; };
 		9A730ABB26C6889700D01F6B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A730ABA26C6889700D01F6B /* ChatViewController.swift */; };
+		9A730ABD26C6998300D01F6B /* GeneralPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A730ABC26C6998300D01F6B /* GeneralPickerView.swift */; };
 		9A81083726B963B5003DE6CC /* CarParkingLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */; };
 		9A8591A526C53F1C00830B59 /* RatingPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8591A426C53F1C00830B59 /* RatingPopUpVC.swift */; };
 		9A873B5226C62773004C37CF /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A873B5126C62773004C37CF /* LeftViewController.swift */; };
@@ -190,6 +191,7 @@
 		9A70293126C25B2000DB1040 /* VehicleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListCell.swift; sourceTree = "<group>"; };
 		9A70293326C279EE00DB1040 /* AddVehicleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleVC.swift; sourceTree = "<group>"; };
 		9A730ABA26C6889700D01F6B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		9A730ABC26C6998300D01F6B /* GeneralPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPickerView.swift; sourceTree = "<group>"; };
 		9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkingLocationVC.swift; sourceTree = "<group>"; };
 		9A8591A426C53F1C00830B59 /* RatingPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingPopUpVC.swift; sourceTree = "<group>"; };
 		9A873B5126C62773004C37CF /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				9A5B093626B2788500BA0CB4 /* UITextField+Extensions.swift */,
 				9A5B092F26B2788400BA0CB4 /* UIViewController+Extension.swift */,
 				9A5B093326B2788400BA0CB4 /* userDefaults+Extension.swift */,
+				9A730ABC26C6998300D01F6B /* GeneralPickerView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				9A8591A526C53F1C00830B59 /* RatingPopUpVC.swift in Sources */,
 				9A5B091E26B274D600BA0CB4 /* Poppins-BlackItalic.ttf in Sources */,
 				9A70293426C279EE00DB1040 /* AddVehicleVC.swift in Sources */,
+				9A730ABD26C6998300D01F6B /* GeneralPickerView.swift in Sources */,
 				9A3A913626C133AC0041D7D9 /* MenuViewController.swift in Sources */,
 				9A5B091F26B274D600BA0CB4 /* Poppins-Bold.ttf in Sources */,
 				9A5B093726B2788500BA0CB4 /* UIViewController+Extension.swift in Sources */,
