@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecognizerDelegate, SideMenuItemContent {
     
     //MARK:- Properties
     var onTxtBtnPressed: ( (Int) -> () )?
@@ -81,7 +81,8 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
     
     
     @objc func rightButtonAction(_ sender: UIBarButtonItem?) {
-//        let chatListVC: ChatListVC 
+        let chatListVC: ChatListVC = ChatListVC.instantiate(fromAppStoryboard: .Main)
+        navigationController?.pushViewController(chatListVC, animated: true)
     }
     
     
@@ -307,9 +308,8 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
     }
     
     @objc func menuButtonPressed(button: UIButton) {
-        
-        print("menu button pressed")
-        
+        print("menu pressed")
+        self.showSideMenu()
     }
     
     //    func textfieldRightbtnsecurePassword(image : UIImage){

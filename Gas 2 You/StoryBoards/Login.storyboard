@@ -976,6 +976,9 @@ and Pr</string>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnSaveTap:" destination="xET-D3-ZaR" eventType="touchUpInside" id="gei-9E-1i6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -996,6 +999,14 @@ and Pr</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kS6-Uz-Gi8"/>
+                    <connections>
+                        <outlet property="btnSave" destination="dti-0h-rJ8" id="PnM-yO-1cU"/>
+                        <outlet property="imgBG" destination="gvz-oa-g2c" id="DzP-V9-6ti"/>
+                        <outlet property="imgG2U" destination="Yth-dC-rBI" id="Jn9-sF-T0B"/>
+                        <outlet property="txtCurrentPassword" destination="Glu-fi-Rjh" id="2cr-EK-rQY"/>
+                        <outlet property="txtNewPassword" destination="71O-jh-yQW" id="mxw-tK-Xgs"/>
+                        <outlet property="txtReEnterPassword" destination="KOz-Rs-Ax2" id="K2j-vl-pIh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N74-qL-nAe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

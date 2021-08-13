@@ -33,7 +33,6 @@
 		9A5512BD26C4D86800DDA313 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5512BC26C4D86800DDA313 /* Login.storyboard */; };
 		9A5512C026C505C100DDA313 /* GasDoorOpenPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5512BF26C505C100DDA313 /* GasDoorOpenPopUpVC.swift */; };
 		9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */; };
-		9A5B08AB26B266E800BA0CB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */; };
 		9A5B08B026B266E800BA0CB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B08AE26B266E800BA0CB4 /* Main.storyboard */; };
 		9A5B08B526B266EA00BA0CB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B08B426B266EA00BA0CB4 /* Assets.xcassets */; };
 		9A5B08B826B266EA00BA0CB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B08B626B266EA00BA0CB4 /* LaunchScreen.storyboard */; };
@@ -100,8 +99,11 @@
 		9A70293026C259DE00DB1040 /* MyGarageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70292F26C259DE00DB1040 /* MyGarageVC.swift */; };
 		9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70293126C25B2000DB1040 /* VehicleListCell.swift */; };
 		9A70293426C279EE00DB1040 /* AddVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A70293326C279EE00DB1040 /* AddVehicleVC.swift */; };
+		9A730ABB26C6889700D01F6B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A730ABA26C6889700D01F6B /* ChatViewController.swift */; };
 		9A81083726B963B5003DE6CC /* CarParkingLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */; };
 		9A8591A526C53F1C00830B59 /* RatingPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8591A426C53F1C00830B59 /* RatingPopUpVC.swift */; };
+		9A873B5226C62773004C37CF /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A873B5126C62773004C37CF /* LeftViewController.swift */; };
+		9A873B5426C62977004C37CF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A873B5326C62977004C37CF /* MainViewController.swift */; };
 		9AC568BF26B7B1020039FCCF /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568BE26B7B1020039FCCF /* SignUpVC.swift */; };
 		9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568C126B7C0B70039FCCF /* BaseVC.swift */; };
 		9AC568C626B7C25C0039FCCF /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC568C526B7C25C0039FCCF /* HomeVC.swift */; };
@@ -139,7 +141,6 @@
 		9A5512BF26C505C100DDA313 /* GasDoorOpenPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasDoorOpenPopUpVC.swift; sourceTree = "<group>"; };
 		9A5B08A526B266E800BA0CB4 /* Gas 2 You.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gas 2 You.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9A5B08AF26B266E800BA0CB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A5B08B426B266EA00BA0CB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A5B08B726B266EA00BA0CB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -188,8 +189,11 @@
 		9A70292F26C259DE00DB1040 /* MyGarageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGarageVC.swift; sourceTree = "<group>"; };
 		9A70293126C25B2000DB1040 /* VehicleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListCell.swift; sourceTree = "<group>"; };
 		9A70293326C279EE00DB1040 /* AddVehicleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleVC.swift; sourceTree = "<group>"; };
+		9A730ABA26C6889700D01F6B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		9A81083626B963B5003DE6CC /* CarParkingLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarParkingLocationVC.swift; sourceTree = "<group>"; };
 		9A8591A426C53F1C00830B59 /* RatingPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingPopUpVC.swift; sourceTree = "<group>"; };
+		9A873B5126C62773004C37CF /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		9A873B5326C62977004C37CF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9AC568BE26B7B1020039FCCF /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		9AC568C126B7C0B70039FCCF /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		9AC568C526B7C25C0039FCCF /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 		9A5B08A726B266E800BA0CB4 /* Gas 2 You */ = {
 			isa = PBXGroup;
 			children = (
+				9A873B5326C62977004C37CF /* MainViewController.swift */,
 				9A3A912526C133AB0041D7D9 /* InteractiveSideMenu */,
 				9AC568C026B7C08A0039FCCF /* Base class */,
 				9A3A913726C13B540041D7D9 /* View */,
@@ -353,6 +358,7 @@
 		9A5B08F326B2721A00BA0CB4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A873B5026C6273D004C37CF /* SideMenu controller */,
 				9A5512BE26C5057600DDA313 /* Popups Controllers */,
 				9AC568C426B7C2450039FCCF /* Home Controllers */,
 				9AC568C326B7C2350039FCCF /* Login Controllers */,
@@ -374,9 +380,16 @@
 			isa = PBXGroup;
 			children = (
 				9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */,
-				9A5B08AA26B266E800BA0CB4 /* SceneDelegate.swift */,
 			);
 			path = AppDelegates;
+			sourceTree = "<group>";
+		};
+		9A873B5026C6273D004C37CF /* SideMenu controller */ = {
+			isa = PBXGroup;
+			children = (
+				9A873B5126C62773004C37CF /* LeftViewController.swift */,
+			);
+			path = "SideMenu controller";
 			sourceTree = "<group>";
 		};
 		9AC568C026B7C08A0039FCCF /* Base class */ = {
@@ -414,6 +427,7 @@
 				9A21857126C28AE8005BAAA1 /* AddAddressVC.swift */,
 				9A4A8B8F26C3B84600966B2D /* SelectPlanVC.swift */,
 				9A4A8B9526C3DEF500966B2D /* MyOrdersVC.swift */,
+				9A730ABA26C6889700D01F6B /* ChatViewController.swift */,
 			);
 			path = "Home Controllers";
 			sourceTree = "<group>";
@@ -627,6 +641,7 @@
 				9A64EB4C26C3F8EB0098D222 /* CompletedCell.swift in Sources */,
 				9A5B092026B274D600BA0CB4 /* Poppins-BoldItalic.ttf in Sources */,
 				9A5B092126B274D600BA0CB4 /* Poppins-ExtraBold.ttf in Sources */,
+				9A873B5426C62977004C37CF /* MainViewController.swift in Sources */,
 				9A5B092226B274D600BA0CB4 /* Poppins-ExtraBoldItalic.ttf in Sources */,
 				9A5B092326B274D600BA0CB4 /* Poppins-ExtraLight.ttf in Sources */,
 				9A5B092426B274D600BA0CB4 /* Poppins-ExtraLightItalic.ttf in Sources */,
@@ -657,6 +672,7 @@
 				9A3A913326C133AC0041D7D9 /* SideMenuItemContent.swift in Sources */,
 				9A5B093A26B2788500BA0CB4 /* Date+Extension.swift in Sources */,
 				9A3A913926C13B860041D7D9 /* AddressCell.swift in Sources */,
+				9A873B5226C62773004C37CF /* LeftViewController.swift in Sources */,
 				9A5512C026C505C100DDA313 /* GasDoorOpenPopUpVC.swift in Sources */,
 				9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */,
 				9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */,
@@ -664,7 +680,6 @@
 				9A5B092E26B274D600BA0CB4 /* Poppins-ThinItalic.ttf in Sources */,
 				9A5B094226B279AE00BA0CB4 /* Storyboards.swift in Sources */,
 				9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */,
-				9A5B08AB26B266E800BA0CB4 /* SceneDelegate.swift in Sources */,
 				9A5B08EB26B26CEF00BA0CB4 /* Fonts.swift in Sources */,
 				9A3A913D26C141700041D7D9 /* ChatListVC.swift in Sources */,
 				9A5B093C26B2788500BA0CB4 /* UIImage+Extension.swift in Sources */,
@@ -675,6 +690,7 @@
 				9A5B093E26B2788500BA0CB4 /* UITextField+Extensions.swift in Sources */,
 				9A4A8B9926C3E70500966B2D /* InProgressCell.swift in Sources */,
 				9A5B08F026B2703000BA0CB4 /* String+extension.swift in Sources */,
+				9A730ABB26C6889700D01F6B /* ChatViewController.swift in Sources */,
 				9A4A8B9626C3DEF500966B2D /* MyOrdersVC.swift in Sources */,
 				9A5B08ED26B26DF100BA0CB4 /* AppTheme_FontColor.swift in Sources */,
 				9A3A914126C1671E0041D7D9 /* NotificationListVC.swift in Sources */,

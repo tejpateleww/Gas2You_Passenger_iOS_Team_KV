@@ -17,9 +17,7 @@ class SignUpVC: BaseVC {
     }
     
     @IBAction func btnSignupTap(_ sender: ThemeButton) {
-        let mainStory = UIStoryboard(name: "Main", bundle: nil)
-        let homeVC = mainStory.instantiateViewController(identifier: HomeVC.className) as! HomeVC
-        navigationController?.pushViewController(homeVC, animated: true)
+        AppDel.navigateToHome()
     }
     
     @IBAction func logInNowButtonPressed(_ sender: themeButton) {

@@ -38,18 +38,18 @@ class RatingPopUpVC: UIViewController {
         txtReview.textColor = UIColor.lightGray
         txtReview.delegate = self
         
-        vwCosmos.settings.fillMode = .precise
+        vwCosmos.settings.fillMode = .half
     }
     
     @IBAction func btnSubmitTap(_ sender: ThemeButton) {
+        dismiss(animated: false, completion: nil)
     }
     
     @IBAction func btnCancelTap(_ sender: UIButton) {
         dismiss(animated: false, completion: nil)
     }
     
-    func adjustUITextViewHeight(arg : UITextView)
-    {
+    func adjustUITextViewHeight(arg : UITextView) {
         arg.translatesAutoresizingMaskIntoConstraints = true
         arg.sizeToFit()
         arg.isScrollEnabled = false

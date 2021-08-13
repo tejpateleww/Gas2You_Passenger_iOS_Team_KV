@@ -105,9 +105,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         } else if isInProcess == 2 {
             print("InProgress cell pressed")
         } else if isInProcess == 3 {
-            let ratingPopUpVC: RatingPopUpVC = RatingPopUpVC.instantiate(fromAppStoryboard: .Main)
-            ratingPopUpVC.modalPresentationStyle = .overFullScreen
-            present(ratingPopUpVC, animated: false, completion: nil)
+            let completeJobVC: CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
+            navigationController?.pushViewController(completeJobVC, animated: true)
+//            let ratingPopUp: RatingPopUpVC = RatingPopUpVC.instantiate(fromAppStoryboard: .Main)
+//            ratingPopUp.modalPresentationStyle = .overFullScreen
+//            present(ratingPopUp, animated: false, completion: nil)
         }
         
     }

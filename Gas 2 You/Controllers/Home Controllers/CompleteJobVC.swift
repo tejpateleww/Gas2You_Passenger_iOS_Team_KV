@@ -13,6 +13,21 @@ class CompleteJobVC: BaseVC {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var completeLabel: themeLabel!
     @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var imgGas: UIImageView!
+    @IBOutlet weak var lblGas: themeLabel!
+    @IBOutlet weak var imgCar: UIImageView!
+    @IBOutlet weak var lblCarName: themeLabel!
+    @IBOutlet weak var imgLocationPin: UIImageView!
+    @IBOutlet weak var lblAddress: themeLabel!
+    @IBOutlet weak var imgCalender: UIImageView!
+    @IBOutlet weak var lblDateTime: themeLabel!
+    @IBOutlet weak var btnDownloadInvoice: UIButton!
+    @IBOutlet weak var btnGiveRateReview: UIButton!
+    @IBOutlet weak var vwRating: UIView!
+    @IBOutlet weak var lblRating: themeLabel!
+    @IBOutlet weak var vwReviewFeedBack: UIView!
+    @IBOutlet weak var lblReview: themeLabel!
+    @IBOutlet weak var lblUserReview: themeLabel!
     @IBOutlet var borderedButtons: [UIButton]! {
         didSet {
             for i in 0..<borderedButtons.count {
@@ -32,32 +47,41 @@ class CompleteJobVC: BaseVC {
         }
     }
     
+    
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Completed", controller: self)
         
-        initializeTheLocationManager()
-//        mapView.isMyLocationEnabled = true
-        
-        var position = CLLocationCoordinate2DMake(23.033863,72.585022)
-//            var marker = GMSMarker(position: position)
-
-        let marker = GMSMarker(position: position)
-        marker.icon = drawImageWithProfilePic(pp: nil, image: #imageLiteral(resourceName: "IC_pinImg"))
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.map = mapView
-        
+        setUIMapPin()
         setUI()
     }
+    
+    @IBAction func btnDownloadInvoiceTap(_ sender: UIButton) {
+    }
+    
+    @IBAction func btnGiveRateTap(_ sender: UIButton) {
+        let ratingPopUpVC: RatingPopUpVC = RatingPopUpVC.instantiate(fromAppStoryboard: .Main)
+        ratingPopUpVC.modalPresentationStyle = .overFullScreen
+        present(ratingPopUpVC, animated: false, completion: nil)
+    }
+    
     
     func setUI() {
         completeLabel.layer.masksToBounds = true
         completeLabel.layer.cornerRadius = 5
         
+    }
+    
+    func setUIMapPin() {
+        initializeTheLocationManager()
+        var position = CLLocationCoordinate2DMake(23.033863,72.585022)
+        let marker = GMSMarker(position: position)
+        marker.icon = drawImageWithProfilePic(pp: nil, image: #imageLiteral(resourceName: "IC_pinImg"))
+        marker.appearAnimation = GMSMarkerAnimation.pop
+        marker.map = mapView
     }
     
     func drawImageWithProfilePic(pp: UIImage?, image: UIImage) -> UIImage {
