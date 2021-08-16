@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "IC_gasCan.png",
+      "filename" : "IC_gas.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "IC_gasCan@2x.png",
+      "filename" : "IC_gas@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "IC_gasCan@3x.png",
+      "filename" : "IC_gas@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

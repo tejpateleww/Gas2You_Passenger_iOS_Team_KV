@@ -39,8 +39,12 @@ class ChatViewController: BaseVC {
         MessageArray.append(ChatConversation(date: "5:33 PM", Data: [MessageAllData(fromSender: false, message: "Sorry , I'm stuck in traffic. Please give me a moment.", lastMessage: true)
                                                                         ]))
         
+        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Ellen Lambert", controller: self)
+        navBarRightImage()
+        
+        txtviewComment.font = CustomFont.PoppinsRegular.returnFont(16)
 //        self.setNavigationBarInViewController(controller: self, naviColor: colors.white.value, naviTitle: "", leftImage: #imageLiteral(resourceName: "IC_backButton"), rightImages: [], isTranslucent: true, CommonViewTitles: [], isTwoLabels: false)
-        setSenderProfileInfo()
+        
         tblChat.reloadData()
 
 
@@ -61,15 +65,6 @@ class ChatViewController: BaseVC {
 
     @objc func hideKeyboard() {
         view.endEditing(true)
-    }
-    
-    func setSenderProfileInfo(){
-        self.navigationItem.titleView = vwNavBar
-        
-        self.lblName.text = "Connor Chavez"
-        self.lblInfo.text = "ST3751 - Toyota Vios"
-    
-//        self.navBtnProfile.setImage(UIImage(named: "DummayUserPlaceHolder"), for: .normal)
     }
 
 
@@ -222,6 +217,7 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tblChat.dequeueReusableCell(withIdentifier: chatHeaderCell.className) as! chatHeaderCell
+        cell.vwMain.layer.cornerRadius = cell.vwMain.frame.height / 2
         cell.lblDateTime.text = MessageArray[section].MessageDate
         return cell
     }
@@ -240,6 +236,7 @@ class chatReciverCell : UITableViewCell {
 class chatHeaderCell : UITableViewCell {
 
     @IBOutlet weak var lblDateTime: chatScreenLabel!
+    @IBOutlet weak var vwMain: UIView!
 }
 class ChatConversation {
     var MessageDate : String?

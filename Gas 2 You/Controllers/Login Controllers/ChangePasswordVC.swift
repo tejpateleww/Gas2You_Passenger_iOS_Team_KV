@@ -21,7 +21,7 @@ class ChangePasswordVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Change Password", controller: self)
+        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Change Password", isTitlewhite: true, controller: self)
     }
     
     @IBAction func btnSaveTap(_ sender: ThemeButton) {

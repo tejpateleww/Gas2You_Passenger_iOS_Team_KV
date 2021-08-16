@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeVC: BaseVC {
-
+    
     //MARK:- OUTLETS
     
     @IBOutlet weak var imgSelctService: UIImageView!
@@ -22,8 +22,30 @@ class HomeVC: BaseVC {
     @IBOutlet weak var imgSelectVehicle: UIImageView!
     @IBOutlet weak var checkTirePressureButton: UIButton!
     @IBOutlet weak var windshieldRefillButton: UIButton!
+    @IBOutlet weak var lblSelectService: themeLabel!
+    @IBOutlet weak var lblSelectedService: themeLabel!
+    @IBOutlet weak var lblSelectGrade: themeLabel!
+    @IBOutlet weak var btnGradeVal1: themeButton!
+    @IBOutlet weak var btnGradeVal2: themeButton!
+    @IBOutlet weak var lblSelectedGrade: themeLabel!
+    @IBOutlet weak var lblPerGallon: themeLabel!
+    @IBOutlet weak var lblParkingLocation: themeLabel!
+    @IBOutlet weak var lblSelectDateTime: themeLabel!
+    @IBOutlet weak var selectedDate: themeLabel!
+    @IBOutlet weak var lblSelectVehicle: themeLabel!
+    @IBOutlet weak var lblSelectedVehicle: themeLabel!
+    @IBOutlet weak var lblAddOns: themeLabel!
+    @IBOutlet weak var lblTirePressure: themeLabel!
+    @IBOutlet weak var lblTirePressurePriceTag: themeLabel!
+    @IBOutlet weak var lblWindShield: themeLabel!
+    @IBOutlet weak var lblWindShieldPriceTag: themeLabel!
+    @IBOutlet weak var btnFillup: ThemeButton!
     
-    
+    var toolBar = UIToolbar()
+    var vehiclePicker = UIPickerView()
+    var servicePicker = UIPickerView()
+    var listOfVehicle = ["Supra", "R8", "M5"]
+    var serviceList = ["Gas", "Diesal"]
     
     //MARK:- GLOBAL PROPERTIES
     
@@ -37,6 +59,11 @@ class HomeVC: BaseVC {
         NavbarrightButton()
         NavBarTitle(isOnlyTitle: false, isMenuButton: true, title: "Schedule Service", controller: self)
         
+        vehiclePicker.delegate = self
+        vehiclePicker.dataSource = self
+        
+        servicePicker.delegate = self
+        servicePicker.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,8 +127,24 @@ class HomeVC: BaseVC {
     }
     
     @IBAction func btnSelectVehicleTap(_ sender: UIButton) {
-        let myGarageVC = storyboard?.instantiateViewController(identifier: MyGarageVC.className) as! MyGarageVC
-        navigationController?.pushViewController(myGarageVC, animated: true)
+        
+        if listOfVehicle.count == 0 {
+            
+        } else {
+            vehiclePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.width, height: 250)
+            vehiclePicker.backgroundColor = .white
+            self.view.addSubview(vehiclePicker)
+            
+            toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
+            toolBar.barStyle = .default
+            toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
+            self.view.addSubview(toolBar)
+        }
+    }
+    
+    @objc func onDoneButtonTapped() {
+        toolBar.removeFromSuperview()
+        vehiclePicker.removeFromSuperview()
     }
     
     @IBAction func tirePressureButtonPressed(_ sender: UIButton) {
@@ -131,7 +174,7 @@ class HomeVC: BaseVC {
             self.navigationController?.pushViewController(myOrdersVC, animated: true)
         }
         
-       
+        
         slideToConfirmVC.modalPresentationStyle = .overFullScreen
         present(slideToConfirmVC, animated: false, completion: nil)
         
@@ -171,3 +214,23 @@ class HomeVC: BaseVC {
 }
 
 //MARK:- EXTENSIONS
+
+extension HomeVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return listOfVehicle.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return listOfVehicle[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        lblSelectedVehicle.text = listOfVehicle[row]
+    }
+    
+}

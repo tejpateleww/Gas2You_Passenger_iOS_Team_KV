@@ -86,8 +86,33 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
     }
     
     
+    func navBarRightImage() {
+        
+        let viewFN = UIView(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+        //        viewFN.backgroundColor = .red
+        let userImage = UIButton(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+        userImage.setImage( #imageLiteral(resourceName: "IC_dummyImg2"), for: .normal)
+//        userImage.addTarget(self, action: #selector(rightButtonAction(_:)), for: .touchUpInside)
+        userImage.isUserInteractionEnabled = false
+        viewFN.addSubview(userImage)
+        
+        let rightBarButton = UIBarButtonItem(customView: viewFN)
+        navigationItem.rightBarButtonItem = rightBarButton
+        
+        
+        
+//        let button = UIButton(type: UIButton.ButtonType.custom)
+//        button.setImage(#imageLiteral(resourceName: "IC_dummyImg2"), for: .normal)
+//        button.contentMode = .scaleAspectFill
+////        button.addTarget(self, action:#selector(callMethod), for: .touchDragInside)
+//        button.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+//        let barButton = UIBarButtonItem(customView: button)
+//        self.navigationItem.rightBarButtonItems = [barButton]
+        
+    }
     
-    func NavBarTitle(isOnlyTitle : Bool = true, isMenuButton: Bool = false, title : String, controller:UIViewController) {
+    
+    func NavBarTitle(isOnlyTitle : Bool = true, isMenuButton: Bool = false, title : String, isTitlewhite: Bool = false, controller:UIViewController) {
         
         UIApplication.shared.statusBarStyle = .lightContent
         controller.navigationController?.isNavigationBarHidden = false
@@ -107,7 +132,13 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 44.0))
             //SJ_Change : was not localize.
             label.text = title
-            label.textColor = colors.black.value
+            
+            if isTitlewhite {
+                label.textColor = UIColor.white
+            } else {
+                label.textColor = colors.black.value
+            }
+            
             label.textAlignment = NSTextAlignment.left
             label.backgroundColor = UIColor.clear
             label.font = CustomFont.PoppinsMedium.returnFont(16.0)
@@ -147,7 +178,13 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             
             //SJ_Change :
             label.text = title
-            label.textColor = .label
+            
+            if isTitlewhite {
+                label.textColor = .white
+            } else {
+                label.textColor = .label
+            }
+            
             label.font = CustomFont.PoppinsMedium.returnFont(16)
             customView.addSubview(label)
             customView.addSubview(button)

@@ -23,43 +23,85 @@ class AddVehicleVC: BaseVC {
     @IBOutlet weak var txtLicencePlateNo: UITextField!
     @IBOutlet weak var btnSave: ThemeButton!
     
-    let picker: GeneralPickerView = GeneralPickerView()
+    var yearPicker: UIPickerView = UIPickerView()
+    var makePicker: UIPickerView = UIPickerView()
+    var modelPicker: UIPickerView = UIPickerView()
+    var colorPicker: UIPickerView = UIPickerView()
+    
+    var yearVal = ["2001" , "2002" , "2003" , "2004" , "2005" , "2006"]
+    var makeVal = ["Toyota", "Lexus", "Porche", "Maruti", "Sobaru", "Audi"]
+    var modelVal = ["Thar", "Civic", "Supra", "M5" , "Superb", "R8"]
+    var colorVal = ["White", "Matt Black", "Gray", "Blue", "Yellow", "Red"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Add Vehicle", controller: self)
+    
+        yearPicker.delegate = self
+        yearPicker.dataSource = self
+        makePicker.delegate = self
+        makePicker.dataSource = self
+        modelPicker.delegate = self
+        modelPicker.dataSource = self
+        colorPicker.delegate = self
+        colorPicker.dataSource = self
         
-        txtEnterYear.isUserInteractionEnabled = false
-        txtEnterMake.isUserInteractionEnabled = false
-        txtEnterModel.isUserInteractionEnabled = false
-        txtEnterColor.isUserInteractionEnabled = false
+        txtEnterYear.inputView = yearPicker
+        txtEnterMake.inputView = makePicker
+        txtEnterModel.inputView = modelPicker
+        txtEnterColor.inputView = colorPicker
         
-        picker.generalPickerDelegate = self
     }
     @IBAction func btnSaveTap(_ sender: ThemeButton) {
         navigationController?.popViewController(animated: true)
     }
 }
 
-extension AddVehicleVC: UITextFieldDelegate {
+extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if txtEnterYear.isFirstResponder {
+            return yearVal.count
+        } else if txtEnterMake.isFirstResponder {
+            return makeVal.count
+        } else if txtEnterModel.isFirstResponder {
+            return modelVal.count
+        } else if txtEnterColor.isFirstResponder {
+            return colorVal.count
+        }
+        return colorVal.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
+        if txtEnterYear.isFirstResponder {
+            return yearVal[row]
+        } else if txtEnterMake.isFirstResponder {
+            return makeVal[row]
+        } else if txtEnterModel.isFirstResponder {
+            return modelVal[row]
+        } else if txtEnterColor.isFirstResponder {
+            return colorVal[row]
+        }
+        return colorVal[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        
-        return false
+        if txtEnterYear.isFirstResponder {
+            txtEnterYear.text = yearVal[row]
+        } else if txtEnterMake.isFirstResponder {
+            txtEnterMake.text = makeVal[row]
+        } else if txtEnterModel.isFirstResponder {
+            txtEnterModel.text = modelVal[row]
+        } else if txtEnterColor.isFirstResponder {
+            txtEnterColor.text = colorVal[row]
+        }
     }
 }
 
-extension AddVehicleVC: GeneralPickerViewDelegate{
-    
-    func didTapDone() {
-        print("done button pressed")
-    }
-    
-    func didTapCancel() {
-        print("cancel button pressed")
-    }
-    
-}

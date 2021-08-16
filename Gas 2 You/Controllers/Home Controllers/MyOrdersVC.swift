@@ -22,7 +22,8 @@ class MyOrdersVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NavbarrightButton()
+        btnUpcomingTap(btnUpcoming)
+        
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Orders", controller: self)
         
         let upcomingCellNib = UINib(nibName: UpcomingCell.className, bundle: nil)
@@ -37,6 +38,7 @@ class MyOrdersVC: BaseVC {
     
     @IBAction func btnUpcomingTap(_ sender: ThemeButton) {
         
+        NavbarrightButton()
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwUpcomingLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
         btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
@@ -49,6 +51,7 @@ class MyOrdersVC: BaseVC {
     
     @IBAction func btnInProgressTap(_ sender: ThemeButton) {
         
+        NavbarrightButton()
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwInProgressLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
         btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
@@ -60,6 +63,7 @@ class MyOrdersVC: BaseVC {
     }
     
     @IBAction func btnCompletedTap(_ sender: ThemeButton) {
+        
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwCompletedLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
         btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)

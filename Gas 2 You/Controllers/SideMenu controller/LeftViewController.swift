@@ -22,7 +22,7 @@ class LeftViewController: MenuViewController {
     //MARK:- Properties
     ///0 for menu name 1 for icon name
     private let titlesArray : [(String,String)] = [("Home","IC_home"),
-                                                   ("My Orders","IC_gasCan"),
+                                                   ("My Orders","IC_gas"),
                                                    ("My Profile","IC_user"),
                                                    ("Membership","IC_membership"),
                                                    ("Settings","IC_settings"),

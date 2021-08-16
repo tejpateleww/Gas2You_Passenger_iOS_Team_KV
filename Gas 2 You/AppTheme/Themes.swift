@@ -616,6 +616,18 @@ class ratingTextview : IQTextView{
 }
 
 
+class writeTextView: UIView {
+    
+    override func awakeFromNib() {
+        self.layer.borderWidth = 1
+        self.layer.borderColor = #colorLiteral(red: 0.1098039216, green: 0.4588235294, blue: 0.7333333333, alpha: 0.3)
+        self.layer.cornerRadius = 9
+        self.clipsToBounds = true
+    }
+    
+}
+
+
 //MARK:- custom chat screen view
 
 class chatScreenView : UIView {
@@ -635,17 +647,17 @@ class chatScreenView : UIView {
     override func layoutSubviews() {
     super.layoutSubviews()
         if isSenderView {
-            self.backgroundColor = UIColor(hexString: "#00AA7E")
+            self.backgroundColor = #colorLiteral(red: 0.2145549953, green: 0.2144483924, blue: 0.2096654773, alpha: 1)
             let bounds: CGRect = self.bounds
-            let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: ([ .topLeft, .topRight, .bottomLeft]), cornerRadii: CGSize(width: 12.0, height: 12.0))
+            let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: ([ .topLeft, .topRight, .bottomLeft]), cornerRadii: CGSize(width: 18, height: 0.0))
             let maskLayer = CAShapeLayer()
             maskLayer.frame = bounds
             maskLayer.path = maskPath.cgPath
             self.layer.mask = maskLayer
         } else if isReciverView {
-            self.backgroundColor = UIColor(hexString: "#DEE2EA")
+            self.backgroundColor = UIColor(hexString: ThemeColor.themeBlue.rawValue)
             let bounds: CGRect = self.bounds
-            let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: ([.topLeft, .bottomRight, .topRight]), cornerRadii: CGSize(width: 12.0, height: 12.0))
+            let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: ([.topLeft, .bottomRight, .topRight]), cornerRadii: CGSize(width: 18.0, height: 0.0))
             let maskLayer = CAShapeLayer()
             maskLayer.frame = bounds
             maskLayer.path = maskPath.cgPath
@@ -665,15 +677,15 @@ class chatScreenLabel : UILabel {
     override func awakeFromNib() {
         self.numberOfLines = 0
         if lblSender {
-            self.font = CustomFont.PoppinsMedium.returnFont(17)
-            self.textColor = colors.white.value
+            self.font = CustomFont.PoppinsMedium.returnFont(12)
+            self.textColor = UIColor.white
             self.textAlignment = .right
         } else if lblReciver {
-            self.font = CustomFont.PoppinsMedium.returnFont(17)
-            self.textColor = colors.loginPlaceHolderColor.value
+            self.font = CustomFont.PoppinsMedium.returnFont(12)
+            self.textColor = UIColor.white
             self.textAlignment = .left
         } else if lblHeader {
-            self.font = CustomFont.PoppinsRegular.returnFont(14)
+            self.font = CustomFont.PoppinsMedium.returnFont(9)
             self.textColor = UIColor(hexString: "#ACB1C0")
             self.textAlignment = .center
         }
