@@ -10,6 +10,14 @@ import UIKit
 
 extension UIView {
     
+    func NavaddShadow(view: UIView, shadowColor: UIColor?) {
+        
+        view.layer.shadowColor = shadowColor?.cgColor ?? UIColor.lightGray.cgColor
+        view.layer.shadowOpacity = 0.7
+        view.layer.shadowOffset = CGSize.zero
+        view.layer.shadowRadius = 2
+        
+    }
     func addShadow(view: UIView, shadowColor: UIColor?) {
         
         view.layer.shadowColor = shadowColor?.cgColor ?? UIColor.lightGray.cgColor
@@ -18,7 +26,6 @@ extension UIView {
         view.layer.shadowRadius = 4
         
     }
-    
     func addPaticularCornerRadius(view: UIView, cornerRadius: CGFloat) {
         
         view.layer.masksToBounds = true

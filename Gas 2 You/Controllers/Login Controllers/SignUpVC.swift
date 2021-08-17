@@ -13,7 +13,7 @@ class SignUpVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        btnLoginNow.setunderline(title: btnLoginNow.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(16))
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
         
     }

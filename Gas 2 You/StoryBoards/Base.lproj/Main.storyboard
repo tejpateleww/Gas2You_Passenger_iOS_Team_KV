@@ -3594,7 +3594,7 @@ Open Today</string>
                                                 <constraint firstItem="n3v-Ho-Vh7" firstAttribute="leading" secondItem="xzU-Yb-9q0" secondAttribute="leading" constant="20" symbolic="YES" id="ggu-bj-2AX"/>
                                             </constraints>
                                         </view>
-                                        <color key="backgroundColor" white="1" alpha="0.5077886518263659" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <blurEffect style="regular"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="conrnerRadius">
@@ -3644,9 +3644,9 @@ Open Today</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgR-P1-7Q0">
-                                        <rect key="frame" x="25" y="211.5" width="364" height="395"/>
+                                        <rect key="frame" x="25" y="211.5" width="364" height="395.5"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b7g-3W-6E7">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="395"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="396"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="WT0-Qq-jb8">
@@ -3781,9 +3781,9 @@ is complete</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0B8-GA-aav">
-                                        <rect key="frame" x="25" y="202.5" width="364" height="413.5"/>
+                                        <rect key="frame" x="25" y="202.5" width="364" height="413"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RTV-vg-W9B">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="413.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="413"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="5xb-s6-u9Y">

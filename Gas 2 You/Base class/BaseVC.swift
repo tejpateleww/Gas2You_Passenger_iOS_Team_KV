@@ -118,7 +118,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
         controller.navigationController?.navigationBar.tintColor = colors.white.value;
         controller.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         controller.navigationController?.navigationBar.shadowImage = UIImage()
-        
+        controller.navigationController?.navigationBar.clipsToBounds = false
         if isOnlyTitle {
             //            self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.QuicksandBold.returnFont(22.0)]
             let customView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 44.0))
@@ -149,7 +149,11 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             let button = UIButton.init(type: .custom)
             button.backgroundColor = .white
             button.layer.cornerRadius = 10
-            button.addShadow(view: button, shadowColor: nil)
+            //button.addShadow(view: button, shadowColor: nil)
+            button.NavaddShadow(view: button, shadowColor: nil)
+            controller.navigationController?.navigationBar.subviews.forEach {
+                    $0.clipsToBounds = false
+                }
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             button.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
             
