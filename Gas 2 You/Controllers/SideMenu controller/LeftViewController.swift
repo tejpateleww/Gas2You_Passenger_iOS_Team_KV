@@ -76,7 +76,7 @@ extension LeftViewController : UITableViewDelegate, UITableViewDataSource {
             
             menuContainerViewController.hideSideMenu()
         case 3 :
-            let vc : SelectPlanVC = SelectPlanVC.instantiate(fromAppStoryboard: .Main)
+            let vc : NonMemberPlanVC = NonMemberPlanVC.instantiate(fromAppStoryboard: .Main)
             (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
             
             menuContainerViewController.hideSideMenu()

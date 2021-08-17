@@ -35,9 +35,9 @@ class AddVehicleVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Add Vehicle", controller: self)
-    
+        
         yearPicker.delegate = self
         yearPicker.dataSource = self
         makePicker.delegate = self
@@ -51,6 +51,12 @@ class AddVehicleVC: BaseVC {
         txtEnterMake.inputView = makePicker
         txtEnterModel.inputView = modelPicker
         txtEnterColor.inputView = colorPicker
+        
+        txtEnterYear.delegate = self
+        txtEnterMake.delegate = self
+        txtEnterModel.delegate = self
+        txtEnterColor.delegate = self
+        
         
     }
     @IBAction func btnSaveTap(_ sender: ThemeButton) {
@@ -105,3 +111,9 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
+extension AddVehicleVC: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
+}

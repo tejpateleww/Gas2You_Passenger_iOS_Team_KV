@@ -9,6 +9,8 @@ import UIKit
 
 class SignUpVC: BaseVC {
 
+    @IBOutlet weak var btnLoginNow: themeButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

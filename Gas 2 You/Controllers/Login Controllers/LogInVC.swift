@@ -12,6 +12,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var txtEmail: themeTextfield!
     @IBOutlet weak var txtPassword: themeTextfield!
+    @IBOutlet weak var btnSignUp: themeButton!
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,6 +22,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupTextfields(textfield: txtPassword)
     }
     

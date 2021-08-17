@@ -40,12 +40,24 @@ class HomeVC: BaseVC {
     @IBOutlet weak var lblWindShield: themeLabel!
     @IBOutlet weak var lblWindShieldPriceTag: themeLabel!
     @IBOutlet weak var btnFillup: ThemeButton!
+    @IBOutlet weak var btnSelectService: UIButton!
+    @IBOutlet weak var btnSelectParkingLocation: UIButton!
+    @IBOutlet weak var btnSelectVehicle: UIButton!
+    @IBOutlet weak var btnDatePicker: UIButton!
     
+    
+    
+    var toolBarForService = UIToolbar()
+    var toolBarForVehicle = UIToolbar()
     var toolBar = UIToolbar()
+    
     var vehiclePicker = UIPickerView()
     var servicePicker = UIPickerView()
     var listOfVehicle = ["Supra", "R8", "M5"]
     var serviceList = ["Gas", "Diesal"]
+    
+    var datePicker  = UIDatePicker()
+    let dateFormatter = DateFormatter()
     
     //MARK:- GLOBAL PROPERTIES
     
@@ -64,6 +76,15 @@ class HomeVC: BaseVC {
         
         servicePicker.delegate = self
         servicePicker.dataSource = self
+        
+        dateFormatter.dateStyle = .long
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        let today = Date()
+        let nextDate = Calendar.current.date(byAdding: .day, value: 2, to: today)
+        if let date = nextDate {
+            selectedDate.text = dateFormatter.string(from: date)
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,6 +104,11 @@ class HomeVC: BaseVC {
     
     @IBAction func btnSelectServiceTap(_ sender: UIButton) {
         
+        onDoneButtonTappedService()
+        onDoneButtonTappedVehicle()
+        onDoneButtonDate()
+        
+        setServicePicker()
     }
     
     @IBAction func octaneButtonPressed(_ sender: themeButton) {
@@ -98,7 +124,6 @@ class HomeVC: BaseVC {
             break
         }
     }
-    
     
     @IBAction func btnParkingLocationTap(_ sender: UIButton) {
         let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
@@ -129,24 +154,17 @@ class HomeVC: BaseVC {
     @IBAction func btnSelectVehicleTap(_ sender: UIButton) {
         
         if listOfVehicle.count == 0 {
-            
+            // show button for adding new vehicle
         } else {
-            vehiclePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.width, height: 250)
-            vehiclePicker.backgroundColor = .white
-            self.view.addSubview(vehiclePicker)
             
-            toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
-            toolBar.barStyle = .default
-            toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
-            self.view.addSubview(toolBar)
+            onDoneButtonTappedService()
+            onDoneButtonTappedVehicle()
+            onDoneButtonDate()
+            
+            setVehiclePicker()
         }
     }
-    
-    @objc func onDoneButtonTapped() {
-        toolBar.removeFromSuperview()
-        vehiclePicker.removeFromSuperview()
-    }
-    
+ 
     @IBAction func tirePressureButtonPressed(_ sender: UIButton) {
         checkTirePressureButton.isSelected.toggle()
         if checkTirePressureButton.isSelected {
@@ -165,7 +183,6 @@ class HomeVC: BaseVC {
         }
     }
     
-    
     @IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
         
         let slideToConfirmVC: SlideToConfirmVC = SlideToConfirmVC.instantiate(fromAppStoryboard: .Main)
@@ -177,6 +194,16 @@ class HomeVC: BaseVC {
         
         slideToConfirmVC.modalPresentationStyle = .overFullScreen
         present(slideToConfirmVC, animated: false, completion: nil)
+        
+    }
+    
+    @IBAction func btnDatePickerTap(_ sender: UIButton) {
+        
+        onDoneButtonTappedService()
+        onDoneButtonTappedVehicle()
+        onDoneButtonDate()
+        
+        setDatePicker()
         
     }
     
@@ -204,12 +231,86 @@ class HomeVC: BaseVC {
         }
     }
     
-    func navigateToMyOrders() {
+    func setServicePicker() {
         
-        let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-        navigationController?.pushViewController(myOrdersVC, animated: true)
+        servicePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.width, height: 250)
+        servicePicker.backgroundColor = .white
+        self.view.addSubview(servicePicker)
+        
+        toolBarForService = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
+        toolBarForService.barStyle = .default
+        toolBarForService.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTappedService))]
+        self.view.addSubview(toolBarForService)
+        
     }
     
+    @objc func onDoneButtonTappedService() {
+        toolBarForService.removeFromSuperview()
+        servicePicker.removeFromSuperview()
+    }
+    
+    func setVehiclePicker() {
+        
+        vehiclePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.width, height: 250)
+        vehiclePicker.backgroundColor = .white
+        self.view.addSubview(vehiclePicker)
+        
+        toolBarForVehicle = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
+        toolBarForVehicle.barStyle = .default
+        toolBarForVehicle.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTappedVehicle))]
+        self.view.addSubview(toolBarForVehicle)
+        
+    }
+    
+    @objc func onDoneButtonTappedVehicle() {
+        toolBarForVehicle.removeFromSuperview()
+        vehiclePicker.removeFromSuperview()
+    }
+    
+    func setDatePicker() {
+        
+        datePicker = UIDatePicker.init()
+        
+        datePicker.autoresizingMask = .flexibleWidth
+        datePicker.datePickerMode = .date
+        
+        let today = Date()
+        let nextDate = Calendar.current.date(byAdding: .day, value: 2, to: today)
+        datePicker.minimumDate = nextDate
+
+        let nextMonth = Calendar.current.date(byAdding: .day, value: 33, to: today)
+        datePicker.maximumDate = nextMonth
+        
+        if #available(iOS 14, *) {
+            datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
+        datePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 250)
+        datePicker.backgroundColor = .white
+        self.view.addSubview(datePicker)
+        
+        toolBar = UIToolbar(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
+        toolBar.barStyle = .default
+        toolBar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneButtonDate))]
+        toolBar.sizeToFit()
+        self.view.addSubview(toolBar)
+    }
+    
+    @objc func onDoneButtonDate() {
+        toolBar.removeFromSuperview()
+        datePicker.removeFromSuperview()
+    }
+    
+    @objc func dateChanged(_ sender: UIDatePicker?) {
+        
+        if let date = sender?.date {
+            print("Picked the date \(dateFormatter.string(from: date))")
+            selectedDate.text = dateFormatter.string(from: date)
+        }
+    }
     
 }
 
@@ -222,15 +323,27 @@ extension HomeVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return listOfVehicle.count
+        if pickerView == servicePicker {
+            return serviceList.count
+        } else {
+            return listOfVehicle.count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return listOfVehicle[row]
+        if pickerView == servicePicker {
+            return serviceList[row]
+        } else {
+            return listOfVehicle[row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        lblSelectedVehicle.text = listOfVehicle[row]
+        if pickerView == servicePicker {
+            lblSelectedService.text = serviceList[row]
+        } else {
+            lblSelectedVehicle.text = listOfVehicle[row]
+        }
     }
     
 }

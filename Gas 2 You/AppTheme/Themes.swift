@@ -137,6 +137,7 @@ class themeButton: UIButton {
             self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
         }
         if IsUnderline {
+            self.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(16)
             self.setunderline(title: self.titleLabel?.text ?? "", color: fontColor, font: CustomFont.PoppinsRegular.returnFont(Font_Size))
         }
         
