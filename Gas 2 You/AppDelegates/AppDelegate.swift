@@ -27,7 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         GMSServices.provideAPIKey("AIzaSyAsK4EKl6GkGqELS8YySwoIWVjNjAwR7dg")
         
-        navigateToLogin()
+        window?.makeKeyAndVisible()
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            navigateToLogin()
+        } else {
+            navigateToHome()
+        }
+        
         return true
     }
 

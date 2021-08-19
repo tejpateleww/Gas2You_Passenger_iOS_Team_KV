@@ -41,7 +41,7 @@ class CompleteJobVC: BaseVC {
         didSet {
             for i in 0..<borderedViews.count {
                 borderedViews[i].layer.cornerRadius = 5
-                borderedViews[i].layer.borderWidth = 1
+                borderedViews[i].layer.borderWidth = 1.3
                 borderedViews[i].layer.borderColor = #colorLiteral(red: 0.462745098, green: 0.462745098, blue: 0.5019607843, alpha: 0.12)
             }
         }
@@ -73,6 +73,8 @@ class CompleteJobVC: BaseVC {
         completeLabel.layer.masksToBounds = true
         completeLabel.layer.cornerRadius = 5
         
+        vwRating.addShadow(view: vwRating, shadowColor: nil)
+        vwReviewFeedBack.addShadow(view: vwReviewFeedBack, shadowColor: nil)
     }
     
     func setUIMapPin() {

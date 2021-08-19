@@ -33,8 +33,6 @@ extension NotificationListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let gasDoorOpenPopUpVC: GasDoorOpenPopUpVC = GasDoorOpenPopUpVC.instantiate(fromAppStoryboard: .Main)
-        gasDoorOpenPopUpVC.modalPresentationStyle = .overFullScreen
-        present(gasDoorOpenPopUpVC, animated: false, completion: nil)
     }
 }
+

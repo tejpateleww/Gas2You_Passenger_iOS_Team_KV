@@ -54,7 +54,7 @@ class HomeVC: BaseVC {
     var vehiclePicker = UIPickerView()
     var servicePicker = UIPickerView()
     var listOfVehicle = ["Supra", "R8", "M5"]
-    var serviceList = ["Gas", "Diesal"]
+    var serviceList = ["Gas", "Diesel"]
     
     var datePicker  = UIDatePicker()
     let dateFormatter = DateFormatter()
@@ -67,6 +67,7 @@ class HomeVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         NavbarrightButton()
         NavBarTitle(isOnlyTitle: false, isMenuButton: true, title: "Schedule Service", controller: self)

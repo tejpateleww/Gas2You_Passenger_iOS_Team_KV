@@ -141,7 +141,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             let leftButton = UIBarButtonItem(customView: customView)
             self.navigationItem.leftBarButtonItem = leftButton
         }else{
-            self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PoppinsMedium.returnFont(16.0)]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PoppinsMedium.returnFont(16.0)]
             let customView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width - 40 - 40, height: 40.0))
             customView.backgroundColor = UIColor.clear
             
@@ -149,7 +149,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             let button = UIButton.init(type: .custom)
             button.backgroundColor = .white
             button.layer.cornerRadius = 10
-            //button.addShadow(view: button, shadowColor: nil)
+//            button.addShadow(view: button, shadowColor: nil)
             button.NavaddShadow(view: button, shadowColor: nil)
             controller.navigationController?.navigationBar.subviews.forEach {
                     $0.clipsToBounds = false

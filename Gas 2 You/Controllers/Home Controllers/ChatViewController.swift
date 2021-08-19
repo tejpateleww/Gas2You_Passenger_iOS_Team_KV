@@ -114,7 +114,7 @@ class ChatViewController: BaseVC {
 //MARK:- Textview Delegate
 extension ChatViewController : UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        txtviewComment.text = txtviewComment.text ==  "Type a message..." ? "" : txtviewComment.text
+        txtviewComment.text = txtviewComment.text ==  "Start Typing..." ? "" : txtviewComment.text
         txtviewComment.textColor = .black
         return true
     }
@@ -124,8 +124,8 @@ extension ChatViewController : UITextViewDelegate {
         
     }
     func textViewDidEndEditing(_ textView: UITextView) {
-        txtviewComment.text = txtviewComment.text == "" ? "Type a message..." : txtviewComment.text
-        txtviewComment.textColor = txtviewComment.text == "" ? .black : .gray
+        txtviewComment.text = txtviewComment.text == "" ? "Start Typing..." : txtviewComment.text
+        txtviewComment.textColor = txtviewComment.text == "Start Typing..." ? .gray : .black
     }
 }
 //MARK: -tableviewDelegate
@@ -217,7 +217,7 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tblChat.dequeueReusableCell(withIdentifier: chatHeaderCell.className) as! chatHeaderCell
-        cell.vwMain.layer.cornerRadius = cell.vwMain.frame.height / 2
+        cell.vwMain.layer.cornerRadius = 15
         cell.lblDateTime.text = MessageArray[section].MessageDate
         return cell
     }

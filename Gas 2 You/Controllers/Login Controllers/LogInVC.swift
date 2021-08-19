@@ -28,6 +28,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func logInButtonPreesed(_ sender: ThemeButton) {
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
         AppDel.navigateToHome()
     }
     

@@ -32,8 +32,22 @@ class LeftViewController: MenuViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.MenuTblView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
     }
+    
+    @IBAction func btnLogoutTap(_ sender: UIButton) {
+        LeftViewController.showAlertWithTitleFromVC(vc: self, title: "Logout", message: "Are you sure want to Logout?", buttons: ["Cancel", "Logout"]) { index in
+            if index == 1 {
+                UserDefaults.standard.set(false, forKey: "isLoggedIn")
+                AppDel.navigateToLogin()
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    
     //MARK: -  Observer method
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         MenuTblView.layer.removeAllAnimations()
