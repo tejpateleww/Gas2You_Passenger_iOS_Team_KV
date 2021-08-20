@@ -23,6 +23,16 @@ class SignUpVC: BaseVC {
         txtPhoneNo.layer.borderColor = UIColor.white.cgColor
         txtPhoneNo.layer.cornerRadius = 8
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        UIApplication.shared.statusBarStyle = .lightContent
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+    }
     
     @IBAction func btnSignupTap(_ sender: ThemeButton) {
         UserDefaults.standard.set(true, forKey: "isLoggedIn")

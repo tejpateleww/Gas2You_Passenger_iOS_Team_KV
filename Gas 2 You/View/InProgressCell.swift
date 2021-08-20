@@ -9,6 +9,9 @@ import UIKit
 
 class InProgressCell: UITableViewCell {
 
+    
+    var chatClick : (()->())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        
@@ -17,7 +20,11 @@ class InProgressCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-       
     }
     
+    @IBAction func btnActionchat(_ sender: UIButton) {
+        if let btnclicked = chatClick {
+            btnclicked()
+        }
+    }
 }

@@ -23,6 +23,16 @@ class ChangePasswordVC: BaseVC {
         
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Change Password", isTitlewhite: true, controller: self)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        UIApplication.shared.statusBarStyle = .lightContent
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
     
     @IBAction func btnSaveTap(_ sender: ThemeButton) {
         navigationController?.popViewController(animated: true)

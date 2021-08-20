@@ -89,7 +89,10 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             return upcomingCell
         } else if isInProcess == 2 {
             let inprogressCell = myOrdersTV.dequeueReusableCell(withIdentifier: InProgressCell.className) as! InProgressCell
-            
+            inprogressCell.chatClick = {
+                let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+                self.navigationController?.pushViewController(chatVC, animated: true)
+            }
             return inprogressCell
         } else if isInProcess == 3 {
             let completedCell = myOrdersTV.dequeueReusableCell(withIdentifier: CompletedCell.className) as! CompletedCell

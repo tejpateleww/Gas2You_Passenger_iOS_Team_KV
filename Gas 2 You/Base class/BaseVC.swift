@@ -108,7 +108,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
     
     func NavBarTitle(isOnlyTitle : Bool = true, isMenuButton: Bool = false, title : String, isTitlewhite: Bool = false, controller:UIViewController) {
         
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle =  .default
         controller.navigationController?.isNavigationBarHidden = false
         controller.navigationController?.navigationBar.isOpaque = false;
         controller.navigationController?.view.backgroundColor = .clear

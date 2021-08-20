@@ -15,8 +15,12 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnSignUp: themeButton!
     
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        UIApplication.shared.statusBarStyle = .lightContent
+
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -24,6 +28,10 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         btnSignUp.setunderline(title: btnSignUp.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(16))
         setupTextfields(textfield: txtPassword)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
     }
     
     

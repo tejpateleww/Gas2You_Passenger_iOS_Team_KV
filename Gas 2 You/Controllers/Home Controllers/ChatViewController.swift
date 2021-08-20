@@ -19,6 +19,7 @@ class ChatViewController: BaseVC {
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     @IBOutlet weak var txtviewComment: ratingTextview!
     @IBOutlet var vwNavBar: UIView!
+    @IBOutlet weak var lblChatText: UILabel!
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblInfo: UILabel!
@@ -29,7 +30,7 @@ class ChatViewController: BaseVC {
         // Do any additional setup after loading the view.
 
         txtviewComment.delegate = self
-        txtviewComment.textColor = txtviewComment.text == "" ? .black : .gray
+       txtviewComment.textColor = txtviewComment.text == "" ? .black : .gray
         setLocalization()
         setValue()
         MessageArray.append(ChatConversation(date: "Today at 5:03 PM", Data: [MessageAllData(fromSender: true, message: "Hello, are you nearby?", lastMessage: false),
@@ -106,26 +107,32 @@ class ChatViewController: BaseVC {
 
     //MARK: -API Calls
 
-
-
 }
+
+
 
 
 //MARK:- Textview Delegate
 extension ChatViewController : UITextViewDelegate {
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        txtviewComment.text = txtviewComment.text ==  "Start Typing..." ? "" : txtviewComment.text
-        txtviewComment.textColor = .black
-        return true
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if txtviewComment.textColor == .lightGray {
+            txtviewComment.text = nil
+            txtviewComment.textColor = .black
+        }
     }
-    func textViewDidChangeSelection(_ textView: UITextView) {
-//        self.txtviewComment.text = txtviewComment.text
-        
-        
+
+    func textViewDidChange(_ textView: UITextView) {
+        self.lblChatText.text = self.txtviewComment.text
     }
+
+
     func textViewDidEndEditing(_ textView: UITextView) {
-        txtviewComment.text = txtviewComment.text == "" ? "Start Typing..." : txtviewComment.text
-        txtviewComment.textColor = txtviewComment.text == "Start Typing..." ? .gray : .black
+
+        if txtviewComment.text.isEmpty {
+            txtviewComment.text = "Start Typing..."
+            txtviewComment.textColor = .lightGray
+        }
     }
 }
 //MARK: -tableviewDelegate

@@ -14,6 +14,16 @@ class ForgotPasswordVC: BaseVC {
 
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Forgot Password", isTitlewhite: true, controller: self)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        UIApplication.shared.statusBarStyle = .lightContent
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+    }
     @IBAction func btnSubmitTap(_ sender: ThemeButton) {
         navigationController?.popViewController(animated: true)
     }
