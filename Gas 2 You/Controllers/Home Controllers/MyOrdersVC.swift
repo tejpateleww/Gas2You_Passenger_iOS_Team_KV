@@ -99,10 +99,10 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             
             if indexPath.row == 1 || indexPath.row == 4 {
                 completedCell.lblTopHalf.text = "Cancelled"
-                completedCell.lblTopHalf.backgroundColor = #colorLiteral(red: 0.9391271472, green: 0.3868971467, blue: 0.479374826, alpha: 1)
+                completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.9433980584, green: 0.3328252435, blue: 0.4380534887, alpha: 1)
             } else {
                 completedCell.lblTopHalf.text = "Completed"
-                completedCell.lblTopHalf.backgroundColor = #colorLiteral(red: 0.4391005337, green: 0.8347155452, blue: 0.5683938265, alpha: 1)
+                completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.4391005337, green: 0.8347155452, blue: 0.5683938265, alpha: 1)
             }
             
             return completedCell

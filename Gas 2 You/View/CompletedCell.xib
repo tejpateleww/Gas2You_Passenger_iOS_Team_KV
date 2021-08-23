@@ -18,28 +18,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="552" height="198"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-SS-WWA" customClass="themeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                        <rect key="frame" x="36" y="14" width="86" height="32"/>
-                        <color key="backgroundColor" red="0.38431372549999998" green="0.82352941180000006" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Atl-0F-Myt">
+                        <rect key="frame" x="36" y="14" width="86" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-SS-WWA" customClass="themeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                <rect key="frame" x="12" y="5.5" width="62" height="14.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.38431372549019605" green="0.82352941176470584" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="86" id="RTb-Pu-nXB"/>
-                            <constraint firstAttribute="height" constant="32" id="vhb-tq-iwJ"/>
+                            <constraint firstAttribute="width" constant="86" id="ayL-dg-pMU"/>
+                            <constraint firstItem="hAN-SS-WWA" firstAttribute="centerX" secondItem="Atl-0F-Myt" secondAttribute="centerX" id="hHi-oD-tU9"/>
+                            <constraint firstAttribute="height" constant="30" id="t06-Sr-eag"/>
+                            <constraint firstItem="hAN-SS-WWA" firstAttribute="centerY" secondItem="Atl-0F-Myt" secondAttribute="centerY" constant="-2.5" id="x9z-te-KWB"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                <real key="value" value="13"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
-                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
-                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </label>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fl-uE-UIZ" customClass="ThemeView" customModule="Gas_2_You" customModuleProvider="target">
-                        <rect key="frame" x="20" y="41" width="512" height="138"/>
+                        <rect key="frame" x="20" y="39" width="512" height="138"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wPj-kp-34N">
                                 <rect key="frame" x="17" y="17" width="478" height="104"/>
@@ -169,17 +177,18 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hAN-SS-WWA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="Hqh-4p-nHB"/>
+                    <constraint firstItem="Atl-0F-Myt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="0QV-la-CL5"/>
+                    <constraint firstItem="8fl-uE-UIZ" firstAttribute="top" secondItem="Atl-0F-Myt" secondAttribute="bottom" constant="-5" id="DCh-ma-joo"/>
                     <constraint firstItem="8fl-uE-UIZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="crH-oY-tUZ"/>
-                    <constraint firstItem="hAN-SS-WWA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="d5V-BQ-1oJ"/>
                     <constraint firstAttribute="bottom" secondItem="8fl-uE-UIZ" secondAttribute="bottom" constant="14" id="dTW-t5-JLV"/>
-                    <constraint firstItem="8fl-uE-UIZ" firstAttribute="top" secondItem="hAN-SS-WWA" secondAttribute="bottom" constant="-5" id="uTK-to-Ld2"/>
                     <constraint firstAttribute="trailing" secondItem="8fl-uE-UIZ" secondAttribute="trailing" constant="20" symbolic="YES" id="x6j-06-dGk"/>
+                    <constraint firstItem="Atl-0F-Myt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="yzJ-hb-p6O"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="lblTopHalf" destination="hAN-SS-WWA" id="6rd-Mr-a9V"/>
+                <outlet property="viewTopHalf" destination="Atl-0F-Myt" id="SL5-rh-bCj"/>
             </connections>
             <point key="canvasLocation" x="217.39130434782609" y="97.098214285714278"/>
         </tableViewCell>

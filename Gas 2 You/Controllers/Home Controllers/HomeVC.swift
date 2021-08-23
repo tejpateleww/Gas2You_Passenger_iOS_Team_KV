@@ -214,9 +214,16 @@ class HomeVC: BaseVC {
         
         for i in 0..<timeSlotButtons.count {
             if tag == i {
-                timeSlotButtons[i].isSelected = true
+//                timeSlotButtons[i].isSelected = true
+                timeSlotButtons[i].backgroundColor = UIColor(hexString: ThemeColor.themeBlue.rawValue)
+                timeSlotButtons[i].layer.cornerRadius = 5
+                timeSlotButtons[i].layer.masksToBounds = true
+                timeSlotButtons[i].setTitleColor(.white, for: .normal)
             } else {
-                timeSlotButtons[i].isSelected = false
+//                timeSlotButtons[i].isSelected = false
+                timeSlotButtons[i].backgroundColor = .white
+                timeSlotButtons[i].setTitleColor(.black, for: .normal)
+
             }
         }
     }

@@ -36,7 +36,7 @@ class LeftViewController: MenuViewController {
     }
     
     @IBAction func btnLogoutTap(_ sender: UIButton) {
-        LeftViewController.showAlertWithTitleFromVC(vc: self, title: "Logout", message: "Are you sure want to Logout?", buttons: ["Cancel", "Logout"]) { index in
+        LeftViewController.showAlertWithTitleFromVC(vc: self, title: "Log Out", message: "Are you sure want to Logout?", buttons: ["Cancel", "OK"]) { index in
             if index == 1 {
                 UserDefaults.standard.set(false, forKey: "isLoggedIn")
                 AppDel.navigateToLogin()
@@ -116,6 +116,8 @@ extension LeftViewController : UITableViewDelegate, UITableViewDataSource {
             menuContainerViewController.hideSideMenu()
         }
     }
+    
+    
     
 }
 

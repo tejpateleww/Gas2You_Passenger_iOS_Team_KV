@@ -135,7 +135,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             
             label.textAlignment = NSTextAlignment.left
             label.backgroundColor = UIColor.clear
-            label.font = CustomFont.PoppinsMedium.returnFont(16.0)
+            label.font = CustomFont.PoppinsBold.returnFont(16.0)
             customView.addSubview(label)
             
             let leftButton = UIBarButtonItem(customView: customView)
@@ -183,7 +183,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
                 label.textColor = .label
             }
             
-            label.font = CustomFont.PoppinsMedium.returnFont(16)
+            label.font = CustomFont.PoppinsBold.returnFont(16)
             customView.addSubview(label)
             customView.addSubview(button)
             

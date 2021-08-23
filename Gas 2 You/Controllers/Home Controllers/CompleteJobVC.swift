@@ -11,7 +11,8 @@ import GoogleMaps
 class CompleteJobVC: BaseVC {
 
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var completeLabel: themeLabel!
+    @IBOutlet weak var lblStatus: themeLabel!
+    @IBOutlet weak var viewStatus: UIView?
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var imgGas: UIImageView!
     @IBOutlet weak var lblGas: themeLabel!
@@ -70,9 +71,9 @@ class CompleteJobVC: BaseVC {
     
     
     func setUI() {
-        completeLabel.layer.masksToBounds = true
-        completeLabel.layer.cornerRadius = 5
-        
+        viewStatus?.layer.masksToBounds = true
+        viewStatus?.layer.cornerRadius = 5
+        viewStatus?.backgroundColor = #colorLiteral(red: 0.4391005337, green: 0.8347155452, blue: 0.5683938265, alpha: 1)
         vwRating.addShadow(view: vwRating, shadowColor: nil)
         vwReviewFeedBack.addShadow(view: vwReviewFeedBack, shadowColor: nil)
     }
