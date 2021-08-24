@@ -10,6 +10,10 @@ import GoogleMaps
 
 class CompleteJobVC: BaseVC {
 
+    
+    @IBOutlet weak var StackDownloadinvoiceBottom: NSLayoutConstraint!
+    @IBOutlet weak var stackDownloadInvoiceTop: NSLayoutConstraint!
+    @IBOutlet weak var btnDownloadInvoiceHeight: NSLayoutConstraint!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var lblStatus: themeLabel!
     @IBOutlet weak var viewStatus: UIView?
@@ -50,13 +54,21 @@ class CompleteJobVC: BaseVC {
     
     
     var locationManager = CLLocationManager()
+    var isfromCancelled = false
+    var strTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Completed", controller: self)
+        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: strTitle == "" ? "Completed" : "Cancelled", controller: self)
         
         setUIMapPin()
+//        if isfromCancelled{
+//            btnDownloadInvoiceHeight.constant = 0
+//            stackDownloadInvoiceTop.constant = 0
+//            StackDownloadinvoiceBottom.constant = 0
+//
+//        }
         setUI()
     }
     

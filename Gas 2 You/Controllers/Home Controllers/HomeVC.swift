@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class HomeVC: BaseVC {
     
     //MARK:- OUTLETS
@@ -77,14 +79,16 @@ class HomeVC: BaseVC {
         
         servicePicker.delegate = self
         servicePicker.dataSource = self
-        
         dateFormatter.dateStyle = .long
         dateFormatter.dateFormat = "MMM d, yyyy"
+        deselectOtherTimeSlot(tag: 0)
         let today = Date()
         let nextDate = Calendar.current.date(byAdding: .day, value: 2, to: today)
         if let date = nextDate {
             selectedDate.text = dateFormatter.string(from: date)
         }
+        
+      
         
     }
     

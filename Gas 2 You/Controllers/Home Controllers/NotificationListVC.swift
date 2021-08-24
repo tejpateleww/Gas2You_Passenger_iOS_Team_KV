@@ -7,6 +7,11 @@
 
 import UIKit
 
+struct notification{
+    var img : UIImage?
+    var msg : String?
+}
+
 class NotificationListVC: BaseVC {
 
     @IBOutlet weak var notificationTV: UITableView!
@@ -14,14 +19,23 @@ class NotificationListVC: BaseVC {
     
     var dragInitialIndexPath: IndexPath?
     var dragCellSnapshot: UIView?
+    var arrNotification = [notification]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        notificationTV.delegate = self
+        notificationTV.dataSource = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Notifications", controller: self)
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressGesture(sender:)))
         longPress.minimumPressDuration = 0.2 // optional
         notificationTV.addGestureRecognizer(longPress)
+        arrNotification.append(notification(img: #imageLiteral(resourceName: "IC_checkRightGreen"), msg: "Your Order #1234 has been completed"))
+        arrNotification.append(notification(img: #imageLiteral(resourceName: "IC_checkRightGreen"), msg: "Your Order #1234 has been completed"))
+        arrNotification.append(notification(img: #imageLiteral(resourceName: "IC_wrongRed"), msg: "Your booking #1205 has been cancelled"))
+        arrNotification.append(notification(img: #imageLiteral(resourceName: "IC_rightCheck"), msg: "Your Order #1234 has been placed"))
+        arrNotification.append(notification(img: #imageLiteral(resourceName: "IC_rightCheck"), msg: "Your Order #1234 has been placed"))
     }
     
     // MARK: cell reorder / long press
@@ -107,12 +121,13 @@ class NotificationListVC: BaseVC {
 extension NotificationListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return arrNotification.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = notificationTV.dequeueReusableCell(withIdentifier: "cell")!
-        
+        let cell = notificationTV.dequeueReusableCell(withIdentifier: NotificationCell.className) as! NotificationCell
+        cell.imgNotification.image = arrNotification[indexPath.row].img
+        cell.lblNotification.text = arrNotification[indexPath.row].msg
         return cell
     }
     
@@ -128,3 +143,12 @@ extension NotificationListVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+class NotificationCell : UITableViewCell{
+    
+    @IBOutlet weak var imgNotification: UIImageView!
+    @IBOutlet weak var lblNotification: themeLabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+}

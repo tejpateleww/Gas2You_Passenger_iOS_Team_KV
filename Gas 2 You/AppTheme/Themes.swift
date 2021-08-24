@@ -118,6 +118,11 @@ class themeButton: UIButton {
     @IBInspectable public var IsSubmit : Bool = false
     @IBInspectable public var IsBlack : Bool = false
     @IBInspectable public var IsUnderline : Bool = false
+    @IBInspectable public var isBold: Bool = false
+    @IBInspectable public var isSemibold: Bool = false
+    @IBInspectable public var isLight: Bool = false
+    @IBInspectable public var isMedium: Bool = false
+    @IBInspectable public var isRegular: Bool = false
     
     
     override func awakeFromNib() {
@@ -131,6 +136,22 @@ class themeButton: UIButton {
             self.backgroundColor = UIColor.clear
             self.setTitleColor(fontColor, for: .normal)
             self.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(Font_Size)
+        }else if isBold {
+            self.backgroundColor = UIColor.clear
+            self.setTitleColor(fontColor, for: .normal)
+            self.titleLabel?.font = CustomFont.PoppinsBold.returnFont(Font_Size)
+        } else if isSemibold {
+            self.backgroundColor = UIColor.clear
+            self.setTitleColor(fontColor, for: .normal)
+            self.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size)
+        } else if isMedium {
+            self.backgroundColor = UIColor.clear
+            self.setTitleColor(fontColor, for: .normal)
+            self.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(Font_Size)
+        } else if isLight {
+            self.backgroundColor = UIColor.clear
+            self.setTitleColor(fontColor, for: .normal)
+            self.titleLabel?.font = CustomFont.PoppinsLight.returnFont(Font_Size)
         } else {
             self.backgroundColor = UIColor.clear
             self.setTitleColor(fontColor, for: .normal)
@@ -143,7 +164,6 @@ class themeButton: UIButton {
         
     }
 }
-
 
 
 class ThemeCompleteButton : UIButton {

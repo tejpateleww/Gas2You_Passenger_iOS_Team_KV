@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Atl-0F-Myt">
-                        <rect key="frame" x="36" y="14" width="86" height="30"/>
+                        <rect key="frame" x="36" y="12" width="86" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-SS-WWA" customClass="themeLabel" customModule="Gas_2_You" customModuleProvider="target">
                                 <rect key="frame" x="12" y="5.5" width="62" height="14.5"/>
@@ -47,7 +47,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fl-uE-UIZ" customClass="ThemeView" customModule="Gas_2_You" customModuleProvider="target">
-                        <rect key="frame" x="20" y="39" width="512" height="138"/>
+                        <rect key="frame" x="20" y="37" width="512" height="138"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wPj-kp-34N">
                                 <rect key="frame" x="17" y="17" width="478" height="104"/>
@@ -180,9 +180,9 @@
                     <constraint firstItem="Atl-0F-Myt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="0QV-la-CL5"/>
                     <constraint firstItem="8fl-uE-UIZ" firstAttribute="top" secondItem="Atl-0F-Myt" secondAttribute="bottom" constant="-5" id="DCh-ma-joo"/>
                     <constraint firstItem="8fl-uE-UIZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="crH-oY-tUZ"/>
-                    <constraint firstAttribute="bottom" secondItem="8fl-uE-UIZ" secondAttribute="bottom" constant="14" id="dTW-t5-JLV"/>
+                    <constraint firstAttribute="bottom" secondItem="8fl-uE-UIZ" secondAttribute="bottom" constant="12" id="dTW-t5-JLV"/>
                     <constraint firstAttribute="trailing" secondItem="8fl-uE-UIZ" secondAttribute="trailing" constant="20" symbolic="YES" id="x6j-06-dGk"/>
-                    <constraint firstItem="Atl-0F-Myt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="yzJ-hb-p6O"/>
+                    <constraint firstItem="Atl-0F-Myt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="yzJ-hb-p6O"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

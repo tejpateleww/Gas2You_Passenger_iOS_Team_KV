@@ -97,13 +97,13 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         } else if isInProcess == 3 {
             let completedCell = myOrdersTV.dequeueReusableCell(withIdentifier: CompletedCell.className) as! CompletedCell
             
-            if indexPath.row == 1 || indexPath.row == 4 {
-                completedCell.lblTopHalf.text = "Cancelled"
-                completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.9433980584, green: 0.3328252435, blue: 0.4380534887, alpha: 1)
-            } else {
+//            if indexPath.row == 1 || indexPath.row == 4 {
+//                completedCell.lblTopHalf.text = "Cancelled"
+//                completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.9433980584, green: 0.3328252435, blue: 0.4380534887, alpha: 1)
+//            } else {
                 completedCell.lblTopHalf.text = "Completed"
                 completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.4391005337, green: 0.8347155452, blue: 0.5683938265, alpha: 1)
-            }
+//            }
             
             return completedCell
         }
