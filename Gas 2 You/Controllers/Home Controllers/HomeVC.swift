@@ -12,7 +12,8 @@ import UIKit
 class HomeVC: BaseVC {
     
     //MARK:- OUTLETS
-    
+    @IBOutlet weak var ViewForShowPrice: UIView!
+    @IBOutlet weak var LblOctane: themeLabel!
     @IBOutlet weak var imgSelctService: UIImageView!
     @IBOutlet weak var gasServiceView: UIView!
     @IBOutlet var octaneButtons: [themeButton]!
@@ -88,7 +89,7 @@ class HomeVC: BaseVC {
             selectedDate.text = dateFormatter.string(from: date)
         }
         
-      
+        LblOctane.text = "93 Octane"
         
     }
     
@@ -352,6 +353,13 @@ extension HomeVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == servicePicker {
+            if serviceList[row] == "Diesel" {
+                LblOctane.text = "Diesel"
+                ViewForShowPrice.isHidden = true
+            } else {
+                LblOctane.text = "93 Octane"
+                ViewForShowPrice.isHidden = false
+            }
             lblSelectedService.text = serviceList[row]
         } else {
             lblSelectedVehicle.text = listOfVehicle[row]
