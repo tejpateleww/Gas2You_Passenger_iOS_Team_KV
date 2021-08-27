@@ -11,5 +11,6 @@ pod 'IQKeyboardManagerSwift'
 pod 'GoogleMaps'
 pod 'MTSlideToOpen'
 pod 'Cosmos', '~> 23.0'
+pod 'lottie-ios'
 
 end

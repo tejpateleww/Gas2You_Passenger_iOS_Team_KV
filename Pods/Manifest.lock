@@ -6,12 +6,14 @@ PODS:
   - GoogleMaps/Maps (5.1.0):
     - GoogleMaps/Base
   - IQKeyboardManagerSwift (6.5.6)
+  - lottie-ios (3.2.3)
   - MTSlideToOpen (1.5.1)
 
 DEPENDENCIES:
   - Cosmos (~> 23.0)
   - GoogleMaps
   - IQKeyboardManagerSwift
+  - lottie-ios
   - MTSlideToOpen
 
 SPEC REPOS:
@@ -19,14 +21,16 @@ SPEC REPOS:
     - Cosmos
     - GoogleMaps
     - IQKeyboardManagerSwift
+    - lottie-ios
     - MTSlideToOpen
 
 SPEC CHECKSUMS:
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   GoogleMaps: 086ae1dab659eaa7339bdb30fc88e2f44e7c597c
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   MTSlideToOpen: dedc9abf1e377fef40544b84e5590d4981055030
 
-PODFILE CHECKSUM: 0ec07355027c567396cf410fd273f9923ce52179
+PODFILE CHECKSUM: 1bf9f0a61ceacca43828ca1c004ebe5ec457cc87
 
 COCOAPODS: 1.10.1

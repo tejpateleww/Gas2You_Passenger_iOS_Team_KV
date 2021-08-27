@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uxf-9A-Nnj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,6 +10,49 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="Qu4-Tt-T0A">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="uxf-9A-Nnj" customClass="SplashViewController" customModule="Gas_2_You" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="elM-BL-9uC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="MtM-ij-H9U">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFX-t3-NMd" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="30" y="276" width="354" height="354"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aFX-t3-NMd" secondAttribute="height" multiplier="1:1" id="db7-3N-okE"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="Splash"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3xe-F2-ZRu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aFX-t3-NMd" firstAttribute="centerY" secondItem="3xe-F2-ZRu" secondAttribute="centerY" id="1dp-4S-sY6"/>
+                            <constraint firstItem="MtM-ij-H9U" firstAttribute="leading" secondItem="3xe-F2-ZRu" secondAttribute="leading" id="838-hj-QlL"/>
+                            <constraint firstAttribute="bottom" secondItem="MtM-ij-H9U" secondAttribute="bottom" id="8SJ-wK-mTS"/>
+                            <constraint firstAttribute="trailing" secondItem="MtM-ij-H9U" secondAttribute="trailing" id="C8U-8d-14n"/>
+                            <constraint firstItem="MtM-ij-H9U" firstAttribute="top" secondItem="elM-BL-9uC" secondAttribute="top" id="Ey0-or-2OU"/>
+                            <constraint firstItem="aFX-t3-NMd" firstAttribute="leading" secondItem="3xe-F2-ZRu" secondAttribute="leading" constant="30" id="QZv-eL-GcO"/>
+                            <constraint firstItem="aFX-t3-NMd" firstAttribute="centerX" secondItem="3xe-F2-ZRu" secondAttribute="centerX" id="X3Z-XS-CSm"/>
+                            <constraint firstItem="aFX-t3-NMd" firstAttribute="trailing" secondItem="3xe-F2-ZRu" secondAttribute="trailing" constant="-30" id="dqu-Nf-fSJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="vmAnimation" destination="aFX-t3-NMd" id="JdD-Va-9Ub"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cm4-St-1o4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-247.82608695652175" y="85.714285714285708"/>
+        </scene>
         <!--Log InVC-->
         <scene sceneID="soD-MQ-pW0">
             <objects>

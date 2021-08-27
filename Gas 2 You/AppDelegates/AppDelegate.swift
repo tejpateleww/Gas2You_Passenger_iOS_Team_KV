@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        Thread.sleep(forTimeInterval: 3.0)
+       // Thread.sleep(forTimeInterval: 3.0)
         
         IQKeyboardManager.shared.enable = true
         GMSServices.provideAPIKey("AIzaSyAsK4EKl6GkGqELS8YySwoIWVjNjAwR7dg")
@@ -90,7 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func navigateToLogin() {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let logInVC = storyboard.instantiateViewController(identifier: LogInVC.className) as! LogInVC
+        let logInVC = storyboard.instantiateViewController(identifier: SplashViewController.className) as! SplashViewController
+        logInVC.navigationController?.navigationBar.isHidden = true
         window?.rootViewController = UINavigationController(rootViewController: logInVC)
     }
    

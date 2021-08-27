@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		188A52FB26D8E9540053FED7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A52FA26D8E9540053FED7 /* SplashViewController.swift */; };
+		188A52FD26D8EB470053FED7 /* SplashScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 188A52FC26D8EB470053FED7 /* SplashScreen.json */; };
+		188A52FF26D8ECF00053FED7 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 188A52FE26D8ECF00053FED7 /* Splash.json */; };
+		188A530026D8ED930053FED7 /* SplashScreen.json in Sources */ = {isa = PBXBuildFile; fileRef = 188A52FC26D8EB470053FED7 /* SplashScreen.json */; };
+		188A530126D8ED930053FED7 /* Splash.json in Sources */ = {isa = PBXBuildFile; fileRef = 188A52FE26D8ECF00053FED7 /* Splash.json */; };
 		18F4011D26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18F4010A26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf */; };
 		18F4011E26CBC8F3002C1ABB /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18F4010B26CBC8F3002C1ABB /* Poppins-ThinItalic.ttf */; };
 		18F4011F26CBC8F3002C1ABB /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18F4010C26CBC8F3002C1ABB /* Poppins-ExtraLightItalic.ttf */; };
@@ -94,6 +99,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		188A52FA26D8E9540053FED7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		188A52FC26D8EB470053FED7 /* SplashScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SplashScreen.json; sourceTree = "<group>"; };
+		188A52FE26D8ECF00053FED7 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
 		18F4010A26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		18F4010B26CBC8F3002C1ABB /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		18F4010C26CBC8F3002C1ABB /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -197,6 +205,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		188A52F926D8E9420053FED7 /* Splash Screen */ = {
+			isa = PBXGroup;
+			children = (
+				188A52FA26D8E9540053FED7 /* SplashViewController.swift */,
+			);
+			path = "Splash Screen";
+			sourceTree = "<group>";
+		};
 		18F4010926CBC8F3002C1ABB /* Poppins */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +301,8 @@
 		9A5B08A726B266E800BA0CB4 /* Gas 2 You */ = {
 			isa = PBXGroup;
 			children = (
+				188A52FC26D8EB470053FED7 /* SplashScreen.json */,
+				188A52FE26D8ECF00053FED7 /* Splash.json */,
 				18F4010926CBC8F3002C1ABB /* Poppins */,
 				9A873B5326C62977004C37CF /* MainViewController.swift */,
 				9A3A912526C133AB0041D7D9 /* InteractiveSideMenu */,
@@ -344,6 +362,7 @@
 		9A5B08F326B2721A00BA0CB4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				188A52F926D8E9420053FED7 /* Splash Screen */,
 				9A873B5026C6273D004C37CF /* SideMenu controller */,
 				9A5512BE26C5057600DDA313 /* Popups Controllers */,
 				9AC568C426B7C2450039FCCF /* Home Controllers */,
@@ -522,6 +541,7 @@
 				18F4012326CBC8F3002C1ABB /* Poppins-SemiBoldItalic.ttf in Resources */,
 				18F4012C26CBC8F3002C1ABB /* Poppins-Thin.ttf in Resources */,
 				18F4012E26CBC8F3002C1ABB /* Poppins-Italic.ttf in Resources */,
+				188A52FF26D8ECF00053FED7 /* Splash.json in Resources */,
 				18F4012626CBC8F3002C1ABB /* Poppins-BlackItalic.ttf in Resources */,
 				18F4012826CBC8F3002C1ABB /* Poppins-Regular.ttf in Resources */,
 				18F4012426CBC8F3002C1ABB /* Poppins-ExtraBoldItalic.ttf in Resources */,
@@ -538,6 +558,7 @@
 				18F4012D26CBC8F3002C1ABB /* Poppins-SemiBold.ttf in Resources */,
 				9A5B08B026B266E800BA0CB4 /* Main.storyboard in Resources */,
 				18F4012526CBC8F3002C1ABB /* Poppins-ExtraBold.ttf in Resources */,
+				188A52FD26D8EB470053FED7 /* SplashScreen.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +628,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188A530026D8ED930053FED7 /* SplashScreen.json in Sources */,
+				188A530126D8ED930053FED7 /* Splash.json in Sources */,
 				9A4A8B9026C3B84600966B2D /* MemberPlanVC.swift in Sources */,
 				9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */,
 				9A5B093926B2788500BA0CB4 /* UIButton+Extension.swift in Sources */,
@@ -636,6 +659,7 @@
 				9A70292E26C2514F00DB1040 /* SettingsVC.swift in Sources */,
 				9A81083726B963B5003DE6CC /* CarParkingLocationVC.swift in Sources */,
 				9A3A912F26C133AC0041D7D9 /* SideMenuItemOptions.swift in Sources */,
+				188A52FB26D8E9540053FED7 /* SplashViewController.swift in Sources */,
 				9A5B093B26B2788500BA0CB4 /* userDefaults+Extension.swift in Sources */,
 				9A65A6BA26C51E3500F0592A /* SlideToConfirmVC.swift in Sources */,
 				9A5B093D26B2788500BA0CB4 /* Extension+CLLocation.swift in Sources */,
