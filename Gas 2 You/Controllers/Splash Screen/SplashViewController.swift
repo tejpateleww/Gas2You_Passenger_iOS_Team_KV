@@ -13,7 +13,7 @@ class SplashViewController: BaseVC {
         // ----------------------------------------------------
         // MARK: - --------- Variables ---------
         // ----------------------------------------------------
-        
+      var animationView = AnimationView(name: "Splash")
         
         // ----------------------------------------------------
         // MARK: - --------- IBOutlets ---------
@@ -28,23 +28,55 @@ class SplashViewController: BaseVC {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            playAnimation()
-            self.navigationController?.navigationBar.isHidden = true
+            animate()
+            
+            
+            
+            delay(2.0) {
+                
+            }
+            
             // Do any additional setup after loading the view.
         }
         
+    
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+        let when = DispatchTime.now() + delay
+        DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
+    }
         
         // ----------------------------------------------------
         // MARK: - --------- Custom Methods ---------
         // ----------------------------------------------------
-    func playAnimation() {
-        vmAnimation.backgroundColor = .clear
-        vmAnimation.contentMode = .scaleAspectFill
-        vmAnimation.play()
+        func animate() {
+       
+        animationView.frame = CGRect(x: 0, y: 0, width: vmAnimation.frame.width, height: vmAnimation.frame.height)
+        animationView.contentMode = .scaleAspectFill
+            animationView.animationSpeed = 2
+        if !vmAnimation.subviews.contains(animationView){
+            vmAnimation.addSubview(animationView)
+        }
+        animationView.play { (success) in
+            
+           // self.animate()
+            self.delay(1.0) {
+                self.navigationController?.navigationBar.isHidden = true
+                if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+                   
+                    AppDel.navigateToLogin()
+                } else {
+
+                    AppDel.navigateToHome()
+                }
+            }
+            
+        }
+            
+            
+            
     }
-        
-        
-        // ----------------------------------------------------
+    
+   // ----------------------------------------------------
         // MARK: - --------- IBAction Methods ---------
         // ----------------------------------------------------
         

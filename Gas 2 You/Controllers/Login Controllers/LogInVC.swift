@@ -15,13 +15,12 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnSignUp: themeButton!
     
     
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         UIApplication.shared.statusBarStyle = .lightContent
-
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
     }
     
     override func viewDidLoad() {
@@ -45,7 +44,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         textfield.rightViewMode = .always
         let button = UIButton(frame: CGRect(x: 10, y: 0, width: 60, height: 40))
         button.setTitle("Forgot?", for: .normal)
-        button.setColorFont(color: .gray , font: CustomFont.PoppinsMedium.returnFont(14))
+        button.setColorFont(color:.lightGreyBtn , font: CustomFont.PoppinsMedium.returnFont(14))
         button.addTarget(self, action: #selector(navigateToForgotPassword), for: .touchUpInside)
         let view = UIView(frame : CGRect(x: 0, y: 0, width: 80, height: 40))
         view.addSubview(button)

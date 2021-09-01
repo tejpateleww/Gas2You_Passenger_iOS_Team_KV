@@ -32,14 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
         window?.makeKeyAndVisible()
-        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
-           
-            navigateToLogin()
-        } else {
-
-
-            navigateToHome()
-        }
+       
         
         return true
     }
@@ -90,16 +83,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func navigateToLogin() {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let logInVC = storyboard.instantiateViewController(identifier: SplashViewController.className) as! SplashViewController
+        let logInVC = storyboard.instantiateViewController(identifier: LogInVC.className) as! LogInVC
         logInVC.navigationController?.navigationBar.isHidden = true
         window?.rootViewController = UINavigationController(rootViewController: logInVC)
     }
    
     func navigateToHome() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let logInVC = storyboard.instantiateViewController(identifier: MainViewController.className) as! MainViewController
-        logInVC.navigationController?.navigationBar.isHidden = false
-       window?.rootViewController = UINavigationController(rootViewController: logInVC)
+          let storyboard = UIStoryboard(name: "Main", bundle: nil)
+          let logInVC = storyboard.instantiateViewController(identifier: MainViewController.className) as! MainViewController
+        let NavHomeVC = UINavigationController(rootViewController: logInVC)
+        NavHomeVC.isNavigationBarHidden = true
+       self.window?.rootViewController = NavHomeVC
     }
 }
 
