@@ -7,7 +7,13 @@
 
 import Foundation
 import CoreLocation
-//import GoogleMaps
+import GoogleMaps
+
+extension CLLocationCoordinate2D {
+    func getGMSCameraPosition(zoom: Float = 10) -> GMSCameraPosition {
+        GMSCameraPosition(latitude: latitude, longitude: longitude, zoom: zoom)
+    }
+}
 
 //extension CLLocation {
 //    func fetchCityAndCountry(completion: @escaping (_ address:  String?, _ error: Error?) -> ()) {

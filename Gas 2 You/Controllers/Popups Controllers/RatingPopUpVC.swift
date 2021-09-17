@@ -12,10 +12,10 @@ class RatingPopUpVC: UIViewController {
 
     @IBOutlet weak var vwBlur: UIVisualEffectView!
     @IBOutlet weak var imgLogo: UIImageView!
-    @IBOutlet weak var lblWelcomeTo: themeLabel!
-    @IBOutlet weak var lblG2U: themeLabel!
-    @IBOutlet weak var lblRateExperience: themeLabel!
-    @IBOutlet weak var lblGiveFeedback: themeLabel!
+    @IBOutlet weak var lblWelcomeTo: ThemeLabel!
+    @IBOutlet weak var lblG2U: ThemeLabel!
+    @IBOutlet weak var lblRateExperience: ThemeLabel!
+    @IBOutlet weak var lblGiveFeedback: ThemeLabel!
     @IBOutlet weak var txtReview: UITextView!
     @IBOutlet weak var btnSubmit: ThemeButton!
     @IBOutlet weak var btnCancel: UIButton!

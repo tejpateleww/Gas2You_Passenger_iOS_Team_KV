@@ -15,36 +15,38 @@ extension NSObject {
     }
 }
 
-
-
-
 extension UIViewController {
     
     
     //MARK:- SET_ALERT
-    static func showAlertWithTitleFromVC(vc:UIViewController, title:String?, message:String?, buttons:[String], completion:((_ index:Int) -> Void)!) -> Void{
+    func showAlertWithTitleFromVC( title:String?, message:String?, buttons:[String], completion:((_ index:Int) -> Void)!) -> Void{
 
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    for index in 0..<buttons.count {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        for index in 0..<buttons.count {
 
-    let action = UIAlertAction(title: buttons[index], style: .default, handler: { (alert: UIAlertAction!) in
-    if(completion != nil) {
-    completion(index)
+            let action = UIAlertAction(title: buttons[index], style: .default, handler: { (alert: UIAlertAction!) in
+                if(completion != nil) {
+                    completion(index)
+                }
+            })
+            alertController.addAction(action)
+        }
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
-    })
-    alertController.addAction(action)
+
+    func showAlertWithNoAction(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(.init(title: "Okay", style: .cancel))
+        present(alertController, animated: true)
     }
-    DispatchQueue.main.async {
-    vc.present(alertController, animated: true, completion: nil)
-    }
-    }
-    
-    
+
     
     // MARK: IS SWIPABLE - FUNCTION
     func isSwipable(view:UIView) {
-         //self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onDrage(_:))))
-         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerHandler(_:))))
+        //self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onDrage(_:))))
+        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerHandler(_:))))
         
         //self.view.addGestureRecognizer(panGestureRecognizer)
     }
@@ -109,7 +111,7 @@ extension UIViewController {
         var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
         
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-//        activityIndicator.backgroundColor = .clear
+        //        activityIndicator.backgroundColor = .clear
         activityIndicator.layer.cornerRadius = 6
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
@@ -118,17 +120,17 @@ extension UIViewController {
         activityIndicator.tag = 1001
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        self.view.isUserInteractionEnabled = false
     }
     func hideHUD() {
         let activityIndicator = self.view.viewWithTag(1001) as? UIActivityIndicatorView
         activityIndicator?.stopAnimating()
         activityIndicator?.removeFromSuperview()
-        UIApplication.shared.endIgnoringInteractionEvents()
+        self.view.isUserInteractionEnabled = true
     }
     
     //MARK: ====Location Alert
- 
+
     
     class func alertForLocation(currentVC : UIViewController){
         
@@ -161,33 +163,33 @@ extension UIViewController {
     
     func addNavBarImage(isLeft:Bool, isRight:Bool) {
         if isLeft {
-           
-             if DeviceType.hasTopNotch {
+
+            if DeviceType.hasTopNotch {
                 let w = 114
                 let h = 51
                 let img1 = UIImageView(frame: CGRect(x: 12, y: 40, width: w, height: h))
                 img1.image = UIImage(named: "imgLogo.png")
                 self.view.addSubview(img1)
-             }else {
+            }else {
                 let w = 100
                 let h = 41
                 let img = UIImageView(frame: CGRect(x: 12, y: 25, width: w, height: h))
                 img.image = UIImage(named: "imgLogo.png")
                 self.view.addSubview(img)
-             }
-           
+            }
+
             
-//            img.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//            img.heightAnchor.constraint(equalToConstant: 106).isActive = true
-//            img.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+            //            img.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+            //            img.heightAnchor.constraint(equalToConstant: 106).isActive = true
+            //            img.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
             
         }
         if isRight {
-//            var w = 90
-//            var h = 25
-//            if DeviceType.hasTopNotch {
-//                w = 110
-//                h = 40
+            //            var w = 90
+            //            var h = 25
+            //            if DeviceType.hasTopNotch {
+            //                w = 110
+            //                h = 40
             var w = 105
             var h = 70
             if DeviceType.hasTopNotch {
@@ -197,44 +199,42 @@ extension UIViewController {
             let img = UIImageView(frame: CGRect(x: Int(self.view.frame.size.width) - w, y: 0, width: w, height: h))
             img.image = UIImage(named: "imgNavBar.png")
             self.view.addSubview(img)
-//            img.translatesAutoresizingMaskIntoConstraints = false
-//            img.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//            img.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//            img.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+            //            img.translatesAutoresizingMaskIntoConstraints = false
+            //            img.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+            //            img.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            //            img.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
             
         }
     }
-    
-    
 }
 
 private func _swizzling(forClass: AnyClass, originalSelector: Selector, swizzledSelector: Selector) {
-     if let originalMethod = class_getInstanceMethod(forClass, originalSelector),
-        let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector) {
-         method_exchangeImplementations(originalMethod, swizzledMethod)
-     }
- }
+    if let originalMethod = class_getInstanceMethod(forClass, originalSelector),
+       let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector) {
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+    }
+}
 
 
-  extension UIViewController {
+extension UIViewController {
 
-      static let preventPageSheetPresentation: Void = {
-          if #available(iOS 13, *) {
-              _swizzling(forClass: UIViewController.self,
-                         originalSelector: #selector(present(_: animated: completion:)),
-                         swizzledSelector: #selector(_swizzledPresent(_: animated: completion:)))
-          }
-      }()
+    static let preventPageSheetPresentation: Void = {
+        if #available(iOS 13, *) {
+            _swizzling(forClass: UIViewController.self,
+                       originalSelector: #selector(present(_: animated: completion:)),
+                       swizzledSelector: #selector(_swizzledPresent(_: animated: completion:)))
+        }
+    }()
 
-      @available(iOS 13.0, *)
-      @objc private func _swizzledPresent(_ viewControllerToPresent: UIViewController,
-                                          animated flag: Bool,
-                                          completion: (() -> Void)? = nil) {
-          if viewControllerToPresent.modalPresentationStyle == .pageSheet
-                     || viewControllerToPresent.modalPresentationStyle == .automatic {
-              viewControllerToPresent.modalPresentationStyle = .fullScreen
-          }
-          _swizzledPresent(viewControllerToPresent, animated: flag, completion: completion)
-      }
-  
+    @available(iOS 13.0, *)
+    @objc private func _swizzledPresent(_ viewControllerToPresent: UIViewController,
+                                        animated flag: Bool,
+                                        completion: (() -> Void)? = nil) {
+        if viewControllerToPresent.modalPresentationStyle == .pageSheet
+            || viewControllerToPresent.modalPresentationStyle == .automatic {
+            viewControllerToPresent.modalPresentationStyle = .fullScreen
+        }
+        _swizzledPresent(viewControllerToPresent, animated: flag, completion: completion)
+    }
+
 }

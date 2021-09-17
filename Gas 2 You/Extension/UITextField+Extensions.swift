@@ -79,68 +79,36 @@ extension UITextField {
     @objc func cancelPressed() {
         self.resignFirstResponder()
     }
+
+    var isEmpty: Bool {
+        return (text ?? "").trimmingCharacters(in: .whitespaces).isEmpty
+    }
+
+    func getText() -> String {
+        text = (text ?? "").trimmingCharacters(in: .whitespaces)
+        return text ?? ""
+    }
 }
 
-//extension UITextField{
-//  //MARK:- Placeholder Color
-// 
-//  func setBoarderColor(bcolor:colors){
-//      self.layer.borderColor  = bcolor.value.cgColor
-//      self.layer.borderWidth = 1
-//  }
-//  
-//  func validatedText(validationType: ValidatorType) -> (Bool,String) {
-//        let validator = VaildatorFactory.validatorFor(type: validationType)
-//        return validator.validated(self.text!)
-//    }
-//  
-//  
-//
-//      func setupTextFieldRightViewUI() {
-//          self.layoutIfNeeded()
-//          let imgSearch = UIImageView(image: UIImage(named: "iconDropDown"))
-//          imgSearch.frame = CGRect(x: self.frame.maxX - 70 , y: 5, width: 22, height: 22)
-//          self.rightView = imgSearch
-//          self.rightViewMode = .always
-//      }
-//      
-//      func addInputViewDatePicker(target: Any, selector: Selector , MinDate : Bool , MaxDate : Bool) {
-//          
-//          let screenWidth = UIScreen.main.bounds.width
-//          
-//          //Add DatePicker as inputView
-//          let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))
-//          if #available(iOS 13.4, *) {
-//              datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
-//          } else {
-//              // Fallback on earlier versions
-//          }
-//          datePicker.datePickerMode = .date
-//          
-//          
-//          if MinDate == true{
-//              datePicker.minimumDate = Date()
-//          }
-//          if MaxDate == true{
-//              datePicker.maximumDate = Date()
-//          }
-//          
-//          self.inputView = datePicker
-//          //Add Tool Bar as input AccessoryView
-//          let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 44))
-//          toolBar.sizeToFit()
-//          let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//          let cancelBarButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
-//          let doneBarButton = UIBarButtonItem(title: "Done", style: .plain, target: target, action: selector)
-//
-//          self.inputAccessoryView = toolBar
-//          toolBar.setItems([cancelBarButton, flexibleSpace, doneBarButton], animated: false)
-//
-//      }
-//      
-//      
-//      @objc func cancelPressed() {
-//          self.resignFirstResponder()
-//      }
-//  }
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+}
 
+extension UITextField {
+    func addBottomBorder(){
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
+        bottomLine.backgroundColor = UIColor.white.cgColor
+        borderStyle = .none
+        layer.addSublayer(bottomLine)
+    }
+}

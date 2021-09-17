@@ -16,15 +16,14 @@ class CarParkingLocationVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mapView.delegate = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
-        
         setUIMapPin()
     }
     
     func setUIMapPin() {
         initializeTheLocationManager()
-        var position = CLLocationCoordinate2DMake(23.033863,72.585022)
+        let position = CLLocationCoordinate2DMake(23.033863,72.585022)
         let marker = GMSMarker(position: position)
         marker.icon = drawImageWithProfilePic(pp: nil, image: #imageLiteral(resourceName: "IC_pinImg"))
         marker.appearAnimation = GMSMarkerAnimation.pop
@@ -71,7 +70,7 @@ extension CarParkingLocationVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        var location = locationManager.location?.coordinate
+        let location = locationManager.location?.coordinate
         
         cameraMoveToLocation(toLocation: location)
         
@@ -83,4 +82,14 @@ extension CarParkingLocationVC: CLLocationManagerDelegate {
         }
     }
     
+}
+
+extension CarParkingLocationVC: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        // Get a reference for the custom overlay
+       // let index:Int! = Int(marker.accessibilityLabel!)
+        let view = MarkerInfoWindowView()
+        view.sizeToFit()
+        return view
+    }
 }

@@ -11,15 +11,15 @@ class AddVehicleVC: BaseVC {
     
     
     
-    @IBOutlet weak var lblMake: themeLabel!
-    @IBOutlet weak var lblYear: themeLabel!
+    @IBOutlet weak var lblMake: ThemeLabel!
+    @IBOutlet weak var lblYear: ThemeLabel!
     @IBOutlet weak var txtEnterYear: UITextField!
     @IBOutlet weak var txtEnterMake: UITextField!
-    @IBOutlet weak var lblModel: themeLabel!
+    @IBOutlet weak var lblModel: ThemeLabel!
     @IBOutlet weak var txtEnterModel: UITextField!
-    @IBOutlet weak var lblColor: themeLabel!
+    @IBOutlet weak var lblColor: ThemeLabel!
     @IBOutlet weak var txtEnterColor: UITextField!
-    @IBOutlet weak var lblLicencePlateNum: themeLabel!
+    @IBOutlet weak var lblLicencePlateNum: ThemeLabel!
     @IBOutlet weak var txtLicencePlateNo: UITextField!
     @IBOutlet weak var btnSave: ThemeButton!
     

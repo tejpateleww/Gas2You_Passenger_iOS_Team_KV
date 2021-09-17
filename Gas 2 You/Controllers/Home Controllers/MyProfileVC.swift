@@ -10,13 +10,13 @@ import UIKit
 class MyProfileVC: BaseVC {
 
     @IBOutlet weak var changePassButton: ThemeButton!
-    @IBOutlet weak var lblFullName: themeLabel!
+    @IBOutlet weak var lblFullName: ThemeLabel!
     @IBOutlet weak var txtUserName: UITextField!
-    @IBOutlet weak var lblEmail: themeLabel!
+    @IBOutlet weak var lblEmail: ThemeLabel!
     @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var lblMobile: themeLabel!
+    @IBOutlet weak var lblMobile: ThemeLabel!
     @IBOutlet weak var txtMobile: UITextField!
-    @IBOutlet weak var lblMyGarage: themeLabel!
+    @IBOutlet weak var lblMyGarage: ThemeLabel!
     @IBOutlet weak var imgPlan: UIImageView!
     @IBOutlet weak var btnSave: ThemeButton!
     
@@ -38,8 +38,7 @@ class MyProfileVC: BaseVC {
     }
     
     @IBAction func btnChangePasswordTap(_ sender: ThemeButton) {
-        let changePassVC: ChangePasswordVC = ChangePasswordVC.instantiate(fromAppStoryboard: .Login)
-        navigationController?.pushViewController(changePassVC, animated: true)
+        self.push(ChangePasswordVC.getNewInstance())
     }
     
     @IBAction func btnSaveTap(_ sender: ThemeButton) {

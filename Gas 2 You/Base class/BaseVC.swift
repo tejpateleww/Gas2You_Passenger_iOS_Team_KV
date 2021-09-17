@@ -108,7 +108,6 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
     
     func NavBarTitle(isOnlyTitle : Bool = true, isMenuButton: Bool = false, title : String, isTitlewhite: Bool = false, controller:UIViewController) {
         
-        UIApplication.shared.statusBarStyle =  .default
         controller.navigationController?.isNavigationBarHidden = false
         controller.navigationController?.navigationBar.isOpaque = false;
         controller.navigationController?.view.backgroundColor = .clear
@@ -298,6 +297,10 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
     
     @objc func iconAction(sender: UIButton){
         self.onTxtBtnPressed!(sender.tag)
+    }
+
+    @IBAction func popViewController() {
+        self.goBack()
     }
     
 }

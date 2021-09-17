@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol GeneralPickerViewDelegate: class {
+protocol GeneralPickerViewDelegate: AnyObject {
     func didTapDone()
     func didTapCancel()
 }

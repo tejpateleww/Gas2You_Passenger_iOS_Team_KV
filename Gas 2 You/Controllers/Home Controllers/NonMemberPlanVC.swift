@@ -10,12 +10,12 @@ import UIKit
 class NonMemberPlanVC: BaseVC {
 
     @IBOutlet weak var planIV: UIImageView!
-    @IBOutlet weak var lblServiceChargeEvery: themeLabel!
-    @IBOutlet weak var lblServiceChargePriceTag: themeLabel!
-    @IBOutlet weak var lblTyrePressureCheck: themeLabel!
-    @IBOutlet weak var lblTyrePressurePriceTag: themeLabel!
-    @IBOutlet weak var lblWindShield: themeLabel!
-    @IBOutlet weak var lblWindShieldPriceTag: themeLabel!
+    @IBOutlet weak var lblServiceChargeEvery: ThemeLabel!
+    @IBOutlet weak var lblServiceChargePriceTag: ThemeLabel!
+    @IBOutlet weak var lblTyrePressureCheck: ThemeLabel!
+    @IBOutlet weak var lblTyrePressurePriceTag: ThemeLabel!
+    @IBOutlet weak var lblWindShield: ThemeLabel!
+    @IBOutlet weak var lblWindShieldPriceTag: ThemeLabel!
     @IBOutlet weak var btnPayNow: ThemeButton!
  
     override func viewDidLoad() {

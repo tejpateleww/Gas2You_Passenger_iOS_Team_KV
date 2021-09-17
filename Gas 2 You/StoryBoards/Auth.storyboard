@@ -1,0 +1,1335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5m6-OM-yXR">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="Qu4-Tt-T0A">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="uxf-9A-Nnj" customClass="SplashViewController" customModule="Gas_2_You" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="elM-BL-9uC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="MtM-ij-H9U">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFX-t3-NMd" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="30" y="276" width="354" height="354"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aFX-t3-NMd" secondAttribute="height" multiplier="1:1" id="db7-3N-okE"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="Splash"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3xe-F2-ZRu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aFX-t3-NMd" firstAttribute="centerY" secondItem="3xe-F2-ZRu" secondAttribute="centerY" id="1dp-4S-sY6"/>
+                            <constraint firstItem="MtM-ij-H9U" firstAttribute="leading" secondItem="3xe-F2-ZRu" secondAttribute="leading" id="838-hj-QlL"/>
+                            <constraint firstAttribute="bottom" secondItem="MtM-ij-H9U" secondAttribute="bottom" id="8SJ-wK-mTS"/>
+                            <constraint firstAttribute="trailing" secondItem="MtM-ij-H9U" secondAttribute="trailing" id="C8U-8d-14n"/>
+                            <constraint firstItem="MtM-ij-H9U" firstAttribute="top" secondItem="elM-BL-9uC" secondAttribute="top" id="Ey0-or-2OU"/>
+                            <constraint firstItem="aFX-t3-NMd" firstAttribute="leading" secondItem="3xe-F2-ZRu" secondAttribute="leading" constant="30" id="QZv-eL-GcO"/>
+                            <constraint firstItem="aFX-t3-NMd" firstAttribute="centerX" secondItem="3xe-F2-ZRu" secondAttribute="centerX" id="X3Z-XS-CSm"/>
+                            <constraint firstItem="aFX-t3-NMd" firstAttribute="trailing" secondItem="3xe-F2-ZRu" secondAttribute="trailing" constant="-30" id="dqu-Nf-fSJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IP9-3O-zqO"/>
+                    <connections>
+                        <outlet property="vmAnimation" destination="aFX-t3-NMd" id="JdD-Va-9Ub"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cm4-St-1o4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-140.57971014492756" y="91.741071428571431"/>
+        </scene>
+        <!--Log InVC-->
+        <scene sceneID="soD-MQ-pW0">
+            <objects>
+                <viewController storyboardIdentifier="LogInVC" interfaceStyle="light" id="xwA-wU-lYW" customClass="LogInVC" customModule="Gas_2_You" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qor-BO-QCz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="lFk-cn-CnX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08j-RL-d7G">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dX-2t-B9K">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="710"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="QbH-CY-OEf">
+                                                <rect key="frame" x="128" y="70" width="158" height="123"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Ag7-lB-87T">
+                                                <rect key="frame" x="20" y="273" width="374" height="198"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x79-qt-HBX" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="zZg-WA-Rws"/>
+                                                        </constraints>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="xwA-wU-lYW" id="GMD-gg-qWv"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tzq-Hh-1zf" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="74" width="374" height="50"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="xwA-wU-lYW" id="Vug-Xd-IPl"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWG-eT-y6w" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="148" width="374" height="50"/>
+                                                        <state key="normal" title="Log In"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="background">
+                                                                <color key="value" red="0.10980392160000001" green="0.45882352939999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                <color key="value" systemColor="systemBackgroundColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="logInButtonPreesed:" destination="xwA-wU-lYW" eventType="touchUpInside" id="PFQ-8d-LDZ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="UMe-vZ-JJf">
+                                                <rect key="frame" x="20" y="499" width="374" height="49"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Gxc-We-hoW">
+                                                        <rect key="frame" x="64.5" y="0.0" width="245.5" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncI-Jp-gjL" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="163.5" height="27"/>
+                                                                <string key="text">By Logging in, you agree to our 
+and Pr</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="11"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wV-eK-y91" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="167.5" y="0.0" width="78" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Terms Of Use"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="11"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6M5-g5-fNm">
+                                                        <rect key="frame" x="136" y="22" width="102.5" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzv-To-JC0" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="19.5" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="11"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edu-zq-Bbu" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="23.5" y="0.0" width="79" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Privacy Policy"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="11"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OzW-Bx-cBh">
+                                                <rect key="frame" x="84.5" y="570" width="245.5" height="21"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVv-Vh-9fI">
+                                                        <rect key="frame" x="0.0" y="10" width="102" height="1"/>
+                                                        <color key="backgroundColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="hM7-De-8bg"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUT-UN-VkI" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="110" y="0.0" width="23.5" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="18"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isMedium" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3PZ-QZ-5Nd">
+                                                        <rect key="frame" x="141.5" y="10" width="104" height="1"/>
+                                                        <color key="backgroundColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="IY4-aW-urt"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="lVv-Vh-9fI" firstAttribute="top" secondItem="OzW-Bx-cBh" secondAttribute="top" constant="10" id="DmJ-Ut-EBh"/>
+                                                    <constraint firstItem="BUT-UN-VkI" firstAttribute="top" secondItem="OzW-Bx-cBh" secondAttribute="top" id="FVN-Kv-7xA"/>
+                                                    <constraint firstItem="BUT-UN-VkI" firstAttribute="leading" secondItem="OzW-Bx-cBh" secondAttribute="leading" constant="110" id="L3P-MK-G1u"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BXb-Sw-8pU">
+                                                <rect key="frame" x="104.5" y="617" width="205.5" height="42"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SG3-HP-hQz" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="42" id="0yD-S3-69L"/>
+                                                            <constraint firstAttribute="width" constant="42" id="Y1b-IU-NJN"/>
+                                                        </constraints>
+                                                        <state key="normal" image="FB_LOGO"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdP-ud-jHN" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="81.5" y="0.0" width="42" height="42"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="rBD-Xk-soI"/>
+                                                        </constraints>
+                                                        <state key="normal" image="GOOGLE_LOGO"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJy-ZW-JQh" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="163.5" y="0.0" width="42" height="42"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="WjT-Xe-tX2"/>
+                                                        </constraints>
+                                                        <state key="normal" image="APPlE_LOGO"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZZz-eB-xdK">
+                                                <rect key="frame" x="20" y="683" width="374" height="27"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ZVe-B5-M4F">
+                                                        <rect key="frame" x="89" y="0.0" width="196.5" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ec4-3u-Nip" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="124.5" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i33-q5-z29" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="128.5" y="0.0" width="68" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Signup Now"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="signUpButtonPressed:" destination="xwA-wU-lYW" eventType="touchUpInside" id="VpM-sL-lIx"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ZZz-eB-xdK" firstAttribute="top" secondItem="BXb-Sw-8pU" secondAttribute="bottom" constant="24" id="1Yb-ft-rt1"/>
+                                            <constraint firstItem="QbH-CY-OEf" firstAttribute="width" secondItem="QbH-CY-OEf" secondAttribute="height" multiplier="158:123" id="4BZ-fe-aB7"/>
+                                            <constraint firstItem="Ag7-lB-87T" firstAttribute="top" secondItem="QbH-CY-OEf" secondAttribute="bottom" constant="80" id="5JT-zL-cCH"/>
+                                            <constraint firstItem="OzW-Bx-cBh" firstAttribute="leading" secondItem="ncI-Jp-gjL" secondAttribute="leading" id="756-sz-ZB3"/>
+                                            <constraint firstAttribute="trailing" secondItem="UMe-vZ-JJf" secondAttribute="trailing" constant="20" symbolic="YES" id="75Q-Lb-qTh"/>
+                                            <constraint firstItem="UMe-vZ-JJf" firstAttribute="leading" secondItem="4dX-2t-B9K" secondAttribute="leading" constant="20" symbolic="YES" id="AzC-Cc-XW7"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZZz-eB-xdK" secondAttribute="trailing" constant="20" symbolic="YES" id="Hig-1B-J3C"/>
+                                            <constraint firstItem="BXb-Sw-8pU" firstAttribute="trailing" secondItem="4wV-eK-y91" secondAttribute="trailing" constant="-20" id="TSK-zq-gSo"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ag7-lB-87T" secondAttribute="trailing" constant="20" symbolic="YES" id="VE3-iH-tBl"/>
+                                            <constraint firstItem="ZZz-eB-xdK" firstAttribute="leading" secondItem="4dX-2t-B9K" secondAttribute="leading" constant="20" symbolic="YES" id="Wtz-XF-8LZ"/>
+                                            <constraint firstItem="OzW-Bx-cBh" firstAttribute="top" secondItem="UMe-vZ-JJf" secondAttribute="bottom" constant="22" id="fE9-1T-rdv"/>
+                                            <constraint firstItem="BXb-Sw-8pU" firstAttribute="top" secondItem="OzW-Bx-cBh" secondAttribute="bottom" constant="26" id="fKu-An-9Tw"/>
+                                            <constraint firstItem="BXb-Sw-8pU" firstAttribute="leading" secondItem="ncI-Jp-gjL" secondAttribute="leading" constant="20" id="g7W-dc-gjD"/>
+                                            <constraint firstItem="QbH-CY-OEf" firstAttribute="centerX" secondItem="4dX-2t-B9K" secondAttribute="centerX" id="gSe-p7-J0O"/>
+                                            <constraint firstItem="Ag7-lB-87T" firstAttribute="leading" secondItem="4dX-2t-B9K" secondAttribute="leading" constant="20" symbolic="YES" id="jnf-nK-kbp"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZZz-eB-xdK" secondAttribute="bottom" id="mlb-kL-ZkU"/>
+                                            <constraint firstItem="UMe-vZ-JJf" firstAttribute="top" secondItem="Ag7-lB-87T" secondAttribute="bottom" constant="28" id="ozT-RH-pn4"/>
+                                            <constraint firstItem="QbH-CY-OEf" firstAttribute="top" secondItem="4dX-2t-B9K" secondAttribute="top" constant="70" id="y0g-8j-b8O"/>
+                                            <constraint firstItem="OzW-Bx-cBh" firstAttribute="trailing" secondItem="4wV-eK-y91" secondAttribute="trailing" id="zzk-SD-g85"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4dX-2t-B9K" firstAttribute="top" secondItem="08j-RL-d7G" secondAttribute="top" id="JH6-oD-ioB"/>
+                                    <constraint firstAttribute="trailing" secondItem="4dX-2t-B9K" secondAttribute="trailing" id="TrK-Dw-Jva"/>
+                                    <constraint firstItem="4dX-2t-B9K" firstAttribute="width" secondItem="08j-RL-d7G" secondAttribute="width" id="Yao-gc-DnN"/>
+                                    <constraint firstAttribute="bottom" secondItem="4dX-2t-B9K" secondAttribute="bottom" id="juV-Dd-pmg"/>
+                                    <constraint firstItem="4dX-2t-B9K" firstAttribute="leading" secondItem="08j-RL-d7G" secondAttribute="leading" id="kCf-G7-VzM"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="I3k-h6-gdk"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="o4s-VO-5gG"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jmD-Yw-D8e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="lFk-cn-CnX" secondAttribute="bottom" id="4Zi-ez-Cr1"/>
+                            <constraint firstItem="lFk-cn-CnX" firstAttribute="leading" secondItem="jmD-Yw-D8e" secondAttribute="leading" id="8rB-bd-rYy"/>
+                            <constraint firstItem="08j-RL-d7G" firstAttribute="bottom" secondItem="jmD-Yw-D8e" secondAttribute="bottom" id="KC1-4R-iKL"/>
+                            <constraint firstItem="lFk-cn-CnX" firstAttribute="trailing" secondItem="jmD-Yw-D8e" secondAttribute="trailing" id="Ytj-Wr-Pfo"/>
+                            <constraint firstItem="08j-RL-d7G" firstAttribute="trailing" secondItem="jmD-Yw-D8e" secondAttribute="trailing" id="f6R-yJ-wmp"/>
+                            <constraint firstItem="08j-RL-d7G" firstAttribute="top" secondItem="jmD-Yw-D8e" secondAttribute="top" id="fVZ-Y0-42O"/>
+                            <constraint firstItem="lFk-cn-CnX" firstAttribute="top" secondItem="qor-BO-QCz" secondAttribute="top" id="gai-5A-kXu"/>
+                            <constraint firstItem="08j-RL-d7G" firstAttribute="leading" secondItem="jmD-Yw-D8e" secondAttribute="leading" id="kN6-uu-crf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rl8-Yh-7Zx"/>
+                    <connections>
+                        <outlet property="btnLogin" destination="NWG-eT-y6w" id="yvm-yK-NLB"/>
+                        <outlet property="btnSignUp" destination="i33-q5-z29" id="g0I-3x-DSw"/>
+                        <outlet property="txtEmail" destination="x79-qt-HBX" id="hsF-9o-6bZ"/>
+                        <outlet property="txtPassword" destination="tzq-Hh-1zf" id="Gmx-SB-fA5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xcc-I3-BND" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2397.1014492753625" y="91.741071428571431"/>
+        </scene>
+        <!--Sign UpVC-->
+        <scene sceneID="Kfs-n5-4kt">
+            <objects>
+                <viewController storyboardIdentifier="SignUpVC" interfaceStyle="light" id="uwe-7G-j2u" customClass="SignUpVC" customModule="Gas_2_You" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hgJ-BQ-PLZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-pw-EBM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Sz-gh-YVd">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcE-jK-49S" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="878"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-E4-amy">
+                                                <rect key="frame" x="128" y="0.0" width="158" height="123"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="PWG-LO-m2D">
+                                                <rect key="frame" x="20" y="143" width="374" height="494"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kMn-Us-Hge" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="MeK-cZ-6fw"/>
+                                                        </constraints>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next" textContentType="name"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="uwe-7G-j2u" id="foD-7T-rDo"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q55-hz-x8J" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="74" width="374" height="50"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next" textContentType="name"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="uwe-7G-j2u" id="3dm-P3-Aux"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VYH-XU-YOU" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="148" width="374" height="50"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="uwe-7G-j2u" id="mHb-Nw-8zb"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQ3-0l-fMC">
+                                                        <rect key="frame" x="0.0" y="222" width="374" height="50"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile No (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X0X-0u-khC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" textContentType="tel"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                                        <real key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="uwe-7G-j2u" id="0cg-co-ri1"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNS-ZE-rkt" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="10" y="16" width="22.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="14"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="X0X-0u-khC" secondAttribute="bottom" id="JLK-an-wF2"/>
+                                                            <constraint firstItem="X0X-0u-khC" firstAttribute="top" secondItem="vQ3-0l-fMC" secondAttribute="top" id="O2q-5H-JZP"/>
+                                                            <constraint firstAttribute="trailing" secondItem="X0X-0u-khC" secondAttribute="trailing" id="VO7-v6-Ws5"/>
+                                                            <constraint firstItem="uNS-ZE-rkt" firstAttribute="centerY" secondItem="X0X-0u-khC" secondAttribute="centerY" constant="1" id="bH6-49-wB3"/>
+                                                            <constraint firstItem="X0X-0u-khC" firstAttribute="leading" secondItem="vQ3-0l-fMC" secondAttribute="leading" id="r8b-UE-GK6"/>
+                                                            <constraint firstItem="uNS-ZE-rkt" firstAttribute="leading" secondItem="vQ3-0l-fMC" secondAttribute="leading" constant="10" id="vmf-Tj-R0z"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-aG-Xd3" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="296" width="374" height="50"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="uwe-7G-j2u" id="DpG-Gm-N4u"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Re-enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qs3-JA-Zf8" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="370" width="374" height="50"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="uwe-7G-j2u" id="WYQ-EB-DkU"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGD-te-dZR" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="444" width="374" height="50"/>
+                                                        <state key="normal" title="Sign Up"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="background">
+                                                                <color key="value" red="0.10980392160000001" green="0.45882352939999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                <color key="value" systemColor="systemBackgroundColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="btnSignupTap:" destination="uwe-7G-j2u" eventType="touchUpInside" id="fCD-bM-R6Q"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="qYj-on-upq">
+                                                <rect key="frame" x="20" y="659" width="374" height="49"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nx9-ce-ueL">
+                                                        <rect key="frame" x="64.5" y="0.0" width="245.5" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxg-Lx-gZf" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="163.5" height="27"/>
+                                                                <string key="text">By Logging in, you agree to our 
+and Pr</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="11"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1U-pV-TDT" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="167.5" y="0.0" width="78" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Terms Of Use"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="11"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="u1g-Wy-FZK">
+                                                        <rect key="frame" x="136" y="22" width="102.5" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOq-7c-i0k" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="19.5" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="11"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NjS-pr-J9T" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="23.5" y="0.0" width="79" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Privacy Policy"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="11"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AXP-vv-yj4">
+                                                <rect key="frame" x="84.5" y="728" width="245.5" height="21"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5bo-Mc-Mjb">
+                                                        <rect key="frame" x="0.0" y="10" width="102" height="1"/>
+                                                        <color key="backgroundColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="UKd-xF-Dng"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yq7-MJ-UlU" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="110" y="0.0" width="23.5" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="18"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isMedium" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ver-ft-brF">
+                                                        <rect key="frame" x="141.5" y="10" width="104" height="1"/>
+                                                        <color key="backgroundColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="3rC-dS-Ull"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Yq7-MJ-UlU" firstAttribute="top" secondItem="AXP-vv-yj4" secondAttribute="top" id="A6c-8d-Ynq"/>
+                                                    <constraint firstItem="Yq7-MJ-UlU" firstAttribute="leading" secondItem="AXP-vv-yj4" secondAttribute="leading" constant="110" id="UlF-Mo-ui6"/>
+                                                    <constraint firstItem="5bo-Mc-Mjb" firstAttribute="top" secondItem="AXP-vv-yj4" secondAttribute="top" constant="10" id="goh-A6-bGX"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gjj-W6-mlo">
+                                                <rect key="frame" x="20" y="831" width="374" height="27"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vAp-OX-h0N">
+                                                        <rect key="frame" x="87.5" y="0.0" width="199.5" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ya1-43-eln" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="135.5" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mt-R6-KhS" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="139.5" y="0.0" width="60" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Login Now"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="popViewController" destination="uwe-7G-j2u" eventType="touchUpInside" id="9co-TT-9i9"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9WU-Hl-UFV">
+                                                <rect key="frame" x="104.5" y="769" width="205.5" height="42"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Mp-UJ-pLd" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="cQj-yD-U9f"/>
+                                                            <constraint firstAttribute="height" constant="42" id="lvI-Dr-QVL"/>
+                                                        </constraints>
+                                                        <state key="normal" image="FB_LOGO"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pc-2a-xr8" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="81.5" y="0.0" width="42" height="42"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="hmW-kS-7Bl"/>
+                                                        </constraints>
+                                                        <state key="normal" image="GOOGLE_LOGO"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAC-4I-a04" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="163.5" y="0.0" width="42" height="42"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="Se7-1d-ney"/>
+                                                        </constraints>
+                                                        <state key="normal" image="APPlE_LOGO"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="9WU-Hl-UFV" firstAttribute="leading" secondItem="Vxg-Lx-gZf" secondAttribute="leading" constant="20" id="1Ml-vm-ezB"/>
+                                            <constraint firstItem="qYj-on-upq" firstAttribute="leading" secondItem="kcE-jK-49S" secondAttribute="leading" constant="20" symbolic="YES" id="3f9-Gw-OQB"/>
+                                            <constraint firstItem="AXP-vv-yj4" firstAttribute="leading" secondItem="Vxg-Lx-gZf" secondAttribute="leading" id="4mb-sp-Rkm"/>
+                                            <constraint firstItem="PWG-LO-m2D" firstAttribute="top" secondItem="2NT-E4-amy" secondAttribute="bottom" constant="20" id="5Av-Vw-zhZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="PWG-LO-m2D" secondAttribute="trailing" constant="20" symbolic="YES" id="5wb-HC-eNw"/>
+                                            <constraint firstItem="gjj-W6-mlo" firstAttribute="top" secondItem="9WU-Hl-UFV" secondAttribute="bottom" constant="20" id="9lp-di-2zw"/>
+                                            <constraint firstItem="9WU-Hl-UFV" firstAttribute="trailing" secondItem="S1U-pV-TDT" secondAttribute="trailing" constant="-20" id="EvA-eF-V2D"/>
+                                            <constraint firstItem="PWG-LO-m2D" firstAttribute="leading" secondItem="kcE-jK-49S" secondAttribute="leading" constant="20" symbolic="YES" id="KBi-Vm-iZu"/>
+                                            <constraint firstAttribute="trailing" secondItem="qYj-on-upq" secondAttribute="trailing" constant="20" symbolic="YES" id="QXl-j9-R6i"/>
+                                            <constraint firstItem="qYj-on-upq" firstAttribute="top" secondItem="PWG-LO-m2D" secondAttribute="bottom" constant="22" id="Qwo-W1-Aij"/>
+                                            <constraint firstItem="gjj-W6-mlo" firstAttribute="leading" secondItem="kcE-jK-49S" secondAttribute="leading" constant="20" symbolic="YES" id="T6f-sH-PcW"/>
+                                            <constraint firstItem="AXP-vv-yj4" firstAttribute="top" secondItem="qYj-on-upq" secondAttribute="bottom" constant="20" id="YYd-6r-nby"/>
+                                            <constraint firstItem="2NT-E4-amy" firstAttribute="centerX" secondItem="kcE-jK-49S" secondAttribute="centerX" id="ecs-hw-Qlw"/>
+                                            <constraint firstItem="AXP-vv-yj4" firstAttribute="trailing" secondItem="S1U-pV-TDT" secondAttribute="trailing" id="f9o-ty-NsP"/>
+                                            <constraint firstItem="2NT-E4-amy" firstAttribute="top" secondItem="kcE-jK-49S" secondAttribute="top" id="gOr-tW-9SX"/>
+                                            <constraint firstItem="2NT-E4-amy" firstAttribute="width" secondItem="2NT-E4-amy" secondAttribute="height" multiplier="158:123" id="pQg-xZ-JVV"/>
+                                            <constraint firstAttribute="bottom" secondItem="gjj-W6-mlo" secondAttribute="bottom" constant="20" symbolic="YES" id="qVB-Q5-fvR"/>
+                                            <constraint firstItem="9WU-Hl-UFV" firstAttribute="top" secondItem="AXP-vv-yj4" secondAttribute="bottom" constant="20" id="vd9-GO-O4A"/>
+                                            <constraint firstAttribute="trailing" secondItem="gjj-W6-mlo" secondAttribute="trailing" constant="20" symbolic="YES" id="yNh-iI-qJb"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kcE-jK-49S" secondAttribute="bottom" id="5bQ-lj-8RB"/>
+                                    <constraint firstItem="kcE-jK-49S" firstAttribute="top" secondItem="4Sz-gh-YVd" secondAttribute="top" id="7B9-0f-oJa"/>
+                                    <constraint firstItem="kcE-jK-49S" firstAttribute="leading" secondItem="4Sz-gh-YVd" secondAttribute="leading" id="O3r-lS-e1M"/>
+                                    <constraint firstItem="kcE-jK-49S" firstAttribute="width" secondItem="4Sz-gh-YVd" secondAttribute="width" id="k2V-ZD-nUM"/>
+                                    <constraint firstAttribute="trailing" secondItem="kcE-jK-49S" secondAttribute="trailing" id="udC-VM-A1W"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="hJT-Be-IrQ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Xrv-Ta-ADL"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tce-oG-rIa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fZH-pw-EBM" firstAttribute="leading" secondItem="tce-oG-rIa" secondAttribute="leading" id="09l-Xw-oga"/>
+                            <constraint firstAttribute="bottom" secondItem="fZH-pw-EBM" secondAttribute="bottom" id="7ma-PA-pRO"/>
+                            <constraint firstItem="4Sz-gh-YVd" firstAttribute="trailing" secondItem="tce-oG-rIa" secondAttribute="trailing" id="Ani-BK-31r"/>
+                            <constraint firstItem="fZH-pw-EBM" firstAttribute="trailing" secondItem="tce-oG-rIa" secondAttribute="trailing" id="H26-by-pmh"/>
+                            <constraint firstItem="4Sz-gh-YVd" firstAttribute="top" secondItem="tce-oG-rIa" secondAttribute="top" id="K6M-wb-NWd"/>
+                            <constraint firstItem="4Sz-gh-YVd" firstAttribute="bottom" secondItem="tce-oG-rIa" secondAttribute="bottom" id="hKw-5V-2WQ"/>
+                            <constraint firstItem="fZH-pw-EBM" firstAttribute="top" secondItem="hgJ-BQ-PLZ" secondAttribute="top" id="rwd-ji-iar"/>
+                            <constraint firstItem="4Sz-gh-YVd" firstAttribute="leading" secondItem="tce-oG-rIa" secondAttribute="leading" id="sGv-oI-h2M"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fTf-ep-k3F"/>
+                    <connections>
+                        <outlet property="btnLoginNow" destination="4mt-R6-KhS" id="4Jf-t8-5h3"/>
+                        <outlet property="txtConfirmPassword" destination="Qs3-JA-Zf8" id="UAG-I9-PAb"/>
+                        <outlet property="txtEmail" destination="VYH-XU-YOU" id="LVh-e0-6vH"/>
+                        <outlet property="txtFirstName" destination="kMn-Us-Hge" id="eGL-o0-v80"/>
+                        <outlet property="txtLastName" destination="Q55-hz-x8J" id="6tO-UG-0eU"/>
+                        <outlet property="txtPassword" destination="Pqk-aG-Xd3" id="D6i-50-G9z"/>
+                        <outlet property="txtPhoneNo" destination="X0X-0u-khC" id="xSw-Ra-Wtd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VPz-Bc-9y1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3205.7971014492755" y="91.741071428571431"/>
+        </scene>
+        <!--Forgot PasswordVC-->
+        <scene sceneID="kCH-mL-GeU">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPasswordVC" interfaceStyle="light" id="I0c-rv-E4v" customClass="ForgotPasswordVC" customModule="Gas_2_You" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7qW-mw-BkC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="Zfh-kM-7hk">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="kVH-8e-wWl">
+                                <rect key="frame" x="20" y="318.5" width="374" height="124"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cZU-fg-JQF" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="j7J-09-Uvm"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="I0c-rv-E4v" id="WEg-IO-yNr"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpH-tJ-ziC" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="74" width="374" height="50"/>
+                                        <state key="normal" title="Submit"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="background">
+                                                <color key="value" red="0.10980392160000001" green="0.45882352939999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                <color key="value" systemColor="systemBackgroundColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitTapped" destination="I0c-rv-E4v" eventType="touchUpInside" id="6r0-4t-IfC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="kkL-xz-y3K">
+                                <rect key="frame" x="128" y="162.5" width="158" height="123"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SF8-Bj-LPy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Zfh-kM-7hk" firstAttribute="trailing" secondItem="SF8-Bj-LPy" secondAttribute="trailing" id="0Ry-PX-YVB"/>
+                            <constraint firstItem="kVH-8e-wWl" firstAttribute="top" secondItem="kkL-xz-y3K" secondAttribute="bottom" constant="33" id="Km9-Wm-PmC"/>
+                            <constraint firstItem="SF8-Bj-LPy" firstAttribute="trailing" secondItem="kVH-8e-wWl" secondAttribute="trailing" constant="20" id="O7L-7a-ZFd"/>
+                            <constraint firstItem="Zfh-kM-7hk" firstAttribute="leading" secondItem="SF8-Bj-LPy" secondAttribute="leading" id="RtZ-zM-rdq"/>
+                            <constraint firstItem="kkL-xz-y3K" firstAttribute="centerY" secondItem="7qW-mw-BkC" secondAttribute="centerY" multiplier="0.5" id="TJQ-8O-McE"/>
+                            <constraint firstItem="Zfh-kM-7hk" firstAttribute="top" secondItem="7qW-mw-BkC" secondAttribute="top" id="VMM-Ue-sfd"/>
+                            <constraint firstAttribute="bottom" secondItem="Zfh-kM-7hk" secondAttribute="bottom" id="ln1-SQ-xLX"/>
+                            <constraint firstItem="kkL-xz-y3K" firstAttribute="width" secondItem="kkL-xz-y3K" secondAttribute="height" multiplier="158:123" id="pFi-rQ-VDx"/>
+                            <constraint firstItem="kVH-8e-wWl" firstAttribute="leading" secondItem="SF8-Bj-LPy" secondAttribute="leading" constant="20" id="vOj-qt-tIU"/>
+                            <constraint firstItem="kkL-xz-y3K" firstAttribute="centerX" secondItem="7qW-mw-BkC" secondAttribute="centerX" id="yfc-l9-ho6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="A01-Td-yBA"/>
+                    <connections>
+                        <outlet property="btnSubmit" destination="lpH-tJ-ziC" id="05n-pH-Nvk"/>
+                        <outlet property="txtEmail" destination="cZU-fg-JQF" id="blU-fx-Oqt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y1e-KI-ELG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="577" y="768"/>
+        </scene>
+        <!--Change PasswordVC-->
+        <scene sceneID="IVc-p0-O1U">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordVC" interfaceStyle="light" id="xET-D3-ZaR" customClass="ChangePasswordVC" customModule="Gas_2_You" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FAn-h2-5t6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="gvz-oa-g2c">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="Yth-dC-rBI">
+                                <rect key="frame" x="128" y="162.5" width="158" height="123"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="50u-az-l7K">
+                                <rect key="frame" x="20" y="318.5" width="374" height="272"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Glu-fi-Rjh" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="nki-Xs-GhI"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="xET-D3-ZaR" id="zGi-Ir-sZl"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="71O-jh-yQW" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="74" width="374" height="50"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="xET-D3-ZaR" id="zHh-70-dBr"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Re-Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KOz-Rs-Ax2" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="148" width="374" height="50"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Corner_Radius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Border_Width">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="Border_Color">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="xET-D3-ZaR" id="2UG-Hl-hyc"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dti-0h-rJ8" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="222" width="374" height="50"/>
+                                        <state key="normal" title="Save"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="background">
+                                                <color key="value" red="0.10980392160000001" green="0.45882352939999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                <color key="value" systemColor="systemBackgroundColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnSaveTap:" destination="xET-D3-ZaR" eventType="touchUpInside" id="gei-9E-1i6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="j4i-za-Aaz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Yth-dC-rBI" firstAttribute="centerX" secondItem="FAn-h2-5t6" secondAttribute="centerX" id="D6Q-8J-bOP"/>
+                            <constraint firstItem="50u-az-l7K" firstAttribute="top" secondItem="Yth-dC-rBI" secondAttribute="bottom" constant="33" id="Fp6-dF-dv2"/>
+                            <constraint firstAttribute="bottom" secondItem="gvz-oa-g2c" secondAttribute="bottom" id="KYe-uq-eIF"/>
+                            <constraint firstItem="gvz-oa-g2c" firstAttribute="top" secondItem="FAn-h2-5t6" secondAttribute="top" id="SHD-X5-tHK"/>
+                            <constraint firstItem="Yth-dC-rBI" firstAttribute="centerY" secondItem="FAn-h2-5t6" secondAttribute="centerY" multiplier="0.5" id="Z7N-2Y-oqI"/>
+                            <constraint firstItem="50u-az-l7K" firstAttribute="leading" secondItem="j4i-za-Aaz" secondAttribute="leading" constant="20" id="ZQt-9Q-GAu"/>
+                            <constraint firstItem="j4i-za-Aaz" firstAttribute="trailing" secondItem="50u-az-l7K" secondAttribute="trailing" constant="20" id="iMd-xb-w9b"/>
+                            <constraint firstItem="gvz-oa-g2c" firstAttribute="leading" secondItem="j4i-za-Aaz" secondAttribute="leading" id="mU7-D7-k86"/>
+                            <constraint firstItem="gvz-oa-g2c" firstAttribute="trailing" secondItem="j4i-za-Aaz" secondAttribute="trailing" id="xVg-Wf-gPa"/>
+                            <constraint firstItem="Yth-dC-rBI" firstAttribute="width" secondItem="Yth-dC-rBI" secondAttribute="height" multiplier="158:123" id="yAv-0R-78q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="kS6-Uz-Gi8"/>
+                    <connections>
+                        <outlet property="btnSave" destination="dti-0h-rJ8" id="PnM-yO-1cU"/>
+                        <outlet property="imgBG" destination="gvz-oa-g2c" id="DzP-V9-6ti"/>
+                        <outlet property="imgG2U" destination="Yth-dC-rBI" id="Jn9-sF-T0B"/>
+                        <outlet property="txtCurrentPassword" destination="Glu-fi-Rjh" id="2cr-EK-rQY"/>
+                        <outlet property="txtNewPassword" destination="71O-jh-yQW" id="mxw-tK-Xgs"/>
+                        <outlet property="txtReEnterPassword" destination="KOz-Rs-Ax2" id="K2j-vl-pIh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N74-qL-nAe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1381" y="768"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dhw-5l-GLL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="5m6-OM-yXR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nJ2-4O-x9H">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uxf-9A-Nnj" kind="relationship" relationship="rootViewController" id="wsY-8t-buS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddI-lv-1JD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1052.1739130434783" y="91.741071428571431"/>
+        </scene>
+        <!--OtpVC-->
+        <scene sceneID="GF1-tc-dsp">
+            <objects>
+                <viewController storyboardIdentifier="OtpVC" id="BjP-Pb-xQx" customClass="OtpVC" customModule="Gas_2_You" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="40T-3n-Ryz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="ILh-W1-2IA">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qe5-Gn-RNT">
+                                <rect key="frame" x="47" y="370.5" width="320" height="65"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C4Y-bK-0x5" customClass="SingleDigitField" customModule="Gas_2_You_Driver" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="C4Y-bK-0x5" secondAttribute="height" id="hVs-k0-I3i"/>
+                                            <constraint firstAttribute="width" constant="65" id="sgE-f8-s62"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JIf-oE-x52" customClass="SingleDigitField" customModule="Gas_2_You_Driver" customModuleProvider="target">
+                                        <rect key="frame" x="85" y="0.0" width="65" height="65"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iax-Js-Fdt" customClass="SingleDigitField" customModule="Gas_2_You_Driver" customModuleProvider="target">
+                                        <rect key="frame" x="170" y="0.0" width="65" height="65"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gpp-MH-atR" customClass="SingleDigitField" customModule="Gas_2_You_Driver" customModuleProvider="target">
+                                        <rect key="frame" x="255" y="0.0" width="65" height="65"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="KNO-Kv-Hyy">
+                                <rect key="frame" x="20" y="455.5" width="374" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't receive Email?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7c-gT-Ztr" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="158.5" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="eVP-Dg-fgZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b88-Ek-nHo" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="161.5" y="0.0" width="174" height="22"/>
+                                        <state key="normal" title="Resend Code"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnResendAction:" destination="BjP-Pb-xQx" eventType="touchUpInside" id="Blw-rZ-86d"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8o-J2-kFJ" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                        <rect key="frame" x="338.5" y="0.0" width="35.5" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your email address. We've sent you the code at e*****@gmail.com" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOy-gi-LAD" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                <rect key="frame" x="20" y="305.5" width="374" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                        <real key="value" value="17"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="pfD-Uz-OBv">
+                                <rect key="frame" x="128" y="162.5" width="158" height="123"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehZ-EM-LQ2" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                <rect key="frame" x="20" y="792" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6b9-n9-h0h"/>
+                                </constraints>
+                                <state key="normal" title="VERIFY"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="background">
+                                        <color key="value" red="0.10980392160000001" green="0.45882352939999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                        <color key="value" systemColor="systemBackgroundColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnVerifyAction:" destination="BjP-Pb-xQx" eventType="touchUpInside" id="Qe1-UW-pHf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9VC-pX-lek"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KNO-Kv-Hyy" firstAttribute="leading" secondItem="9VC-pX-lek" secondAttribute="leading" constant="20" id="26N-Ym-i0B"/>
+                            <constraint firstItem="9VC-pX-lek" firstAttribute="trailing" secondItem="ehZ-EM-LQ2" secondAttribute="trailing" constant="20" id="79D-uj-xSR"/>
+                            <constraint firstItem="QOy-gi-LAD" firstAttribute="top" secondItem="pfD-Uz-OBv" secondAttribute="bottom" constant="20" id="84Q-ni-GCX"/>
+                            <constraint firstItem="ehZ-EM-LQ2" firstAttribute="leading" secondItem="9VC-pX-lek" secondAttribute="leading" constant="20" id="8Tn-hr-8BY"/>
+                            <constraint firstAttribute="bottom" secondItem="ILh-W1-2IA" secondAttribute="bottom" id="Da2-1t-b1K"/>
+                            <constraint firstItem="pfD-Uz-OBv" firstAttribute="width" secondItem="pfD-Uz-OBv" secondAttribute="height" multiplier="158:123" id="EFd-bm-9Do"/>
+                            <constraint firstItem="qe5-Gn-RNT" firstAttribute="top" secondItem="QOy-gi-LAD" secondAttribute="bottom" constant="24" id="Fgi-H0-Y3Z"/>
+                            <constraint firstItem="ILh-W1-2IA" firstAttribute="trailing" secondItem="9VC-pX-lek" secondAttribute="trailing" id="Gca-pA-oFM"/>
+                            <constraint firstItem="9VC-pX-lek" firstAttribute="trailing" secondItem="KNO-Kv-Hyy" secondAttribute="trailing" constant="20" id="LGG-J9-IES"/>
+                            <constraint firstItem="ILh-W1-2IA" firstAttribute="top" secondItem="40T-3n-Ryz" secondAttribute="top" id="Lod-UA-HR9"/>
+                            <constraint firstItem="qe5-Gn-RNT" firstAttribute="centerX" secondItem="QOy-gi-LAD" secondAttribute="centerX" id="MM3-wy-HmT"/>
+                            <constraint firstItem="9VC-pX-lek" firstAttribute="bottom" secondItem="ehZ-EM-LQ2" secondAttribute="bottom" constant="20" id="OUj-Eo-5wY"/>
+                            <constraint firstItem="pfD-Uz-OBv" firstAttribute="centerY" secondItem="40T-3n-Ryz" secondAttribute="centerY" multiplier="0.5" id="Qj5-M9-Cpc"/>
+                            <constraint firstItem="ILh-W1-2IA" firstAttribute="leading" secondItem="9VC-pX-lek" secondAttribute="leading" id="ZnV-gC-xA7"/>
+                            <constraint firstItem="9VC-pX-lek" firstAttribute="trailing" secondItem="QOy-gi-LAD" secondAttribute="trailing" constant="20" id="mIU-I3-9mb"/>
+                            <constraint firstItem="KNO-Kv-Hyy" firstAttribute="top" secondItem="qe5-Gn-RNT" secondAttribute="bottom" constant="20" id="oga-Cg-UAi"/>
+                            <constraint firstItem="QOy-gi-LAD" firstAttribute="leading" secondItem="9VC-pX-lek" secondAttribute="leading" constant="20" id="sJ4-C5-6VF"/>
+                            <constraint firstItem="pfD-Uz-OBv" firstAttribute="centerX" secondItem="40T-3n-Ryz" secondAttribute="centerX" id="w4E-ck-bGf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KFA-G9-17H"/>
+                    <connections>
+                        <outlet property="btnResend" destination="b88-Ek-nHo" id="dX3-4N-Djq"/>
+                        <outlet property="btnVerify" destination="ehZ-EM-LQ2" id="RMU-NC-Iur"/>
+                        <outlet property="lblCheckEmail" destination="QOy-gi-LAD" id="PGP-Gx-rzw"/>
+                        <outlet property="lblTimer" destination="j8o-J2-kFJ" id="HPT-Wm-XTv"/>
+                        <outlet property="txtFldOTP1" destination="C4Y-bK-0x5" id="UlU-bb-Q3o"/>
+                        <outlet property="txtFldOTP2" destination="JIf-oE-x52" id="rJZ-Of-SMo"/>
+                        <outlet property="txtFldOTP3" destination="iax-Js-Fdt" id="9lc-7i-cKh"/>
+                        <outlet property="txtFldOTP4" destination="Gpp-MH-atR" id="8CT-oY-EXD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wXu-yy-9ia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4087" y="92"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="APPlE_LOGO" width="18" height="21"/>
+        <image name="FB_LOGO" width="10.5" height="21"/>
+        <image name="GOOGLE_LOGO" width="21" height="21"/>
+        <image name="Logo_image-1" width="158" height="123"/>
+        <image name="splash-screen - 5" width="375" height="812"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

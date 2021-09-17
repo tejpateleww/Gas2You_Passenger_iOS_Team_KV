@@ -12,5 +12,7 @@ pod 'GoogleMaps'
 pod 'MTSlideToOpen'
 pod 'Cosmos', '~> 23.0'
 pod 'lottie-ios'
+pod 'MKProgress'
+pod 'SDWebImage'
 
 end

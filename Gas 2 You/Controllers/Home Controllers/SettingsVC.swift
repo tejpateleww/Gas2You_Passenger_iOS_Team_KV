@@ -22,7 +22,7 @@ class SettingsVC: BaseVC {
     }
     
     @IBAction func btnLogoutTap(_ sender: UIButton) {
-        SettingsVC.showAlertWithTitleFromVC(vc: self, title: "Logout", message: "Are you sure want to Logout?", buttons: ["Cancel", "Logout"]) { index in
+        self.showAlertWithTitleFromVC( title: "Logout", message: "Are you sure want to Logout?", buttons: ["Cancel", "Logout"]) { index in
             if index == 1 {
                 UserDefaults.standard.set(false, forKey: "isLoggedIn")
                 AppDel.navigateToLogin()

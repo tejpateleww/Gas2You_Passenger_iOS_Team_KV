@@ -13,7 +13,7 @@ class SlideToConfirmVC: UIViewController {
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var imgGasdoor: UIImageView!
     @IBOutlet weak var lblMessage: UILabel!
-    @IBOutlet weak var lblTheyWillClose: themeLabel!
+    @IBOutlet weak var lblTheyWillClose: ThemeLabel!
     @IBOutlet weak var btnClose: UIButton!
     @IBOutlet weak var vwBlur: UIView!
     @IBOutlet weak var slideToConfirmView: MTSlideToOpenView!

@@ -9,9 +9,9 @@ import UIKit
 
 class ChatListCell: UITableViewCell {
 
-    @IBOutlet weak var lblTime: themeLabel!
-    @IBOutlet weak var lblName: themeLabel!
-    @IBOutlet weak var lblMessage: themeLabel!
+    @IBOutlet weak var lblTime: ThemeLabel!
+    @IBOutlet weak var lblName: ThemeLabel!
+    @IBOutlet weak var lblMessage: ThemeLabel!
     @IBOutlet weak var profileIV: UIImageView!
     
     override func awakeFromNib() {

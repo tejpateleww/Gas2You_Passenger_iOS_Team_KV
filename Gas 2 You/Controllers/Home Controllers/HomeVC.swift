@@ -13,35 +13,35 @@ class HomeVC: BaseVC {
     
     //MARK:- OUTLETS
     @IBOutlet weak var ViewForShowPrice: UIView!
-    @IBOutlet weak var LblOctane: themeLabel!
+    @IBOutlet weak var LblOctane: ThemeLabel!
     @IBOutlet weak var imgSelctService: UIImageView!
     @IBOutlet weak var gasServiceView: UIView!
-    @IBOutlet var octaneButtons: [themeButton]!
-    @IBOutlet weak var priceTagLabel: themeLabel!
+    @IBOutlet var octaneButtons: [ThemeButton]!
+    @IBOutlet weak var priceTagLabel: ThemeLabel!
     @IBOutlet weak var imgParkingLocation: UIImageView!
-    @IBOutlet weak var locationLabel: themeLabel!
+    @IBOutlet weak var locationLabel: ThemeLabel!
     @IBOutlet weak var selectDateButton: UIButton!
-    @IBOutlet var timeSlotButtons: [themeButton]!
+    @IBOutlet var timeSlotButtons: [ThemeButton]!
     @IBOutlet weak var imgSelectVehicle: UIImageView!
     @IBOutlet weak var checkTirePressureButton: UIButton!
     @IBOutlet weak var windshieldRefillButton: UIButton!
-    @IBOutlet weak var lblSelectService: themeLabel!
-    @IBOutlet weak var lblSelectedService: themeLabel!
-    @IBOutlet weak var lblSelectGrade: themeLabel!
-    @IBOutlet weak var btnGradeVal1: themeButton!
-    @IBOutlet weak var btnGradeVal2: themeButton!
-    @IBOutlet weak var lblSelectedGrade: themeLabel!
-    @IBOutlet weak var lblPerGallon: themeLabel!
-    @IBOutlet weak var lblParkingLocation: themeLabel!
-    @IBOutlet weak var lblSelectDateTime: themeLabel!
-    @IBOutlet weak var selectedDate: themeLabel!
-    @IBOutlet weak var lblSelectVehicle: themeLabel!
-    @IBOutlet weak var lblSelectedVehicle: themeLabel!
-    @IBOutlet weak var lblAddOns: themeLabel!
-    @IBOutlet weak var lblTirePressure: themeLabel!
-    @IBOutlet weak var lblTirePressurePriceTag: themeLabel!
-    @IBOutlet weak var lblWindShield: themeLabel!
-    @IBOutlet weak var lblWindShieldPriceTag: themeLabel!
+    @IBOutlet weak var lblSelectService: ThemeLabel!
+    @IBOutlet weak var lblSelectedService: ThemeLabel!
+    @IBOutlet weak var lblSelectGrade: ThemeLabel!
+    @IBOutlet weak var btnGradeVal1: ThemeButton!
+    @IBOutlet weak var btnGradeVal2: ThemeButton!
+    @IBOutlet weak var lblSelectedGrade: ThemeLabel!
+    @IBOutlet weak var lblPerGallon: ThemeLabel!
+    @IBOutlet weak var lblParkingLocation: ThemeLabel!
+    @IBOutlet weak var lblSelectDateTime: ThemeLabel!
+    @IBOutlet weak var selectedDate: ThemeLabel!
+    @IBOutlet weak var lblSelectVehicle: ThemeLabel!
+    @IBOutlet weak var lblSelectedVehicle: ThemeLabel!
+    @IBOutlet weak var lblAddOns: ThemeLabel!
+    @IBOutlet weak var lblTirePressure: ThemeLabel!
+    @IBOutlet weak var lblTirePressurePriceTag: ThemeLabel!
+    @IBOutlet weak var lblWindShield: ThemeLabel!
+    @IBOutlet weak var lblWindShieldPriceTag: ThemeLabel!
     @IBOutlet weak var btnFillup: ThemeButton!
     @IBOutlet weak var btnSelectService: UIButton!
     @IBOutlet weak var btnSelectParkingLocation: UIButton!
@@ -117,7 +117,7 @@ class HomeVC: BaseVC {
         setServicePicker()
     }
     
-    @IBAction func octaneButtonPressed(_ sender: themeButton) {
+    @IBAction func octaneButtonPressed(_ sender: ThemeButton) {
         
         switch sender.tag {
         case 0:
@@ -136,7 +136,7 @@ class HomeVC: BaseVC {
         navigationController?.pushViewController(carParkingLocationVC, animated: true)
     }
     
-    @IBAction func timeSlotButtonPressed(_ sender: themeButton) {
+    @IBAction func timeSlotButtonPressed(_ sender: ThemeButton) {
         
         switch sender.tag {
         case 0:

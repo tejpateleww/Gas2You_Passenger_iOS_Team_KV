@@ -146,7 +146,7 @@ extension NotificationListVC: UITableViewDelegate, UITableViewDataSource {
 class NotificationCell : UITableViewCell{
     
     @IBOutlet weak var imgNotification: UIImageView!
-    @IBOutlet weak var lblNotification: themeLabel!
+    @IBOutlet weak var lblNotification: ThemeLabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

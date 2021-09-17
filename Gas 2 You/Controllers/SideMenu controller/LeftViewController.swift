@@ -12,8 +12,6 @@ import MediaPlayer
 class LeftViewController: MenuViewController {
     
     
-    
-    
     @IBOutlet weak var MenuTblView : UITableView!
     @IBOutlet weak var ConstantMenuTblViewHeight : NSLayoutConstraint!
     
@@ -36,24 +34,21 @@ class LeftViewController: MenuViewController {
     }
     
     @IBAction func btnLogoutTap(_ sender: UIButton) {
-        LeftViewController.showAlertWithTitleFromVC(vc: self, title: "Log Out", message: "Are you sure you want to Logout?", buttons: ["Cancel", "Ok"]) { index in
+        guard let menuContainerViewController = self.menuContainerViewController else {
+            return
+        }
+        self.showAlertWithTitleFromVC( title: "Logout", message: "Are you sure want to Logout?", buttons: ["Cancel", "Logout"]) { index in
+            menuContainerViewController.hideSideMenu()
             if index == 1 {
-                UserDefaults.standard.set(false, forKey: "isLoggedIn")
-                AppDel.navigateToLogin()
+                AppDel.dologout()
             } else {
                 self.dismiss(animated: true, completion: nil)
             }
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        UIApplication.shared.statusBarStyle = .lightContent
 
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .default
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
     }
     
     //MARK: -  Observer method
@@ -139,6 +134,6 @@ extension LeftViewController : MPMediaPickerControllerDelegate {
     
 }
 class LeftViewMenuItemCell : UITableViewCell {
-    @IBOutlet weak var LblMenuItem : themeLabel!
+    @IBOutlet weak var LblMenuItem : ThemeLabel!
     @IBOutlet weak var ImageViewMenuIcon : UIImageView!
 }

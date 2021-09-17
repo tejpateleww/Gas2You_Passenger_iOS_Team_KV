@@ -15,24 +15,24 @@ class CompleteJobVC: BaseVC {
     @IBOutlet weak var stackDownloadInvoiceTop: NSLayoutConstraint!
     @IBOutlet weak var btnDownloadInvoiceHeight: NSLayoutConstraint!
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var lblStatus: themeLabel!
+    @IBOutlet weak var lblStatus: ThemeLabel!
     @IBOutlet weak var viewStatus: UIView?
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var imgGas: UIImageView!
-    @IBOutlet weak var lblGas: themeLabel!
+    @IBOutlet weak var lblGas: ThemeLabel!
     @IBOutlet weak var imgCar: UIImageView!
-    @IBOutlet weak var lblCarName: themeLabel!
+    @IBOutlet weak var lblCarName: ThemeLabel!
     @IBOutlet weak var imgLocationPin: UIImageView!
-    @IBOutlet weak var lblAddress: themeLabel!
+    @IBOutlet weak var lblAddress: ThemeLabel!
     @IBOutlet weak var imgCalender: UIImageView!
-    @IBOutlet weak var lblDateTime: themeLabel!
+    @IBOutlet weak var lblDateTime: ThemeLabel!
     @IBOutlet weak var btnDownloadInvoice: UIButton!
     @IBOutlet weak var btnGiveRateReview: UIButton!
     @IBOutlet weak var vwRating: UIView!
-    @IBOutlet weak var lblRating: themeLabel!
+    @IBOutlet weak var lblRating: ThemeLabel!
     @IBOutlet weak var vwReviewFeedBack: UIView!
-    @IBOutlet weak var lblReview: themeLabel!
-    @IBOutlet weak var lblUserReview: themeLabel!
+    @IBOutlet weak var lblReview: ThemeLabel!
+    @IBOutlet weak var lblUserReview: ThemeLabel!
     @IBOutlet var borderedButtons: [UIButton]! {
         didSet {
             for i in 0..<borderedButtons.count {
@@ -92,7 +92,7 @@ class CompleteJobVC: BaseVC {
     
     func setUIMapPin() {
         initializeTheLocationManager()
-        var position = CLLocationCoordinate2DMake(23.033863,72.585022)
+        let position = CLLocationCoordinate2DMake(23.033863,72.585022)
         let marker = GMSMarker(position: position)
         marker.icon = drawImageWithProfilePic(pp: nil, image: #imageLiteral(resourceName: "IC_pinImg"))
         marker.appearAnimation = GMSMarkerAnimation.pop
@@ -141,7 +141,7 @@ extension CompleteJobVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        var location = locationManager.location?.coordinate
+        let location = locationManager.location?.coordinate
         
         cameraMoveToLocation(toLocation: location)
         

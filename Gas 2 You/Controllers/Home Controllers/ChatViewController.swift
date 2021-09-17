@@ -17,7 +17,7 @@ class ChatViewController: BaseVC {
     //MARK: -IBOutlets
     @IBOutlet weak var tblChat: UITableView!
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-    @IBOutlet weak var txtviewComment: ratingTextview!
+    @IBOutlet weak var txtviewComment: RatingTextview!
     @IBOutlet var vwNavBar: UIView!
     @IBOutlet weak var lblChatText: UILabel!
     
@@ -232,17 +232,17 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
 class chatSenderCell : UITableViewCell {
     
     @IBOutlet weak var lblBottomView: UIView!
-    @IBOutlet weak var lblSenderView: chatScreenView!
-    @IBOutlet weak var lblSenderMessage: chatScreenLabel!
+    @IBOutlet weak var lblSenderView: ChatScreenView!
+    @IBOutlet weak var lblSenderMessage: ChatScreenLabel!
 }
 class chatReciverCell : UITableViewCell {
     @IBOutlet weak var lblBottomView: UIView!
-    @IBOutlet weak var lblReciverView: chatScreenView!
-    @IBOutlet weak var lblReciverMessage: chatScreenLabel!
+    @IBOutlet weak var lblReciverView: ChatScreenView!
+    @IBOutlet weak var lblReciverMessage: ChatScreenLabel!
 }
 class chatHeaderCell : UITableViewCell {
     
-    @IBOutlet weak var lblDateTime: chatScreenLabel!
+    @IBOutlet weak var lblDateTime: ChatScreenLabel!
     @IBOutlet weak var vwMain: UIView!
 }
 class ChatConversation {
