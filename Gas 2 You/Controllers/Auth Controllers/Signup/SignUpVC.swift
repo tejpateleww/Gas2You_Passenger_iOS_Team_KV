@@ -27,16 +27,6 @@ class SignUpVC: BaseVC {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
-        fillDummy()
-    }
-
-    private func fillDummy() {
-        txtFirstName.text = "Gaurang"
-        txtLastName.text = "Vyas"
-        txtEmail.text = "vsgaurang@gmail.com"
-        txtPhoneNo.text = "9712345678"
-        txtPassword.text = "12345678"
-        txtConfirmPassword.text = "12345678"
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -85,7 +75,8 @@ class SignUpVC: BaseVC {
                                                   passPlaceholder: txtPassword.placeholder ?? "",
                                                   confPassPlaceholder: txtConfirmPassword.placeholder ?? "",
                                                   firstNamePlaceholder: txtFirstName.placeholder ?? "",
-                                                  lastNamePlaceholder: txtLastName.placeholder ?? "")
+                                                  lastNamePlaceholder: txtLastName.placeholder ?? "",
+                                                  mobileNoPlaceholder: "Mobile No")
         viewModel.doRegister(values)
     }
 
@@ -115,10 +106,14 @@ extension SignUpVC: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        if textField == txtPhoneNo {
-            let allowedCharacters = CharacterSet.decimalDigits
-            let characterSet = CharacterSet(charactersIn: string)
-            return allowedCharacters.isSuperset(of: characterSet) && range.location < 10
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        if newString.hasPrefix(" "){
+            textField.text = ""
+            return false
+        }else if textField == txtPhoneNo || textField == txtFirstName || textField == txtConfirmPassword || textField == txtPassword{
+            let currentString: NSString = textField.text as NSString? ?? ""
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            return string == "" || (newString.length <= ((textField == txtPhoneNo) ? MAX_PHONE_DIGITS : TEXTFIELD_MaximumLimit))
         }
         return true
     }

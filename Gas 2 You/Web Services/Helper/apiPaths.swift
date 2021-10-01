@@ -8,7 +8,6 @@
 import Foundation
 
 typealias NetworkRouterCompletion = ((Data?,[String:Any]?, Bool) -> ())
-
 enum APIEnvironment : String {
  
 //Development URL : Pick A Ride Customer
@@ -46,23 +45,40 @@ enum APIEnvironment : String {
 }
 
 enum ApiKey: String {
-    case Init                                 = "init/ios_customer/"
-    case login                                = "login"
-    case register                             = "register"
-    case changePassword                       = "change_password"
-    case forgotPassword                       = "forgot_password"
-    case registerOtp                          = "register_otp"
-    
+    case Init               = "init/ios_customer/"
+    case login              = "login"
+    case register           = "register"
+    case socialLogin        = "social_login"
+    case appleDetail        = "apple_details"
+    case changePassword     = "change_password"
+    case forgotPassword     = "forgot_password"
+    case registerOtp        = "register_otp"
+    case profileUpdate      = "profile_update"
+    case vehicleList        = "vehicle_list"
+    case MakeAndModelList   = "vehicle_manufacturer_list"
+    case vehicleColorList   = "vehicle_color_list"
+    case addVehicle         = "add_vehicle"
+    case deleteVehicle      = "remove_vehicle"
+    case editVehicle        = "edit_vehicle"
+    case serviceList        = "service_type_list"
+    case memberPlan         = "membership_plan_list"
+    case nonMemberPlan      = "non_membership_plan_list"
+    case AddBooking         = "add_booking"
+    case bookingList        = "booking_list"
+    case bookingDetail      = "get_order_detail"
+    case cancelOrder        = "cancel_order"
+    case rateAndreview      = "add_booking_review"
+    case logout             = "logout/"
 }
 
  
 
 enum SocketKeys: String {
     
-    case KHostUrl                                 = "http://50.18.114.231:8080/"
-    case ConnectUser                              = "connect_user"
-    case channelCommunation                       = "communication"
-    case SendMessage                              = "send_message"
-    case ReceiverMessage                          = "receiver_message"
+    case KHostUrl           = "http://50.18.114.231:8080/"
+    case ConnectUser        = "connect_user"
+    case channelCommunation = "communication"
+    case SendMessage        = "send_message"
+    case ReceiverMessage    = "receiver_message"
     
 }

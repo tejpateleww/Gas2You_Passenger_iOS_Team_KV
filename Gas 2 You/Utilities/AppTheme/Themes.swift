@@ -130,7 +130,7 @@ class ThemeButton: UIButton {
 
     private func createActivityIndicator() -> UIActivityIndicatorView {
 
-        let activityIndicator = MKProgress.In()
+        let activityIndicator = UIActivityIndicatorView()
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = .white
         return activityIndicator

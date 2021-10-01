@@ -9,6 +9,11 @@ import UIKit
 
 class VehicleListCell: UITableViewCell {
 
+    @IBOutlet weak var lblCarName: ThemeLabel!
+    @IBOutlet weak var lblModel: ThemeLabel!
+    @IBOutlet weak var lblYear: ThemeLabel!
+    @IBOutlet weak var lblColor: ThemeLabel!
+    @IBOutlet weak var lblPlatNo: ThemeLabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         

@@ -172,8 +172,10 @@ class OtpVC: BaseVC {
     // MARK:- button action methods
     @IBAction func btnVerifyAction(_ sender: Any) {
         let strTokenCode = "\(self.txtFldOTP1.getText())\(self.txtFldOTP2.getText())\(self.txtFldOTP3.getText())\(self.txtFldOTP4.getText())"
-        if(self.viewModel.otpStr != strTokenCode){
-            Utilities.showAlert(Constants.appName, message: UrlConstant.ValidOtpNo, vc: self)
+        if strTokenCode == ""{
+            Toast.show(title: UrlConstant.Required, message: "Enter OTP", state: .failure)
+        }else if (self.viewModel.otpStr != strTokenCode){
+            Toast.show(title: UrlConstant.Required, message: "Please enter valid OTP", state: .failure)
         }else{
             self.timer.invalidate()
             viewModel.callRegisterApi()

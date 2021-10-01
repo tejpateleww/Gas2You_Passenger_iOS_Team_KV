@@ -7,6 +7,7 @@
 
 import UIKit
 import MediaPlayer
+
 //import InteractiveSideMenu
 
 class LeftViewController: MenuViewController {
@@ -14,9 +15,11 @@ class LeftViewController: MenuViewController {
     
     @IBOutlet weak var MenuTblView : UITableView!
     @IBOutlet weak var ConstantMenuTblViewHeight : NSLayoutConstraint!
+    @IBOutlet weak var lblUserName: ThemeLabel!
+    @IBOutlet weak var imgProfile: UIImageView!
     
     var indexPathCustom = IndexPath(row: 0, section: 1)
-    
+    var logoutUserModel = LogoutUserModel()
     //MARK:- Properties
     ///0 for menu name 1 for icon name
     private let titlesArray : [(String,String)] = [("Home","IC_home"),
@@ -33,18 +36,44 @@ class LeftViewController: MenuViewController {
         self.MenuTblView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        prepareView()
+    }
+    func DoLogoutFinal(){
+        AppDel.dologout()
+    }
+    func callLogoutAPI(){
+        self.logoutUserModel.menuViewController = self
+        self.logoutUserModel.webserviceForLogout()
+    }
+    func prepareView(){
+        let obj = Singleton.sharedInstance.userProfilData
+        lblUserName.text = ( obj?.firstName ?? "") + " " + (obj?.lastName ?? "")
+        
+    }
     @IBAction func btnLogoutTap(_ sender: UIButton) {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return
         }
-        self.showAlertWithTitleFromVC( title: "Logout", message: "Are you sure want to Logout?", buttons: ["Cancel", "Logout"]) { index in
+        Utilities.showAlertWithTitleFromVC(vc: self, title: UrlConstant.Logout, message: UrlConstant.LogoutMessage, buttons: [UrlConstant.Ok,UrlConstant.Cancel], isOkRed: false) { (ind) in
             menuContainerViewController.hideSideMenu()
-            if index == 1 {
-                AppDel.dologout()
-            } else {
-                self.dismiss(animated: true, completion: nil)
+            if ind == 0{
+                self.callLogoutAPI()
             }
         }
+//        self.showAlertWithTitleFromVC( title: "Logout", message: "Are you sure want to Logout?", buttons: ["Cancel", "Logout"]) { index in
+//            menuContainerViewController.hideSideMenu()
+//            if index == 1 {
+//                AppDel.dologout()
+//            } else {
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

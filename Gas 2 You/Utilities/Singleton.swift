@@ -24,13 +24,12 @@ class Singleton: NSObject{
     var deviceToken : String = UIDevice.current.identifierForVendor?.uuidString ?? ""
     
     
-    
     //MARK:- User' Custom Details
-    var userCurrentLocation : CLLocationCoordinate2D?
+    var userCurrentLocation = CLLocation()
   
-    func locationString() -> (latitude: String, longitude: String){
-        return (String(userCurrentLocation?.latitude ?? 0.0), String(userCurrentLocation?.longitude ?? 0.0))
-    }
+//    func locationString() -> (latitude: String, longitude: String){
+//        return (String(userCurrentLocation?.latitude ?? 0.0), String(userCurrentLocation?.longitude ?? 0.0))
+//    }
     
     var arrFutureYears:[String] {
         get {

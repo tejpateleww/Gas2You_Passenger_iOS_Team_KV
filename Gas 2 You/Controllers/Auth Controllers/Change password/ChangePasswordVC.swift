@@ -70,6 +70,7 @@ class ChangePasswordVC: BaseVC {
 extension ChangePasswordVC: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         switch textField {
         case txtCurrentPassword:
             txtNewPassword.becomeFirstResponder()
@@ -78,6 +79,17 @@ extension ChangePasswordVC: UITextFieldDelegate {
         default:
             textField.resignFirstResponder()
         }
+        return true
+    }
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        if newString.hasPrefix(" "){
+            textField.text = ""
+            return false
+        }
+        
         return true
     }
 }

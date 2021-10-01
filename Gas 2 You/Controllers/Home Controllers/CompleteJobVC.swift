@@ -7,9 +7,21 @@
 
 import UIKit
 import GoogleMaps
+import Cosmos
+import UIView_Shimmer
 
-class CompleteJobVC: BaseVC {
 
+extension UILabel: ShimmeringViewProtocol { }
+extension UISwitch: ShimmeringViewProtocol { }
+extension UIProgressView: ShimmeringViewProtocol { }
+extension UITextView: ShimmeringViewProtocol { }
+extension UIStepper: ShimmeringViewProtocol { }
+extension UISlider: ShimmeringViewProtocol { }
+extension UIImageView: ShimmeringViewProtocol {}
+
+class CompleteJobVC: BaseVC,rateandreviewDelegate {
+    
+    
     
     @IBOutlet weak var StackDownloadinvoiceBottom: NSLayoutConstraint!
     @IBOutlet weak var stackDownloadInvoiceTop: NSLayoutConstraint!
@@ -33,6 +45,13 @@ class CompleteJobVC: BaseVC {
     @IBOutlet weak var vwReviewFeedBack: UIView!
     @IBOutlet weak var lblReview: ThemeLabel!
     @IBOutlet weak var lblUserReview: ThemeLabel!
+    @IBOutlet weak var lblTimeandDate: ThemeLabel!
+    @IBOutlet weak var lblPlatNumber: ThemeLabel!
+    @IBOutlet weak var lblItemName: ThemeLabel!
+    @IBOutlet weak var lblTotalAmount: ThemeLabel!
+    @IBOutlet weak var lbltotalGallon: ThemeLabel!
+    @IBOutlet weak var lblPricePerGallon: ThemeLabel!
+    @IBOutlet weak var vwCosmos: CosmosView!
     @IBOutlet var borderedButtons: [UIButton]! {
         didSet {
             for i in 0..<borderedButtons.count {
@@ -51,34 +70,100 @@ class CompleteJobVC: BaseVC {
             }
         }
     }
-    
-    
+    var shimmeringAnimatedItems: [UIView] {
+        [
+            lblGas,
+            imgGas,
+            imgCar,
+            lblCarName,
+            imgLocationPin,
+            lblAddress,
+            imgCalender,
+            lblDateTime,
+            lblPlatNumber,
+            lblTimeandDate,
+            lblItemName,
+            lbltotalGallon,
+            lblPricePerGallon,
+            lblTotalAmount,
+            btnDownloadInvoice,
+            btnGiveRateReview,
+            lblRating,
+            vwCosmos,
+            lblReview,
+            lblUserReview
+        ]
+    }
     var locationManager = CLLocationManager()
     var isfromCancelled = false
     var strTitle = ""
-    
+    var objBookingDetail : bookingDetailDatum?
+    var bookingDetailViewModel = bookingDetailsViewModel()
+    var orderId = ""
+    var isCancel : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bookingDetailViewModel.BookingDetails = self
+        bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: orderId))
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: strTitle == "" ? "Completed" : "Cancelled", controller: self)
-        
+        view.backgroundColor = .systemBackground
         setUIMapPin()
-//        if isfromCancelled{
-//            btnDownloadInvoiceHeight.constant = 0
-//            stackDownloadInvoiceTop.constant = 0
-//            StackDownloadinvoiceBottom.constant = 0
-//
-//        }
+        if isfromCancelled{
+            btnDownloadInvoiceHeight.constant = 0
+            stackDownloadInvoiceTop.constant = 0
+            StackDownloadinvoiceBottom.constant = 0
+        }
+        if isCancel{
+            vwRating.isHidden = true
+            vwReviewFeedBack.isHidden = true
+            btnGiveRateReview.isHidden = true
+        }
         setUI()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.setTemplateWithSubviews(true, viewBackgroundColor: .systemBackground)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    func setData(){
+        let makename = objBookingDetail?.makeName ?? ""
+        let modelName = objBookingDetail?.modelName ?? ""
+        lblGas.text = objBookingDetail?.mainServiceName
+        lblCarName.text = makename + "(" + modelName + ")"
+        lblAddress.text = objBookingDetail?.parkingLocation
+        lblTimeandDate.text = (objBookingDetail?.time ?? "") + " ," + (objBookingDetail?.date ?? "")
+        lblPlatNumber.text = objBookingDetail?.plateNumber
+        lblItemName.text = objBookingDetail?.mainServiceName
+        lbltotalGallon.text = (objBookingDetail?.totalGallon ?? "" ) + " Gallon"
+        lblPricePerGallon.text = CurrencySymbol +  (objBookingDetail?.pricePerGallon ?? "") + " Per Gallon"
+        lblTotalAmount.text = CurrencySymbol + (objBookingDetail?.finalAmount ?? "")
+        if objBookingDetail?.rate == ""{
+            vwRating.isHidden = true
+            vwReviewFeedBack.isHidden = true
+        }else{
+            vwRating.isHidden = false
+            vwReviewFeedBack.isHidden = false
+            btnGiveRateReview.isHidden = true
+        }
+        vwCosmos.rating = Double(objBookingDetail?.rate ?? "") ?? 0.0
+        lblUserReview.text = objBookingDetail?.review
+    }
     @IBAction func btnDownloadInvoiceTap(_ sender: UIButton) {
     }
     
     @IBAction func btnGiveRateTap(_ sender: UIButton) {
-        let ratingPopUpVC: RatingPopUpVC = RatingPopUpVC.instantiate(fromAppStoryboard: .Main)
-        ratingPopUpVC.modalPresentationStyle = .overFullScreen
-        present(ratingPopUpVC, animated: false, completion: nil)
+            let ratingPopUpVC: RatingPopUpVC = RatingPopUpVC.instantiate(fromAppStoryboard: .Main)
+            ratingPopUpVC.rateDelegate = self
+            ratingPopUpVC.orderid = self.orderId
+            ratingPopUpVC.modalPresentationStyle = .overFullScreen
+            present(ratingPopUpVC, animated: false, completion: nil)
     }
     
     
@@ -127,7 +212,14 @@ class CompleteJobVC: BaseVC {
         }
         return image ?? UIImage()
     }
-
+    func refreshCompleteJobScreen(rate: Double, review: String) {
+        vwCosmos.rating = rate
+        lblUserReview.text = review
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: self.orderId))
+            self.view.setTemplateWithSubviews(false)
+        }
+    }
     
 }
 

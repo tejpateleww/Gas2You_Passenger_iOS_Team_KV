@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,126 +47,141 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fl-uE-UIZ" customClass="ThemeView" customModule="Gas_2_You" customModuleProvider="target">
-                        <rect key="frame" x="20" y="37" width="512" height="138"/>
+                        <rect key="frame" x="20" y="37" width="512" height="155"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wPj-kp-34N">
-                                <rect key="frame" x="17" y="17" width="478" height="104"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="prd-gV-ekx">
+                                <rect key="frame" x="17" y="17" width="478" height="121"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="qeg-mS-GNS">
-                                        <rect key="frame" x="0.0" y="0.0" width="478" height="104"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXe-nn-iDP">
+                                        <rect key="frame" x="0.0" y="0.0" width="478" height="25"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="npf-sD-HtH">
-                                                <rect key="frame" x="0.0" y="0.0" width="218.5" height="20"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="33D-Lo-whn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="53.5" height="20"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_gasPump" translatesAutoresizingMaskIntoConstraints="NO" id="FSs-Ig-fsU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="20" id="9ID-UD-llA"/>
-                                                                    <constraint firstAttribute="width" constant="20" id="cNP-0Y-klA"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21W-Ej-y8r" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                <rect key="frame" x="28" y="0.0" width="25.5" height="20"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                                                        <real key="value" value="14"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oAb-QU-nxF">
-                                                        <rect key="frame" x="81.5" y="0.0" width="137" height="20"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_car" translatesAutoresizingMaskIntoConstraints="NO" id="Deo-7l-5OD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="20" id="cxw-iO-uEI"/>
-                                                                    <constraint firstAttribute="height" constant="20" id="odz-d3-zMV"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMW (MD 0245)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-q0-Bfl" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                <rect key="frame" x="28" y="0.0" width="109" height="20"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                                                        <real key="value" value="14"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SiO-gV-feA">
-                                                <rect key="frame" x="0.0" y="42" width="160" height="20"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_locoations" translatesAutoresizingMaskIntoConstraints="NO" id="33z-b3-6pR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="20" id="XMc-8a-O03"/>
-                                                            <constraint firstAttribute="height" constant="20" id="uxe-WG-Ir4"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123. West St, 46203" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHB-9U-UTt" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="28" y="0.0" width="132" height="20"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                                                <real key="value" value="14"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ro7-wt-rWJ">
-                                                <rect key="frame" x="0.0" y="84" width="180.5" height="20"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_calender" translatesAutoresizingMaskIntoConstraints="NO" id="869-tG-y4v">
-                                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="Kl0-K7-Msl"/>
-                                                            <constraint firstAttribute="width" constant="20" id="aOx-0P-fcA"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:00 AM, Aug 12, 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ima-rQ-dtB" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="28" y="0.0" width="152.5" height="20"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                                                <real key="value" value="14"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_gasPump" translatesAutoresizingMaskIntoConstraints="NO" id="FSs-Ig-fsU">
+                                                <rect key="frame" x="0.0" y="2.5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="9ID-UD-llA"/>
+                                                    <constraint firstAttribute="width" constant="20" id="cNP-0Y-klA"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21W-Ej-y8r" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="4" width="25.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                        <real key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_car" translatesAutoresizingMaskIntoConstraints="NO" id="Deo-7l-5OD">
+                                                <rect key="frame" x="83.5" y="2.5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="cxw-iO-uEI"/>
+                                                    <constraint firstAttribute="height" constant="20" id="odz-d3-zMV"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMW (MD 0245)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-q0-Bfl" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                <rect key="frame" x="113.5" y="4" width="109" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                        <real key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Deo-7l-5OD" firstAttribute="leading" secondItem="21W-Ej-y8r" secondAttribute="trailing" constant="28" id="1dq-4r-Ydq"/>
+                                            <constraint firstItem="FSs-Ig-fsU" firstAttribute="centerY" secondItem="UXe-nn-iDP" secondAttribute="centerY" id="Cjp-hC-MCv"/>
+                                            <constraint firstItem="21W-Ej-y8r" firstAttribute="leading" secondItem="FSs-Ig-fsU" secondAttribute="trailing" constant="10" id="K2G-MM-IjA"/>
+                                            <constraint firstItem="Deo-7l-5OD" firstAttribute="centerY" secondItem="21W-Ej-y8r" secondAttribute="centerY" id="M49-Su-IAj"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="P1n-q0-Bfl" secondAttribute="trailing" id="X5Y-St-jLR"/>
+                                            <constraint firstItem="P1n-q0-Bfl" firstAttribute="centerY" secondItem="Deo-7l-5OD" secondAttribute="centerY" id="ico-ci-I19"/>
+                                            <constraint firstAttribute="height" constant="25" id="qmB-RY-T2n"/>
+                                            <constraint firstItem="P1n-q0-Bfl" firstAttribute="leading" secondItem="Deo-7l-5OD" secondAttribute="trailing" constant="10" id="ruU-ov-bUU"/>
+                                            <constraint firstItem="21W-Ej-y8r" firstAttribute="centerY" secondItem="FSs-Ig-fsU" secondAttribute="centerY" id="w4U-F7-c8v"/>
+                                            <constraint firstItem="FSs-Ig-fsU" firstAttribute="leading" secondItem="UXe-nn-iDP" secondAttribute="leading" id="xL3-l5-5QB"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-Dh-736">
+                                        <rect key="frame" x="0.0" y="48" width="478" height="25"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_locoations" translatesAutoresizingMaskIntoConstraints="NO" id="33z-b3-6pR">
+                                                <rect key="frame" x="0.0" y="2.5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="XMc-8a-O03"/>
+                                                    <constraint firstAttribute="height" constant="20" id="uxe-WG-Ir4"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123. West St, 46203" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHB-9U-UTt" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="4" width="448" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                        <real key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="1bA-s9-x1W"/>
+                                            <constraint firstItem="EHB-9U-UTt" firstAttribute="leading" secondItem="33z-b3-6pR" secondAttribute="trailing" constant="10" id="MaG-2I-RI7"/>
+                                            <constraint firstItem="EHB-9U-UTt" firstAttribute="centerY" secondItem="33z-b3-6pR" secondAttribute="centerY" id="YJC-Ho-6kI"/>
+                                            <constraint firstItem="33z-b3-6pR" firstAttribute="centerY" secondItem="tgc-Dh-736" secondAttribute="centerY" id="e8T-WX-v7Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="EHB-9U-UTt" secondAttribute="trailing" id="g2Y-yp-3uj"/>
+                                            <constraint firstItem="33z-b3-6pR" firstAttribute="leading" secondItem="tgc-Dh-736" secondAttribute="leading" id="vkx-U6-8cX"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zh3-v9-odm">
+                                        <rect key="frame" x="0.0" y="96" width="478" height="25"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_calender" translatesAutoresizingMaskIntoConstraints="NO" id="869-tG-y4v">
+                                                <rect key="frame" x="0.0" y="2.5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="Kl0-K7-Msl"/>
+                                                    <constraint firstAttribute="width" constant="20" id="aOx-0P-fcA"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:00 AM, Aug 12, 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ima-rQ-dtB" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="4" width="448" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                        <real key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="ima-rQ-dtB" firstAttribute="leading" secondItem="869-tG-y4v" secondAttribute="trailing" constant="10" id="DfD-zQ-XqI"/>
+                                            <constraint firstItem="869-tG-y4v" firstAttribute="leading" secondItem="zh3-v9-odm" secondAttribute="leading" id="KFW-2y-RBD"/>
+                                            <constraint firstAttribute="trailing" secondItem="ima-rQ-dtB" secondAttribute="trailing" id="WqX-XW-o65"/>
+                                            <constraint firstItem="869-tG-y4v" firstAttribute="centerY" secondItem="zh3-v9-odm" secondAttribute="centerY" id="cwU-Qz-WMX"/>
+                                            <constraint firstItem="ima-rQ-dtB" firstAttribute="centerY" secondItem="869-tG-y4v" secondAttribute="centerY" id="rej-nU-DeK"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wPj-kp-34N" firstAttribute="top" secondItem="8fl-uE-UIZ" secondAttribute="top" constant="17" id="Bdt-7B-2ci"/>
-                            <constraint firstAttribute="bottom" secondItem="wPj-kp-34N" secondAttribute="bottom" constant="17" id="XcZ-Kc-NgH"/>
-                            <constraint firstAttribute="trailing" secondItem="wPj-kp-34N" secondAttribute="trailing" constant="17" id="gJ1-Gp-7v3"/>
-                            <constraint firstItem="wPj-kp-34N" firstAttribute="leading" secondItem="8fl-uE-UIZ" secondAttribute="leading" constant="17" id="y7B-aJ-9us"/>
+                            <constraint firstAttribute="trailing" secondItem="prd-gV-ekx" secondAttribute="trailing" constant="17" id="0Ig-Wg-pbb"/>
+                            <constraint firstItem="prd-gV-ekx" firstAttribute="top" secondItem="8fl-uE-UIZ" secondAttribute="top" constant="17" id="PD9-ME-Jj4"/>
+                            <constraint firstItem="prd-gV-ekx" firstAttribute="leading" secondItem="8fl-uE-UIZ" secondAttribute="leading" constant="17" id="Qgr-fX-EJo"/>
+                            <constraint firstAttribute="bottom" secondItem="prd-gV-ekx" secondAttribute="bottom" constant="17" id="vAs-Rl-uYY"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -185,7 +202,15 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imgCalender" destination="869-tG-y4v" id="5hg-EX-sog"/>
+                <outlet property="imgCar" destination="Deo-7l-5OD" id="dL5-3I-Kei"/>
+                <outlet property="imgLocation" destination="33z-b3-6pR" id="9gh-aj-SMl"/>
+                <outlet property="imgPetrol" destination="FSs-Ig-fsU" id="ics-1a-UNP"/>
+                <outlet property="lblLocation" destination="EHB-9U-UTt" id="DJA-7w-BWq"/>
+                <outlet property="lblServices" destination="21W-Ej-y8r" id="Fwn-Yb-7pi"/>
+                <outlet property="lblTimeandDate" destination="ima-rQ-dtB" id="BfX-N7-Cgj"/>
                 <outlet property="lblTopHalf" destination="hAN-SS-WWA" id="6rd-Mr-a9V"/>
+                <outlet property="lblVehicleDetails" destination="P1n-q0-Bfl" id="9cj-NN-b93"/>
                 <outlet property="viewTopHalf" destination="Atl-0F-Myt" id="SL5-rh-bCj"/>
             </connections>
             <point key="canvasLocation" x="217.39130434782609" y="97.098214285714278"/>

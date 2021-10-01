@@ -8,8 +8,14 @@
 import UIKit
 import Cosmos
 
-class RatingPopUpVC: UIViewController {
+protocol rateandreviewDelegate{
+    func refreshCompleteJobScreen(rate:Double,review:String)
+}
 
+class RatingPopUpVC: UIViewController {
+    var rateDelegate : rateandreviewDelegate?
+    var rateModel = rateandreviewmodel()
+    var orderid = ""
     @IBOutlet weak var vwBlur: UIVisualEffectView!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var lblWelcomeTo: ThemeLabel!
@@ -24,8 +30,7 @@ class RatingPopUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        adjustUITextViewHeight(arg: txtReview)
-        
+        self.rateModel.reviewmodel = self
         vwBlur.layer.cornerRadius = 20
         btnCancel.layer.cornerRadius = 9
         btnCancel.layer.borderWidth = 2
@@ -42,6 +47,7 @@ class RatingPopUpVC: UIViewController {
     }
     
     @IBAction func btnSubmitTap(_ sender: ThemeButton) {
+        rateModel.doAddBooking(order_id: orderid, rate: "\(vwCosmos.rating)", review: txtReview.text)
         dismiss(animated: false, completion: nil)
     }
     

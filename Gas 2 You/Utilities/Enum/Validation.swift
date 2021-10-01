@@ -120,6 +120,18 @@ struct UserNameValidator: ValidatorConvertible {
      return value
      } */
 }
+struct EmailValidator: ValidatorConvertible {
+    func validated(_ value: String) -> (Bool,String) {
+        do {
+            if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+                return (false,ValidationError("Please enter a email").message)
+            }
+        } catch {
+            return (false,ValidationError("Please enter a valid email").message)
+        }
+        return (true, "")
+    }
+}
 struct PasswordValidator: ValidatorConvertible {
     private let fieldName: String
     
@@ -145,23 +157,7 @@ struct PasswordValidator: ValidatorConvertible {
     }
 }
 
-struct EmailValidator: ValidatorConvertible {
-    func validated(_ value: String) -> (Bool,String) {
-        guard !value.isEmpty else {
-            return (false, MessageString.emptyEmail)
-        }
-        do {
-            let pattern = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
-            if try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-                .firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                return (false,ValidationError(MessageString.invalidEmail).message)
-            }
-        } catch {
-            return (false,ValidationError(MessageString.invalidEmail).message)
-        }
-        return (true, "")
-    }
-}
+
 struct PhoneNoValidator: ValidatorConvertible {
     func validated(_ value: String) -> (Bool,String) {
         guard value != "" else {

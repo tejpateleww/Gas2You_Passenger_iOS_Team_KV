@@ -44,32 +44,26 @@ class ChangePasswordViewModel: ObservableObject {
 
     private func isValid(_ values: Values) -> Bool {
 
-        var validationArray: [(Bool,String)] = []
+        var strTitle : String?
 
-        // Password
         let checkPassword = values.currentPass.validatedText(validationType: .password(field: values.currentPassPlaceholder.lowercased()))
-        validationArray.append(checkPassword)
-
-        // New Password
         let checkNewPass = values.newPass.validatedText(validationType: .password(field: values.newPassPlaceholder))
-        validationArray.append(checkNewPass)
-
-        // Confirm Password
         let checkConfPass = values.confPass.validatedText(validationType: .password(field: values.confPassPlaceholder))
-        validationArray.append(checkConfPass)
-
-        // New Password + Confirm Password
-        if (checkNewPass.0 && checkConfPass.0), values.newPass != values.confPass {
-            validationArray.append((false, MessageString.newPasswordConfirmMustBeSame))
-        }
-
-        let messageArray = validationArray.filter({$0.0 == false}).map({$0.1})
-        if messageArray.isEmpty {
-            return true
-        } else {
-            let message = messageArray.joined(separator: "\n")
-            self.emit(.showToast(title: UrlConstant.Required, message: message, state: .failure))
+        if !checkPassword.0{
+            strTitle = checkPassword.1
+        }else if !checkNewPass.0{
+            strTitle = checkNewPass.1
+        }else if !checkConfPass.0{
+            strTitle = checkConfPass.1
+        }else if values.newPass.lowercased() != values.confPass.lowercased(){
+            Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .failure)
             return false
         }
+        if let str = strTitle{
+            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            return false
+        }
+        
+        return true
     }
 }

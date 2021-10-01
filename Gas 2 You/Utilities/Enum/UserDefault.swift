@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+var userDefault = UserDefaults.standard
 enum UserDefaultsKey : String {
     case userProfile = "userProfile"
     case isUserLogin = "isUserLogin"
@@ -14,5 +14,5 @@ enum UserDefaultsKey : String {
     case DeviceToken = "DeviceToken"
     case countryList = "countryList"
     case selLanguage = "language"
-
+    case PlaceName = "PlaceName"
 }

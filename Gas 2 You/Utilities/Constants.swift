@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+
+let CurrencySymbol = "$"
+let arrow = " -"
+let notifRefreshVehicleList = NSNotification.Name("refreshVehicleList")
+
 class Constants {
     static let appDel = UIApplication.shared.delegate as! AppDelegate
     static let kAPPVesion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
@@ -16,6 +21,10 @@ class Constants {
     static let defaultCountryCode = "+91"
 
     static let userDefaults = UserDefaults.standard
+}
+enum GlobalStrings : String{
+    case Alert_logout = "Are you sure you want to logout ?"
+    case EndSession_Logout = "Your account is logged in to another device"
 }
 
 typealias EmptyClosure = () -> Void
@@ -69,3 +78,6 @@ enum SystemIcon {
         return image
     }
 }
+let TEXTFIELD_MaximumLimit = 25
+let TEXTFIELD_MinimumLimit = 2
+let MAX_PHONE_DIGITS = 10

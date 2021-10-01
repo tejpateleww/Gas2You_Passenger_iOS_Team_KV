@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5m6-OM-yXR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5m6-OM-yXR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,33 +21,29 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="MtM-ij-H9U">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFX-t3-NMd" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="30" y="276" width="354" height="354"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXQ-3E-skk" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="7" y="248" width="400" height="400"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="aFX-t3-NMd" secondAttribute="height" multiplier="1:1" id="db7-3N-okE"/>
+                                    <constraint firstAttribute="height" constant="400" id="I61-ex-bDx"/>
+                                    <constraint firstAttribute="width" constant="400" id="aV3-oM-rcb"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="Splash"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3xe-F2-ZRu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="aFX-t3-NMd" firstAttribute="centerY" secondItem="3xe-F2-ZRu" secondAttribute="centerY" id="1dp-4S-sY6"/>
                             <constraint firstItem="MtM-ij-H9U" firstAttribute="leading" secondItem="3xe-F2-ZRu" secondAttribute="leading" id="838-hj-QlL"/>
                             <constraint firstAttribute="bottom" secondItem="MtM-ij-H9U" secondAttribute="bottom" id="8SJ-wK-mTS"/>
                             <constraint firstAttribute="trailing" secondItem="MtM-ij-H9U" secondAttribute="trailing" id="C8U-8d-14n"/>
                             <constraint firstItem="MtM-ij-H9U" firstAttribute="top" secondItem="elM-BL-9uC" secondAttribute="top" id="Ey0-or-2OU"/>
-                            <constraint firstItem="aFX-t3-NMd" firstAttribute="leading" secondItem="3xe-F2-ZRu" secondAttribute="leading" constant="30" id="QZv-eL-GcO"/>
-                            <constraint firstItem="aFX-t3-NMd" firstAttribute="centerX" secondItem="3xe-F2-ZRu" secondAttribute="centerX" id="X3Z-XS-CSm"/>
-                            <constraint firstItem="aFX-t3-NMd" firstAttribute="trailing" secondItem="3xe-F2-ZRu" secondAttribute="trailing" constant="-30" id="dqu-Nf-fSJ"/>
+                            <constraint firstItem="UXQ-3E-skk" firstAttribute="centerX" secondItem="elM-BL-9uC" secondAttribute="centerX" id="fq7-Q3-Ibz"/>
+                            <constraint firstItem="UXQ-3E-skk" firstAttribute="centerY" secondItem="elM-BL-9uC" secondAttribute="centerY" id="yig-ej-Nwc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IP9-3O-zqO"/>
                     <connections>
-                        <outlet property="vmAnimation" destination="aFX-t3-NMd" id="JdD-Va-9Ub"/>
+                        <outlet property="vmAnimation" destination="UXQ-3E-skk" id="ay8-f2-iT7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cm4-St-1o4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -183,7 +179,6 @@ and Pr</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Terms Of Use"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
                                                                         <real key="value" value="11"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -216,7 +211,6 @@ and Pr</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Privacy Policy"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
                                                                         <real key="value" value="11"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -279,22 +273,31 @@ and Pr</string>
                                                             <constraint firstAttribute="width" constant="42" id="Y1b-IU-NJN"/>
                                                         </constraints>
                                                         <state key="normal" image="FB_LOGO"/>
+                                                        <connections>
+                                                            <action selector="btnSocialRequests:" destination="xwA-wU-lYW" eventType="touchUpInside" id="gf5-GS-9ZK"/>
+                                                        </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdP-ud-jHN" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdP-ud-jHN" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
                                                         <rect key="frame" x="81.5" y="0.0" width="42" height="42"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="42" id="rBD-Xk-soI"/>
                                                         </constraints>
                                                         <state key="normal" image="GOOGLE_LOGO"/>
+                                                        <connections>
+                                                            <action selector="btnSocialRequests:" destination="xwA-wU-lYW" eventType="touchUpInside" id="Y7T-7T-iFe"/>
+                                                        </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJy-ZW-JQh" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJy-ZW-JQh" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
                                                         <rect key="frame" x="163.5" y="0.0" width="42" height="42"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="42" id="WjT-Xe-tX2"/>
                                                         </constraints>
                                                         <state key="normal" image="APPlE_LOGO"/>
+                                                        <connections>
+                                                            <action selector="btnSocialRequests:" destination="xwA-wU-lYW" eventType="touchUpInside" id="d6h-2g-1SJ"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -323,7 +326,6 @@ and Pr</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Signup Now"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
                                                                         <real key="value" value="16"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -391,7 +393,9 @@ and Pr</string>
                     <navigationItem key="navigationItem" id="Rl8-Yh-7Zx"/>
                     <connections>
                         <outlet property="btnLogin" destination="NWG-eT-y6w" id="yvm-yK-NLB"/>
+                        <outlet property="btnPrivacyPolicy" destination="edu-zq-Bbu" id="rsU-JO-ocM"/>
                         <outlet property="btnSignUp" destination="i33-q5-z29" id="g0I-3x-DSw"/>
+                        <outlet property="btnTerms" destination="4wV-eK-y91" id="sST-Fd-UOs"/>
                         <outlet property="txtEmail" destination="x79-qt-HBX" id="hsF-9o-6bZ"/>
                         <outlet property="txtPassword" destination="tzq-Hh-1zf" id="Gmx-SB-fA5"/>
                     </connections>
@@ -415,7 +419,7 @@ and Pr</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcE-jK-49S" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="878"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="830"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-E4-amy">
                                                 <rect key="frame" x="128" y="0.0" width="158" height="123"/>
@@ -661,7 +665,6 @@ and Pr</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Terms Of Use"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
                                                                         <real key="value" value="11"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -694,7 +697,6 @@ and Pr</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Privacy Policy"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
                                                                         <real key="value" value="11"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -708,17 +710,17 @@ and Pr</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AXP-vv-yj4">
-                                                <rect key="frame" x="84.5" y="728" width="245.5" height="21"/>
+                                                <rect key="frame" x="84.5" y="728" width="245.5" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5bo-Mc-Mjb">
-                                                        <rect key="frame" x="0.0" y="10" width="102" height="1"/>
+                                                        <rect key="frame" x="0.0" y="10" width="102" height="0.0"/>
                                                         <color key="backgroundColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="1" id="UKd-xF-Dng"/>
+                                                            <constraint firstAttribute="height" id="UKd-xF-Dng"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yq7-MJ-UlU" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="110" y="0.0" width="23.5" height="21"/>
+                                                        <rect key="frame" x="110" y="0.0" width="23.5" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -733,10 +735,10 @@ and Pr</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ver-ft-brF">
-                                                        <rect key="frame" x="141.5" y="10" width="104" height="1"/>
+                                                        <rect key="frame" x="141.5" y="10" width="104" height="0.0"/>
                                                         <color key="backgroundColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="1" id="3rC-dS-Ull"/>
+                                                            <constraint firstAttribute="height" id="3rC-dS-Ull"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -746,8 +748,38 @@ and Pr</string>
                                                     <constraint firstItem="5bo-Mc-Mjb" firstAttribute="top" secondItem="AXP-vv-yj4" secondAttribute="top" constant="10" id="goh-A6-bGX"/>
                                                 </constraints>
                                             </stackView>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9WU-Hl-UFV">
+                                                <rect key="frame" x="104.5" y="768" width="205.5" height="0.0"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Mp-UJ-pLd" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="0.0"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="cQj-yD-U9f"/>
+                                                            <constraint firstAttribute="height" id="lvI-Dr-QVL"/>
+                                                        </constraints>
+                                                        <state key="normal" image="FB_LOGO"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pc-2a-xr8" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="81.5" y="0.0" width="42" height="0.0"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="hmW-kS-7Bl"/>
+                                                        </constraints>
+                                                        <state key="normal" image="GOOGLE_LOGO"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAC-4I-a04" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="163.5" y="0.0" width="42" height="0.0"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="Se7-1d-ney"/>
+                                                        </constraints>
+                                                        <state key="normal" image="APPlE_LOGO"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gjj-W6-mlo">
-                                                <rect key="frame" x="20" y="831" width="374" height="27"/>
+                                                <rect key="frame" x="20" y="783" width="374" height="27"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vAp-OX-h0N">
                                                         <rect key="frame" x="87.5" y="0.0" width="199.5" height="27"/>
@@ -771,7 +803,6 @@ and Pr</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Login Now"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="IsUnderline" value="YES"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
                                                                         <real key="value" value="16"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -787,36 +818,6 @@ and Pr</string>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9WU-Hl-UFV">
-                                                <rect key="frame" x="104.5" y="769" width="205.5" height="42"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Mp-UJ-pLd" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="42" id="cQj-yD-U9f"/>
-                                                            <constraint firstAttribute="height" constant="42" id="lvI-Dr-QVL"/>
-                                                        </constraints>
-                                                        <state key="normal" image="FB_LOGO"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pc-2a-xr8" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="81.5" y="0.0" width="42" height="42"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="42" id="hmW-kS-7Bl"/>
-                                                        </constraints>
-                                                        <state key="normal" image="GOOGLE_LOGO"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAC-4I-a04" customClass="ThemeRoundBtn" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="163.5" y="0.0" width="42" height="42"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="42" id="Se7-1d-ney"/>
-                                                        </constraints>
-                                                        <state key="normal" image="APPlE_LOGO"/>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -825,7 +826,7 @@ and Pr</string>
                                             <constraint firstItem="AXP-vv-yj4" firstAttribute="leading" secondItem="Vxg-Lx-gZf" secondAttribute="leading" id="4mb-sp-Rkm"/>
                                             <constraint firstItem="PWG-LO-m2D" firstAttribute="top" secondItem="2NT-E4-amy" secondAttribute="bottom" constant="20" id="5Av-Vw-zhZ"/>
                                             <constraint firstAttribute="trailing" secondItem="PWG-LO-m2D" secondAttribute="trailing" constant="20" symbolic="YES" id="5wb-HC-eNw"/>
-                                            <constraint firstItem="gjj-W6-mlo" firstAttribute="top" secondItem="9WU-Hl-UFV" secondAttribute="bottom" constant="20" id="9lp-di-2zw"/>
+                                            <constraint firstItem="gjj-W6-mlo" firstAttribute="top" secondItem="9WU-Hl-UFV" secondAttribute="bottom" constant="15" id="9lp-di-2zw"/>
                                             <constraint firstItem="9WU-Hl-UFV" firstAttribute="trailing" secondItem="S1U-pV-TDT" secondAttribute="trailing" constant="-20" id="EvA-eF-V2D"/>
                                             <constraint firstItem="PWG-LO-m2D" firstAttribute="leading" secondItem="kcE-jK-49S" secondAttribute="leading" constant="20" symbolic="YES" id="KBi-Vm-iZu"/>
                                             <constraint firstAttribute="trailing" secondItem="qYj-on-upq" secondAttribute="trailing" constant="20" symbolic="YES" id="QXl-j9-R6i"/>
@@ -849,8 +850,6 @@ and Pr</string>
                                     <constraint firstItem="kcE-jK-49S" firstAttribute="width" secondItem="4Sz-gh-YVd" secondAttribute="width" id="k2V-ZD-nUM"/>
                                     <constraint firstAttribute="trailing" secondItem="kcE-jK-49S" secondAttribute="trailing" id="udC-VM-A1W"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="hJT-Be-IrQ"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Xrv-Ta-ADL"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tce-oG-rIa"/>
@@ -1161,7 +1160,7 @@ and Pr</string>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qe5-Gn-RNT">
                                 <rect key="frame" x="47" y="370.5" width="320" height="65"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C4Y-bK-0x5" customClass="SingleDigitField" customModule="Gas_2_You_Driver" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C4Y-bK-0x5" customClass="SingleDigitField" customModule="Gas_2_You" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="C4Y-bK-0x5" secondAttribute="height" id="hVs-k0-I3i"/>
@@ -1171,19 +1170,19 @@ and Pr</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JIf-oE-x52" customClass="SingleDigitField" customModule="Gas_2_You_Driver" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JIf-oE-x52" customClass="SingleDigitField" customModule="Gas_2_You" customModuleProvider="target">
                                         <rect key="frame" x="85" y="0.0" width="65" height="65"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iax-Js-Fdt" customClass="SingleDigitField" customModule="Gas_2_You_Driver" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iax-Js-Fdt" customClass="SingleDigitField" customModule="Gas_2_You" customModuleProvider="target">
                                         <rect key="frame" x="170" y="0.0" width="65" height="65"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gpp-MH-atR" customClass="SingleDigitField" customModule="Gas_2_You_Driver" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gpp-MH-atR" customClass="SingleDigitField" customModule="Gas_2_You" customModuleProvider="target">
                                         <rect key="frame" x="255" y="0.0" width="65" height="65"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1311,10 +1310,10 @@ and Pr</string>
                         <outlet property="btnVerify" destination="ehZ-EM-LQ2" id="RMU-NC-Iur"/>
                         <outlet property="lblCheckEmail" destination="QOy-gi-LAD" id="PGP-Gx-rzw"/>
                         <outlet property="lblTimer" destination="j8o-J2-kFJ" id="HPT-Wm-XTv"/>
-                        <outlet property="txtFldOTP1" destination="C4Y-bK-0x5" id="UlU-bb-Q3o"/>
-                        <outlet property="txtFldOTP2" destination="JIf-oE-x52" id="rJZ-Of-SMo"/>
-                        <outlet property="txtFldOTP3" destination="iax-Js-Fdt" id="9lc-7i-cKh"/>
-                        <outlet property="txtFldOTP4" destination="Gpp-MH-atR" id="8CT-oY-EXD"/>
+                        <outlet property="txtFldOTP1" destination="C4Y-bK-0x5" id="PTj-Ze-KHw"/>
+                        <outlet property="txtFldOTP2" destination="JIf-oE-x52" id="I12-qe-Bgt"/>
+                        <outlet property="txtFldOTP3" destination="iax-Js-Fdt" id="4zx-5s-eSW"/>
+                        <outlet property="txtFldOTP4" destination="Gpp-MH-atR" id="a1U-pS-IS1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXu-yy-9ia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1322,6 +1321,9 @@ and Pr</string>
             <point key="canvasLocation" x="4087" y="92"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="UXQ-3E-skk"/>
+    </designables>
     <resources>
         <image name="APPlE_LOGO" width="18" height="21"/>
         <image name="FB_LOGO" width="10.5" height="21"/>

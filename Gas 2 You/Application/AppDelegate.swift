@@ -9,33 +9,62 @@ import UIKit
 import CoreData
 import IQKeyboardManagerSwift
 import GoogleMaps
+import GooglePlaces
+import GoogleSignIn
+import FBSDKLoginKit
 
 let AppDel = UIApplication.shared.delegate as! AppDelegate
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
 
     var window: UIWindow?
+    var locationManager: CLLocationManager?
     static var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
 
     //Location
     var locationService = LocationService()
-
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+    }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        GIDSignIn.sharedInstance().clientID = "898932282406-lkfjc7od93fmgb7cmq6mqgto0triujcm.apps.googleusercontent.com"
         // Thread.sleep(forTimeInterval: 3.0)
-        
+        setUpLocationServices()
         IQKeyboardManager.shared.enable = true
-        GMSServices.provideAPIKey("AIzaSyAsK4EKl6GkGqELS8YySwoIWVjNjAwR7dg")
-
+        GMSServices.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
+        GMSPlacesClient.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
         window?.makeKeyAndVisible()
 
         return true
     }
-
+    // MARK: - LocationManagerDelegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location: CLLocation = locations.last!
+        Singleton.sharedInstance.userCurrentLocation = location
+        //print(location.coordinate.latitude)
+    }
+    func setUpLocationServices() {
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.requestAlwaysAuthorization()
+        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            
+            if ((locationManager?.responds(to: #selector(CLLocationManager.requestWhenInUseAuthorization))) != nil)
+            {
+                if locationManager?.location != nil
+                {
+                    locationManager?.startUpdatingLocation()
+                    locationManager?.delegate = self
+                }
+                //                manager.startUpdatingLocation()
+            }
+        }
+    }
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

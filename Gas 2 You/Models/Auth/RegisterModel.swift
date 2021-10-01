@@ -45,8 +45,8 @@ class RegisterRequestModel: Encodable{
     var countryCode : String? = Constants.defaultCountryCode
     var deviceType : String? = Singleton.sharedInstance.deviceType
     var deviceToken : String? = Singleton.sharedInstance.deviceToken
-    var latitude : String? = Singleton.sharedInstance.locationString().latitude
-    var longitude : String? = Singleton.sharedInstance.locationString().longitude
+    var latitude : String? = "\(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude)"
+    var longitude : String? = "\(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)"
 
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"

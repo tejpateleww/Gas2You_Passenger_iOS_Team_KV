@@ -90,7 +90,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
         
         let viewFN = UIView(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
         let userImage = UIButton(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
-        userImage.setImage( #imageLiteral(resourceName: "IC_dummyImg2"), for: .normal)
+        userImage.setImage( #imageLiteral(resourceName: "IC_premiumImg"), for: .normal)
 //        userImage.addTarget(self, action: #selector(rightProfileImageBtnTap(_:)), for: .touchUpInside)
         userImage.isUserInteractionEnabled = false
         viewFN.addSubview(userImage)

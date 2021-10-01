@@ -4,15 +4,18 @@
 target 'Gas 2 You' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for Gas 2 You
-
-pod 'IQKeyboardManagerSwift'
-pod 'GoogleMaps'
-pod 'MTSlideToOpen'
-pod 'Cosmos', '~> 23.0'
-pod 'lottie-ios'
-pod 'MKProgress'
-pod 'SDWebImage'
-
+  
+  pod 'IQKeyboardManagerSwift'
+  pod 'GoogleMaps'
+  pod 'MTSlideToOpen'
+  pod 'Cosmos', '~> 23.0'
+  pod 'lottie-ios'
+  pod 'MKProgress'
+  pod 'GooglePlaces'
+  pod 'GoogleSignIn','5.0.2'
+  pod 'FBSDKLoginKit','9.0.1'
+  pod 'UIView-Shimmer', '~> 1.0'
+  
 end

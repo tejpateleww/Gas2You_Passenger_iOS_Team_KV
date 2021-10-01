@@ -12,8 +12,8 @@ class LoginRequestModel: Encodable{
     var password : String?
     var deviceType : String? = Singleton.sharedInstance.deviceType
     var deviceToken : String? = Singleton.sharedInstance.deviceToken
-    var latitude : String? = Singleton.sharedInstance.locationString().latitude
-    var longitude : String? = Singleton.sharedInstance.locationString().longitude
+    var latitude : String? = "\(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude)"
+    var longitude : String? = "\(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)"
 
     enum CodingKeys: String, CodingKey {
         case userName = "username"
@@ -23,11 +23,11 @@ class LoginRequestModel: Encodable{
         case latitude = "lat"
         case longitude = "lng"
     }
-
-    init(email: String, password: String) {
-        self.userName = email
-        self.password = password
-    }
+//
+//    init(email: String, password: String) {
+//        self.userName = email
+//        self.password = password
+//    }
 }
 
 // MARK: - LoginResponseModel
@@ -48,6 +48,7 @@ class ProfileModel: Codable {
     let isVerify, verifyToken, createdAt, updatedAt: String?
     let deletedAt: String?
     var xAPIKey: String?
+    let is_membership_user : String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -75,5 +76,6 @@ class ProfileModel: Codable {
         case updatedAt = "updated_at"
         case deletedAt = "deleted_at"
         case xAPIKey = "x-api-key"
+        case is_membership_user = "is_membership_user"
     }
 }

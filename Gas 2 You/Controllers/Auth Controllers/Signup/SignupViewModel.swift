@@ -11,7 +11,7 @@ class SignupViewModel {
 
     struct SignupValues {
         let firstName, lastName, email, mobile, password, confPassword: String
-        let passPlaceholder, confPassPlaceholder, firstNamePlaceholder, lastNamePlaceholder: String
+        let passPlaceholder, confPassPlaceholder, firstNamePlaceholder, lastNamePlaceholder,mobileNoPlaceholder: String
     }
 
     var locationManager : LocationService?
@@ -41,47 +41,44 @@ class SignupViewModel {
 
     private func isValidCredFormate(_ values: SignupValues) -> Bool {
 
-        var validationArray: [(Bool,String)] = []
-
         // First Name
-        let checkFirstName = values.firstName.validatedText(validationType: .username(field: values.firstNamePlaceholder))
-        validationArray.append(checkFirstName)
-
-        // Last Name
-        let checkLastName = values.lastName.validatedText(validationType: .username(field: values.lastNamePlaceholder))
-        validationArray.append(checkLastName)
-
-        // Email
+        var strTitle : String?
+        let firstName = values.firstName.validatedText(validationType: .username(field: values.firstNamePlaceholder.lowercased()))
+        let lastName = values.lastName.validatedText(validationType: .username(field: values.lastNamePlaceholder.lowercased()))
         let checkEmail = values.email.validatedText(validationType: .email)
-        validationArray.append(checkEmail)
-
-        // Mobile Number
-        if !values.mobile.isEmpty {
-            let checkMobile = values.mobile.validatedText(validationType: .phoneNo)
-            validationArray.append(checkMobile)
-        }
-
-        // Password
-        let checkPassword = values.password.validatedText(validationType: .password(field: values.passPlaceholder.lowercased()))
-        validationArray.append(checkPassword)
-
-        // Confirm Password
-        let checkConfPass = values.confPassword.validatedText(validationType: .password(field: values.confPassPlaceholder))
-        validationArray.append(checkConfPass)
-
-        // Password + Confirm Password
-        if (checkPassword.0 && checkConfPass.0), values.password != values.confPassword {
-            validationArray.append((false, MessageString.passwordConfirmMustBeSame))
-        }
-
-        let messageArray = validationArray.filter({$0.0 == false}).map({$0.1})
-        if messageArray.isEmpty {
-            return true
-        } else {
-            let message = messageArray.joined(separator: "\n")
-            self.emit(.showToast(title: UrlConstant.Required, message: message, state: .failure))
+        let mobileNo = values.mobile.validatedText(validationType: .requiredField(field: values.mobileNoPlaceholder.lowercased()))
+        let password = values.password.validatedText(validationType: .password(field: values.passPlaceholder.lowercased()))
+        let Confpassword = values.confPassword.validatedText(validationType: .password(field: values.confPassPlaceholder.lowercased()))
+        
+        
+        if !firstName.0{
+            strTitle = firstName.1
+        }else if !lastName.0{
+            strTitle = lastName.1
+        }else if !checkEmail.0{
+            strTitle = checkEmail.1
+        }else if !mobileNo.0{
+            strTitle = mobileNo.1
+        }else if values.mobile.count != 10 {
+            strTitle = UrlConstant.ValidPhoneNo
+        }else if !password.0{
+            strTitle = password.1
+        }else if !Confpassword.0{
+            strTitle = Confpassword.1
+        }else if values.password.lowercased() != values.confPassword.lowercased(){
+            Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .failure)
             return false
         }
+        
+        
+        if let str = strTitle{
+            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            return false
+        }
+        
+        return true
+        // Password + Confirm Password
+        
     }
 
     private func getLocation() -> Bool {
