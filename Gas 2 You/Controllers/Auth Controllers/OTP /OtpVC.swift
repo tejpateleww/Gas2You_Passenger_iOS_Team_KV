@@ -40,7 +40,7 @@ class OtpVC: BaseVC {
     }
 
     private func setupUI() {
-        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Forgot Password", isTitlewhite: true, controller: self)
+        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Verify OTP", isTitlewhite: true, controller: self)
         self.prepareView()
         self.setupBottomBorder()
     }

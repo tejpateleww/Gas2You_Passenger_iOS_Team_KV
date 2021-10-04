@@ -13,6 +13,7 @@ class LoginViewModel {
         Utilities.showHud()
         WebServiceSubClass.LoginApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
+
             if status{
                 Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
                 Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)

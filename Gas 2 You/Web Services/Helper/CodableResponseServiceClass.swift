@@ -73,12 +73,12 @@ class CodableService {
     }
     
     class func getCodableObjectFromData<C:Codable>(jsonData: Data, codableObj: C.Type) -> C?{
-        let obj = try? JSONDecoder().decode(codableObj, from: jsonData)
+        let obj = try! JSONDecoder().decode(codableObj, from: jsonData)
         return obj
     }
     
     class func getResponseDicFromData(responseData: Data) -> Any{
-        let jso = try? JSONSerialization.jsonObject(with: responseData)
+        let jso = try?  JSONSerialization.jsonObject(with: responseData)
         
         if let jsonObj = jso{
             print("The webservice call response \n \(String(describing: jso))")

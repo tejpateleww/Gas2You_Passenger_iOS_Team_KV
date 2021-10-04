@@ -48,7 +48,7 @@ class ProfileModel: Codable {
     let isVerify, verifyToken, createdAt, updatedAt: String?
     let deletedAt: String?
     var xAPIKey: String?
-    let is_membership_user : String?
+    let is_membership_user : Bool?
 
     enum CodingKeys: String, CodingKey {
         case id

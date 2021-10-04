@@ -30,6 +30,7 @@ class AddVehicleVC: BaseVC {
     var delegateAdd : AddVehicleDelegate!
     var delegateEdit : editVehicleDelegate!
     var isfromEdit : Bool = false
+    var isfromhome : Bool = false
     var yearPicker: UIPickerView = UIPickerView()
     var makePicker: UIPickerView = UIPickerView()
     var modelPicker: UIPickerView = UIPickerView()
@@ -86,6 +87,11 @@ class AddVehicleVC: BaseVC {
     @objc func donePicker(){
         if let click = self.doneButton{
             click()
+        }
+    }
+    override func BackButtonWithTitle(button: UIButton) {
+        if isfromhome{
+            
         }
     }
     func dismissPickerView() {

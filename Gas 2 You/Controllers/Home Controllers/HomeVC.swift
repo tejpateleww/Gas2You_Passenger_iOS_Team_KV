@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 
 
-class HomeVC: BaseVC,searchDataDelegate {
+class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
 
     func refreshSearchLIstScreen(text: String) {
         locationLabel.text = text
@@ -118,10 +118,13 @@ class HomeVC: BaseVC,searchDataDelegate {
 //        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
     }
-    @objc func refreshVehicleList(){
+//    @objc func refreshVehicleList(){
+//        vehicleListData.webserviceofgetvehicalListforHome()
+//    }
+    func refreshVehicleScreen() {
         vehicleListData.webserviceofgetvehicalListforHome()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -223,10 +226,12 @@ class HomeVC: BaseVC,searchDataDelegate {
         carParkingLocationVC.delegatetext = self
         navigationController?.pushViewController(carParkingLocationVC, animated: true)
     }
-    
     @IBAction func btnSelectVehicleTap(_ sender: UIButton) {
         
         if listOfVehicle.count == 0 {
+            let addVehicleVC:AddVehicleVC = AddVehicleVC.instantiate(fromAppStoryboard: .Main)
+            addVehicleVC.delegateAdd = self
+            self.navigationController?.pushViewController(addVehicleVC, animated: true)
             // show button for adding new vehicle
         } else {
             
