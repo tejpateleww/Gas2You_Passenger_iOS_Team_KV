@@ -25,7 +25,7 @@ enum APIEnvironment : String {
     }
     
     static var headers : [String:String]{
-//        if Constants.userDefaults.object(forKey: UserDefaultsKey.isUserLogin.rawValue) != nil {
+        if Constants.userDefaults.object(forKey: UserDefaultsKey.isUserLogin.rawValue) != nil {
             
             if Constants.userDefaults.object(forKey: UserDefaultsKey.isUserLogin.rawValue) as? Bool == true {
                 
@@ -39,7 +39,7 @@ enum APIEnvironment : String {
                     }
                 }
             }
-//        }
+        }
         return [UrlConstant.HeaderKey : UrlConstant.AppHostKey]
     }
 }

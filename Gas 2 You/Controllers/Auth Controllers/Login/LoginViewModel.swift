@@ -30,7 +30,8 @@ class LoginViewModel {
                 if let userID = response?.data?.id{
                     Singleton.sharedInstance.userId = userID
                 }
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Success, message: apiMessage, state: status ? .success : .success)
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Success, delay: 10.0, message: apiMessage, state: status ? .success : .success, completion: nil)
+//                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Success, message: apiMessage, state: status ? .success : .success)
                 AppDel.navigateToHome()
             } else {
                 Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)

@@ -25,6 +25,7 @@ class BookingListViewModel{
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         self.myordervc?.isLoading = false
+                        self.myordervc?.isReload = true
                     }
                 }else{
                     Utilities.ShowAlert(OfMessage: apiMessage)

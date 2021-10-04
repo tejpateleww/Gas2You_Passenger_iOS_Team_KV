@@ -20,7 +20,7 @@ class MyOrdersVC: BaseVC {
     var BookingList = BookingListViewModel()
     var cancelOrderData = CancelOrder()
     let refreshControl = UIRefreshControl()
-    
+    var isReload = false
     
     @IBOutlet weak var myOrdersTV: UITableView!
     @IBOutlet weak var btnUpcoming: ThemeButton!
@@ -76,6 +76,8 @@ class MyOrdersVC: BaseVC {
         btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwCompletedLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         isInProcess = 0
+        isLoading = true
+        isReload = false
         BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "0", page: "1")
         myOrdersTV.reloadData()
     }
@@ -90,6 +92,8 @@ class MyOrdersVC: BaseVC {
         btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwCompletedLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         isInProcess = 1
+        isLoading = true
+        isReload = false
         BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
         myOrdersTV.reloadData()
     }
@@ -103,6 +107,8 @@ class MyOrdersVC: BaseVC {
         btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwUpcomingLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         isInProcess = 2
+        isLoading = true
+        isReload = false
         BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")
         myOrdersTV.reloadData()
     }
@@ -114,67 +120,94 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         if arrBookingList.count != 0{
             return arrBookingList.count
         }else{
-            return 1
+            return (isReload) ? 1 : 5
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if isInProcess == 0 {
-            if arrBookingList.count != 0{
+            if !isReload{
                 let upcomingCell = myOrdersTV.dequeueReusableCell(withIdentifier: UpcomingCell.className) as! UpcomingCell
-                upcomingCell.lblService.text = arrBookingList[indexPath.row].mainServiceName
-                upcomingCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
-                upcomingCell.lblDateandTime.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
-                upcomingCell.lblVehicleDetail.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
-                upcomingCell.buttonCancel = {
-                    self.cancelOrderData.cancelOrder(customerid: Singleton.sharedInstance.userId, order_id: self.arrBookingList[indexPath.row].id ?? "", row: indexPath.row)
-                }
+                upcomingCell.lblService.text = "dummy data"
+                upcomingCell.lblLocation.text = "dummy data"
+                upcomingCell.lblDateandTime.text = "dummy data"
+                upcomingCell.lblVehicleDetail.text = "dummy data"
                 return upcomingCell
             }else{
-                let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
-                noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
-                noDataCell.selectionStyle = .none
-                return noDataCell
+                if arrBookingList.count != 0{
+                    let upcomingCell = myOrdersTV.dequeueReusableCell(withIdentifier: UpcomingCell.className) as! UpcomingCell
+                    upcomingCell.lblService.text = arrBookingList[indexPath.row].mainServiceName
+                    upcomingCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
+                    upcomingCell.lblDateandTime.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
+                    upcomingCell.lblVehicleDetail.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
+                    upcomingCell.buttonCancel = {
+                        self.cancelOrderData.cancelOrder(customerid: Singleton.sharedInstance.userId, order_id: self.arrBookingList[indexPath.row].id ?? "", row: indexPath.row)
+                    }
+                    return upcomingCell
+                }else{
+                    let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
+                    noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
+                    noDataCell.selectionStyle = .none
+                    return noDataCell
+                }
             }
         } else if isInProcess == 1 {
-            if arrBookingList.count != 0{
+            if !isReload{
                 let inprogressCell = myOrdersTV.dequeueReusableCell(withIdentifier: InProgressCell.className) as! InProgressCell
-                inprogressCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
-                inprogressCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
-                inprogressCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
-                inprogressCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
-                inprogressCell.chatClick = {
-                    let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
-                    self.navigationController?.pushViewController(chatVC, animated: true)
-                }
+                inprogressCell.lblServices.text = "dummy data"
+                inprogressCell.lblLocation.text = "dummy data"
+                inprogressCell.lblTimeandDate.text = "dummy data"
+                inprogressCell.lblVehicleDetails.text = "dummy data"
                 return inprogressCell
             }else{
-                let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
-                noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
-                noDataCell.selectionStyle = .none
-                return noDataCell
+                if arrBookingList.count != 0{
+                    let inprogressCell = myOrdersTV.dequeueReusableCell(withIdentifier: InProgressCell.className) as! InProgressCell
+                    inprogressCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
+                    inprogressCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
+                    inprogressCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
+                    inprogressCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
+                    inprogressCell.chatClick = {
+                        let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+                        self.navigationController?.pushViewController(chatVC, animated: true)
+                    }
+                    return inprogressCell
+                }else{
+                    let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
+                    noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
+                    noDataCell.selectionStyle = .none
+                    return noDataCell
+                }
             }
         } else if isInProcess == 2 {
-            if arrBookingList.count != 0{
+            if !isReload{
                 let completedCell = myOrdersTV.dequeueReusableCell(withIdentifier: CompletedCell.className) as! CompletedCell
-                completedCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
-                completedCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
-                completedCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
-                completedCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
-                if arrBookingList[indexPath.row].statusLabel == "Cancel" {
-                    completedCell.lblTopHalf.text = "Cancelled"
-                    completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.9433980584, green: 0.3328252435, blue: 0.4380534887, alpha: 1)
-                } else {
-                    completedCell.lblTopHalf.text = "Completed"
-                    completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.4391005337, green: 0.8347155452, blue: 0.5683938265, alpha: 1)
-                }
+                completedCell.lblServices.text = "dummy data"
+                completedCell.lblLocation.text = "dummy data"
+                completedCell.lblTimeandDate.text = "dummy data"
+                completedCell.lblVehicleDetails.text = "dummy data"
                 return completedCell
             }else{
-                let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
-                noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
-                noDataCell.selectionStyle = .none
-                return noDataCell
+                if arrBookingList.count != 0{
+                    let completedCell = myOrdersTV.dequeueReusableCell(withIdentifier: CompletedCell.className) as! CompletedCell
+                    completedCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
+                    completedCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
+                    completedCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
+                    completedCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
+                    if arrBookingList[indexPath.row].statusLabel == "Cancel" {
+                        completedCell.lblTopHalf.text = "Cancelled"
+                        completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.9433980584, green: 0.3328252435, blue: 0.4380534887, alpha: 1)
+                    } else {
+                        completedCell.lblTopHalf.text = "Completed"
+                        completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.4391005337, green: 0.8347155452, blue: 0.5683938265, alpha: 1)
+                    }
+                    return completedCell
+                }else{
+                    let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
+                    noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
+                    noDataCell.selectionStyle = .none
+                    return noDataCell
+                }
             }
         }
         
@@ -183,11 +216,16 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if arrBookingList.count != 0{
+        if isReload{
             return UITableView.automaticDimension
         }else{
-            return tableView.frame.height
+            if arrBookingList.count != 0{
+                return UITableView.automaticDimension
+            }else{
+                return tableView.frame.height
+            }
         }
+
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .systemBackground)
