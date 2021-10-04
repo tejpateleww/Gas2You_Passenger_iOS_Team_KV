@@ -120,7 +120,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         if arrBookingList.count != 0{
             return arrBookingList.count
         }else{
-            return (isReload) ? 1 : 5
+            return (isReload) ? 5 : 1
         }
     }
     
@@ -216,7 +216,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if isReload{
+        if !isReload{
             return UITableView.automaticDimension
         }else{
             if arrBookingList.count != 0{

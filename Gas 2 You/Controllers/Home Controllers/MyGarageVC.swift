@@ -31,9 +31,11 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
     }
     func refreshVehicleScreenEdit() {
         getvehicalList.webserviceofgetvehicalList()
+        NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
     }
     func refreshVehicleScreen() {
         getvehicalList.webserviceofgetvehicalList()
+        NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
     }
 }
 
@@ -57,6 +59,7 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
             self.removeVehicle.webserviceofRemovevehical(vehicleId: self.arrVehicalList[indexPath.row].id ?? "", row: indexPath.row)
+            NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
             // Perform your action here
             completion(true)
         }
@@ -64,7 +67,7 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         let editAction = UIContextualAction(style: .normal, title: nil) { (action, view, completion) in
             let addVehicleVC = self.storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
             addVehicleVC.isfromEdit = true
-            addVehicleVC.delegateEdit = self
+            addVehicleVC.`delegateEdit` = self
             addVehicleVC.objData = self.arrVehicalList[indexPath.row]
             self.navigationController?.pushViewController(addVehicleVC, animated: true)
             // Perform your action here

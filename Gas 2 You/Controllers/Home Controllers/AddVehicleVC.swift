@@ -89,11 +89,6 @@ class AddVehicleVC: BaseVC {
             click()
         }
     }
-    override func BackButtonWithTitle(button: UIButton) {
-        if isfromhome{
-            
-        }
-    }
     func dismissPickerView() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -112,7 +107,6 @@ class AddVehicleVC: BaseVC {
             NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
         }else{
             AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, plateno: txtLicencePlateNo.text ?? "")
-            NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
         }
     }
     func setup() {

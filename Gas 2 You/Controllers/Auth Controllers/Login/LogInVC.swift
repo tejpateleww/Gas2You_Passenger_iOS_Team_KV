@@ -29,6 +29,7 @@ class LogInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        let _ = self.getLocation()
         btnTerms.underline()
         btnPrivacyPolicy.underline()
     }

@@ -74,8 +74,8 @@ class FacebookLoginProvider {
                     obj.firstName = dataDic["first_name"] as? String ?? ""
                     obj.lastName = dataDic["last_name"] as? String ?? ""
                     obj.email = dataDic["email"] as? String ?? ""
-                    if let profileUrl = dataDic["profileURL"] as? URL{
-                        obj.profile = profileUrl.absoluteString
+                    if let profileDic = dataDic["picture"] as? [String: Any], let dataDic = profileDic["data"] as? [String: Any], let profileUrl = dataDic["url"] as? String{
+                        obj.profile = profileUrl
                     }
                     completion(obj, nil)
                 }

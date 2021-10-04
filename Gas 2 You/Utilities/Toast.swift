@@ -120,7 +120,7 @@ class Toast {
                 
             }, completion: { completed in
                 c3.constant = 0
-                UIView.animate(withDuration: 0.1, delay: delay, options: .curveLinear, animations: {
+                UIView.animate(withDuration: 2.0, delay: delay, options: .curveLinear, animations: {
                     //                    toastContainer.alpha = 0.0
                     window.layoutIfNeeded()
                 }) { _ in

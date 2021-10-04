@@ -75,6 +75,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var vehicalid = ""
     var addonid = ""
     var time = ""
+    var locationManager : LocationService?
     //MARK:- GLOBAL PROPERTIES
     
     
@@ -83,6 +84,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let _ = getLocation()
         self.getAddressFromLatLon(pdblLatitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
         collectionViewSubService.delegate = self
         collectionViewSubService.dataSource = self
@@ -114,16 +116,23 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
             selectedDate.text = dateFormatter.string(from: date)
         }
         LblOctane.text = "93 Octane"
-//        NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
+    }
+    func getLocation() -> Bool {
+        if Singleton.sharedInstance.userCurrentLocation == nil{
+            self.locationManager = LocationService()
+            self.locationManager?.startUpdatingLocation()
+            return false
+        }else{
+            return true
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
-//        NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
+        NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
     }
-//    @objc func refreshVehicleList(){
-//        vehicleListData.webserviceofgetvehicalListforHome()
-//    }
+    @objc func refreshVehicleList(){
+        vehicleListData.webserviceofgetvehicalListforHome()
+    }
     func refreshVehicleScreen() {
         vehicleListData.webserviceofgetvehicalListforHome()
     }

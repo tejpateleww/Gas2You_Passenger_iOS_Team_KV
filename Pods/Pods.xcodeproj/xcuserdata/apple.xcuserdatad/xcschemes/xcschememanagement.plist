@@ -7,7 +7,7 @@
 		<key>AppAuth.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>10</integer>
 		</dict>
 		<key>Cosmos.xcscheme</key>
 		<dict>
@@ -19,22 +19,22 @@
 		<key>FBSDKCoreKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>11</integer>
 		</dict>
 		<key>FBSDKLoginKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>12</integer>
 		</dict>
 		<key>GTMAppAuth.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>13</integer>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>14</integer>
 		</dict>
 		<key>GoogleMaps.xcscheme</key>
 		<dict>
@@ -46,12 +46,12 @@
 		<key>GooglePlaces.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>15</integer>
 		</dict>
 		<key>GoogleSignIn.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>8</integer>
 		</dict>
 		<key>IQKeyboardManagerSwift.xcscheme</key>
 		<dict>
@@ -63,7 +63,7 @@
 		<key>MKProgress.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>9</integer>
 		</dict>
 		<key>MTSlideToOpen.xcscheme</key>
 		<dict>
@@ -82,7 +82,7 @@
 		<key>UIView-Shimmer.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>7</integer>
 		</dict>
 		<key>lottie-ios.xcscheme</key>
 		<dict>
