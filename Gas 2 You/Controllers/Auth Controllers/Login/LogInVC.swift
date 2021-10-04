@@ -143,19 +143,36 @@ extension LogInVC{
         self.viewModel.loginvc = self
         self.viewModel.webserviceSocialLogin(reqModel: reqModel)
     }
+    func callAppleLoginDetails(reqModel: appleDetailReqModel){
+        self.viewModel.loginvc = self
+        self.viewModel.webserviceAppleLOgin(reqModel: reqModel)
+    }
 }
 extension LogInVC: SocialSignInDelegate{
     func FetchUser(socialType: SocialType, success: Bool, user: SocialUser?, error: String?) {
         if let userObj = user{
-            let reqModel = SocialLoginRequestModel()
-            reqModel.socialId = userObj.userId
-            reqModel.socialType = socialType.rawValue
-            reqModel.firstName = userObj.firstName
-            reqModel.lastName = userObj.lastName
-            reqModel.email = userObj.email
-            reqModel.userName = userObj.email
-            reqModel.country_code = "+91"
-            self.callSocialLoginApi(reqModel: reqModel)
+            
+            if socialType == .Apple {
+                let reqModel = appleDetailReqModel()
+                reqModel.apple_id = userObj.userId
+                reqModel.first_name = userObj.firstName
+                reqModel.last_name = userObj.lastName
+                reqModel.email = userObj.email
+                callAppleLoginDetails(reqModel: reqModel)
+                
+            } else {
+                let reqModel = SocialLoginRequestModel()
+                reqModel.socialId = userObj.userId
+                reqModel.socialType = socialType.rawValue
+                reqModel.firstName = userObj.firstName
+                reqModel.lastName = userObj.lastName
+                reqModel.email = userObj.email
+                reqModel.userName = userObj.email
+                reqModel.country_code = "+91"
+                self.callSocialLoginApi(reqModel: reqModel)
+            }
+            
+           
         }
     }
 }

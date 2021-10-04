@@ -19,7 +19,7 @@ struct appleLoginResModel : Codable {
     
         init(from decoder: Decoder) throws {
                 let values = try decoder.container(keyedBy: CodingKeys.self)
-                appleDetail = try AppleDetail(from: decoder)
+                appleDetail = try values.decodeIfPresent(AppleDetail.self, forKey: .appleDetail)
                 message = try values.decodeIfPresent(String.self, forKey: .message)
                 status = try values.decodeIfPresent(Bool.self, forKey: .status)
         }

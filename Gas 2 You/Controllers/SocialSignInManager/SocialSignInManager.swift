@@ -134,7 +134,7 @@ class AppleSignInProvider: NSObject, ASAuthorizationControllerDelegate, ASAuthor
         if #available(iOS 13.0, *) {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
+            request.requestedScopes = [.fullName, .email]
         
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self

@@ -42,8 +42,8 @@ class WebServiceSubClass{
         }
     }
     
-    class func AppleDetailApi(reqModel : appleDetailReqModel , completion: @escaping (Bool,String,LoginResponseModel?,Any) -> ()){
-        URLSessionRequestManager.makePostRequest(urlString: ApiKey.appleDetail.rawValue, requestModel: reqModel, responseModel: LoginResponseModel.self) { (status, message, response, error) in
+    class func AppleDetailApi(reqModel : appleDetailReqModel , completion: @escaping (Bool,String,appleLoginResModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.appleDetail.rawValue, requestModel: reqModel, responseModel: appleLoginResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }

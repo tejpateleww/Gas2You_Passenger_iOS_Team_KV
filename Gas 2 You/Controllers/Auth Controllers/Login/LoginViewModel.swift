@@ -64,25 +64,24 @@ class LoginViewModel {
             }
         }
     }
-//    func webserviceAppleLOgin(reqModel:appleDetailReqModel){
-//        Utilities.showHud()
-//        WebServiceSubClass.AppleDetailApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-//            Utilities.hideHud()
-//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
-//            if status{
-//                let loginModel = appleLoginResModel.init(fromJson: json)
-//                self.socialID = loginModel.appleDetail.appleId
-//                self.socialType = "Apple"
-//                
-//                let socialModel = userSocialData()
-//                socialModel.device_token = SingletonClass.sharedInstance.DeviceToken
-//                socialModel.device_type = ReqDeviceType
-//                socialModel.social_id = self.socialID
-//                socialModel.user_name = loginModel.appleDetail.email
-//                socialModel.social_type = self.socialType
-//                self.user_SocialData = socialModel
-//                self.webservice_SocialLoginCheck(email: appleUserEmail, FullName: "\(loginModel.appleDetail.firstName ?? "") \(loginModel.appleDetail.lastName ?? "")" )
-//            }
-//        })
-//    }
+    func webserviceAppleLOgin(reqModel:appleDetailReqModel){
+        Utilities.showHud()
+        WebServiceSubClass.AppleDetailApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
+            Utilities.hideHud()
+            if status {
+                
+                let reqModel = SocialLoginRequestModel()
+                reqModel.socialId = response?.appleDetail?.appleId
+                reqModel.socialType = SocialType.Apple.rawValue
+                reqModel.firstName = response?.appleDetail?.firstName
+                reqModel.lastName = response?.appleDetail?.lastName
+                reqModel.email = response?.appleDetail?.email
+                reqModel.userName = response?.appleDetail?.email
+                reqModel.country_code = "+91"
+                self.webserviceSocialLogin(reqModel: reqModel)
+            } else {
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
+            }
+        })
+    }
 }
