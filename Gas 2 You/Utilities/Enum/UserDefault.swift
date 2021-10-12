@@ -15,4 +15,6 @@ enum UserDefaultsKey : String {
     case countryList = "countryList"
     case selLanguage = "language"
     case PlaceName = "PlaceName"
+    case Latitude = "Latitude"
+    case longitude = "longitude"
 }

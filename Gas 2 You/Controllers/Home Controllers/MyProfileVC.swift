@@ -10,6 +10,7 @@ import UIKit
 class MyProfileVC: BaseVC {
     
     var updateprofileviewmodel = MyProfileViewModel()
+    let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
     
     @IBOutlet weak var changePassButton: ThemeButton!
     @IBOutlet weak var lblFullName: ThemeLabel!
@@ -63,10 +64,10 @@ class MyProfileVC: BaseVC {
             strTitle = firstName.1
         }else if !lastName.0{
             strTitle = lastName.1
-        }else if !mobileNo.0{
-            strTitle = mobileNo.1
-        }else if txtMobile.text?.count != 10 {
-            strTitle = UrlConstant.ValidPhoneNo
+        }else if !(txtMobile.text?.isEmptyOrWhitespace() ?? false){
+            if txtMobile.text?.count != 10 {
+                strTitle = UrlConstant.ValidPhoneNo
+            }
         }
         
         if let str = strTitle{
@@ -92,7 +93,7 @@ class MyProfileVC: BaseVC {
     }
 }
 extension MyProfileVC: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case txtUserName:
@@ -104,16 +105,33 @@ extension MyProfileVC: UITextFieldDelegate {
         }
         return true
     }
-
+    
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        if textField == txtMobile || textField == txtUserName {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        if newString.hasPrefix(" "){
+            textField.text = ""
+            return false
+        }
+        switch textField {
+            
+        case self.txtUserName :
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
             let currentString: NSString = textField.text as NSString? ?? ""
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
-            return string == "" || (newString.length <= ((textField == txtMobile) ? MAX_PHONE_DIGITS : TEXTFIELD_MaximumLimit))
+            return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
+        case self.txtLastName:
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            let currentString: NSString = textField.text as NSString? ?? ""
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
+        default:
+            print("")
         }
         return true
     }
-
+    
 }

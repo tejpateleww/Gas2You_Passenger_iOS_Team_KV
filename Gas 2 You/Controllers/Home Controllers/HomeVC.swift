@@ -11,8 +11,8 @@ import GoogleMaps
 import GooglePlaces
 
 
-class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
-
+class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
+    
     func refreshSearchLIstScreen(text: String) {
         locationLabel.text = text
     }
@@ -23,14 +23,13 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     @IBOutlet weak var LblOctane: ThemeLabel!
     @IBOutlet weak var imgSelctService: UIImageView!
     @IBOutlet weak var gasServiceView: UIView!
-    @IBOutlet var octaneButtons: [ThemeButton]!
     @IBOutlet weak var priceTagLabel: ThemeLabel!
     @IBOutlet weak var imgParkingLocation: UIImageView!
     @IBOutlet weak var locationLabel: ThemeLabel!
     @IBOutlet weak var selectDateButton: UIButton!
     @IBOutlet weak var imgSelectVehicle: UIImageView!
     @IBOutlet weak var lblSelectService: ThemeLabel!
-    @IBOutlet weak var lblSelectedService: ThemeLabel!
+    @IBOutlet weak var txtSelectedService: UITextField!
     @IBOutlet weak var lblSelectGrade: ThemeLabel!
     @IBOutlet weak var lblSelectedGrade: ThemeLabel!
     @IBOutlet weak var lblPerGallon: ThemeLabel!
@@ -38,17 +37,16 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     @IBOutlet weak var lblSelectDateTime: ThemeLabel!
     @IBOutlet weak var selectedDate: ThemeLabel!
     @IBOutlet weak var lblSelectVehicle: ThemeLabel!
-    @IBOutlet weak var lblSelectedVehicle: ThemeLabel!
+    @IBOutlet weak var txtSelectedVehicle: UITextField!
     @IBOutlet weak var lblAddOns: ThemeLabel!
-    @IBOutlet weak var btnSelectService: UIButton!
     @IBOutlet weak var btnSelectParkingLocation: UIButton!
-    @IBOutlet weak var btnSelectVehicle: UIButton!
     @IBOutlet weak var btnDatePicker: UIButton!
     @IBOutlet weak var collectionViewSubService: UICollectionView!
     @IBOutlet weak var tblNonMemberPLan: UITableView!
     @IBOutlet weak var tblNonMemberPlanHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionTimeList: UICollectionView!
     
+    @IBOutlet weak var btnAddVehicleData: UIButton!
     
     
     var toolBarForService = UIToolbar()
@@ -65,8 +63,6 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var vehicleListData = VehicalListViewModel()
     var nonmemberListData = nonMemberPlanViewMOdel()
     var addBookingData = AddBookingViewModel()
-    var PlaceName = userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String
-    var doneButton : (()->())?
     var arrTimeList = ["11:00","13:30","15:00","17:30"]
     var selectedIndex = 0
     var SelectIndex = 0
@@ -75,7 +71,9 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var vehicalid = ""
     var addonid = ""
     var time = ""
+    var placeName = ""
     var locationManager : LocationService?
+    var PlaceName = userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String
     //MARK:- GLOBAL PROPERTIES
     
     
@@ -84,8 +82,13 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let _ = getLocation()
-        self.getAddressFromLatLon(pdblLatitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
+        dismissPickerView()
+        if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String == nil{
+            self.getAddressFromLatLon(pdblLatitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
+        }else{
+            locationLabel.text = PlaceName
+        }
+        
         collectionViewSubService.delegate = self
         collectionViewSubService.dataSource = self
         collectionTimeList.delegate = self
@@ -105,36 +108,66 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         nonmemberListData.webserviceofNonMemberPlanList()
         vehiclePicker.delegate = self
         vehiclePicker.dataSource = self
-//        lblSelectedService.text = serviceList[0].name
+        //        lblSelectedService.text = serviceList[0].name
         servicePicker.delegate = self
         servicePicker.dataSource = self
         dateFormatter.dateStyle = .long
         dateFormatter.dateFormat = "dd-MM-yyyy"
+        txtSelectedService.inputView = servicePicker
+        txtSelectedVehicle.inputView = vehiclePicker
+        txtSelectedService.delegate = self
+        txtSelectedVehicle.delegate = self
         let today = Date()
         let nextDate = Calendar.current.date(byAdding: .day, value: 2, to: today)
         if let date = nextDate {
             selectedDate.text = dateFormatter.string(from: date)
         }
         LblOctane.text = "93 Octane"
+        
     }
-    func getLocation() -> Bool {
-        if Singleton.sharedInstance.userCurrentLocation == nil{
-            self.locationManager = LocationService()
-            self.locationManager?.startUpdatingLocation()
-            return false
+    
+    func setup(){
+        if listOfVehicle.count != 0{
+            btnAddVehicleData.isHidden = true
+            txtSelectedVehicle.isHidden = false
         }else{
-            return true
+            txtSelectedVehicle.isHidden = true
+            btnAddVehicleData.isHidden = false
         }
     }
+    func dismissPickerView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.onDoneButtonTappedService))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([spaceButton,button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        txtSelectedService.inputAccessoryView = toolBar
+        txtSelectedVehicle.inputAccessoryView = toolBar
+    }
     override func viewWillAppear(_ animated: Bool) {
+        if listOfVehicle.count >= 1{
+            btnAddVehicleData.isHidden = true
+            txtSelectedVehicle.isHidden = false
+        }else{
+            txtSelectedVehicle.isHidden = true
+            btnAddVehicleData.isHidden = false
+        }
         NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
+        NotificationCenter.default.removeObserver(self, name: notifRefreshHomeScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
     }
     @objc func refreshVehicleList(){
         vehicleListData.webserviceofgetvehicalListforHome()
     }
     func refreshVehicleScreen() {
         vehicleListData.webserviceofgetvehicalListforHome()
+    }
+    @objc func refreshhomescreen(){
+        ServiceListData.webserviceofserviceList()
+        vehicleListData.webserviceofgetvehicalListforHome()
+        nonmemberListData.webserviceofNonMemberPlanList()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -166,72 +199,56 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         ceo.reverseGeocodeLocation(loc, completionHandler:
                                     {(placemarks, error) in
-                                        if (error != nil)
-                                        {
-                                            print("reverse geodcode fail: \(error!.localizedDescription)")
-                                        }
-                                        if let placemarks = placemarks,placemarks.count > 0{
-                                        
-                                            let pm = placemarks[0]
-                                            print(pm.country ?? "")
-                                            print(pm.locality ?? "")
-                                            print(pm.subLocality ?? "")
-                                            print(pm.thoroughfare ?? "")
-                                            print(pm.postalCode ?? "")
-                                            print(pm.subThoroughfare ?? "")
-                                            var addressString : String = ""
-                                            if pm.subLocality != nil {
-                                                addressString = addressString + (pm.subLocality ?? "") + ", "
-                                            }
-                                            if pm.thoroughfare != nil {
-                                                addressString = addressString + (pm.thoroughfare ?? "") + ", "
-                                            }
-                                            if pm.locality != nil {
-                                                addressString = addressString + (pm.locality ?? "") + ", "
-                                            }
-                                            if pm.country != nil {
-                                                addressString = addressString + (pm.country ?? "" ) + ", "
-                                            }
-                                            if pm.postalCode != nil {
-                                                addressString = addressString + (pm.postalCode ?? "") + " "
-                                            }
-                                            self.PlaceName = addressString
-                                                                    self.locationLabel.text = addressString
-                                            print(addressString)
-                                        }
-                                        else{
-                                            Utilities.ShowAlert(OfMessage: "Location Not Found")
-                                        }
-                                    })
+            if (error != nil)
+            {
+                print("reverse geodcode fail: \(error!.localizedDescription)")
+            }
+            if let placemarks = placemarks,placemarks.count > 0{
+                
+                let pm = placemarks[0]
+                print(pm.country ?? "")
+                print(pm.locality ?? "")
+                print(pm.subLocality ?? "")
+                print(pm.thoroughfare ?? "")
+                print(pm.postalCode ?? "")
+                print(pm.subThoroughfare ?? "")
+                var addressString : String = ""
+                if pm.subLocality != nil {
+                    addressString = addressString + (pm.subLocality ?? "") + ", "
+                }
+                if pm.thoroughfare != nil {
+                    addressString = addressString + (pm.thoroughfare ?? "") + ", "
+                }
+                if pm.locality != nil {
+                    addressString = addressString + (pm.locality ?? "") + ", "
+                }
+                if pm.country != nil {
+                    addressString = addressString + (pm.country ?? "" ) + ", "
+                }
+                if pm.postalCode != nil {
+                    addressString = addressString + (pm.postalCode ?? "") + " "
+                }
+                self.placeName = addressString
+                self.locationLabel.text = addressString
+                print(addressString)
+            }
+            else{
+                Utilities.ShowAlert(OfMessage: "Location Not Found")
+            }
+        })
         
     }
     //MARK:- ACTIONS
     
-    @IBAction func btnSelectServiceTap(_ sender: UIButton) {
-        
-        onDoneButtonTappedService()
-        onDoneButtonTappedVehicle()
-        onDoneButtonDate()
-        
-        setServicePicker()
-    }
     
-    @IBAction func octaneButtonPressed(_ sender: ThemeButton) {
-        
-        switch sender.tag {
-        case 0:
-            deselectOtherOctaneButtons(tag: sender.tag)
-            break
-        case 1:
-            deselectOtherOctaneButtons(tag: sender.tag)
-            break
-        default:
-            break
-        }
+    @IBAction func btnAddVehicle(_ sender: Any) {
+        let addVehicleVC:AddVehicleVC = AddVehicleVC.instantiate(fromAppStoryboard: .Main)
+        addVehicleVC.delegateAdd = self
+        self.navigationController?.pushViewController(addVehicleVC, animated: true)
     }
-    
     @IBAction func btnParkingLocationTap(_ sender: UIButton) {
         let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
+        carParkingLocationVC.place = self.placeName ?? ""
         carParkingLocationVC.delegatetext = self
         navigationController?.pushViewController(carParkingLocationVC, animated: true)
     }
@@ -245,13 +262,13 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         } else {
             
             onDoneButtonTappedService()
-            onDoneButtonTappedVehicle()
             onDoneButtonDate()
             
-            setVehiclePicker()
+//            setServicePicker()
+            //            setVehiclePicker()
         }
     }
- 
+    
     @IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
         if self.listOfVehicle.count == 0{
             Toast.show(message: "Please add some vehicle", state: .failure)
@@ -268,62 +285,34 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     @IBAction func btnDatePickerTap(_ sender: UIButton) {
         
         onDoneButtonTappedService()
-        onDoneButtonTappedVehicle()
         onDoneButtonDate()
         
         setDatePicker()
-        
     }
     
     //MARK:- OTHER METHODS
     
-    
-    func deselectOtherOctaneButtons(tag: Int) {
-        
-        for i in 0..<octaneButtons.count {
-            if tag == i {
-                octaneButtons[i].setImage(#imageLiteral(resourceName: "IC_selectedCheckGray"), for: .normal)
-            } else {
-                octaneButtons[i].setImage(#imageLiteral(resourceName: "IC_unselectedGray"), for: .normal)
-            }
-        }
-    }
-    
-    func setServicePicker() {
-        
-        servicePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.width, height: 250)
-        servicePicker.backgroundColor = .white
-        self.view.addSubview(servicePicker)
-        
-        toolBarForService = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBarForService.barStyle = .default
-        toolBarForService.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTappedService))]
-        self.view.addSubview(toolBarForService)
-        
-    }
-    
     @objc func onDoneButtonTappedService() {
-        if let click = self.doneButton{
-            click()
-        }
-    }
-    
-    func setVehiclePicker() {
-        
-        vehiclePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.width, height: 250)
-        vehiclePicker.backgroundColor = .white
-        self.view.addSubview(vehiclePicker)
-        
-        toolBarForVehicle = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBarForVehicle.barStyle = .default
-        toolBarForVehicle.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTappedVehicle))]
-        self.view.addSubview(toolBarForVehicle)
-        
-    }
-    
-    @objc func onDoneButtonTappedVehicle() {
-        if let click = self.doneButton{
-            click()
+        if txtSelectedService.isFirstResponder {
+            let row = servicePicker.selectedRow(inComponent: 0);
+            if self.serviceList[row].subServices?.count != 0{
+                self.selectedIndex = row
+                self.ViewForShowPrice.isHidden = false
+                self.collectionViewSubService.reloadData()
+            } else {
+                self.LblOctane.text = self.serviceList[row].name
+                self.ViewForShowPrice.isHidden = true
+                self.serviceid = self.serviceList[row].id ?? ""
+                self.priceTagLabel.text = CurrencySymbol + (self.serviceList[row].price ?? "")
+            }
+            self.txtSelectedService.text = self.serviceList[row].name
+            self.txtSelectedService.endEditing(true)
+            
+        } else if txtSelectedVehicle.isFirstResponder{
+            let row = vehiclePicker.selectedRow(inComponent: 0)
+            self.vehicalid = self.listOfVehicle[row].id ?? ""
+            self.txtSelectedVehicle.text = (self.listOfVehicle[row].make ?? "") + "(" + (self.listOfVehicle[row].plateNumber ?? "") + ")"
+            self.txtSelectedVehicle.endEditing(true)
         }
     }
     
@@ -337,7 +326,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         let today = Date()
         let nextDate = Calendar.current.date(byAdding: .day, value: 2, to: today)
         datePicker.minimumDate = nextDate
-
+        
         let nextMonth = Calendar.current.date(byAdding: .day, value: 33, to: today)
         datePicker.maximumDate = nextMonth
         
@@ -383,47 +372,26 @@ extension HomeVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == servicePicker {
+        if txtSelectedService.isFirstResponder {
             return serviceList.count
-        } else {
+        } else if txtSelectedVehicle.isFirstResponder {
             return listOfVehicle.count
         }
+        return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == servicePicker {
+        if txtSelectedService.isFirstResponder {
             return serviceList[row].name
-        } else {
+        } else if txtSelectedVehicle.isFirstResponder {
             let displaydata = (listOfVehicle[row].make ?? "") + "(" + (listOfVehicle[row].plateNumber ?? "") + ")"
             return displaydata
         }
+        return serviceList[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.doneButton = {
-            if pickerView == self.servicePicker {
-                if self.serviceList[row].subServices?.count != 0{
-                    self.selectedIndex = row
-                    self.ViewForShowPrice.isHidden = false
-                    self.collectionViewSubService.reloadData()
-                } else {
-                    self.LblOctane.text = self.serviceList[row].name
-                    self.ViewForShowPrice.isHidden = true
-                    self.serviceid = self.serviceList[row].id ?? ""
-                    self.priceTagLabel.text = CurrencySymbol + (self.serviceList[row].price ?? "")
-                }
-                self.toolBarForService.removeFromSuperview()
-                self.servicePicker.removeFromSuperview()
-                self.lblSelectedService.text = self.serviceList[row].name
-                self.lblSelectedService.endEditing(true)
-            } else {
-                self.vehicalid = self.listOfVehicle[row].id ?? ""
-                self.toolBarForVehicle.removeFromSuperview()
-                self.vehiclePicker.removeFromSuperview()
-                self.lblSelectedVehicle.text = (self.listOfVehicle[row].make ?? "") + "(" + (self.listOfVehicle[row].plateNumber ?? "") + ")"
-                self.lblSelectedVehicle.endEditing(true)
-            }
-        }
+        
     }
 }
 extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource{
@@ -465,7 +433,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             }else{
                 cell.imgCheck.image = UIImage(named: "IC_unselectedBlue")
             }
-//            cell.imgCheck.image = (SelectIndex == indexPath.row) ?  :
+            //            cell.imgCheck.image = (SelectIndex == indexPath.row) ?  :
             self.subserviceid = serviceList[selectedIndex].subServices?[indexPath.row].id ?? ""
             return cell
         }else{
@@ -494,7 +462,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             SelectIndex = indexPath.row
             collectionTimeList.reloadData()
         }else{
-//            serviceList[indexPath.row].isSelected = (serviceList[indexPath.row].isSelected == true) ? false : true
+            //            serviceList[indexPath.row].isSelected = (serviceList[indexPath.row].isSelected == true) ? false : true
             SelectIndex = indexPath.row
             collectionViewSubService.reloadData()
         }
@@ -513,38 +481,38 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         return 20
     }
 }
-extension HomeVC: GMSAutocompleteViewControllerDelegate {
-    
-    // Handle the user's selection.
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name!)")
-        print("Place ID: \(place.placeID!)")
-        userDefault.setValue(place.name, forKey: UserDefaultsKey.PlaceName.rawValue)
-        
-        userDefault.synchronize()
-        
-        locationLabel.text =  place.name
-        Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        // TODO: handle the error.
-        print("Error: ", error.localizedDescription)
-    }
-    
-    // User canceled the operation.
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // Turn the network activity indicator on and off again.
-    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    }
-    
-    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    }
-    
-}
+//extension HomeVC: GMSAutocompleteViewControllerDelegate {
+//
+//    // Handle the user's selection.
+//    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+//        print("Place name: \(place.name!)")
+//        print("Place ID: \(place.placeID!)")
+//        userDefault.setValue(place.name, forKey: UserDefaultsKey.PlaceName.rawValue)
+//
+//        userDefault.synchronize()
+//
+//        locationLabel.text =  place.name
+//        Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+//        // TODO: handle the error.
+//        print("Error: ", error.localizedDescription)
+//    }
+//
+//    // User canceled the operation.
+//    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    // Turn the network activity indicator on and off again.
+//    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//    }
+//
+//    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+//        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//    }
+//
+//}

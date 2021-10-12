@@ -61,13 +61,13 @@ class RegisterRequestModel: Encodable{
         case countryCode = "country_code"
     }
 
-    init(values: SignupViewModel.SignupValues) {
-        self.firstName = values.firstName
-        self.lastName = values.lastName
-        self.email = values.email
-        self.password = values.password
-        self.phone = values.mobile
-    }
+//    init(values: SignupViewModel.SignupValues) {
+//        self.firstName = values.firstName
+//        self.lastName = values.lastName
+//        self.email = values.email
+//        self.password = values.password
+//        self.phone = values.mobile
+//    }
 }
 
 // MARK: - RegisterResponseModel

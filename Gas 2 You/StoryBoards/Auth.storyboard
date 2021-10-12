@@ -22,11 +22,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXQ-3E-skk" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="7" y="248" width="400" height="400"/>
+                                <rect key="frame" x="0.0" y="298" width="414" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="I61-ex-bDx"/>
-                                    <constraint firstAttribute="width" constant="400" id="aV3-oM-rcb"/>
+                                    <constraint firstAttribute="height" constant="300" id="tws-rZ-Dj8"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -37,7 +36,9 @@
                             <constraint firstAttribute="bottom" secondItem="MtM-ij-H9U" secondAttribute="bottom" id="8SJ-wK-mTS"/>
                             <constraint firstAttribute="trailing" secondItem="MtM-ij-H9U" secondAttribute="trailing" id="C8U-8d-14n"/>
                             <constraint firstItem="MtM-ij-H9U" firstAttribute="top" secondItem="elM-BL-9uC" secondAttribute="top" id="Ey0-or-2OU"/>
+                            <constraint firstItem="UXQ-3E-skk" firstAttribute="leading" secondItem="3xe-F2-ZRu" secondAttribute="leading" id="JO4-hu-Msp"/>
                             <constraint firstItem="UXQ-3E-skk" firstAttribute="centerX" secondItem="elM-BL-9uC" secondAttribute="centerX" id="fq7-Q3-Ibz"/>
+                            <constraint firstItem="3xe-F2-ZRu" firstAttribute="trailing" secondItem="UXQ-3E-skk" secondAttribute="trailing" id="pqv-jL-l7b"/>
                             <constraint firstItem="UXQ-3E-skk" firstAttribute="centerY" secondItem="elM-BL-9uC" secondAttribute="centerY" id="yig-ej-Nwc"/>
                         </constraints>
                     </view>
@@ -102,7 +103,7 @@
                                                             <outlet property="delegate" destination="xwA-wU-lYW" id="GMD-gg-qWv"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tzq-Hh-1zf" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tzq-Hh-1zf" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="74" width="374" height="50"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -373,8 +374,6 @@ and Pr</string>
                                     <constraint firstAttribute="bottom" secondItem="4dX-2t-B9K" secondAttribute="bottom" id="juV-Dd-pmg"/>
                                     <constraint firstItem="4dX-2t-B9K" firstAttribute="leading" secondItem="08j-RL-d7G" secondAttribute="leading" id="kCf-G7-VzM"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="I3k-h6-gdk"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="o4s-VO-5gG"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jmD-Yw-D8e"/>
@@ -562,7 +561,7 @@ and Pr</string>
                                                             <constraint firstItem="uNS-ZE-rkt" firstAttribute="leading" secondItem="vQ3-0l-fMC" secondAttribute="leading" constant="10" id="vmf-Tj-R0z"/>
                                                         </constraints>
                                                     </view>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-aG-Xd3" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-aG-Xd3" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="296" width="374" height="50"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -588,7 +587,7 @@ and Pr</string>
                                                             <outlet property="delegate" destination="uwe-7G-j2u" id="DpG-Gm-N4u"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Re-enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qs3-JA-Zf8" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Re-enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qs3-JA-Zf8" customClass="ThemeTextfield" customModule="Gas_2_You" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="370" width="374" height="50"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1310,10 +1309,10 @@ and Pr</string>
                         <outlet property="btnVerify" destination="ehZ-EM-LQ2" id="RMU-NC-Iur"/>
                         <outlet property="lblCheckEmail" destination="QOy-gi-LAD" id="PGP-Gx-rzw"/>
                         <outlet property="lblTimer" destination="j8o-J2-kFJ" id="HPT-Wm-XTv"/>
-                        <outlet property="txtFldOTP1" destination="C4Y-bK-0x5" id="PTj-Ze-KHw"/>
-                        <outlet property="txtFldOTP2" destination="JIf-oE-x52" id="I12-qe-Bgt"/>
-                        <outlet property="txtFldOTP3" destination="iax-Js-Fdt" id="4zx-5s-eSW"/>
-                        <outlet property="txtFldOTP4" destination="Gpp-MH-atR" id="a1U-pS-IS1"/>
+                        <outletCollection property="txtOtp" destination="C4Y-bK-0x5" collectionClass="NSMutableArray" id="ZNJ-bd-7tJ"/>
+                        <outletCollection property="txtOtp" destination="JIf-oE-x52" collectionClass="NSMutableArray" id="ec5-NE-GYW"/>
+                        <outletCollection property="txtOtp" destination="iax-Js-Fdt" collectionClass="NSMutableArray" id="qNV-oU-B5X"/>
+                        <outletCollection property="txtOtp" destination="Gpp-MH-atR" collectionClass="NSMutableArray" id="8WU-YK-vZC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXu-yy-9ia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

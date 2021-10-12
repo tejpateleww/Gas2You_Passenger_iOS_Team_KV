@@ -12,7 +12,8 @@ import UIKit
 let CurrencySymbol = "$"
 let arrow = " -"
 let notifRefreshVehicleList = NSNotification.Name("refreshVehicleList")
-
+let notifRefreshHomeScreen = NSNotification.Name("refreshHomeScreen")
+let themeColor = hexStringToUIColor(hex: "#00AA7E")
 class Constants {
     static let appDel = UIApplication.shared.delegate as! AppDelegate
     static let kAPPVesion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
@@ -79,5 +80,6 @@ enum SystemIcon {
     }
 }
 let TEXTFIELD_MaximumLimit = 25
+let TEXTFIELD_MaximumLimitPASSWORD = 15
 let TEXTFIELD_MinimumLimit = 2
 let MAX_PHONE_DIGITS = 10

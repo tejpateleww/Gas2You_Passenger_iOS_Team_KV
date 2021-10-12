@@ -65,7 +65,6 @@ class SplashViewController: BaseVC {
     func animate(completion: @escaping EmptyClosure) {
         animationView.frame = CGRect(x: 0, y: 0, width: vmAnimation.frame.width, height: vmAnimation.frame.height)
         animationView.contentMode = .scaleAspectFill
-        animationView.animationSpeed = 2
         if !vmAnimation.subviews.contains(animationView){
             vmAnimation.addSubview(animationView)
         }
@@ -80,7 +79,7 @@ extension SplashViewController {
 
     func webserviceInit(completion: @escaping EmptyClosure){
         WebServiceSubClass.InitApi { (status, message, response, error) in
-            if let dic = error as? [String: Any], let msg = dic["message"] as? String, msg == UrlConstant.NoInternetConnection || msg == UrlConstant.SomethingWentWrong || msg == UrlConstant.RequestTimeOut{
+            if let dic = error as? [String: Any], let msg = dic["The request timed out"] as? String, msg == UrlConstant.NoInternetConnection || msg == UrlConstant.SomethingWentWrong || msg == UrlConstant.RequestTimeOut{
                 Utilities.showAlertWithTitleFromVC(vc: self, title: Constants.appName, message: msg, buttons: [UrlConstant.Retry], isOkRed: false) { (ind) in
                     self.webserviceInit(completion: completion)
                 }

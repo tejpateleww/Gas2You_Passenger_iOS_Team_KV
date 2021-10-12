@@ -8,20 +8,30 @@
 import UIKit
 
 class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
-    
+    var isLoading = true {
+        didSet {
+            vehicleListTV.isUserInteractionEnabled = !isLoading
+            vehicleListTV.reloadData()
+        }
+    }
     
     var getvehicalList =  VehicalListViewModel()
     var removeVehicle = RemoveVehicleViewModel()
     @IBOutlet weak var vehicleListTV: UITableView!
     var arrVehicalList = [VehicleListDatum]()
+    var isReload = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        isLoading = true
         vehicleListTV.delegate = self
         vehicleListTV.dataSource = self
         self.getvehicalList.webserviceofgetvehicalList()
         self.getvehicalList.mygaragevc = self
         self.removeVehicle.mygaragevc = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Garage", controller: self)
+        vehicleListTV.register(UINib(nibName:"NoDataCell", bundle: nil), forCellReuseIdentifier: "NoDataCell")
     }
     
     @IBAction func btnAddVehicleTap(_ sender: ThemeButton) {
@@ -42,20 +52,55 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
 extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrVehicalList.count
+        if arrVehicalList.count != 0{
+            return arrVehicalList.count
+        }else{
+            return (isReload) ? 5 : 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = vehicleListTV.dequeueReusableCell(withIdentifier: VehicleListCell.className, for: indexPath) as! VehicleListCell
-        cell.lblCarName.text = arrVehicalList[indexPath.row].make ?? ""
-        cell.lblModel.text = arrVehicalList[indexPath.row].model ?? ""
-        cell.lblYear.text = arrVehicalList[indexPath.row].year ?? ""
-        cell.lblColor.text = arrVehicalList[indexPath.row].color ?? ""
-        cell.lblPlatNo.text = arrVehicalList[indexPath.row].plateNumber ?? ""
-        return cell
+        if !isReload{
+            let cell = vehicleListTV.dequeueReusableCell(withIdentifier: VehicleListCell.className, for: indexPath) as! VehicleListCell
+            cell.lblCarName.text = "Dummy Data"
+            cell.lblModel.text = "Dummy Data"
+            cell.lblYear.text = "Dummy Data"
+            cell.lblColor.text = "Dummy Data"
+            cell.lblPlatNo.text = "Dummy Data"
+            return cell
+        }else{
+            if arrVehicalList.count != 0{
+                let cell = vehicleListTV.dequeueReusableCell(withIdentifier: VehicleListCell.className, for: indexPath) as! VehicleListCell
+                cell.lblCarName.text = arrVehicalList[indexPath.row].make ?? ""
+                cell.lblModel.text = arrVehicalList[indexPath.row].model ?? ""
+                cell.lblYear.text = arrVehicalList[indexPath.row].year ?? ""
+                cell.lblColor.text = arrVehicalList[indexPath.row].color ?? ""
+                cell.lblPlatNo.text = arrVehicalList[indexPath.row].plateNumber ?? ""
+                return cell
+            }else{
+                let noDataCell:NoDataCell = vehicleListTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
+                noDataCell.imgNodata.image = UIImage(named: "ic_car")
+                noDataCell.lblData.text = "No vehicle found"
+                noDataCell.selectionStyle = .none
+                return noDataCell
+            }
+        }
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if !isReload{
+            return UITableView.automaticDimension
+        }else{
+            if arrVehicalList.count != 0{
+                return UITableView.automaticDimension
+            }else{
+                return tableView.frame.height
+            }
+        }
+
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .systemBackground)
+    }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
             self.removeVehicle.webserviceofRemovevehical(vehicleId: self.arrVehicalList[indexPath.row].id ?? "", row: indexPath.row)

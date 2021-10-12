@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		188A52FB26D8E9540053FED7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A52FA26D8E9540053FED7 /* SplashViewController.swift */; };
-		188A52FD26D8EB470053FED7 /* SplashScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 188A52FC26D8EB470053FED7 /* SplashScreen.json */; };
-		188A52FF26D8ECF00053FED7 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 188A52FE26D8ECF00053FED7 /* Splash.json */; };
 		18F4011D26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18F4010A26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf */; };
 		18F4011E26CBC8F3002C1ABB /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18F4010B26CBC8F3002C1ABB /* Poppins-ThinItalic.ttf */; };
 		18F4011F26CBC8F3002C1ABB /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18F4010C26CBC8F3002C1ABB /* Poppins-ExtraLightItalic.ttf */; };
@@ -109,6 +107,8 @@
 		88F4171926F9E01900400594 /* vehicalListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4171726F9E01900400594 /* vehicalListResModel.swift */; };
 		88F4171D26F9F48B00400594 /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4171C26F9F48B00400594 /* UpdateProfile.swift */; };
 		88F4172026F9FC5600400594 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4171F26F9FC5600400594 /* MyProfileViewModel.swift */; };
+		90C83A99270C318400BAFA92 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 90C83A98270C318400BAFA92 /* animation.json */; };
+		90C83AA5270C3A7200BAFA92 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 90C83AA4270C3A7200BAFA92 /* Splash.json */; };
 		9A21857226C28AE8005BAAA1 /* AddAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21857126C28AE8005BAAA1 /* AddAddressVC.swift */; };
 		9A3A912426C128E90041D7D9 /* AddressListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912326C128E90041D7D9 /* AddressListVC.swift */; };
 		9A3A912F26C133AC0041D7D9 /* SideMenuItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */; };
@@ -176,8 +176,6 @@
 
 /* Begin PBXFileReference section */
 		188A52FA26D8E9540053FED7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		188A52FC26D8EB470053FED7 /* SplashScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SplashScreen.json; sourceTree = "<group>"; };
-		188A52FE26D8ECF00053FED7 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
 		18F4010A26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		18F4010B26CBC8F3002C1ABB /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		18F4010C26CBC8F3002C1ABB /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -280,6 +278,8 @@
 		88F4171726F9E01900400594 /* vehicalListResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = vehicalListResModel.swift; sourceTree = "<group>"; };
 		88F4171C26F9F48B00400594 /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
 		88F4171F26F9FC5600400594 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
+		90C83A98270C318400BAFA92 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
+		90C83AA4270C3A7200BAFA92 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
 		9A21857126C28AE8005BAAA1 /* AddAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressVC.swift; sourceTree = "<group>"; };
 		9A3A912326C128E90041D7D9 /* AddressListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListVC.swift; sourceTree = "<group>"; };
 		9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemOptions.swift; sourceTree = "<group>"; };
@@ -415,8 +415,8 @@
 		844F7BFB26E62B990047DFF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				188A52FC26D8EB470053FED7 /* SplashScreen.json */,
-				188A52FE26D8ECF00053FED7 /* Splash.json */,
+				90C83AA4270C3A7200BAFA92 /* Splash.json */,
+				90C83A98270C318400BAFA92 /* animation.json */,
 				9A5B08B426B266EA00BA0CB4 /* Assets.xcassets */,
 				18F4010926CBC8F3002C1ABB /* Poppins */,
 			);
@@ -1031,13 +1031,14 @@
 				18F4012326CBC8F3002C1ABB /* Poppins-SemiBoldItalic.ttf in Resources */,
 				18F4012C26CBC8F3002C1ABB /* Poppins-Thin.ttf in Resources */,
 				18F4012E26CBC8F3002C1ABB /* Poppins-Italic.ttf in Resources */,
-				188A52FF26D8ECF00053FED7 /* Splash.json in Resources */,
 				18F4012626CBC8F3002C1ABB /* Poppins-BlackItalic.ttf in Resources */,
 				18F4012826CBC8F3002C1ABB /* Poppins-Regular.ttf in Resources */,
 				18F4012426CBC8F3002C1ABB /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				18F4011D26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf in Resources */,
 				9A5512BD26C4D86800DDA313 /* Auth.storyboard in Resources */,
 				9A5B08B526B266EA00BA0CB4 /* Assets.xcassets in Resources */,
+				90C83A99270C318400BAFA92 /* animation.json in Resources */,
+				90C83AA5270C3A7200BAFA92 /* Splash.json in Resources */,
 				9A4A8B9A26C3E70500966B2D /* InProgressCell.xib in Resources */,
 				18F4012A26CBC8F3002C1ABB /* Poppins-Bold.ttf in Resources */,
 				18F4012B26CBC8F3002C1ABB /* Poppins-Black.ttf in Resources */,
@@ -1051,7 +1052,6 @@
 				9A5B08B026B266E800BA0CB4 /* Main.storyboard in Resources */,
 				18F4012526CBC8F3002C1ABB /* Poppins-ExtraBold.ttf in Resources */,
 				886DF20626FC798F00A36B51 /* GoogleService-Info (2).plist in Resources */,
-				188A52FD26D8EB470053FED7 /* SplashScreen.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

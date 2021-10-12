@@ -22,13 +22,33 @@ class SignUpVC: BaseVC {
     @IBOutlet weak var txtConfirmPassword: ThemeTextfield!
 
     private let viewModel = SignupViewModel()
+    var otpUserModel = SignupViewModel()
+    var registerRequestModel = RegisterRequestModel()
+    
+    
+    let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+    let ACCEPTABLE_CHARACTERS_FOR_EMAIL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@."
+    let ACCEPTABLE_CHARACTERS_FOR_PHONE = "0123456789"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtPassword.delegate = self
+        txtConfirmPassword.delegate = self
         setupUI()
-        bindViewModel()
+        otpUserModel.signupmodel = self
     }
-
+    func storeDataInRegisterModel(){
+        self.registerRequestModel.firstName = self.txtFirstName.text ?? ""
+        self.registerRequestModel.lastName = self.txtLastName.text ?? ""
+        self.registerRequestModel.countryCode = "+91"
+        
+        self.registerRequestModel.phone = self.txtPhoneNo.text ?? ""
+        self.registerRequestModel.email = self.txtEmail.text ?? ""
+        self.registerRequestModel.password = self.txtPassword.text ?? ""
+        let otpReqModel = OTPRequestModel()
+        otpReqModel.email = txtEmail.text
+        otpUserModel.webserviceSignupOtp(reqModel: otpReqModel)
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
@@ -49,37 +69,61 @@ class SignUpVC: BaseVC {
         txtPhoneNo.layer.cornerRadius = 8
     }
 
-    private func bindViewModel() {
-        viewModel.changeHandler = { change in
-            switch change {
-            case .loaderStart:
-                Utilities.showHud()
-            case .loaderEnd:
-                Utilities.hideHud()
-            case .credsValidated(let model):
-                self.push(OtpVC.getNewInstance(model))
-            case .showToast(let title, let message, let state):
-                Toast.show(title: title, message: message, state: state)
-            }
-        }
-    }
     
     @IBAction func btnSignupTap(_ sender: ThemeButton) {
         view.endEditing(true)
-        let values = SignupViewModel.SignupValues(firstName: txtFirstName.getText(),
-                                                  lastName: txtLastName.getText(),
-                                                  email: txtEmail.getText(),
-                                                  mobile: txtPhoneNo.getText(),
-                                                  password: txtPassword.getText(),
-                                                  confPassword: txtConfirmPassword.getText(),
-                                                  passPlaceholder: txtPassword.placeholder ?? "",
-                                                  confPassPlaceholder: txtConfirmPassword.placeholder ?? "",
-                                                  firstNamePlaceholder: txtFirstName.placeholder ?? "",
-                                                  lastNamePlaceholder: txtLastName.placeholder ?? "",
-                                                  mobileNoPlaceholder: "Mobile No")
-        viewModel.doRegister(values)
+        if self.validation(){
+            self.storeDataInRegisterModel()
+        }
     }
-
+    func validation() -> Bool{
+        let txtTemp = UITextField()
+        var strTitle : String?
+        let firstName = txtFirstName.validatedText(validationType: .username(field: txtFirstName.placeholder?.lowercased() ?? ""))
+        let lastName = txtLastName.validatedText(validationType: .username(field: txtLastName.placeholder?.lowercased() ?? ""))
+        
+        txtTemp.text = txtEmail.text?.replacingOccurrences(of: " ", with: "")
+        let checkEmailRequired = txtTemp.validatedText(validationType: ValidatorType.requiredField(field: txtEmail.placeholder?.lowercased() ?? ""))
+        let checkEmail = txtTemp.validatedText(validationType: .email)
+        let mobileNo = txtPhoneNo.validatedText(validationType: .requiredField(field: txtPhoneNo.placeholder?.lowercased() ?? ""))
+        let password = txtPassword.validatedText(validationType: .password(field: txtPassword.placeholder?.lowercased() ?? ""))
+        let Confpassword = txtConfirmPassword.validatedText(validationType: .password(field: txtPassword.placeholder?.lowercased() ?? ""))
+        
+        
+        if !firstName.0{
+            strTitle = firstName.1
+        }else if !lastName.0{
+            strTitle = lastName.1
+        }else if(!checkEmailRequired.0){
+            Toast.show(title: AppInfo.appName, message: "Please enter email", state: .failure)
+            return checkEmailRequired.0
+        }else if !checkEmail.0{
+            strTitle = checkEmail.1
+        }else if !(txtPhoneNo.text?.isEmptyOrWhitespace() ?? false){
+            if txtPhoneNo.text?.count != 10 {
+                strTitle = UrlConstant.ValidPhoneNo
+            }
+        }
+//        else if !mobileNo.0{
+//            strTitle = mobileNo.1
+//        }
+        else if !password.0{
+            strTitle = password.1
+        }else if !Confpassword.0{
+            strTitle = Confpassword.1
+        }else if txtPassword.text?.lowercased() != txtConfirmPassword.text?.lowercased(){
+            Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .failure)
+            return false
+        }
+        
+        
+        if let str = strTitle{
+            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            return false
+        }
+//
+        return true
+    }
 }
 
 // MARK: - TextField delegate
@@ -110,10 +154,54 @@ extension SignUpVC: UITextFieldDelegate {
         if newString.hasPrefix(" "){
             textField.text = ""
             return false
-        }else if textField == txtPhoneNo || textField == txtFirstName || textField == txtConfirmPassword || textField == txtPassword{
+        }
+        switch textField {
+        
+        case self.txtFirstName :
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
             let currentString: NSString = textField.text as NSString? ?? ""
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
-            return string == "" || (newString.length <= ((textField == txtPhoneNo) ? MAX_PHONE_DIGITS : TEXTFIELD_MaximumLimit))
+            return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
+        case self.txtLastName:
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            let currentString: NSString = textField.text as NSString? ?? ""
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
+            
+        case self.txtEmail :
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS_FOR_EMAIL).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            return (string == filtered)
+            
+        case self.txtPhoneNo :
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS_FOR_PHONE).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            let currentString: NSString = textField.text as NSString? ?? ""
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            return (string == filtered) ? (newString.length <= MAX_PHONE_DIGITS) : false
+            
+        case self.txtPassword :
+            let currentString: NSString = textField.text as NSString? ?? ""
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            if (string == " ") {
+                Utilities.showAlert(AppInfo.appName, message: "Space should not allow in current password", vc: self)
+                   return false
+               }
+            return (newString.length <= TEXTFIELD_MaximumLimitPASSWORD)
+            
+        case self.txtConfirmPassword :
+            let currentString: NSString = textField.text as NSString? ?? ""
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            if (string == " ") {
+                Utilities.showAlert(AppInfo.appName, message: "Space should not allow in current password", vc: self)
+                   return false
+               }
+            return (newString.length <= TEXTFIELD_MaximumLimitPASSWORD)
+            
+        default:
+            print("")
         }
         return true
     }

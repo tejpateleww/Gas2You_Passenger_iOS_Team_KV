@@ -51,29 +51,5 @@ class OtpViewModel {
         }
     }
 
-    func callRegisterApi(){
-        emit(.loaderStart)
-        WebServiceSubClass.RegisterApi(reqModel: registerRequestModel) { (status, apiMessage, response, error) in
-            self.emit(.loaderEnd)
-            if status {
-                Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
-                Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
-
-                Singleton.sharedInstance.userProfilData = response?.data
-                Constants.userDefaults.setUserData()
-
-                if let apikey = response?.data?.xAPIKey{
-                    Singleton.sharedInstance.api_Key = apikey
-                    Singleton.sharedInstance.userProfilData?.xAPIKey = apikey
-                    Constants.userDefaults.setValue(apikey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
-                }
-                if let userID = response?.data?.id{
-                    Singleton.sharedInstance.userId = userID
-                }
-                self.emit(.userRegstered)
-            } else {
-                self.emit(.showToast(title: UrlConstant.Failed, message: apiMessage, state: .failure))
-            }
-        }
-    }
+    
 }

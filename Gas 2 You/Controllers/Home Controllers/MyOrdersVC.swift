@@ -39,8 +39,8 @@ class MyOrdersVC: BaseVC {
         myOrdersTV.dataSource = self
         BookingList.myordervc = self
         BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "1")
+        NotificationCenter.default.post(name: notifRefreshHomeScreen, object: nil)
         btnUpcomingTap(btnUpcoming)
-        cancelOrderData.cancelOrder = self
         
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Orders", controller: self)
         
@@ -67,6 +67,7 @@ class MyOrdersVC: BaseVC {
         BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "1")
     }
     @IBAction func btnUpcomingTap(_ sender: ThemeButton) {
+        self.myOrdersTV.isHidden = true
         
         NavbarrightButton()
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
@@ -78,12 +79,15 @@ class MyOrdersVC: BaseVC {
         isInProcess = 0
         isLoading = true
         isReload = false
-        BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "0", page: "1")
+        cancelOrderData.cancelOrder = self
+        if arrBookingList.filter({$0.status == "0"}).count == 0{
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "0", page: "1")
+        }
         myOrdersTV.reloadData()
     }
     
     @IBAction func btnInProgressTap(_ sender: ThemeButton) {
-        
+        self.myOrdersTV.isHidden = true
         NavbarrightButton()
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwInProgressLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
@@ -94,12 +98,14 @@ class MyOrdersVC: BaseVC {
         isInProcess = 1
         isLoading = true
         isReload = false
-        BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
-        myOrdersTV.reloadData()
+        if arrBookingList.filter({$0.status == "1"}).count == 0{
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
+        }
+            myOrdersTV.reloadData()
     }
     
     @IBAction func btnCompletedTap(_ sender: ThemeButton) {
-        
+        self.myOrdersTV.isHidden = true
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwCompletedLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
         btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
@@ -109,7 +115,9 @@ class MyOrdersVC: BaseVC {
         isInProcess = 2
         isLoading = true
         isReload = false
-        BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")
+        if arrBookingList.filter({$0.status == "2"}).count == 0{
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")
+        }
         myOrdersTV.reloadData()
     }
 }
@@ -147,7 +155,8 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     return upcomingCell
                 }else{
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
-                    noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
+                    noDataCell.imgNodata.image = UIImage(named: "ic_Order")
+                    noDataCell.lblData.text = "No upcoming order found"
                     noDataCell.selectionStyle = .none
                     return noDataCell
                 }
@@ -174,7 +183,8 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     return inprogressCell
                 }else{
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
-                    noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
+                    noDataCell.imgNodata.image = UIImage(named: "ic_Order")
+                    noDataCell.lblData.text = "No in-progress order found"
                     noDataCell.selectionStyle = .none
                     return noDataCell
                 }
@@ -204,7 +214,8 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     return completedCell
                 }else{
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
-                    noDataCell.imgNodata.image = UIImage(named: "ic_NoVehicle")
+                    noDataCell.imgNodata.image = UIImage(named: "ic_Order")
+                    noDataCell.lblData.text = "No completed order found"
                     noDataCell.selectionStyle = .none
                     return noDataCell
                 }

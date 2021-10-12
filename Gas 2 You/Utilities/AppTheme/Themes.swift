@@ -391,7 +391,6 @@ class ThemeTextfield : UITextField {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-       
         self.font = FontBook.regular.of(size : Font_Size)
         
         self.layer.borderWidth = Border_Width
@@ -403,7 +402,16 @@ class ThemeTextfield : UITextField {
                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.white] )
         
     }
-    
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if self.tag == 101{
+            if action == #selector(UIResponderStandardEditActions.copy(_:)) || action == #selector(UIResponderStandardEditActions.selectAll(_:)) || action == #selector(UIResponderStandardEditActions.paste(_:)) {
+                return false
+            }
+            // Default
+            return super.canPerformAction(action, withSender: sender)
+        }
+        return true
+    }
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
         
         if LeftImage != nil {
@@ -440,24 +448,26 @@ class ThemeTextfield : UITextField {
     }
 }
 
+protocol OTPTextFieldDelegate   {
+    func textFieldDidDelete(currentTextField: SingleDigitField)
+}
 class SingleDigitField: UITextField {
-    var pressedDelete = false
-    override func willMove(toSuperview newSuperview: UIView?) {
+    
+    var myDelegate: OTPTextFieldDelegate?
+    
+    override func deleteBackward() {
+        super.deleteBackward()
+        myDelegate?.textFieldDidDelete(currentTextField: self)
+    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
         keyboardType = .numberPad
         textAlignment = .center
         backgroundColor = .clear
         isSecureTextEntry = false
-        isUserInteractionEnabled = false
         clipsToBounds = true
         font = CustomFont.medium.returnFont(17)
         tintColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
-    }
-    override func caretRect(for position: UITextPosition) -> CGRect { .zero }
-    override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] { [] }
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool { false }
-    override func deleteBackward() {
-        pressedDelete = true
-        sendActions(for: .editingChanged)
     }
 }
 

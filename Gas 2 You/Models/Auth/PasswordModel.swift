@@ -27,11 +27,6 @@ class ChangePasswordReqModel: Encodable{
         case newPassword = "new_password"
         case customerId = "customer_id"
     }
-
-    init(_ values: ChangePasswordViewModel.Values) {
-        self.oldPassword = values.currentPass
-        self.newPassword = values.newPass
-    }
 }
 
 //MARK:- Password Response Model

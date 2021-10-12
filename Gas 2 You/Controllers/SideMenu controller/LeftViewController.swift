@@ -54,14 +54,19 @@ class LeftViewController: MenuViewController {
     func prepareView(){
         let obj = Singleton.sharedInstance.userProfilData
         lblUserName.text = ( obj?.firstName ?? "") + " " + (obj?.lastName ?? "")
+    }
+    @IBAction func btnMyprofileClick(_ sender: Any) {
+        let vc : MyProfileVC = MyProfileVC.instantiate(fromAppStoryboard: .Main)
+        (menuContainerViewController?.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
         
+        menuContainerViewController?.hideSideMenu()
     }
     @IBAction func btnLogoutTap(_ sender: UIButton) {
-        guard let menuContainerViewController = self.menuContainerViewController else {
-            return
-        }
+//        guard let menuContainerViewController = self.menuContainerViewController else {
+//            return
+//        }
         Utilities.showAlertWithTitleFromVC(vc: self, title: UrlConstant.Logout, message: UrlConstant.LogoutMessage, buttons: [UrlConstant.Ok,UrlConstant.Cancel], isOkRed: false) { (ind) in
-            menuContainerViewController.hideSideMenu()
+//            menuContainerViewController.hideSideMenu()
             if ind == 0{
                 self.callLogoutAPI()
             }

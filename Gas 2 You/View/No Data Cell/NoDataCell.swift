@@ -9,6 +9,7 @@ import UIKit
 
 class NoDataCell: UITableViewCell {
 
+    @IBOutlet weak var lblData: UILabel!
     @IBOutlet weak var imgNodata: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()

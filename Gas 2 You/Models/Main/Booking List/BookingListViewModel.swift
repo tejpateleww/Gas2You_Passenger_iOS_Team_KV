@@ -15,8 +15,10 @@ class BookingListViewModel{
     func webserviceBookingList(_ reqModel: bookingListReqModel){
 //        Utilities.showHud()
         WebServiceSubClass.BookingList(reqModel: reqModel, completion: { (status, apiMessage, response, error)  in
+            
 //            Utilities.hideHud()
             if status{
+                self.myordervc?.myOrdersTV.isHidden = false
                 if let userData = response?.data{
                     self.myordervc?.arrBookingList = userData
                     DispatchQueue.main.async {
@@ -50,10 +52,7 @@ class CancelOrder{
         WebServiceSubClass.cancelOrder(reqModel: reqModel, completion: { (status, apiMessage, response, error)  in
             Utilities.hideHud()
             if status{
-                let indexpath = IndexPath(row: row, section: 0)
-                self.cancelOrder?.arrBookingList.remove(at: indexpath.row)
-                self.cancelOrder?.myOrdersTV.deleteRows(at: [indexpath], with: .fade)
-                self.cancelOrder?.myOrdersTV.reloadData()
+                self.cancelOrder?.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "0", page: "1")
             }
             else
             {

@@ -238,3 +238,35 @@ extension UIViewController {
     }
 
 }
+class MarkerPinView: UIView {
+    @IBInspectable var markerImage: UIImage?
+//    @IBInspectable var imageview: UIImageView!
+    override func awakeFromNib() {
+           super.awakeFromNib()
+       
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let imageview = UIImageView()
+//        if markerImage != nil{
+            imageview.image = markerImage
+//        }else{
+//            imageview.image = UIImage(named: "profile_placeholder_2")
+//        }
+        
+        imageview.frame = self.frame
+        imageview.contentMode = .scaleAspectFit
+//        imageview.cornerRadius = self.frame.size.height / 2
+//        imageview.borderWidth = 3
+//        imageview.borderColor = .white
+        imageview.clipsToBounds = true
+//        self.cornerRadius = self.frame.size.height / 2
+//        self.borderWidth = 2
+//        self.borderColor = ThemeColor.primary
+        self.clipsToBounds = true
+        self.backgroundColor = .clear
+        self.addSubview(imageview)
+    }
+}

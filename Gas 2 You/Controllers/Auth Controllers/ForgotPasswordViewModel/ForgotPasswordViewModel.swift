@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ForgotPasswordViewModel {
 
@@ -25,8 +26,14 @@ class ForgotPasswordViewModel {
     }
 
     func isValidInput(email: String) -> Bool {
+        let txtTemp = UITextField()
+        txtTemp.text = email.replacingOccurrences(of: " ", with: "")
+        let checkEmailRequired = txtTemp.validatedText(validationType: ValidatorType.requiredField(field: txtTemp.placeholder?.lowercased() ?? ""))
         let checkEmail = email.validatedText(validationType: .email)
-        if(!checkEmail.0)
+        if(!checkEmailRequired.0){
+            Toast.show(title: AppInfo.appName, message: "Please enter email", state: .failure)
+            return checkEmailRequired.0
+        }else if(!checkEmail.0)
         {
             self.emit(.showToast(title: UrlConstant.Required, message: checkEmail.1, state: .failure))
             return false
@@ -38,7 +45,7 @@ class ForgotPasswordViewModel {
         WebServiceSubClass.ForgotPasswordApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
             if status{
-                self.emit(.showToast(title: UrlConstant.Success, message: apiMessage, state: .success))
+                self.emit(.showToast(title: UrlConstant.Success, message: "Reset password link sent to your email address", state: .success))
             }else{
                 self.emit(.showToast(title: UrlConstant.Failed, message: apiMessage, state: .failure))
             }

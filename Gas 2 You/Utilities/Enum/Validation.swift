@@ -31,30 +31,22 @@ enum ValidatorType {
 enum VaildatorFactory {
     static func validatorFor(type: ValidatorType) -> ValidatorConvertible {
         switch type {
-        case .email:                        return EmailValidator()
-        case .password(let fieldName):      return PasswordValidator(fieldName)
-        case .username(let fieldName):      return UserNameValidator(fieldName)
+        case .email: return EmailValidator()
+        case .password(let fieldName): return PasswordValidator(fieldName)
+        case .username(let fieldName): return UserNameValidator(fieldName)
         case .requiredField(let fieldName): return RequiredFieldValidator(fieldName)
-        case .age:                          return AgeValidator()
-        case .phoneNo:                      return PhoneNoValidator()
+        case .age: return AgeValidator()
+        case .phoneNo: return PhoneNoValidator()
         }
     }
 }
 class AgeValidator: ValidatorConvertible {
     func validated(_ value: String) -> (Bool, String)
     {
-        guard value.count > 0 else {
-            return (false,ValidationError("Age is required").message)
-        }
-        guard let age = Int(value) else {
-            return (false,ValidationError("Age must be a number!").message)
-        }
-        guard value.count < 3 else {
-            return (false,ValidationError("Invalid age number!").message)
-        }
-        guard age >= 18 else {
-            return (false,ValidationError("You have to be over 18 years old to user our app :)").message)
-        }
+        guard value.count > 0 else{return (false,ValidationError("Age is required").message)}
+        guard let age = Int(value) else {return (false,ValidationError("Age must be a number!").message)}
+        guard value.count < 3 else {return (false,ValidationError("Invalid age number!").message)}
+        guard age >= 18 else {return (false,ValidationError("You have to be over 18 years old to user our app :)").message)}
         return (true, "")
     }
 }
@@ -120,18 +112,6 @@ struct UserNameValidator: ValidatorConvertible {
      return value
      } */
 }
-struct EmailValidator: ValidatorConvertible {
-    func validated(_ value: String) -> (Bool,String) {
-        do {
-            if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                return (false,ValidationError("Please enter a email").message)
-            }
-        } catch {
-            return (false,ValidationError("Please enter a valid email").message)
-        }
-        return (true, "")
-    }
-}
 struct PasswordValidator: ValidatorConvertible {
     private let fieldName: String
     
@@ -157,15 +137,22 @@ struct PasswordValidator: ValidatorConvertible {
     }
 }
 
-
+struct EmailValidator: ValidatorConvertible {
+    func validated(_ value: String) -> (Bool,String) {
+        do {
+            if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+                return (false,ValidationError("Please enter a valid email").message)
+            }
+        } catch {
+            return (false,ValidationError("Please enter a valid email").message)
+        }
+        return (true, "")
+    }
+}
 struct PhoneNoValidator: ValidatorConvertible {
     func validated(_ value: String) -> (Bool,String) {
-        guard value != "" else {
-            return (false,ValidationError(MessageString.emptyPhoneNumber).message)
-        }
-        guard value.count >= 8 else {
-            return (false,ValidationError(MessageString.invalidPhoneNumber).message)
-        }
+        guard value != "" else {return (false,ValidationError("Please enter phone number").message)}
+        guard value.count >= 8 else { return (false,ValidationError("Minimum 10 digits are required").message)}
         
         // do {
         // if try NSRegularExpression(pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
@@ -177,4 +164,6 @@ struct PhoneNoValidator: ValidatorConvertible {
         return (true, "")
     }
 }
+
+
 

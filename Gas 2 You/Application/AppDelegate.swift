@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        GIDSignIn.sharedInstance().clientID = "898932282406-lkfjc7od93fmgb7cmq6mqgto0triujcm.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().clientID = "651860703785-am67b73lv131cjjv47dhpsf079e4cfic.apps.googleusercontent.com"
         // Thread.sleep(forTimeInterval: 3.0)
         setUpLocationServices()
         IQKeyboardManager.shared.enable = true

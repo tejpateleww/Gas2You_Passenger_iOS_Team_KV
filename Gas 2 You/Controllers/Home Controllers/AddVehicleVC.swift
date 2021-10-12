@@ -48,8 +48,6 @@ class AddVehicleVC: BaseVC {
     var model = ""
     var color = ""
     
-    var doneButton : (()->())?
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,9 +83,29 @@ class AddVehicleVC: BaseVC {
         txtEnterColor.delegate = self
     }
     @objc func donePicker(){
-        if let click = self.doneButton{
-            click()
+        if self.txtEnterYear.isFirstResponder {
+            let row = yearPicker.selectedRow(inComponent: 0);
+            self.txtEnterYear.text = self.yearVal[row]
+            pickerView(yearPicker, didSelectRow: row, inComponent:0)
+            txtEnterYear.endEditing(true)
+        } else if self.txtEnterMake.isFirstResponder {
+            let row = makePicker.selectedRow(inComponent: 0);
+            self.make = self.makeVal[row].id ?? ""
+            self.SelectedMakeIndex = row
+            self.txtEnterMake.text = self.makeVal[row].manufacturerName
+            txtEnterMake.endEditing(true)
+        } else if self.txtEnterModel.isFirstResponder {
+            let row = modelPicker.selectedRow(inComponent: 0);
+            self.model = self.makeVal[self.SelectedMakeIndex].models?[row].id ?? ""
+            self.txtEnterModel.text = self.makeVal[self.SelectedMakeIndex].models?[row].modelName
+            txtEnterModel.endEditing(true)
+        } else if self.txtEnterColor.isFirstResponder {
+            let row = colorPicker.selectedRow(inComponent: 0);
+            self.color = self.colorVal[row].id ?? ""
+            self.txtEnterColor.text = self.colorVal[row].color
+            txtEnterColor.endEditing(true)
         }
+        
     }
     func dismissPickerView() {
         let toolBar = UIToolbar()
@@ -103,10 +121,14 @@ class AddVehicleVC: BaseVC {
     }
     @IBAction func btnSaveTap(_ sender: ThemeButton) {
         if isfromEdit{
-            EditVehicle.doLogin(vehicleId: objData?.id ?? "", year: txtEnterYear.text ?? "", make: make, model: model, color: color, plateno: txtLicencePlateNo.text ?? "")
-            NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
+            if validation(){
+                EditVehicle.doLogin(vehicleId: objData?.id ?? "", year: txtEnterYear.text ?? "", make: make, model: model, color: color, plateno: txtLicencePlateNo.text ?? "")
+                NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
+            }
         }else{
-            AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, plateno: txtLicencePlateNo.text ?? "")
+            if validation(){
+                AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, plateno: txtLicencePlateNo.text ?? "")
+            }
         }
     }
     func setup() {
@@ -118,6 +140,33 @@ class AddVehicleVC: BaseVC {
         make = objData?.makeId ?? ""
         model = objData?.modelId ?? ""
         color = objData?.colorId ?? ""
+    }
+    //MARK: - Validation
+    func validation() -> Bool{
+        var stringData : String?
+        let strTitle = "Please select "
+        let plateno = txtLicencePlateNo.validatedText(validationType: .requiredField(field: txtLicencePlateNo.placeholder?.lowercased() ?? ""))
+        if txtEnterYear.text == ""{
+            Toast.show(title: UrlConstant.Required, message: strTitle + "year", state: .failure)
+            return false
+        }else if txtEnterMake.text == ""{
+            Toast.show(title: UrlConstant.Required, message: strTitle + "make", state: .failure)
+            return false
+        }else if txtEnterModel.text == ""{
+            Toast.show(title: UrlConstant.Required, message: strTitle + "model", state: .failure)
+            return false
+        }else if txtEnterColor.text == ""{
+            Toast.show(title: UrlConstant.Required, message: strTitle + "color", state: .failure)
+            return false
+        }else if !plateno.0 {
+            stringData = plateno.1
+        }
+        
+        if let str = stringData  {
+            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            return false
+        }
+        return true
     }
 }
 
@@ -149,46 +198,45 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
         if txtEnterYear.isFirstResponder {
             return yearVal[row]
         } else if txtEnterMake.isFirstResponder {
-            self.make = makeVal[row].id ?? ""
             return makeVal[row].manufacturerName
         } else if txtEnterModel.isFirstResponder {
-            self.model = makeVal[SelectedMakeIndex].models?[row].id ?? ""
             return makeVal[SelectedMakeIndex].models?[row].modelName
         } else if txtEnterColor.isFirstResponder {
-            self.color = colorVal[row].id ?? ""
             return colorVal[row].color
         }
         return colorVal[row].color
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.doneButton = {
-            if self.txtEnterYear.isFirstResponder {
-                self.txtEnterYear.text = self.yearVal[row]
-                self.txtEnterYear.endEditing(true)
-            } else if self.txtEnterMake.isFirstResponder {
-                self.make = self.makeVal[row].id ?? ""
-                self.SelectedMakeIndex = row
-                self.txtEnterMake.text = self.makeVal[row].manufacturerName
-                self.txtEnterMake.endEditing(true)
-            } else if self.txtEnterModel.isFirstResponder {
-                self.model = self.makeVal[self.SelectedMakeIndex].models?[row].id ?? ""
-                self.txtEnterModel.text = self.makeVal[self.SelectedMakeIndex].models?[row].modelName
-                self.txtEnterModel.endEditing(true)
-            } else if self.txtEnterColor.isFirstResponder {
-                self.color = self.colorVal[row].id ?? ""
-                self.txtEnterColor.text = self.colorVal[row].color
-                self.txtEnterColor.endEditing(true)
-            }
-        }
+        //            if self.txtEnterYear.isFirstResponder {
+        //
+        //            } else if self.txtEnterMake.isFirstResponder {
+        //                self.make = self.makeVal[row].id ?? ""
+        //                self.SelectedMakeIndex = row
+        //                self.txtEnterMake.text = self.makeVal[row].manufacturerName
+        //            } else if self.txtEnterModel.isFirstResponder {
+        //                self.model = self.makeVal[self.SelectedMakeIndex].models?[row].id ?? ""
+        //                self.txtEnterModel.text = self.makeVal[self.SelectedMakeIndex].models?[row].modelName
+        //            } else if self.txtEnterColor.isFirstResponder {
+        //                self.color = self.colorVal[row].id ?? ""
+        //                self.txtEnterColor.text = self.colorVal[row].color
+        //            }
     }
 }
 extension AddVehicleVC: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
+        
+        let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
+        let filtered = string.components(separatedBy: cs).joined(separator: "")
+        
+        return (string == filtered)
+        
         if textField != txtLicencePlateNo{
             return false
         }else{
             return true
         }
+        
     }
 }

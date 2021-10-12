@@ -12,3 +12,4 @@ enum viewComponentsTags : Int{
     case ToastView = 2002
 
 }
+enum Direction { case left, right }

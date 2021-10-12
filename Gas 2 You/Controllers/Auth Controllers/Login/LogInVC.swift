@@ -29,9 +29,15 @@ class LogInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        txtPassword.delegate = self
         let _ = self.getLocation()
         btnTerms.underline()
         btnPrivacyPolicy.underline()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        txtEmail.text = ""
+        txtPassword.text = ""
     }
     func getLocation() -> Bool {
         if Singleton.sharedInstance.userCurrentLocation == nil{
@@ -110,21 +116,40 @@ extension LogInVC: UITextFieldDelegate {
         return true
     }
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == txtPassword{
+            if (string == " ") {
+                Utilities.showAlert(AppInfo.appName, message: "Space should not allow in current password", vc: self)
+                   return false
+               }
+        // If consecutive spaces entered by user
+         return true
+            
+        }
+        return true
+    }
 }
 extension LogInVC{
     func validation() -> Bool {
         var strTitle : String?
-        let checkEmail = txtEmail.validatedText(validationType: .email)
+        let txtTemp = UITextField()
+        txtTemp.text = txtEmail.text?.replacingOccurrences(of: " ", with: "")
+        let checkEmailRequired = txtTemp.validatedText(validationType: ValidatorType.requiredField(field: txtEmail.placeholder?.lowercased() ?? ""))
+        let checkEmail = txtTemp.validatedText(validationType: .email)
         let password = txtPassword.validatedText(validationType: .password(field: txtPassword.placeholder?.lowercased() ?? ""))
         
-        if !checkEmail.0{
+        if(!checkEmailRequired.0)
+        {
+            Toast.show(title: AppInfo.appName, message: "Please enter email", state: .failure)
+            return checkEmailRequired.0
+        }else if !checkEmail.0{
             strTitle = checkEmail.1
         }else if !password.0{
             strTitle = password.1
         }
-        
+        //"Entered email address or username doesn't match with the records"
         if let str = strTitle{
-            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            Toast.show(title: UrlConstant.Required, message:str, state: .failure)
             return false
         }
         
@@ -176,6 +201,7 @@ extension LogInVC: SocialSignInDelegate{
            
         }
     }
+    
 }
 extension UIButton {
     func underline() {
