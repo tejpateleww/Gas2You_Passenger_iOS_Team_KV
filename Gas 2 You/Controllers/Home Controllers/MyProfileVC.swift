@@ -121,12 +121,20 @@ extension MyProfileVC: UITextFieldDelegate {
             let filtered = string.components(separatedBy: cs).joined(separator: "")
             let currentString: NSString = textField.text as NSString? ?? ""
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            if (string == " ") {
+                Utilities.showAlert(AppInfo.appName, message: "Space should not allow in first name", vc: self)
+                   return false
+               }
             return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
         case self.txtLastName:
             let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
             let filtered = string.components(separatedBy: cs).joined(separator: "")
             let currentString: NSString = textField.text as NSString? ?? ""
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            if (string == " ") {
+                Utilities.showAlert(AppInfo.appName, message: "Space should not allow in last name", vc: self)
+                   return false
+               }
             return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
         default:
             print("")

@@ -93,6 +93,7 @@ class AddVehicleVC: BaseVC {
             self.make = self.makeVal[row].id ?? ""
             self.SelectedMakeIndex = row
             self.txtEnterMake.text = self.makeVal[row].manufacturerName
+            self.txtEnterModel.text = ""
             txtEnterMake.endEditing(true)
         } else if self.txtEnterModel.isFirstResponder {
             let row = modelPicker.selectedRow(inComponent: 0);
@@ -105,7 +106,6 @@ class AddVehicleVC: BaseVC {
             self.txtEnterColor.text = self.colorVal[row].color
             txtEnterColor.endEditing(true)
         }
-        
     }
     func dismissPickerView() {
         let toolBar = UIToolbar()

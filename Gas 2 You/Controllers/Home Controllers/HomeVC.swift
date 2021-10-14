@@ -71,7 +71,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
     var vehicalid = ""
     var addonid = ""
     var time = ""
-    var placeName = ""
+//    var placeName = ""
     var locationManager : LocationService?
     var PlaceName = userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String
     //MARK:- GLOBAL PROPERTIES
@@ -118,7 +118,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
         txtSelectedService.delegate = self
         txtSelectedVehicle.delegate = self
         let today = Date()
-        let nextDate = Calendar.current.date(byAdding: .day, value: 2, to: today)
+        let nextDate = Calendar.current.date(byAdding: .day, value: 3, to: today)
         if let date = nextDate {
             selectedDate.text = dateFormatter.string(from: date)
         }
@@ -228,7 +228,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
                 if pm.postalCode != nil {
                     addressString = addressString + (pm.postalCode ?? "") + " "
                 }
-                self.placeName = addressString
+                self.PlaceName = addressString
                 self.locationLabel.text = addressString
                 print(addressString)
             }
@@ -248,7 +248,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
     }
     @IBAction func btnParkingLocationTap(_ sender: UIButton) {
         let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
-        carParkingLocationVC.place = self.placeName ?? ""
+        carParkingLocationVC.place = self.PlaceName ?? ""
         carParkingLocationVC.delegatetext = self
         navigationController?.pushViewController(carParkingLocationVC, animated: true)
     }
@@ -324,10 +324,10 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
         datePicker.datePickerMode = .date
         
         let today = Date()
-        let nextDate = Calendar.current.date(byAdding: .day, value: 2, to: today)
+        let nextDate = Calendar.current.date(byAdding: .day, value: 3, to: today)
         datePicker.minimumDate = nextDate
         
-        let nextMonth = Calendar.current.date(byAdding: .day, value: 33, to: today)
+        let nextMonth = Calendar.current.date(byAdding: .month, value: 33, to: today)
         datePicker.maximumDate = nextMonth
         
         if #available(iOS 14, *) {

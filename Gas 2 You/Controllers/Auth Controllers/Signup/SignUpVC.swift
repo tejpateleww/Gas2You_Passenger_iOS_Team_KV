@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SignUpVC: BaseVC {
 
@@ -20,7 +21,9 @@ class SignUpVC: BaseVC {
     @IBOutlet weak var txtPhoneNo: ThemeTextfield!
     @IBOutlet weak var txtPassword: ThemeTextfield!
     @IBOutlet weak var txtConfirmPassword: ThemeTextfield!
-
+    @IBOutlet weak var btnTerms: ThemeButton!
+    @IBOutlet weak var btnPrivacy: ThemeButton!
+    
     private let viewModel = SignupViewModel()
     var otpUserModel = SignupViewModel()
     var registerRequestModel = RegisterRequestModel()
@@ -34,6 +37,8 @@ class SignUpVC: BaseVC {
         super.viewDidLoad()
         txtPassword.delegate = self
         txtConfirmPassword.delegate = self
+        btnTerms.underline()
+        btnPrivacy.underline()
         setupUI()
         otpUserModel.signupmodel = self
     }
@@ -58,7 +63,11 @@ class SignUpVC: BaseVC {
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
         setupPhoneTextField()
     }
-
+    func previewDocument(strURL : String){
+        guard let url = URL(string: strURL) else {return}
+        let svc = SFSafariViewController(url: url)
+        present(svc, animated: true, completion: nil)
+    }
     private func setupPhoneTextField() {
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 20))
         txtPhoneNo.font = FontBook.regular.of(size : 16)
@@ -70,6 +79,24 @@ class SignUpVC: BaseVC {
     }
 
     
+    @IBAction func btnTermsClick(_ sender: Any) {
+        var TC = ""
+        if let TCLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "terms_and_condition"}) {
+            if TCLink.count > 0 {
+                TC = TCLink[0].url ?? ""
+                self.previewDocument(strURL: TC)
+            }
+        }
+    }
+    @IBAction func btnPrivacyClick(_ sender: Any) {
+        var PP = ""
+        if let PPLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "privacy_policy"}) {
+            if PPLink.count > 0 {
+                PP = PPLink[0].url ?? ""
+                self.previewDocument(strURL: PP)
+            }
+        }
+    }
     @IBAction func btnSignupTap(_ sender: ThemeButton) {
         view.endEditing(true)
         if self.validation(){
@@ -162,12 +189,20 @@ extension SignUpVC: UITextFieldDelegate {
             let filtered = string.components(separatedBy: cs).joined(separator: "")
             let currentString: NSString = textField.text as NSString? ?? ""
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            if (string == " ") {
+                Utilities.showAlert(AppInfo.appName, message: "Space should not allow in first name", vc: self)
+                   return false
+               }
             return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
         case self.txtLastName:
             let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
             let filtered = string.components(separatedBy: cs).joined(separator: "")
             let currentString: NSString = textField.text as NSString? ?? ""
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            if (string == " ") {
+                Utilities.showAlert(AppInfo.appName, message: "Space should not allow in last name", vc: self)
+                   return false
+               }
             return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
             
         case self.txtEmail :

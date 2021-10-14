@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5m6-OM-yXR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5m6-OM-yXR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -187,6 +187,9 @@ and Pr</string>
                                                                         <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="btnTCAction:" destination="xwA-wU-lYW" eventType="touchUpInside" id="TU1-Nu-BFf"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -219,6 +222,9 @@ and Pr</string>
                                                                         <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="btnPPAction:" destination="xwA-wU-lYW" eventType="touchUpInside" id="mco-Qu-RlL"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -671,6 +677,9 @@ and Pr</string>
                                                                         <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="btnTermsClick:" destination="uwe-7G-j2u" eventType="touchUpInside" id="KZ2-5s-qXb"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -703,6 +712,9 @@ and Pr</string>
                                                                         <color key="value" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="btnPrivacyClick:" destination="uwe-7G-j2u" eventType="touchUpInside" id="WEn-KZ-AeY"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -867,6 +879,8 @@ and Pr</string>
                     <navigationItem key="navigationItem" id="fTf-ep-k3F"/>
                     <connections>
                         <outlet property="btnLoginNow" destination="4mt-R6-KhS" id="4Jf-t8-5h3"/>
+                        <outlet property="btnPrivacy" destination="NjS-pr-J9T" id="PZJ-cm-Ath"/>
+                        <outlet property="btnTerms" destination="S1U-pV-TDT" id="659-zg-gtk"/>
                         <outlet property="txtConfirmPassword" destination="Qs3-JA-Zf8" id="UAG-I9-PAb"/>
                         <outlet property="txtEmail" destination="VYH-XU-YOU" id="LVh-e0-6vH"/>
                         <outlet property="txtFirstName" destination="kMn-Us-Hge" id="eGL-o0-v80"/>
@@ -1320,9 +1334,6 @@ and Pr</string>
             <point key="canvasLocation" x="4087" y="92"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="UXQ-3E-skk"/>
-    </designables>
     <resources>
         <image name="APPlE_LOGO" width="18" height="21"/>
         <image name="FB_LOGO" width="10.5" height="21"/>

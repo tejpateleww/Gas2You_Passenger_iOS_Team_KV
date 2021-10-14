@@ -6,19 +6,22 @@
 //
 
 import UIKit
+import SafariServices
+
 
 class LogInVC: UIViewController {
-
+    
     class func getNewInstance() -> LogInVC {
         UIStoryboard(storyboard: .auth).instantiate()
     }
-
+    
     @IBOutlet weak var btnPrivacyPolicy: ThemeButton!
     @IBOutlet weak var txtEmail: ThemeTextfield!
     @IBOutlet weak var txtPassword: ThemeTextfield!
     @IBOutlet weak var btnSignUp: ThemeButton!
     @IBOutlet weak var btnLogin: ThemeButton!
     @IBOutlet weak var btnTerms: ThemeButton!
+    
     
     
     private let viewModel = LoginViewModel()
@@ -73,9 +76,9 @@ class LogInVC: UIViewController {
         btnSignUp.setunderline(title: btnSignUp.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(16))
         setupTextfields(textfield: txtPassword)
     }
-
+    
     private func setupTextfields(textfield: UITextField) {
-
+        
         textfield.rightViewMode = .always
         let button = UIButton(frame: CGRect(x: 10, y: 0, width: 60, height: 40))
         button.setTitle("Forgot?", for: .normal)
@@ -85,7 +88,13 @@ class LogInVC: UIViewController {
         view.addSubview(button)
         textfield.rightView = view
     }
-
+    
+    func previewDocument(strURL : String){
+        guard let url = URL(string: strURL) else {return}
+        let svc = SFSafariViewController(url: url)
+        present(svc, animated: true, completion: nil)
+    }
+    
     @IBAction func logInButtonPreesed(_ sender: ThemeButton) {
         view.endEditing(true)
         if self.validation(){
@@ -102,11 +111,33 @@ class LogInVC: UIViewController {
     @objc func navigateToForgotPassword(){
         self.push(ForgotPasswordVC.getNewInstance())
     }
+    
+    @IBAction func btnTCAction(_ sender: Any) {
+        var TC = ""
+        if let TCLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "terms_and_condition"}) {
+            if TCLink.count > 0 {
+                TC = TCLink[0].url ?? ""
+                self.previewDocument(strURL: TC)
+            }
+        }
+    }
+    
+    
+    
+    @IBAction func btnPPAction(_ sender: Any) {
+        var PP = ""
+        if let PPLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "privacy_policy"}) {
+            if PPLink.count > 0 {
+                PP = PPLink[0].url ?? ""
+                self.previewDocument(strURL: PP)
+            }
+        }
+    }
 }
 
 // MARK: - TextField delegate
 extension LogInVC: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == txtEmail {
             txtPassword.becomeFirstResponder()
@@ -115,15 +146,15 @@ extension LogInVC: UITextFieldDelegate {
         }
         return true
     }
-
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == txtPassword{
             if (string == " ") {
                 Utilities.showAlert(AppInfo.appName, message: "Space should not allow in current password", vc: self)
-                   return false
-               }
-        // If consecutive spaces entered by user
-         return true
+                return false
+            }
+            // If consecutive spaces entered by user
+            return true
             
         }
         return true
@@ -198,7 +229,7 @@ extension LogInVC: SocialSignInDelegate{
                 self.callSocialLoginApi(reqModel: reqModel)
             }
             
-           
+            
         }
     }
     

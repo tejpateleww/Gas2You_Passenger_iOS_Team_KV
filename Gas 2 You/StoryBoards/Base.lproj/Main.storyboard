@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TYe-P8-lph">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TYe-P8-lph">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -567,18 +567,17 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWW-8n-gyK">
-                                                                                <rect key="frame" x="50" y="68.5" width="269" height="31"/>
+                                                                                <rect key="frame" x="50" y="69" width="269" height="30"/>
                                                                                 <subviews>
                                                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5S-fY-60e">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="31"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                                                         <state key="normal" title="Button"/>
-                                                                                        <buttonConfiguration key="configuration" style="plain" title="Add your vehicle"/>
                                                                                         <connections>
                                                                                             <action selector="btnAddVehicle:" destination="Jey-3g-G0V" eventType="touchUpInside" id="PZe-qq-YdY"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ox-CD-r5n">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="269" height="31"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="269" height="30"/>
                                                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -643,7 +642,7 @@
                                                                                         </constraints>
                                                                                         <prototypes>
                                                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nonMemberListCell" id="rNQ-Nj-5VL" customClass="nonMemberListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="44.5" width="374" height="31"/>
+                                                                                                <rect key="frame" x="0.0" y="24.5" width="374" height="31"/>
                                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rNQ-Nj-5VL" id="Qx1-ht-IGo">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="31"/>
@@ -968,7 +967,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="ugE-NY-Mox" customClass="AddressCell" customModule="Gas_2_You" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="83"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ugE-NY-Mox" id="A3K-5Y-z50">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
@@ -1109,7 +1108,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatListCell" id="e3l-d4-5kw" customClass="ChatListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="101"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e3l-d4-5kw" id="Gb5-p7-sYx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="101"/>
@@ -1985,7 +1984,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotificationCell" rowHeight="97" id="mdM-Oa-E6u" customClass="NotificationCell" customModule="Gas_2_You" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="97"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mdM-Oa-E6u" id="XYb-xq-Jps">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="97"/>
@@ -2517,6 +2516,9 @@
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hK9-Oy-gj5">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                                <connections>
+                                                    <action selector="btnAboutClick:" destination="5Co-no-l4d" eventType="touchUpInside" id="LVu-oq-6Ma"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2565,6 +2567,9 @@
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUg-h6-Ia6">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                                <connections>
+                                                    <action selector="btnTermsClick:" destination="5Co-no-l4d" eventType="touchUpInside" id="xUk-fU-iB7"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2613,6 +2618,9 @@
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykg-Nn-0sv">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                                <connections>
+                                                    <action selector="btnPrivacyClick:" destination="5Co-no-l4d" eventType="touchUpInside" id="5kR-hU-Ayx"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2685,6 +2693,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="aSE-f9-gS8"/>
                     <connections>
+                        <outlet property="btnAboutus" destination="hK9-Oy-gj5" id="sA7-KE-Y3l"/>
+                        <outlet property="btnPrivacy" destination="Ykg-Nn-0sv" id="fXA-zv-oFl"/>
+                        <outlet property="btnTerms" destination="hUg-h6-Ia6" id="ro3-46-Auh"/>
                         <outlet property="switchNotification" destination="HbM-Ca-Unu" id="5pV-8Q-arn"/>
                     </connections>
                 </viewController>
@@ -2706,7 +2717,7 @@
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="VehicleListCell" id="qtY-fe-Nif" customClass="VehicleListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="390" height="128"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="390" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qtY-fe-Nif" id="QrL-pF-HG2">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
@@ -3333,7 +3344,7 @@
                                                                         </constraints>
                                                                         <prototypes>
                                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="membershipPlanCell" id="Kxp-Zz-WVa" customClass="membershipPlanCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="44.5" width="366" height="43.5"/>
+                                                                                <rect key="frame" x="0.0" y="24.5" width="366" height="43.5"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kxp-Zz-WVa" id="egk-Dj-mci">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="366" height="43.5"/>
@@ -4151,9 +4162,9 @@ Open Today</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgR-P1-7Q0">
-                                        <rect key="frame" x="25" y="264" width="364" height="290.5"/>
+                                        <rect key="frame" x="25" y="263.5" width="364" height="291"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b7g-3W-6E7">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="290"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="291"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFk-Bs-qVE">
@@ -4281,9 +4292,9 @@ is completed</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0B8-GA-aav">
-                                        <rect key="frame" x="25" y="202.5" width="364" height="413.5"/>
+                                        <rect key="frame" x="25" y="202.5" width="364" height="413"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RTV-vg-W9B">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="414"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="413"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="5xb-s6-u9Y">
@@ -4587,7 +4598,6 @@ is completed</string>
                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="70"/>
                                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain"/>
                                                                 <connections>
                                                                     <action selector="btnMyprofileClick:" destination="kwl-fP-t1L" eventType="touchUpInside" id="6Bx-xo-xYu"/>
                                                                 </connections>
@@ -4635,7 +4645,7 @@ is completed</string>
                                                         </constraints>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeftViewMenuItemCell" id="PQX-fO-kBC" customClass="LeftViewMenuItemCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="44.5" width="364" height="65"/>
+                                                                <rect key="frame" x="0.0" y="24.5" width="364" height="65"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PQX-fO-kBC" id="wer-2H-0dY">
                                                                     <rect key="frame" x="0.0" y="0.0" width="364" height="65"/>
@@ -4921,7 +4931,7 @@ is completed</string>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatHeaderCell" id="soW-AN-6Kw" customClass="chatHeaderCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="44.5"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="44.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="soW-AN-6Kw" id="wgi-BF-2P7">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
@@ -4966,7 +4976,7 @@ is completed</string>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatSenderCell" id="XUn-of-3vC" customClass="chatSenderCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="89" width="414" height="70.5"/>
+                                                <rect key="frame" x="0.0" y="69" width="414" height="70.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XUn-of-3vC" id="PKR-Xw-acC">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70.5"/>
@@ -5056,7 +5066,7 @@ is completed</string>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatReciverCell" id="Qzl-K1-NwB" customClass="chatReciverCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="159.5" width="414" height="70.5"/>
+                                                <rect key="frame" x="0.0" y="139.5" width="414" height="70.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qzl-K1-NwB" id="fRd-2g-GtK">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70.5"/>
@@ -5319,7 +5329,7 @@ is completed</string>
                                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nonMemberPlanListCell" id="1by-R3-Xs2" customClass="nonMemberPlanListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="414" height="37"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="414" height="37"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1by-R3-Xs2" id="dPK-Pa-pzq">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
