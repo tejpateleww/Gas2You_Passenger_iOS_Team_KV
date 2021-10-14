@@ -13,6 +13,11 @@ import GooglePlaces
 import GoogleSignIn
 import FBSDKLoginKit
 
+import Firebase
+import FirebaseMessaging
+import FirebaseCore
+import FirebaseCrashlytics
+
 let AppDel = UIApplication.shared.delegate as! AppDelegate
 
 @main
@@ -38,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         GMSServices.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
         GMSPlacesClient.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
         window?.makeKeyAndVisible()
-
+        FirebaseApp.configure()
+        
         return true
     }
     // MARK: - LocationManagerDelegate

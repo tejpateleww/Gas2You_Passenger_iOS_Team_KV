@@ -18,4 +18,6 @@ target 'Gas 2 You' do
   pod 'FBSDKLoginKit','9.0.1'
   pod 'UIView-Shimmer', '~> 1.0'
   
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Crashlytics'
 end

@@ -82,7 +82,7 @@
 		881277B826F8AD07005E8F37 /* RemoveVehicleResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881277B626F8AD07005E8F37 /* RemoveVehicleResModel.swift */; };
 		886DF1B626FC325B00A36B51 /* logoutResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF1B526FC325A00A36B51 /* logoutResModel.swift */; };
 		886DF1B926FC347100A36B51 /* LogoutUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF1B826FC347100A36B51 /* LogoutUserModel.swift */; };
-		886DF20626FC798F00A36B51 /* GoogleService-Info (2).plist in Resources */ = {isa = PBXBuildFile; fileRef = 886DF20526FC798F00A36B51 /* GoogleService-Info (2).plist */; };
+		886DF20626FC798F00A36B51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 886DF20526FC798F00A36B51 /* GoogleService-Info.plist */; };
 		886DF20926FC8FD700A36B51 /* timeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF20826FC8FD700A36B51 /* timeListCell.swift */; };
 		8877AD582703334D0083C883 /* membershipPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD572703334D0083C883 /* membershipPlanCell.swift */; };
 		8877AD5D2703358A0083C883 /* membershipplanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5B2703358A0083C883 /* membershipplanResModel.swift */; };
@@ -253,7 +253,7 @@
 		8816E0912701F649004D0272 /* Gas 2 You.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Gas 2 You.entitlements"; sourceTree = "<group>"; };
 		886DF1B526FC325A00A36B51 /* logoutResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutResModel.swift; sourceTree = "<group>"; };
 		886DF1B826FC347100A36B51 /* LogoutUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUserModel.swift; sourceTree = "<group>"; };
-		886DF20526FC798F00A36B51 /* GoogleService-Info (2).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (2).plist"; sourceTree = "<group>"; };
+		886DF20526FC798F00A36B51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		886DF20826FC8FD700A36B51 /* timeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timeListCell.swift; sourceTree = "<group>"; };
 		8877AD572703334D0083C883 /* membershipPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = membershipPlanCell.swift; sourceTree = "<group>"; };
 		8877AD5B2703358A0083C883 /* membershipplanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = membershipplanResModel.swift; sourceTree = "<group>"; };
@@ -426,7 +426,7 @@
 		844F7BFC26E62BF10047DFF4 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				886DF20526FC798F00A36B51 /* GoogleService-Info (2).plist */,
+				886DF20526FC798F00A36B51 /* GoogleService-Info.plist */,
 				9A5B08B926B266EA00BA0CB4 /* Info.plist */,
 				9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */,
 			);
@@ -974,6 +974,7 @@
 				9A5B08A326B266E800BA0CB4 /* Resources */,
 				D6F9104560D23486A9C860D2 /* [CP] Embed Pods Frameworks */,
 				9966D57DBBFCC95C310E6E39 /* [CP] Copy Pods Resources */,
+				8877BDF42717F89100657CD2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1051,13 +1052,32 @@
 				18F4012D26CBC8F3002C1ABB /* Poppins-SemiBold.ttf in Resources */,
 				9A5B08B026B266E800BA0CB4 /* Main.storyboard in Resources */,
 				18F4012526CBC8F3002C1ABB /* Poppins-ExtraBold.ttf in Resources */,
-				886DF20626FC798F00A36B51 /* GoogleService-Info (2).plist in Resources */,
+				886DF20626FC798F00A36B51 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8877BDF42717F89100657CD2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		9966D57DBBFCC95C310E6E39 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1405,6 +1425,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8U3VM88NZ7;
 				INFOPLIST_FILE = "Gas 2 You/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -1431,6 +1452,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8U3VM88NZ7;
 				INFOPLIST_FILE = "Gas 2 You/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
