@@ -17,9 +17,11 @@ class LeftViewController: MenuViewController {
     @IBOutlet weak var ConstantMenuTblViewHeight : NSLayoutConstraint!
     @IBOutlet weak var lblUserName: ThemeLabel!
     @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var lblVersion: ThemeLabel!
     
     var indexPathCustom = IndexPath(row: 0, section: 1)
     var logoutUserModel = LogoutUserModel()
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     //MARK:- Properties
     ///0 for menu name 1 for icon name
     private let titlesArray : [(String,String)] = [("Home","IC_home"),
@@ -32,7 +34,7 @@ class LeftViewController: MenuViewController {
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        lblVersion.text = "Version : " + (appVersion ?? "")
         self.MenuTblView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
     }
     

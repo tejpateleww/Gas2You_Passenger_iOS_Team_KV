@@ -58,7 +58,7 @@ class MyProfileVC: BaseVC {
         var strTitle : String?
         let firstName = txtUserName.validatedText(validationType: .username(field: txtUserName.placeholder?.lowercased() ?? ""))
         let lastName = txtLastName.validatedText(validationType: .username(field: txtLastName.placeholder ?? ""))
-        let mobileNo = txtMobile.validatedText(validationType: .requiredField(field: txtMobile.placeholder ?? ""))
+        let mobileNo = txtMobile.validatedText(validationType: .phoneNo)
         
         if !(firstName.0){
             strTitle = firstName.1

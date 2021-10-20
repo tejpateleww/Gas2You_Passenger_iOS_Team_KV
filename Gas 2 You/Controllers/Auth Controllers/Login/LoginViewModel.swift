@@ -32,7 +32,8 @@ class LoginViewModel {
                 }
                 AppDel.navigateToHome()
             } else {
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed,delay: 10.0, message: apiMessage, state: status ? .success : .failure)
+                
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
             }
         }
     }

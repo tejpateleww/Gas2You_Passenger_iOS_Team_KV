@@ -18,18 +18,18 @@ import MKProgress
 
 
 func hexStringToUIColor (hex:String) -> UIColor {
-
+    
     var hexFormatted: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
-
+    
     if hexFormatted.hasPrefix("#") {
         hexFormatted = String(hexFormatted.dropFirst())
     }
-
+    
     assert(hexFormatted.count == 6, "Invalid hex code used.")
-
+    
     var rgbValue: UInt64 = 0
     Scanner(string: hexFormatted).scanHexInt64(&rgbValue)
-
+    
     return UIColor.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
                         green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
                         blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
@@ -228,7 +228,7 @@ class Utilities:NSObject{
             completionHandler?()
         })
         alert.addAction(cancelAction)
-
+        
         vc.present(alert, animated: true, completion: nil)
     }
     
@@ -313,28 +313,32 @@ class Utilities:NSObject{
         //        let size = CGSize(width: 40, height: 40)
         //        let activityData = ActivityData(size: size, message: "", messageFont: nil, messageSpacing: nil, type: .lineScale, color: colors.btnColor.value, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: UIColor.black.withAlphaComponent(0.5), textColor: nil)
         //        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
-        
-        MKProgress.config.backgroundColor = .white
-        //        let vwbackground = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
-        MKProgress.config.hudType = .radial
-        
-        MKProgress.config.hudColor = .white
-        MKProgress.config.width = 80.0
-        MKProgress.config.height = 80.0
-        MKProgress.config.circleRadius = 30.0
-        MKProgress.config.cornerRadius = 16.0
-        MKProgress.config.circleBorderColor = ThemeColorEnum.ThemeLoader.rawValue
-        MKProgress.config.circleBorderWidth = 3.0
-        MKProgress.config.backgroundColor = .clear
-        MKProgress.show()
-        
-        
+        DispatchQueue.main.async {
+            
+            MKProgress.config.backgroundColor = .white
+            //        let vwbackground = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+            MKProgress.config.hudType = .radial
+            
+            MKProgress.config.hudColor = .white
+            MKProgress.config.width = 80.0
+            MKProgress.config.height = 80.0
+            MKProgress.config.circleRadius = 30.0
+            MKProgress.config.cornerRadius = 16.0
+            MKProgress.config.circleBorderColor = ThemeColorEnum.ThemeLoader.rawValue
+            MKProgress.config.circleBorderWidth = 3.0
+            MKProgress.config.backgroundColor = .clear
+            MKProgress.show()
+            
+        }
     }
     
     class func hideHud()
     {
         //        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-        MKProgress.hide()
+        DispatchQueue.main.async {
+            MKProgress.hide()
+            
+        }
     }
     
     

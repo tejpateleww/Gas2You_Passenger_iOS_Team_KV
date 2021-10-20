@@ -43,7 +43,7 @@ class UrlConstant{
     static let Expiry = "Expires"
     
     //Validation Message
-    static let ValidPhoneNo = "Please enter valid mobile number."
+    static let ValidPhoneNo = "Minimum 10 digits are required"//"Please enter valid mobile number."
     static let ValidOtpNo = "Please enter valid otp."
     static let AgeIsRequired = "Age is required"
     static let AgeMustNumber = "Age must be a number!"

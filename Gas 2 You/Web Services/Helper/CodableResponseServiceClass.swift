@@ -10,6 +10,7 @@ import Foundation
 class CodableService {
     class func getResponseFromSession<C:Codable>(request: URLRequest, codableObj: C.Type, completion: @escaping  (_ status: Bool,_ apiMessage: String,_ modelObj: C?,_ dataDic: Any) -> ()){
         var responseDic : Any?
+
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 
@@ -73,7 +74,7 @@ class CodableService {
     }
     
     class func getCodableObjectFromData<C:Codable>(jsonData: Data, codableObj: C.Type) -> C?{
-        let obj = try! JSONDecoder().decode(codableObj, from: jsonData)
+        let obj = try? JSONDecoder().decode(codableObj, from: jsonData)
         return obj
     }
     
