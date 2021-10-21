@@ -23,7 +23,8 @@ class ChangePasswordViewModel {
                     self.changePasswordVC?.popBack()
                 }
             }else{
-                Toast.show(title:UrlConstant.Failed, message: apiMessage, state: .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
+                //Toast.show(title:UrlConstant.Failed, message: apiMessage, state: .failure)
             }
     
         }

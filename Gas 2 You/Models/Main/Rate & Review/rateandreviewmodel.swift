@@ -20,7 +20,8 @@ class rateandreviewmodel {
                 self.reviewmodel?.rateDelegate?.refreshCompleteJobScreen(rate: self.reviewmodel?.vwCosmos.rating ?? 0.0, review: self.reviewmodel?.txtReview.text ?? "")
 //                Toast.show(message: apiMessage, state: .success)
             }else{
-                Toast.show(message: apiMessage, state: .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
+//                Toast.show(message: apiMessage, state: .failure)
             }
         })
     }

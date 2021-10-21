@@ -147,23 +147,28 @@ class AddVehicleVC: BaseVC {
         let strTitle = "Please select "
         let plateno = txtLicencePlateNo.validatedText(validationType: .requiredField(field: txtLicencePlateNo.placeholder?.lowercased() ?? ""))
         if txtEnterYear.text == ""{
-            Toast.show(title: UrlConstant.Required, message: strTitle + "year", state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: strTitle + "year")
+            //Toast.show(title: UrlConstant.Required, message: strTitle + "year", state: .failure)
             return false
         }else if txtEnterMake.text == ""{
-            Toast.show(title: UrlConstant.Required, message: strTitle + "make", state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: strTitle + "make")
+//            Toast.show(title: UrlConstant.Required, message: strTitle + "make", state: .failure)
             return false
         }else if txtEnterModel.text == ""{
-            Toast.show(title: UrlConstant.Required, message: strTitle + "model", state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: strTitle + "model")
+//            Toast.show(title: UrlConstant.Required, message: strTitle + "model", state: .failure)
             return false
         }else if txtEnterColor.text == ""{
-            Toast.show(title: UrlConstant.Required, message: strTitle + "color", state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: strTitle + "color")
+//            Toast.show(title: UrlConstant.Required, message: strTitle + "color", state: .failure)
             return false
         }else if !plateno.0 {
             stringData = plateno.1
         }
         
         if let str = stringData  {
-            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: str)
+//            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
             return false
         }
         return true

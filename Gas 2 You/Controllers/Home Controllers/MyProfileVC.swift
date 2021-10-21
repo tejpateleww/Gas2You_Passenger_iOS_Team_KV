@@ -49,7 +49,7 @@ class MyProfileVC: BaseVC {
         setupPhoneTextField()
     }
     private func setupPhoneTextField() {
-        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 20))
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 20))
         txtMobile.font = FontBook.regular.of(size : 16)
         txtMobile.leftView = paddingView
         txtMobile.leftViewMode = .always
@@ -71,7 +71,8 @@ class MyProfileVC: BaseVC {
         }
         
         if let str = strTitle{
-            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: str)
+            //Toast.show(title: UrlConstant.Required, message: str, state: .failure)
             return false
         }
         

@@ -542,8 +542,8 @@ and Pr</string>
                                                                     <outlet property="delegate" destination="uwe-7G-j2u" id="0cg-co-ri1"/>
                                                                 </connections>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNS-ZE-rkt" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                <rect key="frame" x="10" y="16" width="22.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 91" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNS-ZE-rkt" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                                <rect key="frame" x="10" y="16" width="32.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1334,6 +1334,9 @@ and Pr</string>
             <point key="canvasLocation" x="4087" y="92"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="UXQ-3E-skk"/>
+    </designables>
     <resources>
         <image name="APPlE_LOGO" width="18" height="21"/>
         <image name="FB_LOGO" width="10.5" height="21"/>

@@ -69,7 +69,7 @@ class SignUpVC: BaseVC {
         present(svc, animated: true, completion: nil)
     }
     private func setupPhoneTextField() {
-        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 20))
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 20))
         txtPhoneNo.font = FontBook.regular.of(size : 16)
         txtPhoneNo.leftView = paddingView
         txtPhoneNo.leftViewMode = .always
@@ -122,7 +122,8 @@ class SignUpVC: BaseVC {
         }else if !lastName.0{
             strTitle = lastName.1
         }else if(!checkEmailRequired.0){
-            Toast.show(title: AppInfo.appName, message: "Please enter email", state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: "Please enter email")
+            //Toast.show(title: AppInfo.appName, message: "Please enter email", state: .failure)
             return checkEmailRequired.0
         }else if !checkEmail.0{
             strTitle = checkEmail.1
@@ -139,13 +140,15 @@ class SignUpVC: BaseVC {
         }else if !Confpassword.0{
             strTitle = Confpassword.1
         }else if txtPassword.text?.lowercased() != txtConfirmPassword.text?.lowercased(){
-            Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: "Password and confirm password must be same")
+            //Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .failure)
             return false
         }
         
         
         if let str = strTitle{
-            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: str)
+            //Toast.show(title: UrlConstant.Required, message: str, state: .failure)
             return false
         }
 //

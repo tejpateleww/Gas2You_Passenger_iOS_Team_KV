@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MKProgress
+import SwiftMessages
 
 //import NVActivityIndicatorView
 
@@ -377,7 +378,23 @@ class Utilities:NSObject{
         alertWindow.makeKeyAndVisible()
         alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
     }
+    //Mark :- Toast
+    class func ShowAlertOfValidation(OfMessage : String) {
+        let messageBar = MessageBarController()
+
+        messageBar.MessageShow(title: OfMessage as NSString, alertType: MessageView.Layout.cardView, alertTheme: .error, TopBottom: true)
+    }
+    class func ShowAlertOfSuccess(OfMessage : String) {
+        let messageBar = MessageBarController()
+
+        messageBar.MessageShow(title: OfMessage as NSString, alertType: MessageView.Layout.cardView, alertTheme: .success, TopBottom: true)
+    }
     
+    class func ShowToastMessage(OfMessage : String) {
+        let messageBar = MessageBarController()
+
+        messageBar.MessageShow(title: OfMessage as NSString, alertType: MessageView.Layout.cardView, alertTheme: .success, TopBottom: true)
+    }
     class func getReadableDate(timeStamp: TimeInterval , isFromTime : Bool) -> String? {
         let date = Date(timeIntervalSinceNow: timeStamp)//Date(timeIntervalSince1970: timeStamp)
         let dateFormatter = DateFormatter()

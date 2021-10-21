@@ -29,7 +29,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb293934735876306</string>
+				<string>fb1019037292229953</string>
 			</array>
 			<key>Document Role</key>
 			<string>Editor</string>
@@ -46,9 +46,9 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
-	<string>293934735876306</string>
+	<string>1019037292229953</string>
 	<key>FacebookDisplayName</key>
-	<string>Gas 2 You</string>
+	<string>Gas2You customer</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
 	<key>ITSAppUsesNonExemptEncryption</key>

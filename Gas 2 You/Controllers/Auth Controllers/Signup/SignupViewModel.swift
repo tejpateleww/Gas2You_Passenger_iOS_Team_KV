@@ -21,7 +21,8 @@ class SignupViewModel {
                 self.signupvc?.otpToastDisplay()
                 self.signupvc?.reversetimer()
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
+                //Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
             }
         }
     }
@@ -34,7 +35,8 @@ class SignupViewModel {
                 otpvc.registerRequestModel = self.signupmodel!.registerRequestModel
                 self.signupmodel?.navigationController?.pushViewController(otpvc, animated: true)
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
+//                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
             }
         }
     }
@@ -59,7 +61,8 @@ class SignupViewModel {
                 }
                 AppDel.navigateToHome()
             } else {
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
+//                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
             }
         }
     }

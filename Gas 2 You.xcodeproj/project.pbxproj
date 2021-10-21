@@ -109,6 +109,7 @@
 		88F4172026F9FC5600400594 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4171F26F9FC5600400594 /* MyProfileViewModel.swift */; };
 		90C83A99270C318400BAFA92 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 90C83A98270C318400BAFA92 /* animation.json */; };
 		90C83AA5270C3A7200BAFA92 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 90C83AA4270C3A7200BAFA92 /* Splash.json */; };
+		90F21FEE27214456001732ED /* MessageBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F21FED27214456001732ED /* MessageBarController.swift */; };
 		9A21857226C28AE8005BAAA1 /* AddAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A21857126C28AE8005BAAA1 /* AddAddressVC.swift */; };
 		9A3A912426C128E90041D7D9 /* AddressListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912326C128E90041D7D9 /* AddressListVC.swift */; };
 		9A3A912F26C133AC0041D7D9 /* SideMenuItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */; };
@@ -280,6 +281,7 @@
 		88F4171F26F9FC5600400594 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
 		90C83A98270C318400BAFA92 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
 		90C83AA4270C3A7200BAFA92 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
+		90F21FED27214456001732ED /* MessageBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBarController.swift; sourceTree = "<group>"; };
 		9A21857126C28AE8005BAAA1 /* AddAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressVC.swift; sourceTree = "<group>"; };
 		9A3A912326C128E90041D7D9 /* AddressListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListVC.swift; sourceTree = "<group>"; };
 		9A3A912626C133AB0041D7D9 /* SideMenuItemOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuItemOptions.swift; sourceTree = "<group>"; };
@@ -938,6 +940,7 @@
 				84EEA58F26E238260026558F /* Utilities.swift */,
 				84EEA58926E2340E0026558F /* Singleton.swift */,
 				9AC568C926B7C8020039FCCF /* Constants.swift */,
+				90F21FED27214456001732ED /* MessageBarController.swift */,
 				84EEA59A26E2478A0026558F /* LocationService.swift */,
 				844F7BE726E5D6FC0047DFF4 /* Messages.swift */,
 			);
@@ -1220,6 +1223,7 @@
 				9A5512C026C505C100DDA313 /* GasDoorOpenPopUpVC.swift in Sources */,
 				9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */,
 				88F4171926F9E01900400594 /* vehicalListResModel.swift in Sources */,
+				90F21FEE27214456001732ED /* MessageBarController.swift in Sources */,
 				84EEA58126E227BA0026558F /* UploadMediaModel.swift in Sources */,
 				8877AD5F27033E4E0083C883 /* memberPlanViewModel.swift in Sources */,
 				84EEA59B26E2478A0026558F /* LocationService.swift in Sources */,

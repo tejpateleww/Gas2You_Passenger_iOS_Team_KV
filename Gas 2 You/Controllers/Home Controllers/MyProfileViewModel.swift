@@ -27,13 +27,15 @@ class MyProfileViewModel{
         WebServiceSubClass.UpdateProfileInfo(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
             if status{
-                Toast.show(title: UrlConstant.Success, message: apiMessage, state: .success)
+                Utilities.ShowAlertOfSuccess(OfMessage: apiMessage)
+                //Toast.show(title: UrlConstant.Success, message: apiMessage, state: .success)
                 Singleton.sharedInstance.userProfilData = response?.data
                 Constants.userDefaults.setUserData()
                 let _ = Constants.userDefaults.getUserData()
                 self.myprofilevc?.setData()
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
+                //Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
             }
         })
     }

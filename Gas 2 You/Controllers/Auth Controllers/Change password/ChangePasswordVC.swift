@@ -76,7 +76,8 @@ extension ChangePasswordVC{
         }
         
         if let str = strTitle{
-            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: str)
+            //Toast.show(title: UrlConstant.Required, message: str, state: .failure)
             return false
         }
         

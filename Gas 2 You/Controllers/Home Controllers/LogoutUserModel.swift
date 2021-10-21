@@ -17,7 +17,8 @@ class LogoutUserModel{
             if status{
                 self.menuViewController?.DoLogoutFinal()
             }else{
-                Toast.show(title: UrlConstant.Failed, message: message, state: .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: message)
+//                Toast.show(title: UrlConstant.Failed, message: message, state: .failure)
             }
         }
     }

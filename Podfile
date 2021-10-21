@@ -15,8 +15,9 @@ target 'Gas 2 You' do
   pod 'MKProgress'
   pod 'GooglePlaces'
   pod 'GoogleSignIn','5.0.2'
-  pod 'FBSDKLoginKit','9.0.1'
+  pod 'FBSDKLoginKit'
   pod 'UIView-Shimmer', '~> 1.0'
+  pod 'SwiftMessages'
   
   pod 'Firebase/Messaging'
   pod 'Firebase/Crashlytics'

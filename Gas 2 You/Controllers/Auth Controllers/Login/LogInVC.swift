@@ -171,7 +171,8 @@ extension LogInVC{
         
         if(!checkEmailRequired.0)
         {
-            Toast.show(title: AppInfo.appName, message: "Please enter email", state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: "Please enter email")
+            //Toast.show(title: AppInfo.appName, message: "Please enter email", state: .failure)
             return checkEmailRequired.0
         }else if !checkEmail.0{
             strTitle = checkEmail.1
@@ -180,7 +181,8 @@ extension LogInVC{
         }
         //"Entered email address or username doesn't match with the records"
         if let str = strTitle{
-            Toast.show(title: UrlConstant.Required, message:str, state: .failure)
+            Utilities.ShowAlertOfValidation(OfMessage: str)
+//            Toast.show(title: UrlConstant.Required, message:str, state: .failure)
             return false
         }
         

@@ -32,8 +32,8 @@ class LoginViewModel {
                 }
                 AppDel.navigateToHome()
             } else {
-                
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
+//                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
             }
         }
     }
@@ -43,7 +43,9 @@ class LoginViewModel {
         
         WebServiceSubClass.SocialLoginApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
+           
+            
+//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
             if status{
                 Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
                 Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
@@ -55,12 +57,14 @@ class LoginViewModel {
                     Singleton.sharedInstance.api_Key = apikey
                     Constants.userDefaults.setValue(apikey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
                 }
-                
+                Utilities.ShowAlertOfSuccess(OfMessage: apiMessage)
                 if let userID = response?.data?.id{
                     Singleton.sharedInstance.userId = userID
                 }
                 
                 AppDel.navigateToHome()
+            }else{
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
             }
         }
     }
@@ -80,7 +84,8 @@ class LoginViewModel {
                 reqModel.country_code = "+91"
                 self.webserviceSocialLogin(reqModel: reqModel)
             } else {
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
+                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
+                //Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
             }
         })
     }
