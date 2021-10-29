@@ -23,6 +23,7 @@ class SignUpVC: BaseVC {
     @IBOutlet weak var txtConfirmPassword: ThemeTextfield!
     @IBOutlet weak var btnTerms: ThemeButton!
     @IBOutlet weak var btnPrivacy: ThemeButton!
+    @IBOutlet weak var btnSignup: ThemeButton!
     
     private let viewModel = SignupViewModel()
     var otpUserModel = SignupViewModel()

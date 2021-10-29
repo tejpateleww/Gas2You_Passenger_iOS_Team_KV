@@ -104,7 +104,7 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
             self.removeVehicle.webserviceofRemovevehical(vehicleId: self.arrVehicalList[indexPath.row].id ?? "", row: indexPath.row)
-            NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
+            
             // Perform your action here
             completion(true)
         }

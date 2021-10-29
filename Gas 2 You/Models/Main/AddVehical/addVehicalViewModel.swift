@@ -52,19 +52,22 @@ class AddVehicleGetViewModel{
     }
     func webserviceAddVehicle(_ reqModel: AddVehicleReqModel){
         Utilities.showHud()
+        self.addvehicle?.btnSave.showLoading()
         WebServiceSubClass.AddVehicleApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
+            self.addvehicle?.btnSave.hideLoading()
             if status{
-                let alert = UIAlertController(title: AppInfo.appName, message: apiMessage, preferredStyle: UIAlertController.Style.alert)
-                let OkAction = UIAlertAction(title:"OK" , style: .default) { (sct) in
+                Utilities.ShowAlertOfSuccess(OfMessage: apiMessage)
+//                let alert = UIAlertController(title: AppInfo.appName, message: apiMessage, preferredStyle: UIAlertController.Style.alert)
+//                let OkAction = UIAlertAction(title:"OK" , style: .default) { (sct) in
                     self.addvehicle?.navigationController?.popViewController(animated: true)
                     self.addvehicle?.delegateAdd.refreshVehicleScreen()
-                }
-                alert.addAction(OkAction)
-                AppDel.window?.rootViewController?.present(alert, animated: true, completion: nil)
+//                }
+//                alert.addAction(OkAction)
+//                AppDel.window?.rootViewController?.present(alert, animated: true, completion: nil)
                 
             }else{
-                Utilities.ShowAlert(OfMessage: "something went wrong")
+                Utilities.ShowAlert(OfMessage: apiMessage)
             }
         }
     }
@@ -76,18 +79,21 @@ class EditVehicleGetViewModel{
         webserviceEditVehicle(reqModel)
     }
     func webserviceEditVehicle(_ reqModel: EditVehicleReqModel){
+        self.addvehicle?.btnSave.showLoading()
         Utilities.showHud()
         WebServiceSubClass.EditVehicleApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
+            self.addvehicle?.btnSave.hideLoading()
             if status{
                 self.addvehicle?.setup()
-                let alert = UIAlertController(title: AppInfo.appName, message: apiMessage, preferredStyle: UIAlertController.Style.alert)
-                let OkAction = UIAlertAction(title:"OK" , style: .default) { (sct) in
+                Utilities.ShowAlertOfSuccess(OfMessage: apiMessage)
+//                let alert = UIAlertController(title: AppInfo.appName, message: apiMessage, preferredStyle: UIAlertController.Style.alert)
+//                let OkAction = UIAlertAction(title:"OK" , style: .default) { (sct) in
                     self.addvehicle?.navigationController?.popViewController(animated: true)
                     self.addvehicle?.delegateEdit.refreshVehicleScreenEdit()
-                }
-                alert.addAction(OkAction)
-                AppDel.window?.rootViewController?.present(alert, animated: true, completion: nil)
+//                }
+//                alert.addAction(OkAction)
+//                AppDel.window?.rootViewController?.present(alert, animated: true, completion: nil)
                 
             }else{
                 Utilities.ShowAlert(OfMessage: apiMessage)

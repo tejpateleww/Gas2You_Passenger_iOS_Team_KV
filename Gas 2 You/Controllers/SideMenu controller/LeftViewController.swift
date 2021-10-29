@@ -64,23 +64,13 @@ class LeftViewController: MenuViewController {
         menuContainerViewController?.hideSideMenu()
     }
     @IBAction func btnLogoutTap(_ sender: UIButton) {
-//        guard let menuContainerViewController = self.menuContainerViewController else {
-//            return
-//        }
+
         Utilities.showAlertWithTitleFromVC(vc: self, title: UrlConstant.Logout, message: UrlConstant.LogoutMessage, buttons: [UrlConstant.Ok,UrlConstant.Cancel], isOkRed: false) { (ind) in
 //            menuContainerViewController.hideSideMenu()
             if ind == 0{
                 self.callLogoutAPI()
             }
         }
-//        self.showAlertWithTitleFromVC( title: "Logout", message: "Are you sure want to Logout?", buttons: ["Cancel", "Logout"]) { index in
-//            menuContainerViewController.hideSideMenu()
-//            if index == 1 {
-//                AppDel.dologout()
-//            } else {
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -138,7 +138,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         lblGas.text = objBookingDetail?.mainServiceName
         lblCarName.text = makename + "(" + modelName + ")"
         lblAddress.text = objBookingDetail?.parkingLocation
-        lblTimeandDate.text = (objBookingDetail?.time ?? "") + " ," + (objBookingDetail?.date ?? "")
+        lblTimeandDate.text = (objBookingDetail?.time ?? "") + ", " + (objBookingDetail?.date ?? "")
         lblPlatNumber.text = objBookingDetail?.plateNumber
         lblItemName.text = objBookingDetail?.mainServiceName
         lbltotalGallon.text = (objBookingDetail?.totalGallon ?? "" ) + " Gallon"

@@ -55,11 +55,10 @@ class SlideToConfirmVC: UIViewController {
 extension SlideToConfirmVC: MTSlideToOpenDelegate {
     
     func mtSlideToOpenDelegateDidFinish(_ sender: MTSlideToOpenView) {
-        
-        dismiss(animated: false, completion: {
+//        dismiss(animated: false, completion: {
             if let completion = self.completion{
                 completion()
             }
-        })
+//        })
     }
 }

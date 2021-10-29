@@ -45,6 +45,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
     @IBOutlet weak var tblNonMemberPLan: UITableView!
     @IBOutlet weak var tblNonMemberPlanHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionTimeList: UICollectionView!
+    @IBOutlet weak var btnAddBooking: ThemeButton!
+    
     
     @IBOutlet weak var btnAddVehicleData: UIButton!
     
@@ -90,6 +92,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
             }
         }else{
             locationLabel.text = PlaceName
+            print("Location Found")
         }
         
         collectionViewSubService.delegate = self
@@ -115,7 +118,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate,UITextFieldDelegate {
         servicePicker.delegate = self
         servicePicker.dataSource = self
         dateFormatter.dateStyle = .long
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "MMM dd, yyyy"
         txtSelectedService.inputView = servicePicker
         txtSelectedVehicle.inputView = vehiclePicker
         txtSelectedService.delegate = self
@@ -156,9 +159,9 @@ override func viewWillAppear(_ animated: Bool) {
         txtSelectedVehicle.isHidden = true
         btnAddVehicleData.isHidden = false
     }
-    NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
+//    NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
-    NotificationCenter.default.removeObserver(self, name: notifRefreshHomeScreen, object: nil)
+//    NotificationCenter.default.removeObserver(self, name: notifRefreshHomeScreen, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
 }
 @objc func refreshVehicleList(){
@@ -280,6 +283,7 @@ func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: Str
         let slideToConfirmVC: SlideToConfirmVC = SlideToConfirmVC.instantiate(fromAppStoryboard: .Main)
         slideToConfirmVC.completion = {
             self.addBookingData.doAddBooking(customerid: Singleton.sharedInstance.userId, serviceid: self.serviceid, subserviceid: self.subserviceid, parkinglocation: self.locationLabel.text ?? "", lat: "\(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude)", lng: "\(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)", date: self.selectedDate.text ?? "", time: self.time, vehicleid: self.vehicalid, totalAmount: "0", addonid: self.addonid)
+            self.dismiss(animated: false, completion: nil)
         }
         slideToConfirmVC.modalPresentationStyle = .overFullScreen
         present(slideToConfirmVC, animated: false, completion: nil)

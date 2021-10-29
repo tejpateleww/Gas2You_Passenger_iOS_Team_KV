@@ -25,13 +25,27 @@ class OtpVC: BaseVC,OTPTextFieldDelegate,UITextFieldDelegate {
     var StringOTP = ""
     var textFieldsIndexes:[SingleDigitField:Int] = [:]
     var counter = 30
+    var countOfAstric = 0
     var timer = Timer()
     var otpUserModel = SignupViewModel()
     var registerRequestModel = RegisterRequestModel()
     var emailMessageString: String {
         let components = email.components(separatedBy: "@")
-        let result = self.hideMidChars(components.first!) + "@" + components.last!
-        return "Check your email address. We've sent you the code at \(result)"
+//        let result = self.hideMidChars(components.first!) + "@" + components.last!
+        if(components.first?.count ?? 0 <= 2){
+            
+        }else{
+            self.email = self.hideMidChars(components.first!) + "@" + components.last!
+            
+            print(self.email.countInstances(of: "*"))
+            self.countOfAstric = self.email.countInstances(of: "*")
+            if(self.countOfAstric != 5){
+                self.replaceEmail()
+            }
+        }
+        return "Check your email address. We've sent you the code at \(email)"
+        
+              
     }
     //MARK:- Life Cycle method
     override func viewDidLoad() {
@@ -65,7 +79,18 @@ class OtpVC: BaseVC,OTPTextFieldDelegate,UITextFieldDelegate {
             return [0, 1, value.count, value.count].contains(index) ? char : "*"
         })
     }
-    
+    func replaceEmail(){
+        self.countOfAstric = self.email.countInstances(of: "*")
+        if(self.countOfAstric == 5){return}
+        
+        if(self.countOfAstric < 5){
+            self.email = self.email.replaceCharacter(oldCharacter: "*", newCharacter: "**")
+            self.replaceEmail()
+        }else{
+            self.email = self.email.replacingLastOccurrenceOfString("*", with: "")
+            self.replaceEmail()
+        }
+    }
     
     func otpToastDisplay(){
         Utilities.showAlert(UrlConstant.OTPSent, message: self.StringOTP, vc: self)

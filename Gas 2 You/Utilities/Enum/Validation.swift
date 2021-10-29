@@ -64,7 +64,7 @@ struct RequiredFieldValidator: ValidatorConvertible {
         }
         return (true,"Your password can’t start or end with a blank space")
     }
-}
+} 
 struct UserNameValidator: ValidatorConvertible {
     private let fieldName: String
     

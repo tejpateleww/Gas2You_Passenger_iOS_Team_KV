@@ -28,8 +28,10 @@ class SignupViewModel {
     }
     func webserviceSignupOtp(reqModel: OTPRequestModel){
         Utilities.showHud()
+        self.signupmodel?.btnSignup.showLoading()
         WebServiceSubClass.otpRequestApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
+            self.signupmodel?.btnSignup.hideLoading()
             if status{
                 let otpvc = self.signupmodel?.storyboard?.instantiateViewController(identifier: OtpVC.className) as! OtpVC
                 otpvc.registerRequestModel = self.signupmodel!.registerRequestModel
@@ -41,9 +43,11 @@ class SignupViewModel {
         }
     }
     func callRegisterApi(reqModel:RegisterRequestModel){
+        self.signupvc?.btnVerify.showLoading()
         Utilities.showHud()
         WebServiceSubClass.RegisterApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
+            self.signupvc?.btnVerify.hideLoading()
             if status {
                 Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
                 Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)

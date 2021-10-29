@@ -45,31 +45,38 @@ extension NSAttributedString {
 
 
 extension String{
-    //    func currencyInputFormatting() -> String {
-    //
-    //        var number: NSNumber!
-    //               let formatter = NumberFormatter()
-    //               formatter.numberStyle = .currencyAccounting
-    //               formatter.currencySymbol = currency
-    //               formatter.maximumFractionDigits = 2
-    //               formatter.minimumFractionDigits = 2
-    //
-    //               var amountWithPrefix = self
-    //
-    //               // remove from String: "$", ".", ","
-    //               let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
-    //               amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.count), withTemplate: "")
-    //
-    //               let double = (amountWithPrefix as NSString).doubleValue
-    //               number = NSNumber(value: (double / 100))
-    //
-    //               // if first number is 0 or all numbers were deleted
-    //               guard number != 0 as NSNumber else {
-    //                   return ""
-    //               }
-    //
-    //               return formatter.string(from: number)!
-    //    }
+    func countInstances(of stringToFind: String) -> Int {
+          assert(!stringToFind.isEmpty)
+          var count = 0
+          var searchRange: Range<String.Index>?
+          while let foundRange = range(of: stringToFind, options: [], range: searchRange) {
+              count += 1
+              searchRange = Range(uncheckedBounds: (lower: foundRange.upperBound, upper: endIndex))
+          }
+          return count
+      }
+      
+      func replacingLastOccurrenceOfString(_ searchString: String,
+                  with replacementString: String,
+                  caseInsensitive: Bool = true) -> String
+          {
+              let options: String.CompareOptions
+              if caseInsensitive {
+                  options = [.backwards, .caseInsensitive]
+              } else {
+                  options = [.backwards]
+              }
+
+              if let range = self.range(of: searchString,
+                      options: options,
+                      range: nil,
+                      locale: nil) {
+
+                  return self.replacingCharacters(in: range, with: replacementString)
+              }
+              return self
+          }
+
     
 
     

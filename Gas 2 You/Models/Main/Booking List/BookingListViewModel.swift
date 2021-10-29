@@ -13,10 +13,7 @@ class BookingListViewModel{
         webserviceBookingList(reqModel)
     }
     func webserviceBookingList(_ reqModel: bookingListReqModel){
-//        Utilities.showHud()
         WebServiceSubClass.BookingList(reqModel: reqModel, completion: { (status, apiMessage, response, error)  in
-            
-//            Utilities.hideHud()
             if status{
                 self.myordervc?.myOrdersTV.isHidden = false
                 if let userData = response?.data{

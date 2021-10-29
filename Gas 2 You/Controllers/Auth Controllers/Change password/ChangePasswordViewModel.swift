@@ -13,9 +13,11 @@ class ChangePasswordViewModel {
     weak var changePasswordVC : ChangePasswordVC? = nil
     func webserviceChangePassword(reqModel: ChangePasswordReqModel){
         Utilities.showHud()
+        self.changePasswordVC?.btnSave.showLoading()
         self.changePasswordVC?.isApiCalling = true
         WebServiceSubClass.ChangePasswordApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
+            self.changePasswordVC?.btnSave.hideLoading()
             self.changePasswordVC?.isApiCalling = false
             if status{
                 self.clearAllFields()

@@ -147,10 +147,12 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     let upcomingCell = myOrdersTV.dequeueReusableCell(withIdentifier: UpcomingCell.className) as! UpcomingCell
                     upcomingCell.lblService.text = arrBookingList[indexPath.row].mainServiceName
                     upcomingCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
-                    upcomingCell.lblDateandTime.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
+                    upcomingCell.lblDateandTime.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     upcomingCell.lblVehicleDetail.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
                     upcomingCell.buttonCancel = {
+                        upcomingCell.btnCancel.showLoading()
                         self.cancelOrderData.cancelOrder(customerid: Singleton.sharedInstance.userId, order_id: self.arrBookingList[indexPath.row].id ?? "", row: indexPath.row)
+                        upcomingCell.btnCancel.hideLoading()
                     }
                     return upcomingCell
                 }else{
@@ -174,7 +176,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     let inprogressCell = myOrdersTV.dequeueReusableCell(withIdentifier: InProgressCell.className) as! InProgressCell
                     inprogressCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
                     inprogressCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
-                    inprogressCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
+                    inprogressCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     inprogressCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
                     inprogressCell.chatClick = {
                         let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
@@ -202,7 +204,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     let completedCell = myOrdersTV.dequeueReusableCell(withIdentifier: CompletedCell.className) as! CompletedCell
                     completedCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
                     completedCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
-                    completedCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + " ," + (arrBookingList[indexPath.row].date ?? "")
+                    completedCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     completedCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
                     if arrBookingList[indexPath.row].statusLabel == "Cancel" {
                         completedCell.lblTopHalf.text = "Cancelled"

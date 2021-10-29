@@ -11,9 +11,10 @@ class LoginViewModel {
     weak var loginvc : LogInVC? = nil
     func webserviceLogin(reqModel: LoginRequestModel){
         Utilities.showHud()
+        self.loginvc?.btnLogin.showLoading()
         WebServiceSubClass.LoginApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
-            
+            self.loginvc?.btnLogin.hideLoading()
             if status{
                 Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
                 Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)

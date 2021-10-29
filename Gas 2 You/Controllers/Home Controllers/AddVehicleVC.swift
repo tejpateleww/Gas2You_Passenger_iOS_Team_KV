@@ -81,6 +81,7 @@ class AddVehicleVC: BaseVC {
         txtEnterMake.delegate = self
         txtEnterModel.delegate = self
         txtEnterColor.delegate = self
+        txtLicencePlateNo.delegate = self
     }
     @objc func donePicker(){
         if self.txtEnterYear.isFirstResponder {
@@ -231,17 +232,15 @@ extension AddVehicleVC: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
-        
+        let currentString: NSString = txtLicencePlateNo.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
         let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
         let filtered = string.components(separatedBy: cs).joined(separator: "")
-        
-        return (string == filtered)
-        
         if textField != txtLicencePlateNo{
             return false
         }else{
-            return true
+            return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimitPASSWORD) : false
         }
-        
     }
 }

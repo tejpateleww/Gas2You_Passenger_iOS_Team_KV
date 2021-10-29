@@ -13,12 +13,6 @@ class MessageBarController: NSObject {
     
     
     func MessageShow(title : NSString , alertType : MessageView.Layout , alertTheme : Theme , TopBottom : Bool) -> Void {
-        //Hide All popup when present any one popup
-       // SwiftMessages.hideAll()
-        
-        //Top Bottom
-        //1 = Top , 2 = Bottom
-        
         let alert = MessageView.viewFromNib(layout: alertType)
         alert.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         alert.titleLabel?.numberOfLines = 0

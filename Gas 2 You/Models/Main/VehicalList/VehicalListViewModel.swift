@@ -73,6 +73,7 @@ class RemoveVehicleViewModel {
         WebServiceSubClass.DeleteVehicleApi(reqModel: vehicallistModel, completion: { (status, apiMessage, response, error)  in
             Utilities.hideHud()
             if status{
+                NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
 //                let indexpath = IndexPath(row: row, section: 0)
 //                self.mygaragevc?.arrVehicalList.remove(at: indexpath.row)
 //                self.mygaragevc?.vehicleListTV.deleteRows(at: [indexpath], with: .fade)

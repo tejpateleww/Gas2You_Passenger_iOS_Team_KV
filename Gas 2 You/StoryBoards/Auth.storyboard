@@ -880,6 +880,7 @@ and Pr</string>
                     <connections>
                         <outlet property="btnLoginNow" destination="4mt-R6-KhS" id="4Jf-t8-5h3"/>
                         <outlet property="btnPrivacy" destination="NjS-pr-J9T" id="PZJ-cm-Ath"/>
+                        <outlet property="btnSignup" destination="UGD-te-dZR" id="D35-ZR-bbQ"/>
                         <outlet property="btnTerms" destination="S1U-pV-TDT" id="659-zg-gtk"/>
                         <outlet property="txtConfirmPassword" destination="Qs3-JA-Zf8" id="UAG-I9-PAb"/>
                         <outlet property="txtEmail" destination="VYH-XU-YOU" id="LVh-e0-6vH"/>
@@ -1334,9 +1335,6 @@ and Pr</string>
             <point key="canvasLocation" x="4087" y="92"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="UXQ-3E-skk"/>
-    </designables>
     <resources>
         <image name="APPlE_LOGO" width="18" height="21"/>
         <image name="FB_LOGO" width="10.5" height="21"/>
