@@ -10,9 +10,7 @@ class nonMemberPlanViewMOdel{
     weak var homevc : HomeVC?
     weak var nonmemberplanvc : NonMemberPlanVC?
     func webserviceofNonMemberPlanList(){
-        Utilities.showHud()
         WebServiceSubClass.nonMemberPlanList(completion: { (status, message, response, error) in
-            Utilities.hideHud()
             if status{
                 if let model = response?.data{
                     self.homevc?.nonmemberplanlist = model
@@ -25,9 +23,7 @@ class nonMemberPlanViewMOdel{
         })
     }
     func webserviceofNonMemberList(){
-        Utilities.showHud()
         WebServiceSubClass.nonMemberPlanList(completion: { (status, message, response, error) in
-            Utilities.hideHud()
             if status{
                 if let model = response?.data{
                     self.nonmemberplanvc?.nonmemberplanlist = model

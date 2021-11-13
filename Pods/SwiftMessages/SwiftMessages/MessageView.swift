@@ -10,7 +10,8 @@ import UIKit
 
 /*
  */
-open class MessageView: BaseView, Identifiable, AccessibleMessage {
+open class
+MessageView: BaseView, Identifiable, AccessibleMessage {
     
     /*
      MARK: - Button tap handler
@@ -257,13 +258,13 @@ extension MessageView {
         let defaultForegroundColor: UIColor
         switch theme {
         case .info:
-            defaultBackgroundColor = UIColor(red: 225.0/255.0, green: 225.0/255.0, blue: 225.0/255.0, alpha: 1.0)
+            defaultBackgroundColor = #colorLiteral(red: 0.1098039216, green: 0.4588235294, blue: 0.7333333333, alpha: 1)//UIColor(red: 225.0/255.0, green: 225.0/255.0, blue: 225.0/255.0, alpha: 1.0)
             defaultForegroundColor = UIColor.darkText
         case .success:
-            defaultBackgroundColor = UIColor(red: 97.0/255.0, green: 161.0/255.0, blue: 23.0/255.0, alpha: 1.0)
+            defaultBackgroundColor = #colorLiteral(red: 0.3803921569, green: 0.631372549, blue: 0.09019607843, alpha: 1)//(red: 97.0/255.0, green: 161.0/255.0, blue: 23.0/255.0, alpha: 1.0)
             defaultForegroundColor = UIColor.white
         case .warning:
-            defaultBackgroundColor = UIColor(red: 246.0/255.0, green: 197.0/255.0, blue: 44.0/255.0, alpha: 1.0)
+            defaultBackgroundColor = #colorLiteral(red: 0.9803921569, green: 0.6431372549, blue: 0.1294117647, alpha: 1)//UIColor(red: 246.0/255.0, green: 197.0/255.0, blue: 44.0/255.0, alpha: 1.0)
             defaultForegroundColor = UIColor.white
         case .error:
             defaultBackgroundColor = UIColor(red: 249.0/255.0, green: 66.0/255.0, blue: 47.0/255.0, alpha: 1.0)

@@ -15,22 +15,14 @@ class AddBookingViewModel{
         webserviceAddBooking(reqModel)
     }
     func webserviceAddBooking(_ reqModel: AddBookingReqModel){
-        Utilities.showHud()
         self.addbooking?.btnAddBooking.showLoading()
         WebServiceSubClass.addBooking(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-            Utilities.hideHud()
             self.addbooking?.btnAddBooking.hideLoading()
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
             if status{
-                Utilities.ShowAlertOfSuccess(OfMessage: apiMessage)
-                //                    let alert = UIAlertController(title: AppInfo.appName, message: apiMessage, preferredStyle: UIAlertController.Style.alert)
-                //                    let OkAction = UIAlertAction(title:"OK" , style: .default) { (sct) in
                 let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
                 self.addbooking?.navigationController?.pushViewController(myOrdersVC, animated: true)
-                //                    }
-                //                    alert.addAction(OkAction)
-                //                    AppDel.window?.rootViewController?.present(alert, animated: true, completion: nil)
-            }else{
-                Utilities.ShowAlert(OfMessage: "something went wrong")
+            }
             }
         })
     }

@@ -215,7 +215,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     func refreshCompleteJobScreen(rate: Double, review: String) {
         vwCosmos.rating = rate
         lblUserReview.text = review
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
             self.bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: self.orderId))
             self.view.setTemplateWithSubviews(false)
         }

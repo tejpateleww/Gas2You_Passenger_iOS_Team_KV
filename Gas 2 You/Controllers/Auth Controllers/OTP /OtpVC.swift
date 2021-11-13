@@ -145,11 +145,10 @@ class OtpVC: BaseVC,OTPTextFieldDelegate,UITextFieldDelegate {
     @IBAction func btnVerifyAction(_ sender: Any) {
         let strTokenCode = "\(self.txtOtp[0].text ?? "" )\(self.txtOtp[1].text ?? "" )\(self.txtOtp[2].text ?? "" )\(self.txtOtp[3].text ?? "")"
         if strTokenCode == ""{
-            Utilities.ShowAlertOfValidation(OfMessage: "Please enter OTP.")
-            //Toast.show(title: UrlConstant.Failed, message: "Please enter OTP.", state: .failure)
+            Toast.show(title: UrlConstant.Required, message: "Please enter OTP.", state: .info)
         }else if(self.StringOTP != strTokenCode){
-            Utilities.ShowAlertOfValidation(OfMessage: "Please enter valid OTP.")
-            //Toast.show(title: UrlConstant.Failed, message: "Please enter valid OTP.", state: .failure)
+//            Utilities.ShowAlertOfrequired(OfMessage:"Please enter valid OTP.")
+            Toast.show(title: UrlConstant.Required, message: "Please enter valid OTP.", state: .info)
         }else{
             self.timer.invalidate()
             otpUserModel.callRegisterApi(reqModel: registerRequestModel)

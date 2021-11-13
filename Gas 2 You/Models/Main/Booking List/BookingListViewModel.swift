@@ -13,31 +13,45 @@ class BookingListViewModel{
         webserviceBookingList(reqModel)
     }
     func webserviceBookingList(_ reqModel: bookingListReqModel){
+        self.myordervc?.isApiProcessing = true
+        if(self.myordervc?.currentPage != 1){
+            self.myordervc?.pagingSpinner.startAnimating()
+        }
         WebServiceSubClass.BookingList(reqModel: reqModel, completion: { (status, apiMessage, response, error)  in
+            if(self.myordervc?.currentPage != 1){
+                self.myordervc?.pagingSpinner.stopAnimating()
+            }
+            self.myordervc?.isLoading = false
+            self.myordervc?.isApiProcessing = false
+            self.myordervc?.isReload = true
             if status{
-                self.myordervc?.myOrdersTV.isHidden = false
-                if let userData = response?.data{
-                    self.myordervc?.arrBookingList = userData
-                    DispatchQueue.main.async {
-                        self.myordervc?.myOrdersTV.reloadData()
-                        self.myordervc?.refreshControl.endRefreshing()
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.myordervc?.isLoading = false
-                        self.myordervc?.isReload = true
+                if(response?.data?.count == 0){
+                    if(self.myordervc?.currentPage == 1){
+                        self.myordervc?.arrBookingList = response?.data ?? []
+                        self.myordervc?.isStopPaging = true
+                    }else{
+                        print("End of Pagination...")
+                        self.myordervc?.isStopPaging = true
                     }
                 }else{
-                    Utilities.ShowAlert(OfMessage: apiMessage)
+                    if(self.myordervc?.currentPage == 1){
+                        self.myordervc?.arrBookingList = response?.data ?? []
+                    }else{
+                        self.myordervc?.arrBookingList.append(contentsOf: response?.data ?? [])
+                    }
                 }
-            }
-            else
-            {
+                self.myordervc?.myOrdersTV.reloadData()
+                DispatchQueue.main.async {
+                    self.myordervc?.refreshControl.endRefreshing()
+                }
+            }else{
                 Utilities.ShowAlert(OfMessage: apiMessage)
-                print(error)
             }
         })
     }
 }
+
+
 class CancelOrder{
     var cancelOrder : MyOrdersVC?
     func cancelOrder(customerid: String, order_id: String,row:Int) {
@@ -45,11 +59,9 @@ class CancelOrder{
         webserviceCancelOrder(reqModel, row: row)
     }
     func webserviceCancelOrder(_ reqModel: CancelOrderReqModel,row:Int){
-        Utilities.showHud()
         WebServiceSubClass.cancelOrder(reqModel: reqModel, completion: { (status, apiMessage, response, error)  in
-            Utilities.hideHud()
             if status{
-                self.cancelOrder?.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "0", page: "1")
+                self.cancelOrder?.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "0", page: "\(self.cancelOrder?.currentPage ?? 0)")
             }
             else
             {
@@ -62,9 +74,7 @@ class CancelOrder{
 class bookingDetailsViewModel{
     var BookingDetails : CompleteJobVC?
     func webservicebookingDetails(_ reqModel: bookingDetailReqModel){
-        Utilities.showHud()
         WebServiceSubClass.BookingDetail(reqModel: reqModel, completion: { (status, apiMessage, response, error)  in
-            Utilities.hideHud()
             if status{
                 if let userData = response?.data{
                     self.BookingDetails?.objBookingDetail = userData

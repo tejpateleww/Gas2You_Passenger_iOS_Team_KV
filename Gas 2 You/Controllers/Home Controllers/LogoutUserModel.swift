@@ -11,14 +11,15 @@ import UIKit
 class LogoutUserModel{
     
     weak var menuViewController : LeftViewController?
-   
+    
     func webserviceForLogout(){
+        Utilities.showHud()
         WebServiceSubClass.Logout { (status, message, response, error) in
-            if status{
-                self.menuViewController?.DoLogoutFinal()
-            }else{
-                Utilities.ShowAlertOfValidation(OfMessage: message)
-//                Toast.show(title: UrlConstant.Failed, message: message, state: .failure)
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: message, state: status ? .success : .failure){
+                Utilities.hideHud()
+                if status{
+                    self.menuViewController?.DoLogoutFinal()
+                }
             }
         }
     }

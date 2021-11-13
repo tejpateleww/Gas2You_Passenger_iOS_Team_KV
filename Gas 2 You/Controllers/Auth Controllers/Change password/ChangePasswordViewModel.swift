@@ -12,23 +12,19 @@ class ChangePasswordViewModel {
 
     weak var changePasswordVC : ChangePasswordVC? = nil
     func webserviceChangePassword(reqModel: ChangePasswordReqModel){
-        Utilities.showHud()
         self.changePasswordVC?.btnSave.showLoading()
         self.changePasswordVC?.isApiCalling = true
         WebServiceSubClass.ChangePasswordApi(reqModel: reqModel) { (status, apiMessage, response, error) in
-            Utilities.hideHud()
             self.changePasswordVC?.btnSave.hideLoading()
             self.changePasswordVC?.isApiCalling = false
-            if status{
-                self.clearAllFields()
-                Utilities.showAlertAction(AppInfo.appName, message: apiMessage, vc: self.changePasswordVC!) {
-                    self.changePasswordVC?.popBack()
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+                if status{
+                    self.clearAllFields()
+                    Utilities.showAlertAction(AppInfo.appName, message: apiMessage, vc: self.changePasswordVC!) {
+                        self.changePasswordVC?.popBack()
+                    }
                 }
-            }else{
-                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
-                //Toast.show(title:UrlConstant.Failed, message: apiMessage, state: .failure)
             }
-    
         }
     }
 

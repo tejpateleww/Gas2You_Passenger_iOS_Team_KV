@@ -71,8 +71,7 @@ class MyProfileVC: BaseVC {
         }
         
         if let str = strTitle{
-            Utilities.ShowAlertOfValidation(OfMessage: str)
-            //Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            Toast.show(title: UrlConstant.Required, message: str, state: .info)
             return false
         }
         

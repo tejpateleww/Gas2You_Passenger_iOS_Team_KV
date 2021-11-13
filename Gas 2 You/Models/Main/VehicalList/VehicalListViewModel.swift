@@ -14,9 +14,7 @@ class VehicalListViewModel{
     func webserviceofgetvehicalList(){
         let vehicallistModel = vehicalListReqModel()
         vehicallistModel.customerid = Singleton.sharedInstance.userId
-        Utilities.showHud()
         WebServiceSubClass.vehicalList(reqModel: vehicallistModel) { (status, apiMessage, response, error)  in
-            Utilities.hideHud()
             if status{
                 // print(response)
                 if let userdevice =  response?.data
@@ -37,9 +35,7 @@ class VehicalListViewModel{
     func webserviceofgetvehicalListforHome(){
         let vehicallistModel = vehicalListReqModel()
         vehicallistModel.customerid = Singleton.sharedInstance.userId
-        Utilities.showHud()
         WebServiceSubClass.vehicalList(reqModel: vehicallistModel) { (status, apiMessage, response, error)  in
-            Utilities.hideHud()
             if status{
                 // print(response)
                 if let userdevice =  response?.data
@@ -69,9 +65,7 @@ class RemoveVehicleViewModel {
         let vehicallistModel = deleteVehicleReqModel()
         vehicallistModel.customerid = Singleton.sharedInstance.userId
         vehicallistModel.vehicleid = vehicleId
-        Utilities.showHud()
         WebServiceSubClass.DeleteVehicleApi(reqModel: vehicallistModel, completion: { (status, apiMessage, response, error)  in
-            Utilities.hideHud()
             if status{
                 NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
 //                let indexpath = IndexPath(row: row, section: 0)

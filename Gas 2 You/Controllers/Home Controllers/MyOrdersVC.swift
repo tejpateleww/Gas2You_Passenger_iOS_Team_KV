@@ -21,7 +21,10 @@ class MyOrdersVC: BaseVC {
     var cancelOrderData = CancelOrder()
     let refreshControl = UIRefreshControl()
     var isReload = false
-    
+    var isApiProcessing = false
+    var currentPage = 1
+    var isStopPaging = false
+    var pagingSpinner = UIActivityIndicatorView()
     @IBOutlet weak var myOrdersTV: UITableView!
     @IBOutlet weak var btnUpcoming: ThemeButton!
     @IBOutlet weak var vwUpcomingLine: UIView!
@@ -38,10 +41,11 @@ class MyOrdersVC: BaseVC {
         myOrdersTV.delegate = self
         myOrdersTV.dataSource = self
         BookingList.myordervc = self
-        BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "1")
+        addTableFooter()
+        BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         NotificationCenter.default.post(name: notifRefreshHomeScreen, object: nil)
         btnUpcomingTap(btnUpcoming)
-        
+        myOrdersTV.register(UINib(nibName:"shimmerCell", bundle: nil), forCellReuseIdentifier: "shimmerCell")
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Orders", controller: self)
         
         let upcomingCellNib = UINib(nibName: UpcomingCell.className, bundle: nil)
@@ -57,17 +61,23 @@ class MyOrdersVC: BaseVC {
         
         isLoading = true
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.isLoading = false
-//        }
-    }
     @objc func refresh(_ sender: AnyObject) {
-        BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "1")
+        arrBookingList.removeAll()
+        self.currentPage = 1
+        self.isStopPaging = false
+        self.isReload = false
+        self.isLoading = true
+        BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
+    }
+    func addTableFooter(){
+        self.pagingSpinner = UIActivityIndicatorView(style: .medium)
+        self.pagingSpinner.stopAnimating()
+        self.pagingSpinner.color = UIColor.init(hexString: "#1F79CD")
+        self.pagingSpinner.hidesWhenStopped = true
+        self.myOrdersTV.tableFooterView = self.pagingSpinner
+        self.myOrdersTV.tableFooterView?.isHidden = true
     }
     @IBAction func btnUpcomingTap(_ sender: ThemeButton) {
-        self.myOrdersTV.isHidden = true
         
         NavbarrightButton()
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
@@ -76,18 +86,19 @@ class MyOrdersVC: BaseVC {
         vwInProgressLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwCompletedLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
+        self.currentPage = 1
+        isStopPaging = false
         isInProcess = 0
         isLoading = true
         isReload = false
         cancelOrderData.cancelOrder = self
         if arrBookingList.filter({$0.status == "0"}).count == 0{
-            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "0", page: "1")
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
         myOrdersTV.reloadData()
     }
     
     @IBAction func btnInProgressTap(_ sender: ThemeButton) {
-        self.myOrdersTV.isHidden = true
         NavbarrightButton()
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwInProgressLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
@@ -95,28 +106,31 @@ class MyOrdersVC: BaseVC {
         vwUpcomingLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwCompletedLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
+        self.currentPage = 1
+        isStopPaging = false
         isInProcess = 1
         isLoading = true
         isReload = false
         if arrBookingList.filter({$0.status == "1"}).count == 0{
-            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
             myOrdersTV.reloadData()
     }
     
     @IBAction func btnCompletedTap(_ sender: ThemeButton) {
-        self.myOrdersTV.isHidden = true
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwCompletedLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
         btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwInProgressLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwUpcomingLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
+        self.currentPage = 1
+        isStopPaging = false
         isInProcess = 2
         isLoading = true
         isReload = false
         if arrBookingList.filter({$0.status == "2"}).count == 0{
-            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
         myOrdersTV.reloadData()
     }
@@ -136,12 +150,12 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         
         if isInProcess == 0 {
             if !isReload{
-                let upcomingCell = myOrdersTV.dequeueReusableCell(withIdentifier: UpcomingCell.className) as! UpcomingCell
-                upcomingCell.lblService.text = "dummy data"
-                upcomingCell.lblLocation.text = "dummy data"
-                upcomingCell.lblDateandTime.text = "dummy data"
-                upcomingCell.lblVehicleDetail.text = "dummy data"
-                return upcomingCell
+                let shimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: shimmerCell.className) as! shimmerCell
+                shimmerCell.lblService.text = "dummy data"
+                shimmerCell.lblLocation.text = "dummy data"
+                shimmerCell.lblDateandTime.text = "dummy data"
+                shimmerCell.lblVehicleDetail.text = "dummy data"
+                return shimmerCell
             }else{
                 if arrBookingList.count != 0{
                     let upcomingCell = myOrdersTV.dequeueReusableCell(withIdentifier: UpcomingCell.className) as! UpcomingCell
@@ -150,9 +164,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     upcomingCell.lblDateandTime.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     upcomingCell.lblVehicleDetail.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
                     upcomingCell.buttonCancel = {
-                        upcomingCell.btnCancel.showLoading()
                         self.cancelOrderData.cancelOrder(customerid: Singleton.sharedInstance.userId, order_id: self.arrBookingList[indexPath.row].id ?? "", row: indexPath.row)
-                        upcomingCell.btnCancel.hideLoading()
                     }
                     return upcomingCell
                 }else{
@@ -165,12 +177,12 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             }
         } else if isInProcess == 1 {
             if !isReload{
-                let inprogressCell = myOrdersTV.dequeueReusableCell(withIdentifier: InProgressCell.className) as! InProgressCell
-                inprogressCell.lblServices.text = "dummy data"
-                inprogressCell.lblLocation.text = "dummy data"
-                inprogressCell.lblTimeandDate.text = "dummy data"
-                inprogressCell.lblVehicleDetails.text = "dummy data"
-                return inprogressCell
+                let shimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: shimmerCell.className) as! shimmerCell
+                shimmerCell.lblService.text = "dummy data"
+                shimmerCell.lblLocation.text = "dummy data"
+                shimmerCell.lblDateandTime.text = "dummy data"
+                shimmerCell.lblVehicleDetail.text = "dummy data"
+                return shimmerCell
             }else{
                 if arrBookingList.count != 0{
                     let inprogressCell = myOrdersTV.dequeueReusableCell(withIdentifier: InProgressCell.className) as! InProgressCell
@@ -193,12 +205,12 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             }
         } else if isInProcess == 2 {
             if !isReload{
-                let completedCell = myOrdersTV.dequeueReusableCell(withIdentifier: CompletedCell.className) as! CompletedCell
-                completedCell.lblServices.text = "dummy data"
-                completedCell.lblLocation.text = "dummy data"
-                completedCell.lblTimeandDate.text = "dummy data"
-                completedCell.lblVehicleDetails.text = "dummy data"
-                return completedCell
+                let shimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: shimmerCell.className) as! shimmerCell
+                shimmerCell.lblService.text = "dummy data"
+                shimmerCell.lblLocation.text = "dummy data"
+                shimmerCell.lblDateandTime.text = "dummy data"
+                shimmerCell.lblVehicleDetail.text = "dummy data"
+                return shimmerCell
             }else{
                 if arrBookingList.count != 0{
                     let completedCell = myOrdersTV.dequeueReusableCell(withIdentifier: CompletedCell.className) as! CompletedCell
@@ -268,5 +280,12 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (self.myOrdersTV.contentOffset.y >= (self.myOrdersTV.contentSize.height - self.myOrdersTV.frame.size.height)) && self.isStopPaging == false && self.isApiProcessing == false {
+            print("call from scroll..")
+            self.currentPage += 1
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
+        }
     }
 }

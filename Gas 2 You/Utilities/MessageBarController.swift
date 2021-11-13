@@ -12,7 +12,7 @@ import SwiftMessages
 class MessageBarController: NSObject {
     
     
-    func MessageShow(title : NSString , alertType : MessageView.Layout , alertTheme : Theme , TopBottom : Bool) -> Void {
+    func MessageShow(title : NSString ,bodylabel:NSString, alertType : MessageView.Layout , alertTheme : Theme , TopBottom : Bool) -> Void {
         let alert = MessageView.viewFromNib(layout: alertType)
         alert.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         alert.titleLabel?.numberOfLines = 0
@@ -27,7 +27,7 @@ class MessageBarController: NSObject {
         
         //Set title value
 //       alertTheme.hashValue
-        alert.configureContent(title: alertTheme == .success ? "Success".Localized() : "", body: title as String)
+        alert.configureContent(title: title as String, body: bodylabel as String)
 
         var successConfig = SwiftMessages.Config()
         

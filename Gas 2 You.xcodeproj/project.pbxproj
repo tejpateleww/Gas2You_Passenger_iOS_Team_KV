@@ -88,6 +88,8 @@
 		8877AD5D2703358A0083C883 /* membershipplanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5B2703358A0083C883 /* membershipplanResModel.swift */; };
 		8877AD5F27033E4E0083C883 /* memberPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */; };
 		888F2FBA2701E31B008DB515 /* bookingDetailResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888F2FB82701E31A008DB515 /* bookingDetailResModel.swift */; };
+		88995D38273E60880093B497 /* shimmerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88995D36273E60880093B497 /* shimmerCell.swift */; };
+		88995D39273E60880093B497 /* shimmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88995D37273E60880093B497 /* shimmerCell.xib */; };
 		889AB3AD2702E3A7003A1955 /* rateResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889AB3AC2702E3A7003A1955 /* rateResModel.swift */; };
 		889AB3B02702E553003A1955 /* rateandreviewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889AB3AF2702E553003A1955 /* rateandreviewmodel.swift */; };
 		88AD5BB9270725D8000CFA25 /* NoDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD5BB7270725D8000CFA25 /* NoDataCell.swift */; };
@@ -260,6 +262,8 @@
 		8877AD5B2703358A0083C883 /* membershipplanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = membershipplanResModel.swift; sourceTree = "<group>"; };
 		8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memberPlanViewModel.swift; sourceTree = "<group>"; };
 		888F2FB82701E31A008DB515 /* bookingDetailResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bookingDetailResModel.swift; sourceTree = "<group>"; };
+		88995D36273E60880093B497 /* shimmerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shimmerCell.swift; sourceTree = "<group>"; };
+		88995D37273E60880093B497 /* shimmerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = shimmerCell.xib; sourceTree = "<group>"; };
 		889AB3AC2702E3A7003A1955 /* rateResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateResModel.swift; sourceTree = "<group>"; };
 		889AB3AF2702E553003A1955 /* rateandreviewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rateandreviewmodel.swift; sourceTree = "<group>"; };
 		88AD5BB7270725D8000CFA25 /* NoDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataCell.swift; sourceTree = "<group>"; };
@@ -853,6 +857,8 @@
 				9A873B5026C6273D004C37CF /* SideMenu controller */,
 				9A5512BE26C5057600DDA313 /* Popups Controllers */,
 				9AC568C426B7C2450039FCCF /* Home Controllers */,
+				88995D36273E60880093B497 /* shimmerCell.swift */,
+				88995D37273E60880093B497 /* shimmerCell.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1046,6 +1052,7 @@
 				9A4A8B9A26C3E70500966B2D /* InProgressCell.xib in Resources */,
 				18F4012A26CBC8F3002C1ABB /* Poppins-Bold.ttf in Resources */,
 				18F4012B26CBC8F3002C1ABB /* Poppins-Black.ttf in Resources */,
+				88995D39273E60880093B497 /* shimmerCell.xib in Resources */,
 				18F4012726CBC8F3002C1ABB /* OFL.txt in Resources */,
 				88AD5BBA270725D8000CFA25 /* NoDataCell.xib in Resources */,
 				18F4012F26CBC8F3002C1ABB /* Poppins-MediumItalic.ttf in Resources */,
@@ -1227,6 +1234,7 @@
 				84EEA58126E227BA0026558F /* UploadMediaModel.swift in Sources */,
 				8877AD5F27033E4E0083C883 /* memberPlanViewModel.swift in Sources */,
 				84EEA59B26E2478A0026558F /* LocationService.swift in Sources */,
+				88995D38273E60880093B497 /* shimmerCell.swift in Sources */,
 				886DF1B926FC347100A36B51 /* LogoutUserModel.swift in Sources */,
 				9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */,
 				88AD5BC227073364000CFA25 /* appleLoginResModel.swift in Sources */,

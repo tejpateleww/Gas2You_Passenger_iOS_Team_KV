@@ -9,32 +9,31 @@ import Foundation
 class ServiceListViewModel{
     weak var serviceList : HomeVC?
     func webserviceofserviceList(){
-        Utilities.showHud()
         WebServiceSubClass.serviceList(completion: { (status, message, response, error) in
-            Utilities.hideHud()
             if status{
                 if let model = response?.data{
                     self.serviceList?.serviceList = model
-                    self.serviceList?.txtSelectedService.text = model[0].name
-                    self.serviceList?.priceTagLabel.text = CurrencySymbol + (model[0].price ?? "")
-                    self.serviceList?.serviceid = model[0].id ?? ""
-                    self.serviceList?.SelectIndex = 0
-//                    self.serviceList?.LblOctane.text = model[0].name
-                    if model[0].subServices?.count != 0{
-                        self.serviceList?.selectedIndex = 0
-                        self.serviceList?.ViewForShowPrice.isHidden = false
-                        self.serviceList?.collectionViewSubService.reloadData()
-                    }else{
-                        self.serviceList?.LblOctane.text = model[0].name
-                        self.serviceList?.ViewForShowPrice.isHidden = true
-                        self.serviceList?.serviceid = model[0].id ?? ""
+                    if model.count != 0{
+                        self.serviceList?.txtSelectedService.text = model[0].name
                         self.serviceList?.priceTagLabel.text = CurrencySymbol + (model[0].price ?? "")
+                        self.serviceList?.serviceid = model[0].id ?? ""
+                        self.serviceList?.SelectIndex = 0
+                        if model[0].subServices?.count != 0{
+                            self.serviceList?.selectedIndex = 0
+                            self.serviceList?.ViewForShowPrice.isHidden = false
+                            self.serviceList?.collectionViewSubService.reloadData()
+                        }else{
+                            self.serviceList?.LblOctane.text = model[0].name
+                            self.serviceList?.ViewForShowPrice.isHidden = true
+                            self.serviceList?.serviceid = model[0].id ?? ""
+                            self.serviceList?.priceTagLabel.text = CurrencySymbol + (model[0].price ?? "")
+                        }
+                    }else{
+                        self.serviceList?.gasServiceView.isHidden = true
                     }
-                    
                     if let bodyDic = try? response.asDictionary(){
                         print("res: \(bodyDic)")
                     }
-
                 }
             }else{
                 Utilities.ShowAlert(OfMessage: "No Data Found")

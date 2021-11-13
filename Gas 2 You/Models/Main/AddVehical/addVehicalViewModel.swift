@@ -12,9 +12,7 @@ class addVehicalViewModel{
     weak var addvehicle : AddVehicleVC?
     
     func webserviceofmakeandmodel(){
-        Utilities.showHud()
         WebServiceSubClass.makeandmodelList(completion: { (status, message, response, error) in
-            Utilities.hideHud()
             if status{
                 if let model = response?.data{
                     self.addvehicle?.makeVal = model
@@ -29,9 +27,7 @@ class addVehicalViewModel{
 class VehicleColorListViewModel{
     weak var Vehiclecolor : AddVehicleVC?
     func webserviceofcolorList(){
-        Utilities.showHud()
         WebServiceSubClass.vehicleColorList(completion: { (status, message, response, error) in
-            Utilities.hideHud()
             if status{
                 if let model = response?.data{
                     self.Vehiclecolor?.colorVal = model
@@ -51,23 +47,14 @@ class AddVehicleGetViewModel{
         webserviceAddVehicle(reqModel)
     }
     func webserviceAddVehicle(_ reqModel: AddVehicleReqModel){
-        Utilities.showHud()
         self.addvehicle?.btnSave.showLoading()
         WebServiceSubClass.AddVehicleApi(reqModel: reqModel) { (status, apiMessage, response, error) in
-            Utilities.hideHud()
             self.addvehicle?.btnSave.hideLoading()
-            if status{
-                Utilities.ShowAlertOfSuccess(OfMessage: apiMessage)
-//                let alert = UIAlertController(title: AppInfo.appName, message: apiMessage, preferredStyle: UIAlertController.Style.alert)
-//                let OkAction = UIAlertAction(title:"OK" , style: .default) { (sct) in
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+                if status{
                     self.addvehicle?.navigationController?.popViewController(animated: true)
                     self.addvehicle?.delegateAdd.refreshVehicleScreen()
-//                }
-//                alert.addAction(OkAction)
-//                AppDel.window?.rootViewController?.present(alert, animated: true, completion: nil)
-                
-            }else{
-                Utilities.ShowAlert(OfMessage: apiMessage)
+                }
             }
         }
     }
@@ -80,23 +67,14 @@ class EditVehicleGetViewModel{
     }
     func webserviceEditVehicle(_ reqModel: EditVehicleReqModel){
         self.addvehicle?.btnSave.showLoading()
-        Utilities.showHud()
         WebServiceSubClass.EditVehicleApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-            Utilities.hideHud()
             self.addvehicle?.btnSave.hideLoading()
-            if status{
-                self.addvehicle?.setup()
-                Utilities.ShowAlertOfSuccess(OfMessage: apiMessage)
-//                let alert = UIAlertController(title: AppInfo.appName, message: apiMessage, preferredStyle: UIAlertController.Style.alert)
-//                let OkAction = UIAlertAction(title:"OK" , style: .default) { (sct) in
+            Toast.show(title:status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+                if status{
+                    self.addvehicle?.setup()
                     self.addvehicle?.navigationController?.popViewController(animated: true)
                     self.addvehicle?.delegateEdit.refreshVehicleScreenEdit()
-//                }
-//                alert.addAction(OkAction)
-//                AppDel.window?.rootViewController?.present(alert, animated: true, completion: nil)
-                
-            }else{
-                Utilities.ShowAlert(OfMessage: apiMessage)
+                }
             }
         })
     }

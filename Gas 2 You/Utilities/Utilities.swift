@@ -314,30 +314,30 @@ class Utilities:NSObject{
         //        let size = CGSize(width: 40, height: 40)
         //        let activityData = ActivityData(size: size, message: "", messageFont: nil, messageSpacing: nil, type: .lineScale, color: colors.btnColor.value, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: UIColor.black.withAlphaComponent(0.5), textColor: nil)
         //        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
-//        DispatchQueue.main.async {
-//
-//            MKProgress.config.backgroundColor = .white
-//            //        let vwbackground = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
-//            MKProgress.config.hudType = .radial
-//
-//            MKProgress.config.hudColor = .white
-//            MKProgress.config.width = 80.0
-//            MKProgress.config.height = 80.0
-//            MKProgress.config.circleRadius = 30.0
-//            MKProgress.config.cornerRadius = 16.0
-//            MKProgress.config.circleBorderColor = ThemeColorEnum.ThemeLoader.rawValue
-//            MKProgress.config.circleBorderWidth = 3.0
-//            MKProgress.config.backgroundColor = .clear
-//            MKProgress.show()
-//
-//        }
+        //        DispatchQueue.main.async {
+        //
+                    MKProgress.config.backgroundColor = .white
+                    //        let vwbackground = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+                    MKProgress.config.hudType = .radial
+        
+                    MKProgress.config.hudColor = .white
+                    MKProgress.config.width = 80.0
+                    MKProgress.config.height = 80.0
+                    MKProgress.config.circleRadius = 30.0
+                    MKProgress.config.cornerRadius = 16.0
+                    MKProgress.config.circleBorderColor = ThemeColorEnum.ThemeLoader.rawValue
+                    MKProgress.config.circleBorderWidth = 3.0
+                    MKProgress.config.backgroundColor = .clear
+                    MKProgress.show()
+        //
+        //        }
     }
     
     class func hideHud()
     {
         //        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
 //        DispatchQueue.main.async {
-//            MKProgress.hide()
+            MKProgress.hide()
 //
 //        }
     }
@@ -377,23 +377,6 @@ class Utilities:NSObject{
         alertWindow.windowLevel = UIWindow.Level.alert + 1;
         alertWindow.makeKeyAndVisible()
         alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
-    }
-    //Mark :- Toast
-    class func ShowAlertOfValidation(OfMessage : String) {
-        let messageBar = MessageBarController()
-
-        messageBar.MessageShow(title: OfMessage as NSString, alertType: MessageView.Layout.cardView, alertTheme: .error, TopBottom: true)
-    }
-    class func ShowAlertOfSuccess(OfMessage : String) {
-        let messageBar = MessageBarController()
-
-        messageBar.MessageShow(title: OfMessage as NSString, alertType: MessageView.Layout.cardView, alertTheme: .success, TopBottom: true)
-    }
-    
-    class func ShowToastMessage(OfMessage : String) {
-        let messageBar = MessageBarController()
-
-        messageBar.MessageShow(title: OfMessage as NSString, alertType: MessageView.Layout.cardView, alertTheme: .success, TopBottom: true)
     }
     class func getReadableDate(timeStamp: TimeInterval , isFromTime : Bool) -> String? {
         let date = Date(timeIntervalSinceNow: timeStamp)//Date(timeIntervalSince1970: timeStamp)

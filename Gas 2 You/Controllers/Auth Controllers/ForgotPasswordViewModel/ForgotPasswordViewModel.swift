@@ -12,17 +12,13 @@ class ForgotPasswordViewModel {
     weak var forgotPasswordVC : ForgotPasswordVC? = nil
     
     func webserviceForgotPassword(reqModel:ForgotPasswordReqModel){
-        Utilities.showHud()
         self.forgotPasswordVC?.btnSubmit.showLoading()
         WebServiceSubClass.ForgotPasswordApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-            Utilities.hideHud()
             self.forgotPasswordVC?.btnSubmit.hideLoading()
-            if status{
-                Utilities.ShowAlertOfSuccess(OfMessage: "Reset password link sent to your email address")
-                //self.emit(.showToast(title: UrlConstant.Success, message: "Reset password link sent to your email address", state: .success))
-            }else{
-                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
-                //self.emit(.showToast(title: UrlConstant.Failed, message: apiMessage, state: .failure))
+            Toast.show(title: status ? UrlConstant.Success :  UrlConstant.Failed, message: status ?  "Reset password link sent to your email address" : apiMessage, state: status ? .success :  .failure){
+                if status{
+                    
+                }
             }
         })
     }

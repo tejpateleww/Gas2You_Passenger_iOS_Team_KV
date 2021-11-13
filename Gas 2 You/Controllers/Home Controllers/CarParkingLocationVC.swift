@@ -140,8 +140,8 @@ class CarParkingLocationVC: BaseVC {
         
         // Specify a filter.
         let filter = GMSAutocompleteFilter()
-        filter.type = .address
-        autocompleteController.autocompleteFilter = filter
+      //  filter.type = .address
+      //  autocompleteController.autocompleteFilter = filter
         
         // Display the autocomplete view controller.
         present(autocompleteController, animated: true, completion: nil)

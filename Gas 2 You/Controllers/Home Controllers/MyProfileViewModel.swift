@@ -23,19 +23,14 @@ class MyProfileViewModel{
         }
     
     func webserviceEditProfile(_ reqModel: UpdateProfileRequestModel){
-        Utilities.showHud()
         WebServiceSubClass.UpdateProfileInfo(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-            Utilities.hideHud()
-            if status{
-                Utilities.ShowAlertOfSuccess(OfMessage: apiMessage)
-                //Toast.show(title: UrlConstant.Success, message: apiMessage, state: .success)
-                Singleton.sharedInstance.userProfilData = response?.data
-                Constants.userDefaults.setUserData()
-                let _ = Constants.userDefaults.getUserData()
-                self.myprofilevc?.setData()
-            }else{
-                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
-                //Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+            Toast.show(title: status ? UrlConstant.Success :  UrlConstant.Failed, message: apiMessage, state: status ? .success :  .failure){
+                if status{
+                    Singleton.sharedInstance.userProfilData = response?.data
+                    Constants.userDefaults.setUserData()
+                    let _ = Constants.userDefaults.getUserData()
+                    self.myprofilevc?.setData()
+                }
             }
         })
     }

@@ -11,9 +11,7 @@ weak var memberplanvc : MemberPlanVC?
 func webserviceofMemberPlanList(){
     let memberModel = memberListReqModel()
     memberModel.customer_id = Singleton.sharedInstance.userId
-    Utilities.showHud()
     WebServiceSubClass.MemberPlanList(reqModel: memberModel , completion: { (status, message, response, error) in
-        Utilities.hideHud()
         if status{
             if let model = response?.data{
                 self.memberplanvc?.memberPlanList = model

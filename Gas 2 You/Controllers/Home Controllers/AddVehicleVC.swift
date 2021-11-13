@@ -47,7 +47,7 @@ class AddVehicleVC: BaseVC {
     var make = ""
     var model = ""
     var color = ""
-    
+    var modelSelectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,10 +72,6 @@ class AddVehicleVC: BaseVC {
         colorPicker.delegate = self
         colorPicker.dataSource = self
         dismissPickerView()
-        txtEnterYear.inputView = yearPicker
-        txtEnterMake.inputView = makePicker
-        txtEnterModel.inputView = modelPicker
-        txtEnterColor.inputView = colorPicker
         yearPicker.addDoneOnKeyboardWithTarget(self, action: #selector(self.donePicker))
         txtEnterYear.delegate = self
         txtEnterMake.delegate = self
@@ -86,26 +82,55 @@ class AddVehicleVC: BaseVC {
     @objc func donePicker(){
         if self.txtEnterYear.isFirstResponder {
             let row = yearPicker.selectedRow(inComponent: 0);
-            self.txtEnterYear.text = self.yearVal[row]
-            pickerView(yearPicker, didSelectRow: row, inComponent:0)
-            txtEnterYear.endEditing(true)
+            if yearVal.count != 0{
+                self.txtEnterYear.text = self.yearVal[row]
+                pickerView(yearPicker, didSelectRow: row, inComponent:0)
+                txtEnterYear.endEditing(true)
+            }else{
+                txtEnterYear.endEditing(true)
+            }
         } else if self.txtEnterMake.isFirstResponder {
             let row = makePicker.selectedRow(inComponent: 0);
-            self.make = self.makeVal[row].id ?? ""
-            self.SelectedMakeIndex = row
-            self.txtEnterMake.text = self.makeVal[row].manufacturerName
-            self.txtEnterModel.text = ""
-            txtEnterMake.endEditing(true)
+            if isfromEdit{
+                self.modelSelectedIndex = row
+            }
+            if makeVal.count != 0{
+                self.make = self.makeVal[row].id ?? ""
+                self.SelectedMakeIndex = row
+                self.txtEnterMake.text = self.makeVal[row].manufacturerName
+                self.txtEnterModel.text = ""
+                txtEnterMake.endEditing(true)
+            }else{
+                txtEnterMake.endEditing(true)
+            }
         } else if self.txtEnterModel.isFirstResponder {
             let row = modelPicker.selectedRow(inComponent: 0);
-            self.model = self.makeVal[self.SelectedMakeIndex].models?[row].id ?? ""
-            self.txtEnterModel.text = self.makeVal[self.SelectedMakeIndex].models?[row].modelName
-            txtEnterModel.endEditing(true)
+            if isfromEdit{
+                if self.makeVal[modelSelectedIndex].models?.count != 0{
+                    self.model = self.makeVal[modelSelectedIndex].models?[row].id ?? ""
+                    self.txtEnterModel.text = self.makeVal[modelSelectedIndex].models?[row].modelName
+                    txtEnterModel.endEditing(true)
+                }else{
+                    txtEnterModel.endEditing(true)
+                }
+            }else{
+                if self.makeVal[self.SelectedMakeIndex].models?.count != 0{
+                    self.model = self.makeVal[self.SelectedMakeIndex].models?[row].id ?? ""
+                    self.txtEnterModel.text = self.makeVal[self.SelectedMakeIndex].models?[row].modelName
+                    txtEnterModel.endEditing(true)
+                }else{
+                    txtEnterModel.endEditing(true)
+                }
+            }
         } else if self.txtEnterColor.isFirstResponder {
             let row = colorPicker.selectedRow(inComponent: 0);
+            if colorVal.count != 0{
             self.color = self.colorVal[row].id ?? ""
             self.txtEnterColor.text = self.colorVal[row].color
             txtEnterColor.endEditing(true)
+            }else{
+                txtEnterColor.endEditing(true)
+            }
         }
     }
     func dismissPickerView() {
@@ -148,28 +173,27 @@ class AddVehicleVC: BaseVC {
         let strTitle = "Please select "
         let plateno = txtLicencePlateNo.validatedText(validationType: .requiredField(field: txtLicencePlateNo.placeholder?.lowercased() ?? ""))
         if txtEnterYear.text == ""{
-            Utilities.ShowAlertOfValidation(OfMessage: strTitle + "year")
-            //Toast.show(title: UrlConstant.Required, message: strTitle + "year", state: .failure)
+            Toast.show(title: UrlConstant.Required, message: strTitle + "year", state: .info)
             return false
         }else if txtEnterMake.text == ""{
-            Utilities.ShowAlertOfValidation(OfMessage: strTitle + "make")
-//            Toast.show(title: UrlConstant.Required, message: strTitle + "make", state: .failure)
+//            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "make")
+            Toast.show(title: UrlConstant.Required, message: strTitle + "make", state: .info)
             return false
         }else if txtEnterModel.text == ""{
-            Utilities.ShowAlertOfValidation(OfMessage: strTitle + "model")
-//            Toast.show(title: UrlConstant.Required, message: strTitle + "model", state: .failure)
+//            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "model")
+            Toast.show(title: UrlConstant.Required, message: strTitle + "model", state: .info)
             return false
         }else if txtEnterColor.text == ""{
-            Utilities.ShowAlertOfValidation(OfMessage: strTitle + "color")
-//            Toast.show(title: UrlConstant.Required, message: strTitle + "color", state: .failure)
+//            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "color")
+            Toast.show(title: UrlConstant.Required, message: strTitle + "color", state: .info)
             return false
         }else if !plateno.0 {
             stringData = plateno.1
         }
         
         if let str = stringData  {
-            Utilities.ShowAlertOfValidation(OfMessage: str)
-//            Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+//            Utilities.ShowAlertOfrequired(OfMessage: str)
+            Toast.show(title: UrlConstant.Required, message: str, state: .info)
             return false
         }
         return true
@@ -188,6 +212,13 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
         } else if txtEnterMake.isFirstResponder {
             return makeVal.count
         } else if txtEnterModel.isFirstResponder {
+            if isfromEdit{
+                if modelSelectedIndex != -1 {
+                    return makeVal[modelSelectedIndex].models?.count ?? 0
+                } else {
+                    return 0
+                }
+            }
             if SelectedMakeIndex != -1 {
                 return makeVal[SelectedMakeIndex].models?.count ?? 0
             } else {
@@ -206,6 +237,9 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
         } else if txtEnterMake.isFirstResponder {
             return makeVal[row].manufacturerName
         } else if txtEnterModel.isFirstResponder {
+            if isfromEdit{
+                return makeVal[modelSelectedIndex].models?[row].modelName
+            }
             return makeVal[SelectedMakeIndex].models?[row].modelName
         } else if txtEnterColor.isFirstResponder {
             return colorVal[row].color
@@ -213,7 +247,7 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return colorVal[row].color
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //            if self.txtEnterYear.isFirstResponder {
+        //            if self.txtEnterYear.isFirstResponder {
         //
         //            } else if self.txtEnterMake.isFirstResponder {
         //                self.make = self.makeVal[row].id ?? ""
@@ -242,5 +276,48 @@ extension AddVehicleVC: UITextFieldDelegate {
         }else{
             return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimitPASSWORD) : false
         }
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch textField {
+        case txtEnterYear:
+            if yearVal.count != 0{
+                txtEnterYear.inputView = yearPicker
+                return true
+            }else{
+                Toast.show(title: UrlConstant.Failed, message: "Year data is empty", state: .failure)
+            }
+        case txtEnterMake:
+            if makeVal.count != 0{
+                txtEnterMake.inputView = makePicker
+                return true
+            }else{
+                Toast.show(title: UrlConstant.Failed, message: "Make data is empty", state: .failure)
+            }
+        case txtEnterModel:
+            if isfromEdit{
+                if makeVal[modelSelectedIndex].models?.count != 0{
+                    txtEnterModel.inputView = modelPicker
+                    return true
+                }else{
+                    Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+                }
+            }
+            if makeVal[SelectedMakeIndex].models?.count != 0{
+                txtEnterModel.inputView = modelPicker
+                return true
+            }else{
+                Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+            }
+        case txtEnterColor:
+            if colorVal.count != 0{
+                txtEnterColor.inputView = colorPicker
+                return true
+            }else{
+                Toast.show(title: UrlConstant.Failed, message: "Color data is empty", state: .failure)
+            }
+        default:
+            break
+        }
+        return false
     }
 }

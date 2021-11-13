@@ -13,17 +13,13 @@ class rateandreviewmodel {
         webserviceRateAndReview(reqModel)
     }
     func webserviceRateAndReview(_ reqModel: rateReqModel){
-        Utilities.showHud()
         self.reviewmodel?.btnSubmit.showLoading()
         WebServiceSubClass.rateandreview(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-            Utilities.hideHud()
             self.reviewmodel?.btnSubmit.hideLoading()
-            if status{
-                self.reviewmodel?.rateDelegate?.refreshCompleteJobScreen(rate: self.reviewmodel?.vwCosmos.rating ?? 0.0, review: self.reviewmodel?.txtReview.text ?? "")
-//                Toast.show(message: apiMessage, state: .success)
-            }else{
-                Utilities.ShowAlertOfValidation(OfMessage: apiMessage)
-//                Toast.show(message: apiMessage, state: .failure)
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
+                if status{
+                    self.reviewmodel?.rateDelegate?.refreshCompleteJobScreen(rate: self.reviewmodel?.vwCosmos.rating ?? 0.0, review: self.reviewmodel?.txtReview.text ?? "")
+                }
             }
         })
     }

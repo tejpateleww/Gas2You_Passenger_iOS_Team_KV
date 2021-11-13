@@ -123,8 +123,7 @@ class SignUpVC: BaseVC {
         }else if !lastName.0{
             strTitle = lastName.1
         }else if(!checkEmailRequired.0){
-            Utilities.ShowAlertOfValidation(OfMessage: "Please enter email")
-            //Toast.show(title: AppInfo.appName, message: "Please enter email", state: .failure)
+            Toast.show(title: UrlConstant.Required, message: "Please enter email", state: .info)
             return checkEmailRequired.0
         }else if !checkEmail.0{
             strTitle = checkEmail.1
@@ -141,15 +140,13 @@ class SignUpVC: BaseVC {
         }else if !Confpassword.0{
             strTitle = Confpassword.1
         }else if txtPassword.text?.lowercased() != txtConfirmPassword.text?.lowercased(){
-            Utilities.ShowAlertOfValidation(OfMessage: "Password and confirm password must be same")
-            //Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .failure)
+            Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .info)
             return false
         }
         
         
         if let str = strTitle{
-            Utilities.ShowAlertOfValidation(OfMessage: str)
-            //Toast.show(title: UrlConstant.Required, message: str, state: .failure)
+            Toast.show(title: UrlConstant.Required, message:str, state: .info)
             return false
         }
 //
