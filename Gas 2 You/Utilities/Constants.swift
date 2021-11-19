@@ -14,6 +14,8 @@ let arrow = " -"
 let notifRefreshVehicleList = NSNotification.Name("refreshVehicleList")
 let notifRefreshHomeScreen = NSNotification.Name("refreshHomeScreen")
 let themeColor = hexStringToUIColor(hex: "#00AA7E")
+let screenWidth = UIScreen.main.bounds.width
+let NotificationBadges = NSNotification.Name(rawValue: "NotificationBadges")
 class Constants {
     static let appDel = UIApplication.shared.delegate as! AppDelegate
     static let kAPPVesion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
@@ -72,11 +74,16 @@ enum SystemIcon {
         }
     }
 
-    func getIcon(of size: CGFloat) -> UIImage? {
-        let config = UIImage.SymbolConfiguration(
-            pointSize: size, weight: .medium, scale: .default)
-        let image = UIImage(systemName: self.iconName, withConfiguration: config)
-        return image
+    func getIcon(_ ofsize: CGFloat = 21.0) -> UIImage? {
+        if #available(iOS 13.0, *) {
+            let config = UIImage.SymbolConfiguration(pointSize: ofsize, weight: .medium, scale: .default)
+            let image = UIImage(systemName: self.iconName, withConfiguration: config)
+            return image
+        } else {
+            
+            let image = UIImage(named: self.iconName)
+            return image
+        }
     }
 }
 let TEXTFIELD_MaximumLimit = 25

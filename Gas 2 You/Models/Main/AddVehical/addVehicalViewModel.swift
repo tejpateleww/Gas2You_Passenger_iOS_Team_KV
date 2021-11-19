@@ -10,12 +10,26 @@ import UIKit
 
 class addVehicalViewModel{
     weak var addvehicle : AddVehicleVC?
-    
     func webserviceofmakeandmodel(){
         WebServiceSubClass.makeandmodelList(completion: { (status, message, response, error) in
             if status{
                 if let model = response?.data{
                     self.addvehicle?.makeVal = model
+                    let ValueofMakeVal = model
+                    if ValueofMakeVal.count != 0 {
+                        for i in 0...ValueofMakeVal.count - 1 {
+                            if (ValueofMakeVal[i].models?.count ?? 0) != 0 {
+                                for j in 0...((ValueofMakeVal[i].models?.count ?? 0) - 1 ){
+                                    print("ATDEBUG :: \(ValueofMakeVal[i].models?[j].modelName?.lowercased()) ::: \(self.addvehicle?.objData?.model?.lowercased())")
+                                    if ValueofMakeVal[i].models?[j].modelName?.lowercased() ==  self.addvehicle?.objData?.model?.lowercased() {
+                                        self.addvehicle?.SelectedMakeIndex = i
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                    
                 }
             }else{
                 Utilities.ShowAlert(OfMessage: "No Data Found")
@@ -29,9 +43,16 @@ class VehicleColorListViewModel{
     func webserviceofcolorList(){
         WebServiceSubClass.vehicleColorList(completion: { (status, message, response, error) in
             if status{
-                if let model = response?.data{
-                    self.Vehiclecolor?.colorVal = model
+                if let model = response{
+                    self.Vehiclecolor?.colorVal = model.data ?? []
+                    self.Vehiclecolor?.yearVal = model.yearList ?? []
+                    self.Vehiclecolor?.stateList = model.stateList ?? []
                 }
+//                else if let year = response?.yearList{
+//                    self.Vehiclecolor?.yearVal = year
+//                }else if let state = response?.stateList{
+//                    self.Vehiclecolor?.stateList = state
+//                }
             }else{
                 Utilities.ShowAlert(OfMessage: "No Data Found")
                 print(error)
@@ -42,8 +63,8 @@ class VehicleColorListViewModel{
 }
 class AddVehicleGetViewModel{
     weak var addvehicle : AddVehicleVC?
-    func doLogin(customerid: String, year: String, make: String, model: String, color: String, plateno: String) {
-        let reqModel = AddVehicleReqModel(customerid: customerid, year: year, make: make, model: model, color: color, plateno: plateno)
+    func doLogin(customerid: String, year: String, make: String, model: String, color: String,state :String, plateno: String) {
+        let reqModel = AddVehicleReqModel(customerid: customerid, year: year, make: make, model: model, color: color, state: state, plateno: plateno)
         webserviceAddVehicle(reqModel)
     }
     func webserviceAddVehicle(_ reqModel: AddVehicleReqModel){
@@ -61,8 +82,8 @@ class AddVehicleGetViewModel{
 }
 class EditVehicleGetViewModel{
     weak var addvehicle : AddVehicleVC?
-    func doLogin(vehicleId: String, year: String, make: String, model: String, color: String, plateno: String) {
-        let reqModel = EditVehicleReqModel(vehicle_id: vehicleId, year: year, make: make, model: model, color: color, plateno: plateno)
+    func doLogin(vehicleId: String, year: String, make: String, model: String, color: String,state:String, plateno: String) {
+        let reqModel = EditVehicleReqModel(vehicle_id: vehicleId, year: year, make: make, model: model, color: color, state: state, plateno: plateno)
         webserviceEditVehicle(reqModel)
     }
     func webserviceEditVehicle(_ reqModel: EditVehicleReqModel){

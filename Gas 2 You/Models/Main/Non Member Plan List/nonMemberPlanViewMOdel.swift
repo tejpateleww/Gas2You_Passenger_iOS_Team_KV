@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class nonMemberPlanViewMOdel{
     weak var homevc : HomeVC?
     weak var nonmemberplanvc : NonMemberPlanVC?
@@ -14,6 +15,9 @@ class nonMemberPlanViewMOdel{
             if status{
                 if let model = response?.data{
                     self.homevc?.nonmemberplanlist = model
+                    if Singleton.sharedInstance.userProfilData?.is_membership_user == false{
+                        self.homevc?.nonmemberplanlist[0].isSelected = true
+                    }
                     self.homevc?.tblNonMemberPLan.reloadData()
                 }
             }else{
@@ -27,6 +31,9 @@ class nonMemberPlanViewMOdel{
             if status{
                 if let model = response?.data{
                     self.nonmemberplanvc?.nonmemberplanlist = model
+                    if Singleton.sharedInstance.userProfilData?.is_membership_user == false{
+                        self.nonmemberplanvc?.nonmemberplanlist[0].isSelected = true
+                    }
                     self.nonmemberplanvc?.tblNonMemberPlan.reloadData()
                 }
             }else{

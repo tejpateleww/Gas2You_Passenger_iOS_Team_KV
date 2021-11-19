@@ -15,12 +15,12 @@ import MKProgress
 //==========================
 
 class ThemeLabel: UILabel{
-    @IBInspectable public var Font_Size: CGFloat = FontSize.size15.rawValue
+    @IBInspectable public var Font_Size: CGFloat = FontSize.size15.rawValue+5
     @IBInspectable public var isBold: Bool = false
     @IBInspectable public var isSemibold: Bool = false
     @IBInspectable public var isLight: Bool = false
     @IBInspectable public var isMedium: Bool = false
-    @IBInspectable public var fontColor: UIColor = .label
+    @IBInspectable public var fontColor: UIColor = .black
     @IBInspectable public var isThemeColour : Bool = false
     @IBInspectable public var is50Oppacity : Bool = false
     @IBInspectable public var is8ppacity : Bool = false
@@ -29,15 +29,35 @@ class ThemeLabel: UILabel{
         super.awakeFromNib()
 
             if isBold {
-                self.font = CustomFont.PoppinsBold.returnFont(Font_Size)
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    self.font = CustomFont.PoppinsBold.returnFont(Font_Size)
+                }else if UIDevice.current.userInterfaceIdiom == .pad{
+                    self.font = CustomFont.PoppinsBold.returnFont(Font_Size + 5)
+                }
             } else if isSemibold {
-                self.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size)
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    self.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size)
+                }else if UIDevice.current.userInterfaceIdiom == .pad{
+                    self.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size + 5)
+                }
             } else if isMedium {
-                self.font = CustomFont.PoppinsMedium.returnFont(Font_Size)
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    self.font = CustomFont.PoppinsMedium.returnFont(Font_Size)
+                }else if UIDevice.current.userInterfaceIdiom == .pad{
+                    self.font = CustomFont.PoppinsMedium.returnFont(Font_Size + 5)
+                }
             } else if isLight {
-                self.font = CustomFont.PoppinsLight.returnFont(Font_Size)
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    self.font = CustomFont.PoppinsLight.returnFont(Font_Size)
+                }else if UIDevice.current.userInterfaceIdiom == .pad{
+                    self.font = CustomFont.PoppinsLight.returnFont(Font_Size + 5)
+                }
             } else {
-                self.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    self.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
+                }else if UIDevice.current.userInterfaceIdiom == .pad{
+                    self.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 5)
+                }
             }
     }
     override func layoutSubviews() {
@@ -88,21 +108,49 @@ class ThemeButton: UIButton {
         self.layer.cornerRadius = radius
         
         if isBold {
-            self.titleLabel?.font = CustomFont.PoppinsBold.returnFont(Font_Size)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.titleLabel?.font = CustomFont.PoppinsBold.returnFont(Font_Size)
+            }else if UIDevice.current.userInterfaceIdiom == .pad{
+                self.titleLabel?.font = CustomFont.PoppinsBold.returnFont(Font_Size + 5)
+            }
         } else if isSemibold {
-            self.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size)
+            }else if UIDevice.current.userInterfaceIdiom == .pad{
+                self.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size + 5)
+            }
         } else if isMedium {
-            self.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(Font_Size)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(Font_Size)
+            }else if UIDevice.current.userInterfaceIdiom == .pad{
+                self.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(Font_Size + 5)
+            }
         } else if isLight {
-            self.titleLabel?.font = CustomFont.PoppinsLight.returnFont(Font_Size)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.titleLabel?.font = CustomFont.PoppinsLight.returnFont(Font_Size)
+            }else if UIDevice.current.userInterfaceIdiom == .pad{
+                self.titleLabel?.font = CustomFont.PoppinsLight.returnFont(Font_Size + 5)
+            }
         } else if isRegular {
-            self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
+            }else if UIDevice.current.userInterfaceIdiom == .pad{
+                self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 5)
+            }
         } else {
-            self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
+            }else if UIDevice.current.userInterfaceIdiom == .pad{
+                self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 5)
+            }
         }
         
         if isbordered {
-            self.setunderline(title: self.titleLabel?.text ?? "", color: UIColor.appColor(ThemeColor.themeButtonBlue), font: CustomFont.PoppinsRegular.returnFont(Font_Size))
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.setunderline(title: self.titleLabel?.text ?? "", color: UIColor.appColor(ThemeColor.themeButtonBlue), font: CustomFont.PoppinsRegular.returnFont(Font_Size))
+            }else if UIDevice.current.userInterfaceIdiom == .pad{
+                self.setunderline(title: self.titleLabel?.text ?? "", color: UIColor.appColor(ThemeColor.themeButtonBlue), font: CustomFont.PoppinsRegular.returnFont(Font_Size + 5))
+            }
         }
         if shadow {
             addShadow(view: self, shadowColor: shadowColor)
@@ -212,7 +260,11 @@ class ThemeCustomShadowButton : UIControl {
         label.text = Title
         label.textAlignment = .center
         label.isUserInteractionEnabled = false
-        label.font = FontBook.regular.of(size: Font_Size)
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            label.font = FontBook.regular.of(size: Font_Size)
+        }else if UIDevice.current.userInterfaceIdiom == .pad{
+            label.font = FontBook.regular.of(size: Font_Size + 5)
+        }
         label.textColor = fontColor
         imageView.addSubview(label)
         
@@ -348,7 +400,11 @@ class ThemeTextfield : UITextField {
                 rightViewMode = .always
                 let button = UIButton(frame: CGRect(x: 10, y: 0, width: 60, height: 40))
                 button.setTitle(titleText, for: .normal)
-                button.setColorFont(color: .gray , font: FontBook.regular.staticFont(size: Font_Size - 2))
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    button.setColorFont(color: .gray , font: FontBook.regular.staticFont(size: Font_Size - 2))
+                }else{
+                    button.setColorFont(color: .gray , font: FontBook.regular.staticFont(size: Font_Size))
+                }
                 button.addTarget(self, action: #selector(rightBtnAction), for: .touchUpInside)
                 let view = UIView(frame : CGRect(x: 0, y: 0, width: 80, height: 40))
                 view.addSubview(button)
@@ -391,8 +447,11 @@ class ThemeTextfield : UITextField {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.font = FontBook.regular.of(size : Font_Size)
-        
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            self.font = FontBook.regular.of(size : Font_Size)
+        }else if UIDevice.current.userInterfaceIdiom == .pad{
+            self.font = FontBook.regular.of(size : Font_Size + 5)
+        }
         self.layer.borderWidth = Border_Width
         self.layer.borderColor = Border_Color.cgColor
         self.layer.cornerRadius = Corner_Radius
@@ -400,7 +459,6 @@ class ThemeTextfield : UITextField {
         
         self.attributedPlaceholder = NSAttributedString(string: self.placeholder ?? "",
                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.white] )
-        
     }
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if self.tag == 101{

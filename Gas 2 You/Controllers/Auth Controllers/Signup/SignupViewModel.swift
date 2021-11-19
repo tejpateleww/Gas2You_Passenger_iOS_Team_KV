@@ -29,9 +29,16 @@ class SignupViewModel {
             self.signupmodel?.btnSignup.hideLoading()
             Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
                 if status{
-                    let otpvc = self.signupmodel?.storyboard?.instantiateViewController(identifier: OtpVC.className) as! OtpVC
-                    otpvc.registerRequestModel = self.signupmodel!.registerRequestModel
-                    self.signupmodel?.navigationController?.pushViewController(otpvc, animated: true)
+                    if #available(iOS 13.0, *) {
+                        let otpvc = self.signupmodel?.storyboard?.instantiateViewController(identifier: OtpVC.className) as! OtpVC
+                        otpvc.registerRequestModel = self.signupmodel!.registerRequestModel
+                        self.signupmodel?.navigationController?.pushViewController(otpvc, animated: true)
+                    } else {
+                        let otpvc = self.signupmodel?.storyboard?.instantiateViewController(withIdentifier: OtpVC.className) as! OtpVC
+                        otpvc.registerRequestModel = self.signupmodel!.registerRequestModel
+                        self.signupmodel?.navigationController?.pushViewController(otpvc, animated: true)
+                    }
+                    
                 }
             }
         }

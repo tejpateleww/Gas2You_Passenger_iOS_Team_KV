@@ -12,6 +12,7 @@ class AddVehicleReqModel: Encodable{
     var make : String?
     var model : String?
     var color : String?
+    var state : String?
     var license_plate_number : String?
 
     enum CodingKeys: String, CodingKey {
@@ -20,14 +21,16 @@ class AddVehicleReqModel: Encodable{
         case make = "make"
         case model = "model"
         case color = "color"
+        case state = "state"
         case license_plate_number = "license_plate_number"
     }
-    init(customerid:String,year:String,make:String,model:String,color:String,plateno:String){
+    init(customerid:String,year:String,make:String,model:String,color:String,state:String,plateno:String){
         self.customerid = customerid
         self.year = year
         self.make = make
         self.model = model
         self.color = color
+        self.state = state
         self.license_plate_number = plateno
     }
 }

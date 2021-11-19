@@ -12,7 +12,7 @@ import GoogleMaps
 import GooglePlaces
 import GoogleSignIn
 import FBSDKLoginKit
-
+import UserNotifications
 import Firebase
 import FirebaseMessaging
 import FirebaseCore
@@ -21,10 +21,13 @@ import FirebaseCrashlytics
 let AppDel = UIApplication.shared.delegate as! AppDelegate
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,UNUserNotificationCenterDelegate{
 
     var window: UIWindow?
     var locationManager: CLLocationManager?
+    var isChatScreen : Bool = false
+    static var pushNotificationObj : NotificationObjectModel?
+    static var pushNotificationType : String?
     static var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -45,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         GMSPlacesClient.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
-        
+        registerForPushNotifications()
         return true
     }
     // MARK: - LocationManagerDelegate
@@ -149,3 +152,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
 }
 
 
+class NotificationObjectModel: Codable {
+    var booking_id: String?
+    var type: String?
+    var title: String?
+    var text: String?
+}
+extension Notification.Name {
+    static let sessionExpire = NSNotification.Name("sessionExpire")
+    static let refreshHomeScreen = NSNotification.Name("refreshHomeScreen")
+    static let refreshChatScreen = NSNotification.Name("refreshChatScreen")
+    static let goToChatScreen = NSNotification.Name("goToChatScreen")
+}
+
+enum NotificationTypes : String {
+    case notifLoggedOut = "sessionTimeout"
+    case newBooking = "newBooking"
+    case newMessage = "newMessage"
+}

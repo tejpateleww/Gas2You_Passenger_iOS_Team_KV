@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecognizerDelegate, SideMenuItemContent {
     
@@ -104,7 +105,22 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
         showSideMenu()
         navigationController?.popToRootViewController(animated: false)
     }
-    
+    func navBarChatRightImage(imgURL: String) {
+        
+        let viewFN = UIView(frame: CGRect.init(x: 0, y: 0, width: 40, height: 40))
+        let userImage = UIButton(frame: CGRect.init(x: 0, y: 0, width: 40, height: 40))
+        
+        userImage.layer.cornerRadius = 0.5 * userImage.bounds.size.width
+        userImage.clipsToBounds = true
+        userImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        userImage.sd_setBackgroundImage(with: URL(string:imgURL), for: .normal, placeholderImage: UIImage(named: "dummy_user"), options: [.continueInBackground, .refreshCached])
+        userImage.isUserInteractionEnabled = false
+        viewFN.addSubview(userImage)
+        
+        let rightBarButton = UIBarButtonItem(customView: viewFN)
+        navigationItem.rightBarButtonItem = rightBarButton
+        
+    }
     
     func NavBarTitle(isOnlyTitle : Bool = true, isMenuButton: Bool = false, title : String, isTitlewhite: Bool = false, controller:UIViewController) {
         
@@ -155,6 +171,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
                 }
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             button.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
+
             
             if isMenuButton {
                 button.setImage(#imageLiteral(resourceName: "IC_menu"), for: .normal)
@@ -179,7 +196,7 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             if isTitlewhite {
                 label.textColor = .white
             } else {
-                label.textColor = .label
+                label.textColor = .black
             }
             
             label.font = CustomFont.PoppinsBold.returnFont(16)

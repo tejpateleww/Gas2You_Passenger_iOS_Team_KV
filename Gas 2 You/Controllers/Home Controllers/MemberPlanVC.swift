@@ -6,11 +6,15 @@
 //
 
 import UIKit
-
+protocol memberdelegate {
+    func myprofilerefresh()
+}
 class MemberPlanVC: BaseVC {
 
+    var delegateMember : memberdelegate?
     var memberPlanList = [memberPlanListDatum]()
     var memberPlanModel = memberPlanViewModel()
+    var selectedIndex = 0
     @IBOutlet weak var currentPlanIV: UIImageView!
     @IBOutlet weak var memberPlanDescriptionView: UIView!
     @IBOutlet var membershipPlanButtons: [ThemeButton]!
@@ -41,8 +45,7 @@ class MemberPlanVC: BaseVC {
     
     
     @IBAction func btnPayNowTap(_ sender: ThemeButton) {
-        
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setUI() {
@@ -65,12 +68,14 @@ extension MemberPlanVC:UITableViewDelegate,UITableViewDataSource{
         let cell:membershipPlanCell = tblMembershipPlan.dequeueReusableCell(withIdentifier: membershipPlanCell.className) as! membershipPlanCell
         cell.lblDetails.text = memberPlanList[indexPath.row].planName ?? "" + arrow
         cell.lblPrice.text = CurrencySymbol + (memberPlanList[indexPath.row].price ?? "")
-        cell.icCheck.image = (memberPlanList[indexPath.row].isSelected == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+        cell.icCheck.image = selectedIndex == indexPath.row ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
         cell.selectionStyle = .none
+        //(memberPlanList[indexPath.row].isSelected == true)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        memberPlanList[indexPath.row].isSelected = (memberPlanList[indexPath.row].isSelected == true) ? false : true
+        selectedIndex = indexPath.row
+        //memberPlanList[indexPath.row].isSelected = (memberPlanList[indexPath.row].isSelected == true) ? false : true
         tblMembershipPlan.reloadData()
     }
 }

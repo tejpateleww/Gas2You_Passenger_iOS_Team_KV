@@ -45,7 +45,7 @@ class MyOrdersVC: BaseVC {
         BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         NotificationCenter.default.post(name: notifRefreshHomeScreen, object: nil)
         btnUpcomingTap(btnUpcoming)
-        myOrdersTV.register(UINib(nibName:"shimmerCell", bundle: nil), forCellReuseIdentifier: "shimmerCell")
+        myOrdersTV.register(UINib(nibName:"ShimmerCell", bundle: nil), forCellReuseIdentifier: "ShimmerCell")
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Orders", controller: self)
         
         let upcomingCellNib = UINib(nibName: UpcomingCell.className, bundle: nil)
@@ -70,7 +70,11 @@ class MyOrdersVC: BaseVC {
         BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
     }
     func addTableFooter(){
-        self.pagingSpinner = UIActivityIndicatorView(style: .medium)
+        if #available(iOS 13.0, *) {
+            self.pagingSpinner = UIActivityIndicatorView(style: .medium)
+        } else {
+            self.pagingSpinner = UIActivityIndicatorView(style: .gray)
+        }
         self.pagingSpinner.stopAnimating()
         self.pagingSpinner.color = UIColor.init(hexString: "#1F79CD")
         self.pagingSpinner.hidesWhenStopped = true
@@ -150,11 +154,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         
         if isInProcess == 0 {
             if !isReload{
-                let shimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: shimmerCell.className) as! shimmerCell
-                shimmerCell.lblService.text = "dummy data"
-                shimmerCell.lblLocation.text = "dummy data"
-                shimmerCell.lblDateandTime.text = "dummy data"
-                shimmerCell.lblVehicleDetail.text = "dummy data"
+                let shimmerCell:ShimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: ShimmerCell.className) as! ShimmerCell
+                shimmerCell.lblVehicle.text = "dummy data"
+                shimmerCell.lblAddress.text = "dummy data"
+                shimmerCell.lblFuelType.text = "dummy data"
+                shimmerCell.lblDateAndTime.text = "dummy data"
                 return shimmerCell
             }else{
                 if arrBookingList.count != 0{
@@ -163,6 +167,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     upcomingCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     upcomingCell.lblDateandTime.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     upcomingCell.lblVehicleDetail.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
+                    upcomingCell.lblBookingid.text = arrBookingList[indexPath.row].id ?? ""
                     upcomingCell.buttonCancel = {
                         self.cancelOrderData.cancelOrder(customerid: Singleton.sharedInstance.userId, order_id: self.arrBookingList[indexPath.row].id ?? "", row: indexPath.row)
                     }
@@ -177,11 +182,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             }
         } else if isInProcess == 1 {
             if !isReload{
-                let shimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: shimmerCell.className) as! shimmerCell
-                shimmerCell.lblService.text = "dummy data"
-                shimmerCell.lblLocation.text = "dummy data"
-                shimmerCell.lblDateandTime.text = "dummy data"
-                shimmerCell.lblVehicleDetail.text = "dummy data"
+                let shimmerCell:ShimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: ShimmerCell.className) as! ShimmerCell
+                shimmerCell.lblVehicle.text = "dummy data"
+                shimmerCell.lblAddress.text = "dummy data"
+                shimmerCell.lblFuelType.text = "dummy data"
+                shimmerCell.lblDateAndTime.text = "dummy data"
                 return shimmerCell
             }else{
                 if arrBookingList.count != 0{
@@ -190,8 +195,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     inprogressCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     inprogressCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     inprogressCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
+                    inprogressCell.lblBookingID.text = arrBookingList[indexPath.row].id
                     inprogressCell.chatClick = {
                         let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+                        chatVC.bookingID = self.arrBookingList[indexPath.row].id ?? ""
+                        chatVC.isFromPush = true
                         self.navigationController?.pushViewController(chatVC, animated: true)
                     }
                     return inprogressCell
@@ -205,11 +213,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             }
         } else if isInProcess == 2 {
             if !isReload{
-                let shimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: shimmerCell.className) as! shimmerCell
-                shimmerCell.lblService.text = "dummy data"
-                shimmerCell.lblLocation.text = "dummy data"
-                shimmerCell.lblDateandTime.text = "dummy data"
-                shimmerCell.lblVehicleDetail.text = "dummy data"
+                let shimmerCell:ShimmerCell = myOrdersTV.dequeueReusableCell(withIdentifier: ShimmerCell.className) as! ShimmerCell
+                shimmerCell.lblVehicle.text = "dummy data"
+                shimmerCell.lblAddress.text = "dummy data"
+                shimmerCell.lblFuelType.text = "dummy data"
+                shimmerCell.lblDateAndTime.text = "dummy data"
                 return shimmerCell
             }else{
                 if arrBookingList.count != 0{
@@ -253,7 +261,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
 
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .systemBackground)
+        if #available(iOS 13.0, *) {
+            cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .systemBackground)
+        } else {
+            cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .white)
+        }
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {

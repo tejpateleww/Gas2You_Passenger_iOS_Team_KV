@@ -6,9 +6,9 @@
 //
 
 ////MARK:- Toast Alert Images
-let AlertCheckImg = SystemIcon.roundedYes.getIcon(of: 21)
-let AlertCancelImg = SystemIcon.roundedCancel.getIcon(of: 21)
-let AlertInfoImg = SystemIcon.roundedInfo.getIcon(of: 21)
+let AlertCheckImg = #imageLiteral(resourceName: "imgAlertCheck")
+let AlertCancelImg = #imageLiteral(resourceName: "imgAlertCancel")
+let AlertInfoImg = #imageLiteral(resourceName: "imgAlertInfo")
 
 import Foundation
 import UIKit
@@ -32,19 +32,19 @@ class Toast {
         let statusImage = UIImageView(frame: CGRect())
         switch state {
         case .success:
-            toastContainer.backgroundColor = ThemeColorEnum.Theme.rawValue//UIColor(red: 97.0/255.0, green: 161.0/255.0, blue: 23.0/255.0, alpha: 1.0)// UIColor.green//.withAlphaComponent(0.9)
+            toastContainer.backgroundColor = ThemeColorEnum.Theme.rawValue
             statusImage.image = AlertCheckImg
             statusImage.tintColor = .white
         case .failure:
-            toastContainer.backgroundColor = ThemeColorEnum.ThemeRed.rawValue//UIColor(red: 249.0/255.0, green: 66.0/255.0, blue: 47.0/255.0, alpha: 1.0)// UIColor.red//.withAlphaComponent(0.9)
+            toastContainer.backgroundColor = ThemeColorEnum.ThemeRed.rawValue
             statusImage.image = AlertCancelImg
             statusImage.tintColor = .white
         case .info:
-            toastContainer.backgroundColor = ThemeColorEnum.Info.rawValue//UIColor.appColor(.themeSolidGray)//.withAlphaComponent(0.9) //UIColor(red: 225.0/255.0, green: 225.0/255.0, blue: 225.0/255.0, alpha: 1.0)
+            toastContainer.backgroundColor = ThemeColorEnum.Info.rawValue
             statusImage.image = AlertInfoImg
             statusImage.tintColor = .white
         case .theme:
-            toastContainer.backgroundColor = ThemeColorEnum.Theme.rawValue//UIColor.appColor(.themeGold)//.withAlphaComponent(0.9)
+            toastContainer.backgroundColor = ThemeColorEnum.Theme.rawValue
             statusImage.image = AlertInfoImg
             statusImage.tintColor = .white
         }

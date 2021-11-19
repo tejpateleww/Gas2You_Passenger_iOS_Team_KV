@@ -24,8 +24,48 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="f04-sD-A0o">
                                 <rect key="frame" x="17" y="17" width="384" height="177"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2X-oS-8w8">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qZW-KF-JO0">
+                                                <rect key="frame" x="0.0" y="0.0" width="142" height="20.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking_Id :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFw-FP-sFB" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="95.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aj7-Xz-UQY" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="100.5" y="0.0" width="41.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="qZW-KF-JO0" firstAttribute="leading" secondItem="l2X-oS-8w8" secondAttribute="leading" id="JeF-jy-RcY"/>
+                                            <constraint firstAttribute="bottom" secondItem="qZW-KF-JO0" secondAttribute="bottom" id="MyD-r3-BKh"/>
+                                            <constraint firstItem="qZW-KF-JO0" firstAttribute="top" secondItem="l2X-oS-8w8" secondAttribute="top" id="heU-HR-MVe"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pg4-o0-PWa">
-                                        <rect key="frame" x="0.0" y="0.0" width="384" height="25"/>
+                                        <rect key="frame" x="0.0" y="43.5" width="384" height="25"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_gasPump" translatesAutoresizingMaskIntoConstraints="NO" id="qnG-rA-aWB">
                                                 <rect key="frame" x="0.0" y="2.5" width="20" height="20"/>
@@ -81,17 +121,17 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkX-JB-058">
-                                        <rect key="frame" x="0.0" y="48" width="384" height="81"/>
+                                        <rect key="frame" x="0.0" y="91.5" width="384" height="37.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_locoations" translatesAutoresizingMaskIntoConstraints="NO" id="BGF-yb-3jl">
-                                                <rect key="frame" x="0.0" y="30.5" width="20" height="20"/>
+                                                <rect key="frame" x="0.0" y="9" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="HmE-0H-n6T"/>
                                                     <constraint firstAttribute="height" constant="20" id="pvn-Oe-uN4"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06h-WZ-MNy" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="28" y="0.0" width="356" height="81"/>
+                                                <rect key="frame" x="28" y="0.0" width="356" height="37.5"/>
                                                 <string key="text">123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -224,6 +264,7 @@
                 <outlet property="imgCar" destination="HY1-mE-tqk" id="byu-D7-qfV"/>
                 <outlet property="imgLocation" destination="BGF-yb-3jl" id="Mhd-Sa-sej"/>
                 <outlet property="imgPetrol" destination="qnG-rA-aWB" id="03V-FJ-cdH"/>
+                <outlet property="lblBookingid" destination="aj7-Xz-UQY" id="6QH-Nm-Ojm"/>
                 <outlet property="lblDateandTime" destination="TN4-Ow-8El" id="dxN-p5-ZWu"/>
                 <outlet property="lblLocation" destination="06h-WZ-MNy" id="KjW-UM-QOz"/>
                 <outlet property="lblService" destination="bUC-Ey-ysT" id="JPh-yV-xbt"/>

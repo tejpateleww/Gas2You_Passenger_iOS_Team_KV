@@ -106,7 +106,11 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         bookingDetailViewModel.BookingDetails = self
         bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: orderId))
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: strTitle == "" ? "Completed" : "Cancelled", controller: self)
-        view.backgroundColor = .systemBackground
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
         setUIMapPin()
         if isfromCancelled{
             btnDownloadInvoiceHeight.constant = 0
@@ -126,7 +130,11 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.setTemplateWithSubviews(true, viewBackgroundColor: .systemBackground)
+        if #available(iOS 13.0, *) {
+            view.setTemplateWithSubviews(true, viewBackgroundColor: .systemBackground)
+        } else {
+            view.setTemplateWithSubviews(true, viewBackgroundColor: .white)
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

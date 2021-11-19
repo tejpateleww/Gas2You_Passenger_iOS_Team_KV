@@ -69,13 +69,14 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
+
     class func makeandmodelList(completion: @escaping (Bool, String, menufactureResModel?, Any) -> ()){
         URLSessionRequestManager.makeGetRequest(urlString: ApiKey.MakeAndModelList.rawValue, responseModel: menufactureResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }
-    class func vehicleColorList(completion: @escaping (Bool, String, vehicleColorListResModel?, Any) -> ()){
-        URLSessionRequestManager.makeGetRequest(urlString: ApiKey.vehicleColorList.rawValue, responseModel: vehicleColorListResModel.self) { (status, message, response, error) in
+    class func vehicleColorList(completion: @escaping (Bool, String, yearcolorstateListResModel?, Any) -> ()){
+        URLSessionRequestManager.makeGetRequest(urlString: ApiKey.vehicleColorList.rawValue, responseModel: yearcolorstateListResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }
@@ -99,8 +100,13 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
+    class func DateList(reqModel : DateReqModel,completion: @escaping (Bool, String, DateResModel?, Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.dateList.rawValue, requestModel: reqModel, responseModel: DateResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
     class func MemberPlanList(reqModel : memberListReqModel,completion: @escaping (Bool, String, membershipplanResModel?, Any) -> ()){
-        URLSessionRequestManager.makePostRequest(urlString: ApiKey.bookingDetail.rawValue, requestModel: reqModel, responseModel: membershipplanResModel.self) { (status, message, response, error) in
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.memberPlan.rawValue, requestModel: reqModel, responseModel: membershipplanResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }
@@ -131,6 +137,21 @@ class WebServiceSubClass{
     }
     class func cancelOrder(reqModel : CancelOrderReqModel , completion: @escaping (Bool,String,CancelOrderResModel?,Any) -> ()){
         URLSessionRequestManager.makePostRequest(urlString: ApiKey.cancelOrder.rawValue, requestModel: reqModel, responseModel: CancelOrderResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func ChatList(completion: @escaping (Bool, String, chatListResModel?, Any) -> ()){
+        URLSessionRequestManager.makeGetRequest(urlString: ApiKey.messageList.rawValue + Singleton.sharedInstance.userId, responseModel: chatListResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func getChatHistoryApi(BookingId:String, completion: @escaping (Bool,String,chatHistoryResModel?,Any) -> ()) {
+        URLSessionRequestManager.makeGetRequest(urlString: ApiKey.chatHistory.rawValue + BookingId, responseModel: chatHistoryResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func sendMsgAPI(reqModel : SendMsgReqModel , completion: @escaping (Bool,String,sendMessageResModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.sendMesssage.rawValue, requestModel: reqModel, responseModel: sendMessageResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }

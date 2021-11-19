@@ -14,7 +14,11 @@ import GooglePlaces
 class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     
     func refreshSearchLIstScreen(text: String) {
-        locationLabel.text = text
+        if locationLabel.text == ""{
+            locationLabel.text = "Please Select Address"
+        }else{
+            locationLabel.text = text
+        }
     }
     
     
@@ -46,8 +50,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     @IBOutlet weak var tblNonMemberPlanHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionTimeList: UICollectionView!
     @IBOutlet weak var btnAddBooking: ThemeButton!
-    
-    
+    @IBOutlet weak var imgSubserviceArrow: UIImageView!
     @IBOutlet weak var btnAddVehicleData: UIButton!
     
     
@@ -59,13 +62,15 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var listOfVehicle = [VehicleListDatum]()
     var serviceList = [ServiceListDatum]()
     var nonmemberplanlist = [nonMemberPlanDatum]()
+    var memberPlanList = [memberPlanListDatum]()
     var datePicker  = UIDatePicker()
     let dateFormatter = DateFormatter() 
     var ServiceListData = ServiceListViewModel()
     var vehicleListData = VehicalListViewModel()
     var nonmemberListData = nonMemberPlanViewMOdel()
     var addBookingData = AddBookingViewModel()
-    var arrTimeList = ["11:00","13:30","15:00","17:30"]
+    var memberPlanModel = memberPlanViewModel()
+    var arrTimeList : [String] = []
     var selectedIndex = 0
     var SelectIndex = 0
     var dateSelected = 0
@@ -74,9 +79,9 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var vehicalid = ""
     var addonid = ""
     var time = ""
-    //    var placeName = ""
     var locationManager : LocationService?
     var PlaceName = userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String
+    var availableDate : [String] = []
     //MARK:- GLOBAL PROPERTIES
     
     
@@ -108,8 +113,18 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         ServiceListData.webserviceofserviceList()
         vehicleListData.homevc = self
         vehicleListData.webserviceofgetvehicalListforHome()
-        nonmemberListData.homevc = self
-        nonmemberListData.webserviceofNonMemberPlanList()
+        if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
+            memberPlanModel.homeMemberPlan = self
+            memberPlanModel.webserviceofMemberAddonList()
+        }else{
+            nonmemberListData.homevc = self
+            nonmemberListData.webserviceofNonMemberPlanList()
+        }
+        if arrTimeList.count != 0{
+            collectionTimeList.isHidden = false
+        }else{
+            collectionTimeList.isHidden = true
+        }
         vehiclePicker.delegate = self
         vehiclePicker.dataSource = self
         servicePicker.delegate = self
@@ -124,182 +139,203 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         let nextDate = Calendar.current.date(byAdding: .day, value: 3, to: today)
         if let date = nextDate {
             selectedDate.text = dateFormatter.string(from: date)
+            ServiceListData.webserviceofDateList(bookingdate: selectedDate.text ?? "")
         }
         LblOctane.text = "93 Octane"
         dismissPickerView()
     }
-
-func setup(){
-    if listOfVehicle.count != 0{
-        btnAddVehicleData.isHidden = true
-        txtSelectedVehicle.isHidden = false
-    }else{
-        txtSelectedVehicle.isHidden = true
-        btnAddVehicleData.isHidden = false
+    
+    func setup(){
+        if listOfVehicle.count != 0{
+            btnAddVehicleData.isHidden = true
+            txtSelectedVehicle.isHidden = false
+        }else{
+            txtSelectedVehicle.isHidden = true
+            btnAddVehicleData.isHidden = false
+        }
     }
-}
-func dismissPickerView() {
-    let toolBar = UIToolbar()
-    toolBar.sizeToFit()
-    let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.onDoneButtonTappedService))
-    let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-    toolBar.setItems([spaceButton,button], animated: true)
-    toolBar.isUserInteractionEnabled = true
-    txtSelectedService.inputAccessoryView = toolBar
-    txtSelectedVehicle.inputAccessoryView = toolBar
-}
-override func viewWillAppear(_ animated: Bool) {
-    if listOfVehicle.count >= 1{
-        btnAddVehicleData.isHidden = true
-        txtSelectedVehicle.isHidden = false
-    }else{
-        txtSelectedVehicle.isHidden = true
-        btnAddVehicleData.isHidden = false
+    func dismissPickerView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.onDoneButtonTappedService))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([spaceButton,button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        txtSelectedService.inputAccessoryView = toolBar
+        txtSelectedVehicle.inputAccessoryView = toolBar
     }
-//    NotificationCenter.default.removeObserver(self, name: notifRefreshVehicleList, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
-//    NotificationCenter.default.removeObserver(self, name: notifRefreshHomeScreen, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
-}
-@objc func refreshVehicleList(){
-    vehicleListData.webserviceofgetvehicalListforHome()
-}
-func refreshVehicleScreen() {
-    vehicleListData.webserviceofgetvehicalListforHome()
-}
-@objc func refreshhomescreen(){
-    ServiceListData.webserviceofserviceList()
-    vehicleListData.webserviceofgetvehicalListforHome()
-    nonmemberListData.webserviceofNonMemberPlanList()
-    dateSelected = 0
-    collectionTimeList.reloadData()
-}
-override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(true)
-    
-    navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-    
-}
-override func viewWillDisappear(_ animated: Bool) {
-    
-    navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-}
-override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
-    if(keyPath == "contentSize"){
-        self.tblNonMemberPlanHeight.constant = tblNonMemberPLan.contentSize.height
+    override func viewWillAppear(_ animated: Bool) {
+        if listOfVehicle.count >= 1{
+            btnAddVehicleData.isHidden = true
+            txtSelectedVehicle.isHidden = false
+        }else{
+            txtSelectedVehicle.isHidden = true
+            btnAddVehicleData.isHidden = false
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
     }
-}
-func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
-    var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-    let lat: Double = Double("\(pdblLatitude)") ?? 0.0
-    //21.228124
-    let lon: Double = Double("\(pdblLongitude)") ?? 0.0
-    //72.833770
-    let ceo: CLGeocoder = CLGeocoder()
-    center.latitude = lat
-    center.longitude = lon
-    
-    let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-    
-    
-    ceo.reverseGeocodeLocation(loc, completionHandler:
-                                {(placemarks, error) in
-                                    if (error != nil)
-                                    {
-                                        print("reverse geodcode fail: \(error!.localizedDescription)")
-                                    }
-                                    if let placemarks = placemarks,placemarks.count > 0{
-                                        
-                                        let pm = placemarks[0]
-                                        print(pm.country ?? "")
-                                        print(pm.locality ?? "")
-                                        print(pm.subLocality ?? "")
-                                        print(pm.thoroughfare ?? "")
-                                        print(pm.postalCode ?? "")
-                                        print(pm.subThoroughfare ?? "")
-                                        var addressString : String = ""
-                                        if pm.subLocality != nil {
-                                            addressString = addressString + (pm.subLocality ?? "") + ", "
+    @objc func refreshVehicleList(){
+        vehicleListData.webserviceofgetvehicalListforHome()
+    }
+    func refreshVehicleScreen() {
+        vehicleListData.webserviceofgetvehicalListforHome()
+    }
+    @objc func refreshhomescreen(){
+        ServiceListData.webserviceofserviceList()
+        vehicleListData.webserviceofgetvehicalListforHome()
+        nonmemberListData.webserviceofNonMemberPlanList()
+        dateSelected = 0
+        collectionTimeList.reloadData()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
+        if(keyPath == "contentSize"){
+            self.tblNonMemberPlanHeight.constant = tblNonMemberPLan.contentSize.height
+        }
+    }
+    func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
+        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
+        let lat: Double = Double("\(pdblLatitude)") ?? 0.0
+        //21.228124
+        let lon: Double = Double("\(pdblLongitude)") ?? 0.0
+        //72.833770
+        let ceo: CLGeocoder = CLGeocoder()
+        center.latitude = lat
+        center.longitude = lon
+        
+        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+        
+        
+        ceo.reverseGeocodeLocation(loc, completionHandler:
+                                    {(placemarks, error) in
+                                        if (error != nil)
+                                        {
+                                            print("reverse geodcode fail: \(error!.localizedDescription)")
                                         }
-                                        if pm.thoroughfare != nil {
-                                            addressString = addressString + (pm.thoroughfare ?? "") + ", "
+                                        if let placemarks = placemarks,placemarks.count > 0{
+                                            
+                                            let pm = placemarks[0]
+                                            print(pm.country ?? "")
+                                            print(pm.locality ?? "")
+                                            print(pm.subLocality ?? "")
+                                            print(pm.thoroughfare ?? "")
+                                            print(pm.postalCode ?? "")
+                                            print(pm.subThoroughfare ?? "")
+                                            var addressString : String = ""
+                                            if pm.subLocality != nil {
+                                                addressString = addressString + (pm.subLocality ?? "") + ", "
+                                            }
+                                            if pm.thoroughfare != nil {
+                                                addressString = addressString + (pm.thoroughfare ?? "") + ", "
+                                            }
+                                            if pm.locality != nil {
+                                                addressString = addressString + (pm.locality ?? "") + ", "
+                                            }
+                                            if pm.country != nil {
+                                                addressString = addressString + (pm.country ?? "" ) + ", "
+                                            }
+                                            if pm.postalCode != nil {
+                                                addressString = addressString + (pm.postalCode ?? "") + " "
+                                            }
+                                            self.PlaceName = addressString
+                                            self.locationLabel.text = addressString
+                                            print(addressString)
                                         }
-                                        if pm.locality != nil {
-                                            addressString = addressString + (pm.locality ?? "") + ", "
+                                        else{
+                                            Utilities.ShowAlert(OfMessage: "Location Not Found")
                                         }
-                                        if pm.country != nil {
-                                            addressString = addressString + (pm.country ?? "" ) + ", "
-                                        }
-                                        if pm.postalCode != nil {
-                                            addressString = addressString + (pm.postalCode ?? "") + " "
-                                        }
-                                        self.PlaceName = addressString
-                                        self.locationLabel.text = addressString
-                                        print(addressString)
-                                    }
-                                    else{
-                                        Utilities.ShowAlert(OfMessage: "Location Not Found")
-                                    }
-                                })
+                                    })
+        
+    }
+    //MARK:- ACTIONS
     
-}
-//MARK:- ACTIONS
-
-
-@IBAction func btnAddVehicle(_ sender: Any) {
-    let addVehicleVC:AddVehicleVC = AddVehicleVC.instantiate(fromAppStoryboard: .Main)
-    addVehicleVC.delegateAdd = self
-    self.navigationController?.pushViewController(addVehicleVC, animated: true)
-}
-@IBAction func btnParkingLocationTap(_ sender: UIButton) {
-    let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
-    carParkingLocationVC.place = self.PlaceName ?? ""
-    carParkingLocationVC.delegatetext = self
-    navigationController?.pushViewController(carParkingLocationVC, animated: true)
-}
-@IBAction func btnSelectVehicleTap(_ sender: UIButton) {
     
-    if listOfVehicle.count == 0 {
+    @IBAction func btnAddVehicle(_ sender: Any) {
         let addVehicleVC:AddVehicleVC = AddVehicleVC.instantiate(fromAppStoryboard: .Main)
         addVehicleVC.delegateAdd = self
         self.navigationController?.pushViewController(addVehicleVC, animated: true)
-        // show button for adding new vehicle
-    } else {
+    }
+    @IBAction func btnParkingLocationTap(_ sender: UIButton) {
+        let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
+        carParkingLocationVC.place = self.PlaceName ?? ""
+        carParkingLocationVC.delegatetext = self
+        navigationController?.pushViewController(carParkingLocationVC, animated: true)
+    }
+    @IBAction func btnSelectVehicleTap(_ sender: UIButton) {
+        
+        if listOfVehicle.count == 0 {
+            let addVehicleVC:AddVehicleVC = AddVehicleVC.instantiate(fromAppStoryboard: .Main)
+            addVehicleVC.delegateAdd = self
+            self.navigationController?.pushViewController(addVehicleVC, animated: true)
+            // show button for adding new vehicle
+        } else {
+            
+            onDoneButtonDate()
+            
+            //            setServicePicker()
+            //            setVehiclePicker()
+        }
+    }
+    //Mark CheckLocation
+    func checkLocation(){
+        let LocationStatus = CLLocationManager.authorizationStatus()
+        if LocationStatus == .notDetermined {
+            AppDelegate.shared.locationService.locationManager?.requestWhenInUseAuthorization()
+        }else if LocationStatus == .restricted || LocationStatus == .denied {
+            Utilities.showAlertWithTitleFromWindow(title: AppInfo.appName, andMessage: "Please turn on permission from settings, to track location in app.", buttons: ["Cancel","Settings"]) { (index) in
+                if index == 1 {
+                    guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:])
+                    }
+                    if let settingsAppURL = URL(string: UIApplication.openSettingsURLString){
+                        UIApplication.shared.open(settingsAppURL, options: [:], completionHandler: nil)
+                    }
+                }
+            }
+        }else{
+            if self.serviceList.count != 0{
+                let slideToConfirmVC: SlideToConfirmVC = SlideToConfirmVC.instantiate(fromAppStoryboard: .Main)
+                slideToConfirmVC.completion = {
+                    self.addBookingData.doAddBooking(customerid: Singleton.sharedInstance.userId, serviceid: self.serviceid, subserviceid: self.subserviceid, parkinglocation: self.locationLabel.text ?? "", lat: "\(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude)", lng: "\(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)", date: self.selectedDate.text ?? "", time: self.time, vehicleid: self.vehicalid, totalAmount: "0", addonid: self.addonid)
+                    self.dismiss(animated: false, completion: nil)
+                }
+                slideToConfirmVC.modalPresentationStyle = .overFullScreen
+                present(slideToConfirmVC, animated: false, completion: nil)
+            }else{
+                Toast.show(title: UrlConstant.Required, message:"Service list is empty", state: .info)
+            }
+        }
+    }
+    @IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
+        if self.listOfVehicle.count == 0{
+            Toast.show(title: UrlConstant.Required, message:"No vehicle has been added yet, please add vehicle to proceed further!", state: .info)
+        }else {
+            checkLocation()
+        }
+    }
+    
+    @IBAction func btnDatePickerTap(_ sender: UIButton) {
         
         onDoneButtonDate()
         
-        //            setServicePicker()
-        //            setVehiclePicker()
+        setDatePicker()
     }
-}
-
-@IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
-    if self.listOfVehicle.count == 0{
-        Toast.show(title: UrlConstant.Required, message:"Please add some vehicle", state: .info)
-    }else{
-        if self.serviceList.count != 0{
-            let slideToConfirmVC: SlideToConfirmVC = SlideToConfirmVC.instantiate(fromAppStoryboard: .Main)
-            slideToConfirmVC.completion = {
-                self.addBookingData.doAddBooking(customerid: Singleton.sharedInstance.userId, serviceid: self.serviceid, subserviceid: self.subserviceid, parkinglocation: self.locationLabel.text ?? "", lat: "\(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude)", lng: "\(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)", date: self.selectedDate.text ?? "", time: self.time, vehicleid: self.vehicalid, totalAmount: "0", addonid: self.addonid)
-                self.dismiss(animated: false, completion: nil)
-            }
-            slideToConfirmVC.modalPresentationStyle = .overFullScreen
-            present(slideToConfirmVC, animated: false, completion: nil)
-        }else{
-            Toast.show(title: UrlConstant.Required, message:"Service list is empty", state: .info)
-        }
-    }
-}
-
-@IBAction func btnDatePickerTap(_ sender: UIButton) {
     
-    onDoneButtonDate()
+    //MARK:- OTHER METHODS
     
-    setDatePicker()
-}
-
-//MARK:- OTHER METHODS
-
     @objc func onDoneButtonTappedService() {
         if txtSelectedService.isFirstResponder {
             let row = servicePicker.selectedRow(inComponent: 0);
@@ -331,52 +367,50 @@ func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: Str
             }
         }
     }
-
-func setDatePicker() {
     
-    datePicker = UIDatePicker.init()
-    
-    datePicker.autoresizingMask = .flexibleWidth
-    datePicker.datePickerMode = .date
-    
-    let today = Date()
-    let nextDate = Calendar.current.date(byAdding: .day, value: 3, to: today)
-    datePicker.minimumDate = nextDate
-    
-    let nextMonth = Calendar.current.date(byAdding: .month, value: 33, to: today)
-    datePicker.maximumDate = nextMonth
-    
-    if #available(iOS 14, *) {
-        datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
-    } else {
-        // Fallback on earlier versions
+    func setDatePicker() {
+        
+        datePicker = UIDatePicker.init()
+        
+        datePicker.autoresizingMask = .flexibleWidth
+        datePicker.datePickerMode = .date
+        
+        let today = Date()
+        let nextDate = Calendar.current.date(byAdding: .day, value: 3, to: today)
+        datePicker.minimumDate = nextDate
+        
+        let nextMonth = Calendar.current.date(byAdding: .month, value: 33, to: today)
+        datePicker.maximumDate = nextMonth
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
+        } else {
+        }
+        datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
+        datePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 250)
+        datePicker.backgroundColor = .white
+        self.view.addSubview(datePicker)
+        
+        toolBar = UIToolbar(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
+        toolBar.barStyle = .default
+        toolBar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneButtonDate))]
+        toolBar.sizeToFit()
+        self.view.addSubview(toolBar)
     }
     
-    datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
-    datePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 250)
-    datePicker.backgroundColor = .white
-    self.view.addSubview(datePicker)
-    
-    toolBar = UIToolbar(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
-    toolBar.barStyle = .default
-    toolBar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(onDoneButtonDate))]
-    toolBar.sizeToFit()
-    self.view.addSubview(toolBar)
-}
-
-@objc func onDoneButtonDate() {
-    toolBar.removeFromSuperview()
-    datePicker.removeFromSuperview()
-}
-
-@objc func dateChanged(_ sender: UIDatePicker?) {
-    
-    if let date = sender?.date {
-        print("Picked the date \(dateFormatter.string(from: date))")
-        selectedDate.text = dateFormatter.string(from: date)
+    @objc func onDoneButtonDate() {
+        toolBar.removeFromSuperview()
+        datePicker.removeFromSuperview()
     }
-}
-
+    
+    @objc func dateChanged(_ sender: UIDatePicker?) {
+        
+        if let date = sender?.date {
+            print("Picked the date \(dateFormatter.string(from: date))")
+            selectedDate.text = dateFormatter.string(from: date)
+            ServiceListData.webserviceofDateList(bookingdate: selectedDate.text ?? "")
+        }
+    }
+    
 }
 
 //MARK:- EXTENSIONS
@@ -412,20 +446,50 @@ extension HomeVC: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nonmemberplanlist.count
+        if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
+            return memberPlanList .count
+        }else{
+            return nonmemberplanlist.count
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:nonMemberListCell = tblNonMemberPLan.dequeueReusableCell(withIdentifier: nonMemberListCell.className) as! nonMemberListCell
-        cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
-        cell.lbltitle.text = (nonmemberplanlist[indexPath.row].title ?? "") + arrow
-        cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isSelected == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
-        self.addonid = (nonmemberplanlist[indexPath.row].isSelected == true) ? self.nonmemberplanlist[indexPath.row].id ?? "" : ""
-        cell.selectionStyle = .none
-        return cell
+        if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
+            let cell:MemberListHomeCell = tblNonMemberPLan.dequeueReusableCell(withIdentifier: MemberListHomeCell.className) as! MemberListHomeCell
+            cell.lblPrice.text = CurrencySymbol + (memberPlanList[indexPath.row].price ?? "")
+            cell.lblTitle.text = (memberPlanList[indexPath.row].planName ?? "") + arrow
+            if memberPlanList[indexPath.row].isPurchased == true{
+                memberPlanList[indexPath.row].isSelected = true
+                cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
+            }else{
+                memberPlanList[indexPath.row].isSelected = false
+                cell.imgCheck.image = UIImage(named: "IC_unselectedBlue")
+            }
+            cell.imgCheck.image = (memberPlanList[indexPath.row].isSelected == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+            //self.addonid = (memberPlanList[indexPath.row].isSelected == true) ? self.memberPlanList[indexPath.row].id ?? "" : ""
+            cell.selectionStyle = .none
+            return cell
+        }else{
+            let cell:nonMemberListCell = tblNonMemberPLan.dequeueReusableCell(withIdentifier: nonMemberListCell.className) as! nonMemberListCell
+            cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
+            cell.lbltitle.text = (nonmemberplanlist[indexPath.row].title ?? "") + arrow
+            cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isSelected == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+            self.addonid = (nonmemberplanlist[indexPath.row].isSelected == true) ? self.nonmemberplanlist[indexPath.row].id ?? "" : ""
+            cell.selectionStyle = .none
+            return cell
+        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        nonmemberplanlist[indexPath.row].isSelected = (nonmemberplanlist[indexPath.row].isSelected == true) ? false : true
-        tblNonMemberPLan.reloadData()
+        if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
+            if memberPlanList[indexPath.row].isSelected == true{
+                
+            }else{
+                memberPlanList[indexPath.row].isSelected = (memberPlanList[indexPath.row].isSelected == true) ? false : true
+                tblNonMemberPLan.reloadData()
+            }
+        }else{
+            nonmemberplanlist[indexPath.row].isSelected = (nonmemberplanlist[indexPath.row].isSelected == true) ? false : true
+            tblNonMemberPLan.reloadData()
+        }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionViewSubService{
@@ -447,12 +511,16 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
                 self.LblOctane.text = self.serviceList[self.selectedIndex].subServices?[indexPath.row].name
                 self.subserviceid = serviceList[selectedIndex].subServices?[indexPath.row].id ?? ""
                 self.priceTagLabel.text = CurrencySymbol + (self.serviceList[self.selectedIndex].subServices?[indexPath.row].price ?? "")
-                
+                if self.serviceList[self.selectedIndex].subServices?.count ?? 0 > 2{
+                    self.imgSubserviceArrow.isHidden = false
+                }else{
+                    self.imgSubserviceArrow.isHidden = true
+                }
             }else{
                 cell.imgCheck.image = UIImage(named: "IC_unselectedBlue")
             }
             //            cell.imgCheck.image = (SelectIndex == indexPath.row) ?  :
-           
+            
             return cell
         }else{
             let cell:timeListCell = collectionTimeList.dequeueReusableCell(withReuseIdentifier: timeListCell.className, for: indexPath) as! timeListCell
@@ -480,24 +548,34 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             dateSelected = indexPath.row
             collectionTimeList.reloadData()
         }else{
-            //            serviceList[indexPath.row].isSelected = (serviceList[indexPath.row].isSelected == true) ? false : true
             SelectIndex = indexPath.row
-           
             collectionViewSubService.reloadData()
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collectionTimeList{
-            return CGSize(width: 65.82, height: 36.95)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                return CGSize(width: 90, height: 36.95)
+            }else{
+                return CGSize(width: 150, height: 36.95)
+            }
         }else{
             return CGSize(width: collectionViewSubService.frame.width / 2, height: collectionViewSubService.frame.width)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        if collectionView == collectionTimeList{
+            return 10
+        }else{
+            return 0
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        if collectionView == collectionTimeList{
+            return 10
+        }else{
+            return 0
+        }
     }
 }
 extension HomeVC: UITextFieldDelegate {

@@ -68,8 +68,48 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="mA4-65-dYA">
                                 <rect key="frame" x="17" y="108" width="452" height="286"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD2-9C-Vll">
+                                        <rect key="frame" x="0.0" y="0.0" width="452" height="20.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="a8z-6T-ldc">
+                                                <rect key="frame" x="0.0" y="0.0" width="142" height="20.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking_Id :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5k-NE-eev" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="95.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDf-ng-QsM" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                                        <rect key="frame" x="100.5" y="0.0" width="41.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                                <real key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="a8z-6T-ldc" firstAttribute="top" secondItem="FD2-9C-Vll" secondAttribute="top" id="8Dc-eX-dXj"/>
+                                            <constraint firstAttribute="bottom" secondItem="a8z-6T-ldc" secondAttribute="bottom" id="S37-8z-3hW"/>
+                                            <constraint firstItem="a8z-6T-ldc" firstAttribute="leading" secondItem="FD2-9C-Vll" secondAttribute="leading" id="nhg-aG-Fxb"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7L-dA-60G">
-                                        <rect key="frame" x="0.0" y="0.0" width="452" height="25"/>
+                                        <rect key="frame" x="0.0" y="43.5" width="452" height="25"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_gasPump" translatesAutoresizingMaskIntoConstraints="NO" id="LRx-Se-Wve">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -125,17 +165,17 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc1-h3-P1r">
-                                        <rect key="frame" x="0.0" y="48" width="452" height="190"/>
+                                        <rect key="frame" x="0.0" y="91.5" width="452" height="146.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_locoations" translatesAutoresizingMaskIntoConstraints="NO" id="9lG-GB-UNt">
-                                                <rect key="frame" x="0.0" y="85" width="20" height="20"/>
+                                                <rect key="frame" x="0.0" y="63.5" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="1Jp-eO-t1N"/>
                                                     <constraint firstAttribute="height" constant="20" id="get-qY-wep"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOb-93-4bi" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="0.0" width="422" height="190"/>
+                                                <rect key="frame" x="30" y="0.0" width="422" height="146.5"/>
                                                 <string key="text">123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -315,6 +355,7 @@
                 <outlet property="imgLocation" destination="9lG-GB-UNt" id="gSr-JO-WCZ"/>
                 <outlet property="imgPetrol" destination="LRx-Se-Wve" id="Haw-8A-eBO"/>
                 <outlet property="imgTruck" destination="G4k-59-aKb" id="lsb-fK-VyT"/>
+                <outlet property="lblBookingID" destination="RDf-ng-QsM" id="tdx-Ww-vZH"/>
                 <outlet property="lblLocation" destination="xOb-93-4bi" id="SbA-6D-CIH"/>
                 <outlet property="lblOnTheWay" destination="Bda-s3-bD4" id="m9A-bu-ZHR"/>
                 <outlet property="lblServices" destination="T4u-mg-2hu" id="QmJ-6h-3yl"/>

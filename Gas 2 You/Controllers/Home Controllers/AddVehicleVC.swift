@@ -25,6 +25,7 @@ class AddVehicleVC: BaseVC {
     @IBOutlet weak var txtEnterColor: UITextField!
     @IBOutlet weak var lblLicencePlateNum: ThemeLabel!
     @IBOutlet weak var txtLicencePlateNo: UITextField!
+    @IBOutlet weak var txtStateName: UITextField!
     @IBOutlet weak var btnSave: ThemeButton!
     
     var delegateAdd : AddVehicleDelegate!
@@ -35,19 +36,22 @@ class AddVehicleVC: BaseVC {
     var makePicker: UIPickerView = UIPickerView()
     var modelPicker: UIPickerView = UIPickerView()
     var colorPicker: UIPickerView = UIPickerView()
+    var statePicker: UIPickerView = UIPickerView()
     var makeandmodelList = addVehicalViewModel()
     var vehiclecolorList = VehicleColorListViewModel()
     var AddVehicle = AddVehicleGetViewModel()
     var EditVehicle = EditVehicleGetViewModel()
-    var yearVal = ["2001" , "2002" , "2003" , "2004" , "2005" , "2006"]
+    var yearVal : [String] = []
     var makeVal = [menufactureDatum]()
-    var colorVal = [VehicleColorDatum]()
+    var colorVal = [yearcolorstateListDatum]()
+    var stateList = [StateList]()
     var SelectedMakeIndex = -1
     var objData : VehicleListDatum?
     var make = ""
     var model = ""
     var color = ""
-    var modelSelectedIndex = 0
+    var state = ""
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +75,8 @@ class AddVehicleVC: BaseVC {
         modelPicker.dataSource = self
         colorPicker.delegate = self
         colorPicker.dataSource = self
+        statePicker.delegate = self
+        statePicker.dataSource = self
         dismissPickerView()
         yearPicker.addDoneOnKeyboardWithTarget(self, action: #selector(self.donePicker))
         txtEnterYear.delegate = self
@@ -78,6 +84,7 @@ class AddVehicleVC: BaseVC {
         txtEnterModel.delegate = self
         txtEnterColor.delegate = self
         txtLicencePlateNo.delegate = self
+        txtStateName.delegate = self
     }
     @objc func donePicker(){
         if self.txtEnterYear.isFirstResponder {
@@ -92,23 +99,32 @@ class AddVehicleVC: BaseVC {
         } else if self.txtEnterMake.isFirstResponder {
             let row = makePicker.selectedRow(inComponent: 0);
             if isfromEdit{
-                self.modelSelectedIndex = row
-            }
-            if makeVal.count != 0{
-                self.make = self.makeVal[row].id ?? ""
-                self.SelectedMakeIndex = row
-                self.txtEnterMake.text = self.makeVal[row].manufacturerName
-                self.txtEnterModel.text = ""
-                txtEnterMake.endEditing(true)
+                if makeVal.count != 0{
+                    self.make = self.makeVal[row].id ?? ""
+                    self.SelectedMakeIndex = row
+                    self.txtEnterMake.text = self.makeVal[row].manufacturerName
+                    self.txtEnterModel.text = ""
+                    txtEnterMake.endEditing(true)
+                }else{
+                    txtEnterMake.endEditing(true)
+                }
             }else{
-                txtEnterMake.endEditing(true)
+                if makeVal.count != 0{
+                    self.make = self.makeVal[row].id ?? ""
+                    self.SelectedMakeIndex = row
+                    self.txtEnterMake.text = self.makeVal[row].manufacturerName
+                    self.txtEnterModel.text = ""
+                    txtEnterMake.endEditing(true)
+                }else{
+                    txtEnterMake.endEditing(true)
+                }
             }
         } else if self.txtEnterModel.isFirstResponder {
             let row = modelPicker.selectedRow(inComponent: 0);
             if isfromEdit{
-                if self.makeVal[modelSelectedIndex].models?.count != 0{
-                    self.model = self.makeVal[modelSelectedIndex].models?[row].id ?? ""
-                    self.txtEnterModel.text = self.makeVal[modelSelectedIndex].models?[row].modelName
+                if self.makeVal[SelectedMakeIndex].models?.count != 0{
+                    self.model = self.makeVal[SelectedMakeIndex].models?[row].id ?? ""
+                    self.txtEnterModel.text = self.makeVal[SelectedMakeIndex].models?[row].modelName
                     txtEnterModel.endEditing(true)
                 }else{
                     txtEnterModel.endEditing(true)
@@ -131,6 +147,16 @@ class AddVehicleVC: BaseVC {
             }else{
                 txtEnterColor.endEditing(true)
             }
+        }else if self.txtStateName.isFirstResponder{
+            let row = statePicker.selectedRow(inComponent: 0);
+            if stateList.count != 0{
+                self.state = self.stateList[row].id ?? ""
+                self.txtStateName.text = self.stateList[row].stateName
+                pickerView(statePicker, didSelectRow: row, inComponent:0)
+                txtStateName.endEditing(true)
+            }else{
+                txtStateName.endEditing(true)
+            }
         }
     }
     func dismissPickerView() {
@@ -144,16 +170,17 @@ class AddVehicleVC: BaseVC {
         txtEnterColor.inputAccessoryView = toolBar
         txtEnterModel.inputAccessoryView = toolBar
         txtEnterMake.inputAccessoryView = toolBar
+        txtStateName.inputAccessoryView = toolBar
     }
     @IBAction func btnSaveTap(_ sender: ThemeButton) {
         if isfromEdit{
             if validation(){
-                EditVehicle.doLogin(vehicleId: objData?.id ?? "", year: txtEnterYear.text ?? "", make: make, model: model, color: color, plateno: txtLicencePlateNo.text ?? "")
+                EditVehicle.doLogin(vehicleId: objData?.id ?? "", year: txtEnterYear.text ?? "", make: make, model: model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "")
                 NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
             }
         }else{
             if validation(){
-                AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, plateno: txtLicencePlateNo.text ?? "")
+                AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "")
             }
         }
     }
@@ -162,10 +189,12 @@ class AddVehicleVC: BaseVC {
         txtEnterMake.text = objData?.make
         txtEnterModel.text = objData?.model
         txtEnterColor.text = objData?.color
+        txtStateName.text = objData?.state_name
         txtLicencePlateNo.text = objData?.plateNumber
         make = objData?.makeId ?? ""
         model = objData?.modelId ?? ""
         color = objData?.colorId ?? ""
+        state = objData?.state_id ?? ""
     }
     //MARK: - Validation
     func validation() -> Bool{
@@ -176,23 +205,26 @@ class AddVehicleVC: BaseVC {
             Toast.show(title: UrlConstant.Required, message: strTitle + "year", state: .info)
             return false
         }else if txtEnterMake.text == ""{
-//            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "make")
+            //            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "make")
             Toast.show(title: UrlConstant.Required, message: strTitle + "make", state: .info)
             return false
         }else if txtEnterModel.text == ""{
-//            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "model")
+            //            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "model")
             Toast.show(title: UrlConstant.Required, message: strTitle + "model", state: .info)
             return false
         }else if txtEnterColor.text == ""{
-//            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "color")
+            //            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "color")
             Toast.show(title: UrlConstant.Required, message: strTitle + "color", state: .info)
+            return false
+        }else if txtStateName.text == ""{
+            Toast.show(title: UrlConstant.Required, message: strTitle + "state", state: .info)
             return false
         }else if !plateno.0 {
             stringData = plateno.1
         }
         
         if let str = stringData  {
-//            Utilities.ShowAlertOfrequired(OfMessage: str)
+            //            Utilities.ShowAlertOfrequired(OfMessage: str)
             Toast.show(title: UrlConstant.Required, message: str, state: .info)
             return false
         }
@@ -213,19 +245,23 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
             return makeVal.count
         } else if txtEnterModel.isFirstResponder {
             if isfromEdit{
-                if modelSelectedIndex != -1 {
-                    return makeVal[modelSelectedIndex].models?.count ?? 0
+                if SelectedMakeIndex != -1 {
+                    
+                    return makeVal[SelectedMakeIndex].models?.count ?? 0
+                } else {
+                    return 0
+                }
+            }else{
+                if SelectedMakeIndex != -1 {
+                    return makeVal[SelectedMakeIndex].models?.count ?? 0
                 } else {
                     return 0
                 }
             }
-            if SelectedMakeIndex != -1 {
-                return makeVal[SelectedMakeIndex].models?.count ?? 0
-            } else {
-                return 0
-            }
-        } else if txtEnterColor.isFirstResponder {
+        }else if txtEnterColor.isFirstResponder {
             return colorVal.count
+        }else if txtStateName.isFirstResponder{
+            return stateList.count
         }
         return colorVal.count
     }
@@ -238,28 +274,19 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
             return makeVal[row].manufacturerName
         } else if txtEnterModel.isFirstResponder {
             if isfromEdit{
-                return makeVal[modelSelectedIndex].models?[row].modelName
+                return makeVal[SelectedMakeIndex].models?[row].modelName
+            }else{
+                return makeVal[SelectedMakeIndex].models?[row].modelName
             }
-            return makeVal[SelectedMakeIndex].models?[row].modelName
         } else if txtEnterColor.isFirstResponder {
             return colorVal[row].color
+        } else if txtStateName.isFirstResponder{
+            return stateList[row].stateName
         }
         return colorVal[row].color
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //            if self.txtEnterYear.isFirstResponder {
-        //
-        //            } else if self.txtEnterMake.isFirstResponder {
-        //                self.make = self.makeVal[row].id ?? ""
-        //                self.SelectedMakeIndex = row
-        //                self.txtEnterMake.text = self.makeVal[row].manufacturerName
-        //            } else if self.txtEnterModel.isFirstResponder {
-        //                self.model = self.makeVal[self.SelectedMakeIndex].models?[row].id ?? ""
-        //                self.txtEnterModel.text = self.makeVal[self.SelectedMakeIndex].models?[row].modelName
-        //            } else if self.txtEnterColor.isFirstResponder {
-        //                self.color = self.colorVal[row].id ?? ""
-        //                self.txtEnterColor.text = self.colorVal[row].color
-        //            }
+        
     }
 }
 extension AddVehicleVC: UITextFieldDelegate {
@@ -287,34 +314,78 @@ extension AddVehicleVC: UITextFieldDelegate {
                 Toast.show(title: UrlConstant.Failed, message: "Year data is empty", state: .failure)
             }
         case txtEnterMake:
-            if makeVal.count != 0{
-                txtEnterMake.inputView = makePicker
-                return true
+            if txtEnterYear.text == ""{
+                Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
             }else{
-                Toast.show(title: UrlConstant.Failed, message: "Make data is empty", state: .failure)
+                if makeVal.count != 0{
+                    txtEnterMake.inputView = makePicker
+                    return true
+                }else{
+                    Toast.show(title: UrlConstant.Failed, message: "Make data is empty", state: .failure)
+                }
             }
         case txtEnterModel:
             if isfromEdit{
-                if makeVal[modelSelectedIndex].models?.count != 0{
-                    txtEnterModel.inputView = modelPicker
-                    return true
+                if txtEnterYear.text == ""{
+                    Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
+                }else if txtEnterMake.text == ""{
+                    Toast.show(title: UrlConstant.Required, message: "Please select make", state: .info)
                 }else{
-                    Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+                    if makeVal[SelectedMakeIndex].models?.count != 0{
+                        txtEnterModel.inputView = modelPicker
+                        return true
+                    }else{
+                        Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+                    }
+                }
+            }else{
+                if txtEnterYear.text == ""{
+                    Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
+                }else if txtEnterMake.text == ""{
+                    Toast.show(title: UrlConstant.Required, message: "Please select make", state: .info)
+                }else{
+                    if makeVal[SelectedMakeIndex].models?.count != 0{
+                        txtEnterModel.inputView = modelPicker
+                        return true
+                    }else{
+                        Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+                    }
                 }
             }
-            if makeVal[SelectedMakeIndex].models?.count != 0{
-                txtEnterModel.inputView = modelPicker
-                return true
-            }else{
-                Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
-            }
         case txtEnterColor:
-            if colorVal.count != 0{
-                txtEnterColor.inputView = colorPicker
-                return true
+            if txtEnterYear.text == ""{
+                Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
+            }else if txtEnterMake.text == ""{
+                Toast.show(title: UrlConstant.Required, message: "Please select make", state: .info)
+            }else if txtEnterModel.text == ""{
+                Toast.show(title: UrlConstant.Required, message: "Please select model", state: .info)
             }else{
-                Toast.show(title: UrlConstant.Failed, message: "Color data is empty", state: .failure)
+                if colorVal.count != 0{
+                    txtEnterColor.inputView = colorPicker
+                    return true
+                }else{
+                    Toast.show(title: UrlConstant.Failed, message: "Color data is empty", state: .failure)
+                }
             }
+        case txtStateName:
+            if txtEnterYear.text == ""{
+                Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
+            }else if txtEnterMake.text == ""{
+                Toast.show(title: UrlConstant.Required, message: "Please select make", state: .info)
+            }else if txtEnterModel.text == ""{
+                Toast.show(title: UrlConstant.Required, message: "Please select model", state: .info)
+            }else if txtEnterColor.text == ""{
+                Toast.show(title: UrlConstant.Required, message: "Please select color", state: .info)
+            }else{
+                if stateList.count != 0{
+                    txtStateName.inputView = statePicker
+                    return true
+                }else{
+                    Toast.show(title: UrlConstant.Failed, message: "Color data is empty", state: .failure)
+                }
+            }
+        case txtLicencePlateNo:
+            return true
         default:
             break
         }

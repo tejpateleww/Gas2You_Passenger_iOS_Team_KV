@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyProfileVC: BaseVC {
+class MyProfileVC: BaseVC , memberdelegate{
     
     var updateprofileviewmodel = MyProfileViewModel()
     let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
@@ -24,6 +24,8 @@ class MyProfileVC: BaseVC {
     @IBOutlet weak var btnSave: ThemeButton!
     @IBOutlet weak var lblLastName: ThemeLabel!
     @IBOutlet weak var txtLastName: UITextField!
+    @IBOutlet weak var vwMember: UIView!
+    @IBOutlet weak var vwNonmember: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,20 @@ class MyProfileVC: BaseVC {
         txtUserName.text = userData?.firstName
         txtLastName.text = userData?.lastName
         setupPhoneTextField()
+        if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
+            vwMember.isHidden = false
+            vwNonmember.isHidden = true
+        }else{
+            vwMember.isHidden = true
+            vwNonmember.isHidden = false
+        }
+    }
+    func memberDisplay(){
+        vwMember.isHidden = false
+        vwNonmember.isHidden = true
+    }
+    func myprofilerefresh() {
+        memberDisplay()
     }
     private func setupPhoneTextField() {
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 20))
@@ -82,8 +98,21 @@ class MyProfileVC: BaseVC {
         navigationController?.pushViewController(myGarageVC, animated: true)
     }
     
+    @IBAction func btnNonMemberPlanDisplay(_ sender: Any) {
+        let vc : NonMemberPlanVC = NonMemberPlanVC.instantiate(fromAppStoryboard: .Main)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func btnCancel(_ sender: UIButton) {
+        vwMember.isHidden = true
+        vwNonmember.isHidden = false
+    }
     @IBAction func btnChangePasswordTap(_ sender: ThemeButton) {
         self.push(ChangePasswordVC.getNewInstance())
+    }
+    @IBAction func getMemberShipPlan(_ sender: Any) {
+        let vc : MemberPlanVC = MemberPlanVC.instantiate(fromAppStoryboard: .Main)
+        vc.delegateMember = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnSaveTap(_ sender: ThemeButton) {

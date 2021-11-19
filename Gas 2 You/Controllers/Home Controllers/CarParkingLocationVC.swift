@@ -17,6 +17,7 @@ class CarParkingLocationVC: BaseVC {
     
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var txtSearchBar: UITextField!
+    @IBOutlet weak var btnMap: UIButton!
     var delegatetext : searchDataDelegate!
     var locationManager = CLLocationManager()
     var place = ""
@@ -31,6 +32,7 @@ class CarParkingLocationVC: BaseVC {
     var CurrentLocMarker: GMSMarker?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.mapType = .satellite
         if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String == nil{
             txtSearchBar.text = place
             setupMap()
@@ -42,6 +44,14 @@ class CarParkingLocationVC: BaseVC {
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
         //        setUIMapPin()
         //        checkMapPermission()
+    }
+    @IBAction func btnSateliteClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if(sender.isSelected){
+            self.mapView.mapType = .satellite
+        }else{
+            self.mapView.mapType = .normal
+        }
     }
     override func BackButtonWithTitle(button: UIButton) {
         self.navigationController?.popViewController(animated: true)

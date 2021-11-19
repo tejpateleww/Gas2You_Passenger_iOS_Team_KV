@@ -20,6 +20,11 @@ class ServiceListViewModel{
                         self.serviceList?.SelectIndex = 0
                         if model[0].subServices?.count != 0{
                             self.serviceList?.selectedIndex = 0
+                            if model[self.serviceList?.selectedIndex ?? 0].subServices?.count ?? 0 > 2{
+                                self.serviceList?.imgSubserviceArrow.isHidden = false
+                            }else{
+                                self.serviceList?.imgSubserviceArrow.isHidden = true
+                            }
                             self.serviceList?.ViewForShowPrice.isHidden = false
                             self.serviceList?.collectionViewSubService.reloadData()
                         }else{
@@ -35,6 +40,28 @@ class ServiceListViewModel{
                         print("res: \(bodyDic)")
                     }
                 }
+            }else{
+                Utilities.ShowAlert(OfMessage: "No Data Found")
+                print(error)
+            }
+            
+            self.serviceList?.collectionViewSubService.reloadData()
+        })
+    }
+    
+    func webserviceofDateList(bookingdate:String){
+        let dateList = DateReqModel()
+        dateList.user_id = Singleton.sharedInstance.userId
+        dateList.booking_date = bookingdate
+        WebServiceSubClass.DateList(reqModel: dateList, completion: { (status, message, response, error) in
+            if status{
+                if let model = response{
+                    self.serviceList?.arrTimeList = model.data ?? []
+                    self.serviceList?.availableDate = model.availableDates ?? []
+                    self.serviceList?.selectedDate.text = model.availableDates?[0]
+                    self.serviceList?.collectionTimeList.reloadData()
+                }
+                
             }else{
                 Utilities.ShowAlert(OfMessage: "No Data Found")
                 print(error)

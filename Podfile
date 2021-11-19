@@ -18,7 +18,7 @@ target 'Gas 2 You' do
   pod 'FBSDKLoginKit'
   pod 'UIView-Shimmer', '~> 1.0'
   pod 'SwiftMessages'
-  
+  pod 'SDWebImage'
   pod 'Firebase/Messaging'
   pod 'Firebase/Crashlytics'
 end

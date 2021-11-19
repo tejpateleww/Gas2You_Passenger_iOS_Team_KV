@@ -119,10 +119,15 @@ extension LeftViewController : UITableViewDelegate, UITableViewDataSource {
             
             menuContainerViewController.hideSideMenu()
         case 3 :
-            let vc : NonMemberPlanVC = NonMemberPlanVC.instantiate(fromAppStoryboard: .Main)
-            (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
-            
-            menuContainerViewController.hideSideMenu()
+            if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
+                let vc : MemberPlanVC = MemberPlanVC.instantiate(fromAppStoryboard: .Main)
+                (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
+                menuContainerViewController.hideSideMenu()
+            }else{
+                let vc : NonMemberPlanVC = NonMemberPlanVC.instantiate(fromAppStoryboard: .Main)
+                (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
+                menuContainerViewController.hideSideMenu()
+            }
         case 4 :
             let vc : SettingsVC = SettingsVC.instantiate(fromAppStoryboard: .Main)
             (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)

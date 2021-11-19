@@ -23,6 +23,7 @@ class InProgressCell: UITableViewCell,ShimmeringViewProtocol {
     @IBOutlet weak var imgCar: UIImageView!
     @IBOutlet weak var imgLocation: UIImageView!
     @IBOutlet weak var imgCalender: UIImageView!
+    @IBOutlet weak var lblBookingID: UILabel!
     var chatClick : (()->())?
     var shimmeringAnimatedItems: [UIView] {
            [
@@ -37,7 +38,8 @@ class InProgressCell: UITableViewCell,ShimmeringViewProtocol {
             imgTruck,
             lblOnTheWay,
             btnCall,
-            btnChat
+            btnChat,
+            lblBookingID
            ]
        }
     override func awakeFromNib() {

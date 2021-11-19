@@ -95,6 +95,9 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
   - SwiftMessages (9.0.5):
     - SwiftMessages/App (= 9.0.5)
   - SwiftMessages/App (9.0.5)
@@ -112,6 +115,7 @@ DEPENDENCIES:
   - lottie-ios
   - MKProgress
   - MTSlideToOpen
+  - SDWebImage
   - SwiftMessages
   - UIView-Shimmer (~> 1.0)
 
@@ -140,6 +144,7 @@ SPEC REPOS:
     - MTSlideToOpen
     - nanopb
     - PromisesObjC
+    - SDWebImage
     - SwiftMessages
     - UIView-Shimmer
 
@@ -167,9 +172,10 @@ SPEC CHECKSUMS:
   MTSlideToOpen: dedc9abf1e377fef40544b84e5590d4981055030
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SwiftMessages: 9cca50659fa22bb523b4dd2a958d4442e843a354
   UIView-Shimmer: ff0a32c73d67c7dbdea3d9e530538b10d18aea56
 
-PODFILE CHECKSUM: eaeca9c5799ff924d3513aa67623fafc25e4734c
+PODFILE CHECKSUM: 4d4b7dfc0918fdab83351f46016fe2ad18c87b8e
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.1

@@ -35,10 +35,17 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
     }
     
     @IBAction func btnAddVehicleTap(_ sender: ThemeButton) {
-        let addVehicleVC = storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
-        addVehicleVC.delegateAdd = self
-        navigationController?.pushViewController(addVehicleVC, animated: true)
+        if #available(iOS 13.0, *) {
+            let addVehicleVC = storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
+            addVehicleVC.delegateAdd = self
+            navigationController?.pushViewController(addVehicleVC, animated: true)
+        }else {
+            let addVehicleVC = storyboard?.instantiateViewController(withIdentifier: AddVehicleVC.className) as! AddVehicleVC
+            addVehicleVC.delegateAdd = self
+            navigationController?.pushViewController(addVehicleVC, animated: true)
+        }
     }
+        
     func refreshVehicleScreenEdit() {
         getvehicalList.webserviceofgetvehicalList()
         NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
@@ -76,6 +83,7 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
                 cell.lblYear.text = arrVehicalList[indexPath.row].year ?? ""
                 cell.lblColor.text = arrVehicalList[indexPath.row].color ?? ""
                 cell.lblPlatNo.text = arrVehicalList[indexPath.row].plateNumber ?? ""
+                cell.lblState.text = arrVehicalList[indexPath.row].state_name ?? ""
                 return cell
             }else{
                 let noDataCell:NoDataCell = vehicleListTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
@@ -99,7 +107,11 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
 
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .systemBackground)
+        if #available(iOS 13.0, *) {
+            cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .systemBackground)
+        } else {
+            cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .white)
+        }
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
@@ -110,13 +122,24 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         }
 
         let editAction = UIContextualAction(style: .normal, title: nil) { (action, view, completion) in
-            let addVehicleVC = self.storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
-            addVehicleVC.isfromEdit = true
-            addVehicleVC.`delegateEdit` = self
-            addVehicleVC.objData = self.arrVehicalList[indexPath.row]
-            self.navigationController?.pushViewController(addVehicleVC, animated: true)
-            // Perform your action here
-            completion(true)
+            if #available(iOS 13.0, *) {
+                let addVehicleVC = self.storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
+                addVehicleVC.isfromEdit = true
+                addVehicleVC.delegateEdit = self
+                addVehicleVC.objData = self.arrVehicalList[indexPath.row]
+                self.navigationController?.pushViewController(addVehicleVC, animated: true)
+                // Perform your action here
+                completion(true)
+            } else {
+                let addVehicleVC = self.storyboard?.instantiateViewController(withIdentifier: AddVehicleVC.className) as! AddVehicleVC
+                addVehicleVC.isfromEdit = true
+                addVehicleVC.delegateEdit = self
+                addVehicleVC.objData = self.arrVehicalList[indexPath.row]
+                self.navigationController?.pushViewController(addVehicleVC, animated: true)
+                // Perform your action here
+                completion(true)
+            }
+            
         }
 
         deleteAction.image = #imageLiteral(resourceName: "IC_bin")

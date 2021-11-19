@@ -19,6 +19,7 @@ class UpcomingCell: UITableViewCell,ShimmeringViewProtocol {
     @IBOutlet weak var imgPetrol: UIImageView!
     @IBOutlet weak var imgLocation: UIImageView!
     @IBOutlet weak var imgCalender: UIImageView!
+    @IBOutlet weak var lblBookingid: UILabel!
     var shimmeringAnimatedItems: [UIView] {
            [
             lblService,
@@ -29,7 +30,8 @@ class UpcomingCell: UITableViewCell,ShimmeringViewProtocol {
             imgCar,
             imgPetrol,
             imgLocation,
-            imgCalender
+            imgCalender,
+            lblBookingid
            ]
        }
     override func awakeFromNib() {

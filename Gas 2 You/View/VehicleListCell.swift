@@ -15,6 +15,7 @@ class VehicleListCell: UITableViewCell,ShimmeringViewProtocol {
     @IBOutlet weak var lblYear: ThemeLabel!
     @IBOutlet weak var lblColor: ThemeLabel!
     @IBOutlet weak var lblPlatNo: ThemeLabel!
+    @IBOutlet weak var lblState: ThemeLabel!
     var shimmeringAnimatedItems: [UIView] {
            [
             lblCarName,

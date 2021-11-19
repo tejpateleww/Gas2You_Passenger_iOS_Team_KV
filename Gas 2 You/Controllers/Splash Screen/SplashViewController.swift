@@ -33,6 +33,10 @@ class SplashViewController: BaseVC {
         observeAnimationAndVersionChange()
     }
 
+    override func viewDidLayoutSubviews() {
+        let frame = CGRect(x: 0, y: 0, width: vmAnimation.frame.height, height: vmAnimation.frame.height)
+        animationView.frame = frame
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
@@ -63,7 +67,7 @@ class SplashViewController: BaseVC {
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     func animate(completion: @escaping EmptyClosure) {
-        animationView.frame = CGRect(x: 0, y: 0, width: vmAnimation.frame.width, height: vmAnimation.frame.height)
+        animationView.frame = CGRect(x: 0, y: 0, width: vmAnimation.frame.height, height: vmAnimation.frame.height)
         animationView.contentMode = .scaleAspectFill
         if !vmAnimation.subviews.contains(animationView){
             vmAnimation.addSubview(animationView)

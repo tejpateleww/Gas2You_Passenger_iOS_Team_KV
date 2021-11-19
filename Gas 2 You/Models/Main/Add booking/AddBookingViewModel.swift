@@ -18,7 +18,7 @@ class AddBookingViewModel{
         self.addbooking?.btnAddBooking.showLoading()
         WebServiceSubClass.addBooking(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             self.addbooking?.btnAddBooking.hideLoading()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure){
             if status{
                 let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
                 self.addbooking?.navigationController?.pushViewController(myOrdersVC, animated: true)
