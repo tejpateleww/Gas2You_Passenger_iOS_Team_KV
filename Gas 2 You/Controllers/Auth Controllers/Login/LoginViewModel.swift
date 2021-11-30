@@ -67,7 +67,7 @@ class LoginViewModel {
         Utilities.showHud()
         WebServiceSubClass.AppleDetailApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
+//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
                 if status {
                     let reqModel = SocialLoginRequestModel()
                     reqModel.socialId = response?.appleDetail?.appleId
@@ -79,7 +79,6 @@ class LoginViewModel {
                     reqModel.country_code = "+91"
                     self.webserviceSocialLogin(reqModel: reqModel)
                 }
-            }
         })
     }
 }

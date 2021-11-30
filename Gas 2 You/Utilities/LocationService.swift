@@ -72,7 +72,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         }
         
         self.currentLocation = location
-//    Singleton.sharedInstance.userCurrentLocation = location.coordinate
+        Singleton.sharedInstance.userCurrentLocation = location
         updateLocation(currentLocation: location)
     }
     
@@ -92,7 +92,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         guard let delegate = self.delegate else {
             return
         }
-//        Singleton.sharedInstance.userCurrentLocation = currentLocation.coordinate
+        Singleton.sharedInstance.userCurrentLocation = currentLocation
         delegate.tracingLocation(currentLocation: currentLocation)
     }
     

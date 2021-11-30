@@ -43,7 +43,11 @@ class SlideToConfirmVC: UIViewController {
         vwSwipe.thumnailImageView.image = #imageLiteral(resourceName: "IC_slideImg")
         vwSwipe.draggedView.backgroundColor = .clear
         vwSwipe.textColor = .white
-        vwSwipe.textFont = CustomFont.PoppinsSemiBold.returnFont(16)
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            vwSwipe.textFont = CustomFont.PoppinsSemiBold.returnFont(16)
+        }else{
+            vwSwipe.textFont = CustomFont.PoppinsSemiBold.returnFont(21)
+        }
         vwSwipe.backgroundColor = #colorLiteral(red: 0.1098039216, green: 0.4588235294, blue: 0.7333333333, alpha: 1) //ThemeColor.blueBorder
         vwSwipe.layer.cornerRadius = 9
         vwSwipe.delegate = self

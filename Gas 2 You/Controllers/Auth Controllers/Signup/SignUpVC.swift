@@ -60,7 +60,11 @@ class SignUpVC: BaseVC {
     }
 
     private func setupUI() {
-        btnLoginNow.setunderline(title: btnLoginNow.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(16))
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            btnLoginNow.setunderline(title: btnLoginNow.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(16))
+        }else{
+            btnLoginNow.setunderline(title: btnLoginNow.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(21))
+        }
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
         setupPhoneTextField()
     }

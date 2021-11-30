@@ -83,13 +83,16 @@ class ChatViewController: BaseVC {
         tblChat.register(UINib(nibName:"NoDataCell", bundle: nil), forCellReuseIdentifier: "NoDataCell")
         
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Ellen Lambert", controller: self)
-        navBarRightImage()
-        
-        txtviewComment.font = CustomFont.PoppinsRegular.returnFont(16)
+//        navBarRightImage()
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            txtviewComment.font = CustomFont.PoppinsRegular.returnFont(16)
+        }else{
+            txtviewComment.font = CustomFont.PoppinsRegular.returnFont(21)
+        }
         //        self.setNavigationBarInViewController(controller: self, naviColor: colors.white.value, naviTitle: "", leftImage: #imageLiteral(resourceName: "IC_backButton"), rightImages: [], isTranslucent: true, CommonViewTitles: [], isTwoLabels: false)
         
         tblChat.reloadData()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshChatScreen), name: .refreshChatScreen, object: nil)
         
         NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardNotification(notification:)),name: UIResponder.keyboardWillChangeFrameNotification,object: nil)
     }
@@ -98,6 +101,9 @@ class ChatViewController: BaseVC {
         NotificationCenter.default.removeObserver(self)
     }
     
+    @objc func refreshChatScreen(){
+        callChatHistoryAPI()
+    }
     //MARK: -Bring up and down the keyboard
     @objc func keyboardNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
@@ -140,7 +146,11 @@ class ChatViewController: BaseVC {
     func prepareView(){
         
         self.txtviewComment.delegate = self
-        self.txtviewComment.font = CustomFont.PoppinsRegular.returnFont(16)
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            self.txtviewComment.font = CustomFont.PoppinsRegular.returnFont(16)
+        }else{
+            self.txtviewComment.font = CustomFont.PoppinsRegular.returnFont(21)
+        }
         self.txtviewComment.textColor = txtviewComment.text == "" ? .black : .gray
         if(!isFromPush){
             self.bookingID = self.userData?.bookingId ?? ""
@@ -279,17 +289,17 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
             let strDate = self.filterKeysArr[section].Date_In_DD_MM_YYYY_FORMAT ?? ""
             return self.filterListArr[strDate]?.count ?? 0
         } else {
-            return (!self.isTblReload) ? 5 : 1
+            return  1
         }
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if(!self.isTblReload){
-            let cell = tblChat.dequeueReusableCell(withIdentifier: ChatShimmer.className, for: indexPath) as! ChatShimmer
-            return cell
-        }else{
+//        if(!self.isTblReload){
+//            let cell = tblChat.dequeueReusableCell(withIdentifier: ChatShimmer.className, for: indexPath) as! ChatShimmer
+//            return cell
+//        }else{
             if(self.arrayChatHistory.count > 0){
                 let strDateTitle = self.filterKeysArr[indexPath.section].Date_In_DD_MM_YYYY_FORMAT ?? ""
                 let obj = self.filterListArr[strDateTitle]?[indexPath.row]
@@ -350,9 +360,14 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
                 let NoDatacell = self.tblChat.dequeueReusableCell(withIdentifier: "NoDataCell", for: indexPath) as! NoDataCell
                 NoDatacell.imgNodata.image = UIImage(named: "ic_chat")
                 NoDatacell.lblData.text = "No chat available!"
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    NoDatacell.lblData.font = CustomFont.PoppinsRegular.returnFont(16.0)
+                }else{
+                    NoDatacell.lblData.font = CustomFont.PoppinsRegular.returnFont(21.0)
+                }
                 return NoDatacell
             }
-        }
+//        }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.arrayChatHistory.count > 0 {

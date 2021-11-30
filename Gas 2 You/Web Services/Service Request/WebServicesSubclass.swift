@@ -110,8 +110,23 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
-    class func nonMemberPlanList(completion: @escaping (Bool, String, nonMemberPlanListResModel?, Any) -> ()){
-        URLSessionRequestManager.makeGetRequest(urlString: ApiKey.nonMemberPlan.rawValue, responseModel: nonMemberPlanListResModel.self) { (status, message, response, error) in
+    class func CancelMemberPlan(reqModel : cancelMemberPlanReqModel,completion: @escaping (Bool, String, cancelMemberPlanResModel?, Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.cancelPurchasePlan.rawValue, requestModel: reqModel, responseModel: cancelMemberPlanResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func purchaseMemberPlan(reqModel : purchaseMemberReqModel,completion: @escaping (Bool, String, purchaseMemberPlanResModel?, Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.purchasePlan.rawValue, requestModel: reqModel, responseModel: purchaseMemberPlanResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func nonMemberPlanList(reqModel : nonMemberPlanListReqModel,completion: @escaping (Bool, String, nonMemberPlanListResModel?, Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.nonMemberPlan.rawValue, requestModel: reqModel, responseModel: nonMemberPlanListResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func checkTime(reqModel : CheckTimeReqModel,completion: @escaping (Bool, String, checktimeResModel?, Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.checkbookingtime.rawValue, requestModel: reqModel, responseModel: checktimeResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }
@@ -152,6 +167,21 @@ class WebServiceSubClass{
     }
     class func sendMsgAPI(reqModel : SendMsgReqModel , completion: @escaping (Bool,String,sendMessageResModel?,Any) -> ()){
         URLSessionRequestManager.makePostRequest(urlString: ApiKey.sendMesssage.rawValue, requestModel: reqModel, responseModel: sendMessageResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func CardList(reqModel : cardListReqModel , completion: @escaping (Bool,String,cardListResModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.cardList.rawValue, requestModel: reqModel, responseModel: cardListResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func DeleteCard(reqModel : DeleteCardReqModel , completion: @escaping (Bool,String,DeleteCardResModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.deleteCardList.rawValue, requestModel: reqModel, responseModel: DeleteCardResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func AddCard(reqModel : AddCardReqModel , completion: @escaping (Bool,String,addCardResModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.addCard.rawValue, requestModel: reqModel, responseModel: addCardResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }

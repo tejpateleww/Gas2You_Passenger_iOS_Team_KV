@@ -53,6 +53,7 @@ struct bookingDetailDatum : Codable {
     let vehicleId : String?
     let rate : String?
     let review : String?
+    let invoiceurl : String?
     
     enum CodingKeys: String, CodingKey {
         case colorName = "color_name"
@@ -81,6 +82,7 @@ struct bookingDetailDatum : Codable {
         case vehicleId = "vehicle_id"
         case rate = "rate"
         case review = "review"
+        case invoiceurl = "invoice_url"
     }
     
     init(from decoder: Decoder) throws {
@@ -111,6 +113,7 @@ struct bookingDetailDatum : Codable {
         vehicleId = try? values?.decodeIfPresent(String.self, forKey: .vehicleId)
         rate = try? values?.decodeIfPresent(String.self, forKey: .rate)
         review = try? values?.decodeIfPresent(String.self, forKey: .review)
+        invoiceurl = try? values?.decodeIfPresent(String.self, forKey: .invoiceurl)
     }
     
 }

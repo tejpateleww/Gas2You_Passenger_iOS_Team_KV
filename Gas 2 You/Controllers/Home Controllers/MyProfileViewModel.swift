@@ -30,6 +30,7 @@ class MyProfileViewModel{
                     Constants.userDefaults.setUserData()
                     let _ = Constants.userDefaults.getUserData()
                     self.myprofilevc?.setData()
+                    self.myprofilevc?.navigationController?.popViewController(animated: true)
                 }
             }
         })

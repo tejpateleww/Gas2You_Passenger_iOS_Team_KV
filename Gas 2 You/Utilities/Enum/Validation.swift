@@ -75,11 +75,11 @@ struct UserNameValidator: ValidatorConvertible {
         guard value != "" else {return (false,ValidationError("Please enter \(fieldName)").message)}
         
         guard value.count >= 3 else {
-            return (false , ValidationError("\(fieldName) must contain more than three characters").message)
+            return (false , ValidationError("\(fieldName.capitalizingFirstLetter()) must contain more than three characters").message)
             // ValidationError("Username must contain more than three characters" )
         }
         guard value.count <= 25 else {
-            return (false , ValidationError("\(fieldName) shoudn't contain more than 25 characters").message)
+            return (false , ValidationError("\(fieldName.capitalizingFirstLetter()) shoudn't contain more than 25 characters").message)
             // throw ValidationError("Username shoudn't conain more than 18 characters" )
         }
         
@@ -123,7 +123,7 @@ struct PasswordValidator: ValidatorConvertible {
         guard value != "" else {return (false,ValidationError("Please enter " + fieldName.lowercased()).message)}
         guard value.count >= 8 else { return (false,ValidationError( fieldName.capitalizingFirstLetter() + " must contain at least 8 characters").message)}
         guard value.count < 15 else {
-            return (false , ValidationError("\(fieldName) shoudn't contain more than 15 characters").message)
+            return (false , ValidationError("\(fieldName.capitalizingFirstLetter()) shoudn't contain more than 15 characters").message)
             // throw ValidationError("Username shoudn't conain more than 18 characters" )
         }
         // do {

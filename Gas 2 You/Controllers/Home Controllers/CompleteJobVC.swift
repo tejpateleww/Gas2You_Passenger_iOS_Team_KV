@@ -55,7 +55,11 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     @IBOutlet var borderedButtons: [UIButton]! {
         didSet {
             for i in 0..<borderedButtons.count {
-                borderedButtons[i].titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(13)
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    borderedButtons[i].titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(13)
+                }else{
+                    borderedButtons[i].titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(18)
+                }
                 borderedButtons[i].layer.borderWidth = 1
                 borderedButtons[i].layer.borderColor = #colorLiteral(red: 0.462745098, green: 0.462745098, blue: 0.5019607843, alpha: 0.12)
             }
@@ -99,8 +103,10 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     var strTitle = ""
     var objBookingDetail : bookingDetailDatum?
     var bookingDetailViewModel = bookingDetailsViewModel()
-    var orderId = ""
+    var orderId = String()
     var isCancel : Bool = false
+    var url = ""
+    var number = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         bookingDetailViewModel.BookingDetails = self
@@ -152,6 +158,13 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         lbltotalGallon.text = (objBookingDetail?.totalGallon ?? "" ) + " Gallon"
         lblPricePerGallon.text = CurrencySymbol +  (objBookingDetail?.pricePerGallon ?? "") + " Per Gallon"
         lblTotalAmount.text = CurrencySymbol + (objBookingDetail?.finalAmount ?? "")
+        if objBookingDetail?.invoiceurl  == ""{
+            btnDownloadInvoice.isHidden = true
+        }else{
+            self.url = objBookingDetail?.invoiceurl ?? ""
+            self.number = objBookingDetail?.invoiceNumber ?? ""
+            btnDownloadInvoice.isHidden = false
+        }
         if objBookingDetail?.rate == ""{
             vwRating.isHidden = true
             vwReviewFeedBack.isHidden = true
@@ -160,12 +173,63 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
             vwReviewFeedBack.isHidden = false
             btnGiveRateReview.isHidden = true
         }
+        
         vwCosmos.rating = Double(objBookingDetail?.rate ?? "") ?? 0.0
         lblUserReview.text = objBookingDetail?.review
     }
     @IBAction func btnDownloadInvoiceTap(_ sender: UIButton) {
+        savePdf(urlString: url, fileName: number)
     }
-    
+    func savePdf(urlString:String, fileName:String) {
+        if(urlString == ""){
+            Utilities.hideHud()
+            return
+        }
+        if(self.pdfFileAlreadySaved(url: urlString, fileName: fileName) == true){
+            Utilities.hideHud()
+            let vc : WebViewVC  = WebViewVC.instantiate(fromAppStoryboard: .Main)
+            vc.isLoadFromURL = true
+            vc.strUrl = urlString
+            self.navigationController?.pushViewController(vc, animated: true)
+            return
+        }else{
+            DispatchQueue.main.async {
+                let url = URL(string: urlString)
+                let pdfData = try? Data.init(contentsOf: url!)
+                let resourceDocPath = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last! as URL
+                let pdfNameFromUrl = "\(AppInfo.appName)_\(fileName).pdf"
+                let actualPath = resourceDocPath.appendingPathComponent(pdfNameFromUrl)
+                do {
+                    try pdfData?.write(to: actualPath, options: .atomic)
+//                    self.delegate?.onSaveInvoice()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        Toast.show(title: UrlConstant.Success, message: "Invoice successfully downloaded!", state: .success)
+                    }
+                } catch {
+                    Utilities.showAlertAction(message: "Invoice could not be saved!", vc: self)
+                }
+                Utilities.hideHud()
+            }
+        }
+    }
+    func pdfFileAlreadySaved(url:String, fileName:String)-> Bool {
+        var status = false
+        if #available(iOS 10.0, *) {
+            do {
+                let docURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                let contents = try FileManager.default.contentsOfDirectory(at: docURL, includingPropertiesForKeys: [.fileResourceTypeKey], options: .skipsHiddenFiles)
+                let fileName = "\(AppInfo.appName)_\(fileName).pdf".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                for url in contents {
+                    if url.description.contains(fileName) {
+                        status = true
+                    }
+                }
+            } catch {
+                print("could not locate Invoice file !!!!!!!")
+            }
+        }
+        return status
+    }
     @IBAction func btnGiveRateTap(_ sender: UIButton) {
             let ratingPopUpVC: RatingPopUpVC = RatingPopUpVC.instantiate(fromAppStoryboard: .Main)
             ratingPopUpVC.rateDelegate = self

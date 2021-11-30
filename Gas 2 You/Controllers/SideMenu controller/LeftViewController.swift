@@ -28,6 +28,7 @@ class LeftViewController: MenuViewController {
                                                    ("My Orders","IC_gas"),
                                                    ("My Profile","IC_user"),
                                                    ("Membership","IC_membership"),
+                                                   ("Payment Method","IC_membership"),
                                                    ("Settings","IC_settings"),
                                                    ("Notifications","IC_bell")]
     
@@ -128,12 +129,17 @@ extension LeftViewController : UITableViewDelegate, UITableViewDataSource {
                 (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
                 menuContainerViewController.hideSideMenu()
             }
-        case 4 :
+        case 4:
+            let vc : PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
+            vc.isfromPayment = true
+            (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
+            menuContainerViewController.hideSideMenu()
+        case 5 :
             let vc : SettingsVC = SettingsVC.instantiate(fromAppStoryboard: .Main)
             (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
             
             menuContainerViewController.hideSideMenu()
-        case 5:
+        case 6:
             let vc : NotificationListVC = NotificationListVC.instantiate(fromAppStoryboard: .Main)
             (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
             

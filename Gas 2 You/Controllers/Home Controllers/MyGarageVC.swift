@@ -62,7 +62,7 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         if arrVehicalList.count != 0{
             return arrVehicalList.count
         }else{
-            return (isReload) ? 5 : 1
+            return (isReload) ? 1 : 5
         }
     }
     
@@ -89,6 +89,11 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
                 let noDataCell:NoDataCell = vehicleListTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
                 noDataCell.imgNodata.image = UIImage(named: "ic_car")
                 noDataCell.lblData.text = "No vehicle found"
+                if UIDevice.current.userInterfaceIdiom == .phone{
+                    noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(16.0)
+                }else{
+                    noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(21.0)
+                }
                 noDataCell.selectionStyle = .none
                 return noDataCell
             }
@@ -106,6 +111,13 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         }
 
     }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if arrVehicalList.count == 0 {
+            return .none
+        }
+        return .delete
+    }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if #available(iOS 13.0, *) {
             cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .systemBackground)
@@ -113,7 +125,11 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
             cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .white)
         }
     }
+
+
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if arrVehicalList.count != 0{
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
             self.removeVehicle.webserviceofRemovevehical(vehicleId: self.arrVehicalList[indexPath.row].id ?? "", row: indexPath.row)
             
@@ -148,5 +164,8 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         deleteAction.backgroundColor = .red
         editAction.backgroundColor = .red
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        }else{
+            return UISwipeActionsConfiguration(actions: [])
+        }
     }
 }

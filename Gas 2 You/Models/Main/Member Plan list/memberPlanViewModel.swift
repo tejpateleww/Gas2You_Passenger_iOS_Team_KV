@@ -16,7 +16,6 @@ class memberPlanViewModel{
             if status{
                 if let model = response?.data{
                     self.memberplanvc?.memberPlanList = model
-                    self.memberplanvc?.delegateMember?.myprofilerefresh()
                     self.memberplanvc?.tblMembershipPlan.reloadData()
                 }
             }else{
@@ -40,4 +39,5 @@ class memberPlanViewModel{
             }
         })
     }
+    
 }

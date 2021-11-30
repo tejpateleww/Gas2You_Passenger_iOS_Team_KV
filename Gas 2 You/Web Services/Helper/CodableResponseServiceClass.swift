@@ -55,9 +55,9 @@ class CodableService {
                                 
                                 //MARK:- Session Expoire -> Do Force Logout
                             }else if httpResponse.statusCode == 403{
-                                Utilities.showAlertWithTitleFromWindow(title: AppInfo.appName, andMessage: GlobalStrings.EndSession_Logout.rawValue, buttons: ["ok"]) { _ in
+//                                Utilities.showAlertWithTitleFromWindow(title: AppInfo.appName, andMessage: GlobalStrings.EndSession_Logout.rawValue, buttons: ["ok"]) { _ in
                                     AppDel.dologout()
-                                }
+//                                }
                                 completion(statusCode, UrlConstant.SessionExpired, nil, SessionExpiredResponseDic)
                                 
                                 //MARK:- Server Error

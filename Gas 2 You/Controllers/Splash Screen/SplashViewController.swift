@@ -62,7 +62,22 @@ class SplashViewController: BaseVC {
         let when = DispatchTime.now() + delay
         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
     }
-
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .restricted:
+            print("Location access was restricted.")
+        case .denied:
+            print("User denied access to location.")
+        // Display the map using the default location.
+        
+        case .notDetermined:
+            print("Location status not determined.")
+        case .authorizedAlways: fallthrough
+        case .authorizedWhenInUse:
+            print("Location status is OK.")
+            
+        }
+    }
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
@@ -120,7 +135,7 @@ extension SplashViewController {
             //Location Update
             let status = CLLocationManager.authorizationStatus()
             if(status == .authorizedAlways || status == .authorizedWhenInUse){
-                Constants.appDel.locationService.startUpdatingLocation()
+                AppDel.locationService.startUpdatingLocation()
             }
         }
     }

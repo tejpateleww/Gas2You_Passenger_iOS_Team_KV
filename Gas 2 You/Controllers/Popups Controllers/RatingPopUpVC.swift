@@ -37,8 +37,13 @@ class RatingPopUpVC: UIViewController {
         btnCancel.layer.borderColor = #colorLiteral(red: 0.1235632375, green: 0.5093602538, blue: 0.7753000855, alpha: 1)
         btnCancel.titleLabel?.textColor = #colorLiteral(red: 0.1235632375, green: 0.5093602538, blue: 0.7753000855, alpha: 1)
         btnCancel.tintColor = #colorLiteral(red: 0.1235632375, green: 0.5093602538, blue: 0.7753000855, alpha: 1)
-        btnCancel.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(16)
-        txtReview.font = CustomFont.PoppinsRegular.returnFont(13)
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            btnCancel.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(16)
+            txtReview.font = CustomFont.PoppinsRegular.returnFont(13)
+        }else{
+            btnCancel.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(21)
+            txtReview.font = CustomFont.PoppinsRegular.returnFont(18)
+        }
         txtReview.text = "Write down your review"
         txtReview.textColor = UIColor.lightGray
         txtReview.delegate = self

@@ -8,6 +8,8 @@
 import Foundation
 class ServiceListViewModel{
     weak var serviceList : HomeVC?
+    var todaysDate = NSDate()
+    
     func webserviceofserviceList(){
         WebServiceSubClass.serviceList(completion: { (status, message, response, error) in
             if status{
@@ -49,16 +51,36 @@ class ServiceListViewModel{
         })
     }
     
-    func webserviceofDateList(bookingdate:String){
+    func webserviceofDateList(booking_date:String , isFromToday : Bool){
         let dateList = DateReqModel()
         dateList.user_id = Singleton.sharedInstance.userId
-        dateList.booking_date = bookingdate
+        dateList.booking_date = booking_date
         WebServiceSubClass.DateList(reqModel: dateList, completion: { (status, message, response, error) in
             if status{
                 if let model = response{
-                    self.serviceList?.arrTimeList = model.data ?? []
-                    self.serviceList?.availableDate = model.availableDates ?? []
-                    self.serviceList?.selectedDate.text = model.availableDates?[0]
+                    
+                    if model.availableDates?.count != 0{
+                        self.serviceList?.availableDate = model.availableDates ?? []
+                        if isFromToday == true {
+                            let today = Date()
+                            let strDate = self.serviceList?.dateFormatter.string(from: today)
+                            self.serviceList?.txtDateSelected.text = strDate//self.serviceList?.dateFormatter.string(from: today)
+                        }
+                    }else{
+                        self.serviceList?.availableDate =  model.availableDates ?? []
+                        let today = Date()
+                        let strDate = self.serviceList?.dateFormatter.string(from: today)
+                        self.serviceList?.availableDate.append(strDate ?? "")
+                        self.serviceList?.txtDateSelected.text = strDate//self.serviceList?.convertDateFormat(inputDate: strDate ?? "")
+                    }
+                    if model.data?.count == 0{
+                        Toast.show(title: UrlConstant.Failed, message: "No Slot Available", state: .failure)
+                        self.serviceList?.collectionTimeList.isHidden = true
+                    }else{
+                        self.serviceList?.arrTimeList = model.data ?? []
+                        self.serviceList?.collectionTimeList.isHidden = false
+                    }
+                    
                     self.serviceList?.collectionTimeList.reloadData()
                 }
                 

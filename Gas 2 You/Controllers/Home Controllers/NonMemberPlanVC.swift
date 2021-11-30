@@ -25,8 +25,8 @@ class NonMemberPlanVC: BaseVC {
     }
     
     @IBAction func btnPayNowTap(_ sender: ThemeButton) {
-        let memberPlanVC: MemberPlanVC = MemberPlanVC.instantiate(fromAppStoryboard: .Main)
-        navigationController?.pushViewController(memberPlanVC, animated: true)
+//        let memberPlanVC: MemberPlanVC = MemberPlanVC.instantiate(fromAppStoryboard: .Main)
+//        navigationController?.pushViewController(memberPlanVC, animated: true)
     }
 }
 extension NonMemberPlanVC:UITableViewDelegate,UITableViewDataSource{
@@ -38,12 +38,12 @@ extension NonMemberPlanVC:UITableViewDelegate,UITableViewDataSource{
         cell.lblId.text = (nonmemberplanlist[indexPath.row].id ?? "") + "."
         cell.lblTitle.text = (nonmemberplanlist[indexPath.row].title ?? "") + arrow
         cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
-        cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isSelected == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+        cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isChecked == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
         cell.selectionStyle = .none
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        nonmemberplanlist[indexPath.row].isSelected = (nonmemberplanlist[indexPath.row].isSelected == true) ? false : true
+        nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
         tblNonMemberPlan.reloadData()
     }
 }

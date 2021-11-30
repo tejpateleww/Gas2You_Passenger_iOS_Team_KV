@@ -26,6 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     var window: UIWindow?
     var locationManager: CLLocationManager?
     var isChatScreen : Bool = false
+    var notificationType : NotificationTypes?
+    var orderid = String()
+    var status = 0
+    var ObjUserData : BookingListDatum?
+    var deliveryBoyId = String()
     static var pushNotificationObj : NotificationObjectModel?
     static var pushNotificationType : String?
     static var shared: AppDelegate {
@@ -42,21 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         ApplicationDelegate.initializeSDK(nil)
         GIDSignIn.sharedInstance().clientID = "651860703785-am67b73lv131cjjv47dhpsf079e4cfic.apps.googleusercontent.com"
         // Thread.sleep(forTimeInterval: 3.0)
-        setUpLocationServices()
+        
         IQKeyboardManager.shared.enable = true
         GMSServices.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
         GMSPlacesClient.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
+        setUpLocationServices()
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
         registerForPushNotifications()
         return true
     }
     // MARK: - LocationManagerDelegate
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations.last!
-        Singleton.sharedInstance.userCurrentLocation = location
-        //print(location.coordinate.latitude)
-    }
+    
     func setUpLocationServices() {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
@@ -74,6 +76,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
                 //                manager.startUpdatingLocation()
             }
         }
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location: CLLocation = locations.last!
+        Singleton.sharedInstance.userCurrentLocation = location
+        //print(location.coordinate.latitude)
+    }
+    // MARK: - LocationManagerDelegate
+    
+    // Handle authorization for the location manager.
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .restricted:
+            print("Location access was restricted.")
+        case .denied:
+            print("User denied access to location.")
+        // Display the map using the default location.
+        
+        case .notDetermined:
+            print("Location status not determined.")
+        case .authorizedAlways: fallthrough
+        case .authorizedWhenInUse:
+            print("Location status is OK.")
+        }
+    }
+    
+    // Handle location manager errors.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager?.stopUpdatingLocation()
+        
+//        SingletonClass.sharedInstance.arrCarLists
+        
+        print("Error: \(error)")
     }
     // MARK: - Core Data stack
 
@@ -166,7 +200,8 @@ extension Notification.Name {
 }
 
 enum NotificationTypes : String {
-    case notifLoggedOut = "sessionTimeout"
-    case newBooking = "newBooking"
-    case newMessage = "newMessage"
+    case JobStarted = "jobStart"
+    case JobCompleted = "jobComplete"
+    case InvoiceGenerated = "invoiceGenerated"
+    case Chatnewmessagereceived = "newMessage"
 }

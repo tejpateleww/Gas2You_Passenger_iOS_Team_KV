@@ -73,7 +73,11 @@ class LogInVC: UIViewController {
         }
     }
     func setupUI() {
-        btnSignUp.setunderline(title: btnSignUp.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(16))
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            btnSignUp.setunderline(title: btnSignUp.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(16))
+        }else{
+            btnSignUp.setunderline(title: btnSignUp.titleLabel?.text ?? "", color: .white, font: CustomFont.PoppinsSemiBold.returnFont(21))
+        }
         setupTextfields(textfield: txtPassword)
     }
     
@@ -82,7 +86,11 @@ class LogInVC: UIViewController {
         textfield.rightViewMode = .always
         let button = UIButton(frame: CGRect(x: 10, y: 0, width: 60, height: 40))
         button.setTitle("Forgot?", for: .normal)
-        button.setColorFont(color:.lightGreyBtn , font: CustomFont.PoppinsMedium.returnFont(14))
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            button.setColorFont(color:.lightGreyBtn , font: CustomFont.PoppinsMedium.returnFont(14))
+        }else{
+            button.setColorFont(color:.lightGreyBtn , font: CustomFont.PoppinsMedium.returnFont(19))
+        }
         button.addTarget(self, action: #selector(navigateToForgotPassword), for: .touchUpInside)
         let view = UIView(frame : CGRect(x: 0, y: 0, width: 80, height: 40))
         view.addSubview(button)

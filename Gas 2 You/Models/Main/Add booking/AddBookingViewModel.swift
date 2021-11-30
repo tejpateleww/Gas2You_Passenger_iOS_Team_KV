@@ -10,20 +10,23 @@ import UIKit
 
 class AddBookingViewModel{
     var addbooking : HomeVC?
-    func doAddBooking(customerid: String, serviceid: String, subserviceid: String, parkinglocation: String, lat: String, lng: String, date: String, time: String, vehicleid: String, totalAmount: String, addonid: String) {
-        let reqModel = AddBookingReqModel(customerid: customerid, serviceid: serviceid, subserviceid: subserviceid, parkinglocation: parkinglocation, lat: lat, lng: lng, date: date, time: time, vehicleid: vehicleid, totalAmount: totalAmount, addonid: addonid)
-        webserviceAddBooking(reqModel)
-    }
-    func webserviceAddBooking(_ reqModel: AddBookingReqModel){
+    func webserviceCheckTime(bookingDate:String,bookingTime:String){
+        let checkTime = CheckTimeReqModel()
+        checkTime.booking_date = bookingDate
+        checkTime.booking_time = bookingTime
         self.addbooking?.btnAddBooking.showLoading()
-        WebServiceSubClass.addBooking(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
+        WebServiceSubClass.checkTime(reqModel: checkTime, completion: { (status, apiMessage, response, error) in
             self.addbooking?.btnAddBooking.hideLoading()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure){
-            if status{
-                let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-                self.addbooking?.navigationController?.pushViewController(myOrdersVC, animated: true)
-            }
-            }
+//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? apiMessage : apiMessage, state: status ? .success : .failure){
+                if status{
+                    let myOrdersVC: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
+                    let objdatamodel = GetData(serviceID: self.addbooking?.serviceid ?? "", subserviceId: self.addbooking?.subserviceid ?? "", parkingLocation: self.addbooking?.locationLabel.text ?? "", date: self.addbooking?.txtDateSelected.text ?? "", time: self.addbooking?.time ?? "", vehicleId: self.addbooking?.vehicalid ?? "", addonId: self.addbooking?.addonid ?? "")
+                    myOrdersVC.getDataModel = objdatamodel
+                    self.addbooking?.navigationController?.pushViewController(myOrdersVC, animated: true)
+                }else{
+                    Toast.show(title:UrlConstant.Failed, message: apiMessage, state: .failure)
+                    self.addbooking?.ServiceListData.webserviceofDateList(booking_date: (self.addbooking?.dateFormatter.string(from: (self.addbooking?.todaysDate) as Date? ?? Date())) ?? "", isFromToday: true)
+                }
         })
     }
 }

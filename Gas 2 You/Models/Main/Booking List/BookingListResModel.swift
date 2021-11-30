@@ -26,67 +26,103 @@ struct BookingListResModel : Codable {
 }
 struct BookingListDatum : Codable {
 
-        let colorName : String?
-        let customerId : String?
-        let date : String?
-        let id : String?
-        let latitude : String?
-        let longitude : String?
-        let mainServiceName : String?
-        let makeName : String?
-        let modelName : String?
-        let parkingLocation : String?
-        let plateNumber : String?
-        let serviceId : String?
-        let status : String?
-        let statusLabel : String?
-        let subServiceId : String?
-        let subServiceName : String?
-        let time : String?
-        let vehicleId : String?
+    let colorName : String?
+            let completeOrderDateTime : String?
+            let customerId : String?
+            let date : String?
+            let driverContactNumber : String?
+            let driverContactNumberCode : String?
+            let driverId : String?
+            let finalAmount : String?
+            let id : String?
+            let invoiceNumber : String?
+            let invoiceUrl : String?
+            let latitude : String?
+            let longitude : String?
+            let mainServiceName : String?
+            let makeName : String?
+            let modelName : String?
+            let orderStatus : String?
+            let parkingLocation : String?
+            let plateNumber : String?
+            let pricePerGallon : String?
+            let rate : String?
+            let review : String?
+            let serviceId : String?
+            let status : String?
+            let subServiceId : String?
+            let subServiceName : String?
+            let time : String?
+            let totalAmount : String?
+            let totalGallon : String?
+            let vehicleId : String?
 
-        enum CodingKeys: String, CodingKey {
-                case colorName = "color_name"
-                case customerId = "customer_id"
-                case date = "date"
-                case id = "id"
-                case latitude = "latitude"
-                case longitude = "longitude"
-                case mainServiceName = "main_service_name"
-                case makeName = "make_name"
-                case modelName = "model_name"
-                case parkingLocation = "parking_location"
-                case plateNumber = "plate_number"
-                case serviceId = "service_id"
-                case status = "status"
-                case statusLabel = "status_label"
-                case subServiceId = "sub_service_id"
-                case subServiceName = "sub_service_name"
-                case time = "time"
-                case vehicleId = "vehicle_id"
-        }
-    
-        init(from decoder: Decoder) throws {
-                let values = try? decoder.container(keyedBy: CodingKeys.self)
-                colorName = try? values?.decodeIfPresent(String.self, forKey: .colorName)
-                customerId = try? values?.decodeIfPresent(String.self, forKey: .customerId)
-                date = try? values?.decodeIfPresent(String.self, forKey: .date)
-                id = try? values?.decodeIfPresent(String.self, forKey: .id)
-                latitude = try? values?.decodeIfPresent(String.self, forKey: .latitude)
-                longitude = try? values?.decodeIfPresent(String.self, forKey: .longitude)
-                mainServiceName = try? values?.decodeIfPresent(String.self, forKey: .mainServiceName)
-                makeName = try? values?.decodeIfPresent(String.self, forKey: .makeName)
-                modelName = try? values?.decodeIfPresent(String.self, forKey: .modelName)
-                parkingLocation = try? values?.decodeIfPresent(String.self, forKey: .parkingLocation)
-                plateNumber = try? values?.decodeIfPresent(String.self, forKey: .plateNumber)
-                serviceId = try? values?.decodeIfPresent(String.self, forKey: .serviceId)
-                status = try? values?.decodeIfPresent(String.self, forKey: .status)
-                statusLabel = try? values?.decodeIfPresent(String.self, forKey: .statusLabel)
-                subServiceId = try? values?.decodeIfPresent(String.self, forKey: .subServiceId)
-                subServiceName = try? values?.decodeIfPresent(String.self, forKey: .subServiceName)
-                time = try? values?.decodeIfPresent(String.self, forKey: .time)
-                vehicleId = try? values?.decodeIfPresent(String.self, forKey: .vehicleId)
-        }
+            enum CodingKeys: String, CodingKey {
+                    case colorName = "color_name"
+                    case completeOrderDateTime = "complete_order_date_time"
+                    case customerId = "customer_id"
+                    case date = "date"
+                    case driverContactNumber = "driver_contact_number"
+                    case driverContactNumberCode = "driver_contact_number_code"
+                    case driverId = "driver_id"
+                    case finalAmount = "final_amount"
+                    case id = "id"
+                    case invoiceNumber = "invoice_number"
+                    case invoiceUrl = "invoice_url"
+                    case latitude = "latitude"
+                    case longitude = "longitude"
+                    case mainServiceName = "main_service_name"
+                    case makeName = "make_name"
+                    case modelName = "model_name"
+                    case orderStatus = "order_status"
+                    case parkingLocation = "parking_location"
+                    case plateNumber = "plate_number"
+                    case pricePerGallon = "price_per_gallon"
+                    case rate = "rate"
+                    case review = "review"
+                    case serviceId = "service_id"
+                    case status = "status"
+                    case subServiceId = "sub_service_id"
+                    case subServiceName = "sub_service_name"
+                    case time = "time"
+                    case totalAmount = "total_amount"
+                    case totalGallon = "total_gallon"
+                    case vehicleId = "vehicle_id"
+            }
+        
+            init(from decoder: Decoder) throws {
+                    let values = try? decoder.container(keyedBy: CodingKeys.self)
+                    colorName = try? values?.decodeIfPresent(String.self, forKey: .colorName)
+                    completeOrderDateTime = try? values?.decodeIfPresent(String.self, forKey: .completeOrderDateTime)
+                    customerId = try? values?.decodeIfPresent(String.self, forKey: .customerId)
+                    date = try? values?.decodeIfPresent(String.self, forKey: .date)
+                    driverContactNumber = try? values?.decodeIfPresent(String.self, forKey: .driverContactNumber)
+                    driverContactNumberCode = try? values?.decodeIfPresent(String.self, forKey: .driverContactNumberCode)
+                    driverId = try? values?.decodeIfPresent(String.self, forKey: .driverId)
+                    finalAmount = try? values?.decodeIfPresent(String.self, forKey: .finalAmount)
+                    id = try? values?.decodeIfPresent(String.self, forKey: .id)
+                    invoiceNumber = try? values?.decodeIfPresent(String.self, forKey: .invoiceNumber)
+                    invoiceUrl = try? values?.decodeIfPresent(String.self, forKey: .invoiceUrl)
+                    latitude = try? values?.decodeIfPresent(String.self, forKey: .latitude)
+                    longitude = try? values?.decodeIfPresent(String.self, forKey: .longitude)
+                    mainServiceName = try? values?.decodeIfPresent(String.self, forKey: .mainServiceName)
+                    makeName = try? values?.decodeIfPresent(String.self, forKey: .makeName)
+                    modelName = try? values?.decodeIfPresent(String.self, forKey: .modelName)
+                    orderStatus = try? values?.decodeIfPresent(String.self, forKey: .orderStatus)
+                    parkingLocation = try? values?.decodeIfPresent(String.self, forKey: .parkingLocation)
+                    plateNumber = try? values?.decodeIfPresent(String.self, forKey: .plateNumber)
+                    pricePerGallon = try? values?.decodeIfPresent(String.self, forKey: .pricePerGallon)
+                    rate = try? values?.decodeIfPresent(String.self, forKey: .rate)
+                    review = try? values?.decodeIfPresent(String.self, forKey: .review)
+                    serviceId = try? values?.decodeIfPresent(String.self, forKey: .serviceId)
+                    status = try? values?.decodeIfPresent(String.self, forKey: .status)
+                    subServiceId = try? values?.decodeIfPresent(String.self, forKey: .subServiceId)
+                    subServiceName = try? values?.decodeIfPresent(String.self, forKey: .subServiceName)
+                    time = try? values?.decodeIfPresent(String.self, forKey: .time)
+                    totalAmount = try? values?.decodeIfPresent(String.self, forKey: .totalAmount)
+                    totalGallon = try? values?.decodeIfPresent(String.self, forKey: .totalGallon)
+                    vehicleId = try? values?.decodeIfPresent(String.self, forKey: .vehicleId)
+            }
 }
 class bookingListReqModel: Encodable{
     var customer_id : String?

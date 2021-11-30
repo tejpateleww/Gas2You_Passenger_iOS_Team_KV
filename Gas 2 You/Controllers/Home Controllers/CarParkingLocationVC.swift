@@ -32,7 +32,7 @@ class CarParkingLocationVC: BaseVC {
     var CurrentLocMarker: GMSMarker?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.mapType = .satellite
+        self.mapView.mapType = .normal
         if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String == nil{
             txtSearchBar.text = place
             setupMap()
@@ -57,6 +57,59 @@ class CarParkingLocationVC: BaseVC {
         self.navigationController?.popViewController(animated: true)
         delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
     }
+    func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
+            var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
+            let lat: Double = Double("\(pdblLatitude)")!
+            //21.228124
+            let lon: Double = Double("\(pdblLongitude)")!
+            //72.833770
+            let ceo: CLGeocoder = CLGeocoder()
+            center.latitude = lat
+            center.longitude = lon
+
+            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+
+
+            ceo.reverseGeocodeLocation(loc, completionHandler:
+                {(placemarks, error) in
+                    if (error != nil)
+                    {
+                        print("reverse geodcode fail: \(error!.localizedDescription)")
+                    }
+                    let pm = placemarks! as [CLPlacemark]
+
+                    if pm.count > 0 {
+                        let pm = placemarks![0]
+                        print(pm.country)
+                        print(pm.locality)
+                        print(pm.subLocality)
+                        print(pm.thoroughfare)
+                        print(pm.postalCode)
+                        print(pm.subThoroughfare)
+                        var addressString : String = ""
+                        if pm.subLocality != nil {
+                            addressString = addressString + pm.subLocality! + ", "
+                        }
+                        if pm.thoroughfare != nil {
+                            addressString = addressString + pm.thoroughfare! + ", "
+                        }
+                        if pm.locality != nil {
+                            addressString = addressString + pm.locality! + ", "
+                        }
+                        if pm.country != nil {
+                            addressString = addressString + pm.country! + ", "
+                        }
+                        if pm.postalCode != nil {
+                            addressString = addressString + pm.postalCode! + " "
+                        }
+//                        self.PlaceName = addressString
+                        userDefault.setValue(addressString, forKey: UserDefaultsKey.PlaceName.rawValue)
+                        self.txtSearchBar.text = addressString
+                        print(addressString)
+                  }
+            })
+
+        }
     func setupMap(){
         self.mapView.clear()
         self.path = GMSPath()
@@ -72,6 +125,7 @@ class CarParkingLocationVC: BaseVC {
         let markerImage = UIImage(named: "IC_pinImg")
         let markerView = UIImageView(image: markerImage)
         marker.position = CLLocationCoordinate2D(latitude:  Double(self.CurrentLocLat) ?? 0.0, longitude: Double(self.CurrentLocLong) ?? 0.0)
+        self.getAddressFromLatLon(pdblLatitude: self.CurrentLocLat, withLongitude: self.CurrentLocLong)
         marker.iconView = markerView
         marker.map = mapView
     }

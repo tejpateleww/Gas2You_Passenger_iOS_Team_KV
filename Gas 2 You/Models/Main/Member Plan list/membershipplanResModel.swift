@@ -25,11 +25,11 @@ struct membershipplanResModel : Codable {
     }
     
 }
-struct memberPlanListDatum : Codable {
+class memberPlanListDatum : Codable {
     
     let descriptionField : String?
     let id : String?
-    let isPurchased : Bool?
+    var isPurchased : Bool?
     let planName : String?
     let price : String?
     let type : String?
@@ -44,7 +44,7 @@ struct memberPlanListDatum : Codable {
         case type = "type"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try? decoder.container(keyedBy: CodingKeys.self)
         descriptionField = try? values?.decodeIfPresent(String.self, forKey: .descriptionField)
         id = try? values?.decodeIfPresent(String.self, forKey: .id)
@@ -58,6 +58,22 @@ struct memberPlanListDatum : Codable {
 class memberListReqModel: Encodable{
     var customer_id : String?
     enum CodingKeys: String, CodingKey {
+        case customer_id = "customer_id"
+    }
+}
+class purchaseMemberReqModel:Encodable{
+    var customer_id : String?
+    var plan_id : String?
+    var card_id : String?
+    enum codingkeys : String,CodingKey {
+        case customer_id = "customer_id"
+        case plan_id = "plan_id"
+        case card_id = "card_id"
+    }
+}
+class cancelMemberPlanReqModel : Encodable{
+    var customer_id : String?
+    enum codingkeys : String,CodingKey {
         case customer_id = "customer_id"
     }
 }

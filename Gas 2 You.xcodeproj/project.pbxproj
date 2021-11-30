@@ -85,9 +85,16 @@
 		886DF1B926FC347100A36B51 /* LogoutUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF1B826FC347100A36B51 /* LogoutUserModel.swift */; };
 		886DF20626FC798F00A36B51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 886DF20526FC798F00A36B51 /* GoogleService-Info.plist */; };
 		886DF20926FC8FD700A36B51 /* timeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF20826FC8FD700A36B51 /* timeListCell.swift */; };
+		8873CA70274B588800881458 /* purchaseMemberPlanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873CA6F274B588800881458 /* purchaseMemberPlanResModel.swift */; };
+		8873CA72274B668E00881458 /* cancelMemberPlanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873CA71274B668D00881458 /* cancelMemberPlanResModel.swift */; };
+		8873CA74274B679C00881458 /* cancelPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873CA73274B679C00881458 /* cancelPlanViewModel.swift */; };
 		8877AD582703334D0083C883 /* membershipPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD572703334D0083C883 /* membershipPlanCell.swift */; };
 		8877AD5D2703358A0083C883 /* membershipplanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5B2703358A0083C883 /* membershipplanResModel.swift */; };
 		8877AD5F27033E4E0083C883 /* memberPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */; };
+		888BD78A27508FEC00BE17D4 /* addCardResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78927508FEC00BE17D4 /* addCardResModel.swift */; };
+		888BD78C2750917300BE17D4 /* addCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78B2750917300BE17D4 /* addCardViewModel.swift */; };
+		888BD78E275099F300BE17D4 /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78D275099F300BE17D4 /* MonthYearPickerView.swift */; };
+		888BD7902750D5C100BE17D4 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78F2750D5C100BE17D4 /* WebViewVC.swift */; };
 		888F2FBA2701E31B008DB515 /* bookingDetailResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888F2FB82701E31A008DB515 /* bookingDetailResModel.swift */; };
 		8896401A27423B9100B3379B /* chatListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896401827423B9100B3379B /* chatListResModel.swift */; };
 		8896401D27423DDC00B3379B /* ChatUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896401C27423DDC00B3379B /* ChatUserModel.swift */; };
@@ -103,6 +110,13 @@
 		88AD5BB9270725D8000CFA25 /* NoDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD5BB7270725D8000CFA25 /* NoDataCell.swift */; };
 		88AD5BBA270725D8000CFA25 /* NoDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AD5BB8270725D8000CFA25 /* NoDataCell.xib */; };
 		88AD5BC227073364000CFA25 /* appleLoginResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD5BC027073364000CFA25 /* appleLoginResModel.swift */; };
+		88C13C8F274F6A8F0008173C /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C8E274F6A8F0008173C /* AddCardViewController.swift */; };
+		88C13C91274F751F0008173C /* PaymentMethodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C90274F751F0008173C /* PaymentMethodVC.swift */; };
+		88C13C93274F76130008173C /* PaymentMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C92274F76130008173C /* PaymentMethodCell.swift */; };
+		88C13C98274F818E0008173C /* cardListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C96274F818E0008173C /* cardListResModel.swift */; };
+		88C13C9A274F86AE0008173C /* cardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C99274F86AE0008173C /* cardListViewModel.swift */; };
+		88C13C9C274F99D80008173C /* DeleteCardResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C9B274F99D80008173C /* DeleteCardResModel.swift */; };
+		88C13C9E274FA8970008173C /* checktimeResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C9D274FA8970008173C /* checktimeResModel.swift */; };
 		88D296F62701906700BC6AE2 /* socialLoginReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D296F52701906700BC6AE2 /* socialLoginReqModel.swift */; };
 		88D296FB2701993400BC6AE2 /* SocialSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D296FA2701993300BC6AE2 /* SocialSignInManager.swift */; };
 		88D9A7112746824300F4A8A6 /* DateResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D9A7102746824300F4A8A6 /* DateResModel.swift */; };
@@ -272,9 +286,16 @@
 		886DF1B826FC347100A36B51 /* LogoutUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUserModel.swift; sourceTree = "<group>"; };
 		886DF20526FC798F00A36B51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		886DF20826FC8FD700A36B51 /* timeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timeListCell.swift; sourceTree = "<group>"; };
+		8873CA6F274B588800881458 /* purchaseMemberPlanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = purchaseMemberPlanResModel.swift; sourceTree = "<group>"; };
+		8873CA71274B668D00881458 /* cancelMemberPlanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cancelMemberPlanResModel.swift; sourceTree = "<group>"; };
+		8873CA73274B679C00881458 /* cancelPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cancelPlanViewModel.swift; sourceTree = "<group>"; };
 		8877AD572703334D0083C883 /* membershipPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = membershipPlanCell.swift; sourceTree = "<group>"; };
 		8877AD5B2703358A0083C883 /* membershipplanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = membershipplanResModel.swift; sourceTree = "<group>"; };
 		8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memberPlanViewModel.swift; sourceTree = "<group>"; };
+		888BD78927508FEC00BE17D4 /* addCardResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCardResModel.swift; sourceTree = "<group>"; };
+		888BD78B2750917300BE17D4 /* addCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addCardViewModel.swift; sourceTree = "<group>"; };
+		888BD78D275099F300BE17D4 /* MonthYearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerView.swift; sourceTree = "<group>"; };
+		888BD78F2750D5C100BE17D4 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		888F2FB82701E31A008DB515 /* bookingDetailResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bookingDetailResModel.swift; sourceTree = "<group>"; };
 		8896401827423B9100B3379B /* chatListResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatListResModel.swift; sourceTree = "<group>"; };
 		8896401C27423DDC00B3379B /* ChatUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserModel.swift; sourceTree = "<group>"; };
@@ -290,6 +311,13 @@
 		88AD5BB7270725D8000CFA25 /* NoDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataCell.swift; sourceTree = "<group>"; };
 		88AD5BB8270725D8000CFA25 /* NoDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataCell.xib; sourceTree = "<group>"; };
 		88AD5BC027073364000CFA25 /* appleLoginResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = appleLoginResModel.swift; sourceTree = "<group>"; };
+		88C13C8E274F6A8F0008173C /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		88C13C90274F751F0008173C /* PaymentMethodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodVC.swift; sourceTree = "<group>"; };
+		88C13C92274F76130008173C /* PaymentMethodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCell.swift; sourceTree = "<group>"; };
+		88C13C96274F818E0008173C /* cardListResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cardListResModel.swift; sourceTree = "<group>"; };
+		88C13C99274F86AE0008173C /* cardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardListViewModel.swift; sourceTree = "<group>"; };
+		88C13C9B274F99D80008173C /* DeleteCardResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCardResModel.swift; sourceTree = "<group>"; };
+		88C13C9D274FA8970008173C /* checktimeResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checktimeResModel.swift; sourceTree = "<group>"; };
 		88D296F52701906700BC6AE2 /* socialLoginReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = socialLoginReqModel.swift; sourceTree = "<group>"; };
 		88D296FA2701993300BC6AE2 /* SocialSignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialSignInManager.swift; sourceTree = "<group>"; };
 		88D9A7102746824300F4A8A6 /* DateResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateResModel.swift; sourceTree = "<group>"; };
@@ -601,6 +629,7 @@
 		880F429E26FD80880076C9EA /* Add booking */ = {
 			isa = PBXGroup;
 			children = (
+				88C13C9D274FA8970008173C /* checktimeResModel.swift */,
 				880F42B726FD902D0076C9EA /* addBookingResModel.swift */,
 				880F42B426FD8BBD0076C9EA /* AddBookingReqModel.swift */,
 				880F42BA26FD90C60076C9EA /* AddBookingViewModel.swift */,
@@ -629,6 +658,7 @@
 		8812771B26F84C6F005E8F37 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				88C13C94274F813E0008173C /* card */,
 				88D9A70F274681B500F4A8A6 /* Date List */,
 				88DC0BFA2743A681002A2BD3 /* Send Message */,
 				8896401E2742517200B3379B /* Chat History */,
@@ -644,6 +674,7 @@
 				881277B226F8AB6E005E8F37 /* Delete Vehicle */,
 				8812778226F87391005E8F37 /* AddVehical */,
 				8812778126F87375005E8F37 /* VehicalList */,
+				8873CA73274B679C00881458 /* cancelPlanViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -682,6 +713,8 @@
 		8877AD59270335470083C883 /* Member Plan list */ = {
 			isa = PBXGroup;
 			children = (
+				8873CA71274B668D00881458 /* cancelMemberPlanResModel.swift */,
+				8873CA6F274B588800881458 /* purchaseMemberPlanResModel.swift */,
 				8877AD5B2703358A0083C883 /* membershipplanResModel.swift */,
 				8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */,
 			);
@@ -734,6 +767,28 @@
 				88AD5BB8270725D8000CFA25 /* NoDataCell.xib */,
 			);
 			path = "No Data Cell";
+			sourceTree = "<group>";
+		};
+		88C13C8D274F6A700008173C /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				88C13C8E274F6A8F0008173C /* AddCardViewController.swift */,
+				88C13C90274F751F0008173C /* PaymentMethodVC.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		88C13C94274F813E0008173C /* card */ = {
+			isa = PBXGroup;
+			children = (
+				888BD78927508FEC00BE17D4 /* addCardResModel.swift */,
+				88C13C9B274F99D80008173C /* DeleteCardResModel.swift */,
+				88C13C96274F818E0008173C /* cardListResModel.swift */,
+				88C13C99274F86AE0008173C /* cardListViewModel.swift */,
+				888BD78B2750917300BE17D4 /* addCardViewModel.swift */,
+				888BD78D275099F300BE17D4 /* MonthYearPickerView.swift */,
+			);
+			path = card;
 			sourceTree = "<group>";
 		};
 		88D296F42701904200BC6AE2 /* Social Login */ = {
@@ -831,6 +886,7 @@
 				886DF20826FC8FD700A36B51 /* timeListCell.swift */,
 				8877AD572703334D0083C883 /* membershipPlanCell.swift */,
 				880B769927479E930058FD1A /* MemberListHomeCell.swift */,
+				88C13C92274F76130008173C /* PaymentMethodCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -928,6 +984,7 @@
 		9A5B08F326B2721A00BA0CB4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				88C13C8D274F6A700008173C /* Card */,
 				88D296F92701993300BC6AE2 /* SocialSignInManager */,
 				88D296F42701904200BC6AE2 /* Social Login */,
 				844F7BFE26E62C870047DFF4 /* NavigationController */,
@@ -937,6 +994,7 @@
 				9A873B5026C6273D004C37CF /* SideMenu controller */,
 				9A5512BE26C5057600DDA313 /* Popups Controllers */,
 				9AC568C426B7C2450039FCCF /* Home Controllers */,
+				888BD78F2750D5C100BE17D4 /* WebViewVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1232,13 +1290,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				888BD78C2750917300BE17D4 /* addCardViewModel.swift in Sources */,
 				9A4A8B9026C3B84600966B2D /* MemberPlanVC.swift in Sources */,
 				88E61D8F26FB236E002BD61F /* nonMemberPlanViewMOdel.swift in Sources */,
+				88C13C9A274F86AE0008173C /* cardListViewModel.swift in Sources */,
 				9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */,
 				9A5B093926B2788500BA0CB4 /* UIButton+Extension.swift in Sources */,
 				9A5B093826B2788500BA0CB4 /* UIImageView+Extension.swift in Sources */,
 				886DF20926FC8FD700A36B51 /* timeListCell.swift in Sources */,
 				9A5B094A26B2C9FC00BA0CB4 /* LogInVC.swift in Sources */,
+				8873CA70274B588800881458 /* purchaseMemberPlanResModel.swift in Sources */,
 				9A3A913426C133AC0041D7D9 /* MenuTransitioningDelegate.swift in Sources */,
 				9A8591A526C53F1C00830B59 /* RatingPopUpVC.swift in Sources */,
 				9A70293426C279EE00DB1040 /* AddVehicleVC.swift in Sources */,
@@ -1291,6 +1352,7 @@
 				88D9A7112746824300F4A8A6 /* DateResModel.swift in Sources */,
 				88DC0C042743B974002A2BD3 /* AppDelegate+PushNotification.swift in Sources */,
 				84593CC726E1F1DF00BB5A48 /* UIView+Extension.swift in Sources */,
+				888BD78A27508FEC00BE17D4 /* addCardResModel.swift in Sources */,
 				84C4952026E74BC100659A5D /* OTPViewModel.swift in Sources */,
 				9A770D0626CBAA9400FBB1A4 /* NonMemberPlanVC.swift in Sources */,
 				88F416BC26F9A5E900400594 /* EditProfileReqModel.swift in Sources */,
@@ -1304,11 +1366,14 @@
 				9A65A6BA26C51E3500F0592A /* SlideToConfirmVC.swift in Sources */,
 				8896402E274291AC00B3379B /* ChatListShimmerCell.swift in Sources */,
 				9A5B093D26B2788500BA0CB4 /* Extension+CLLocation.swift in Sources */,
+				88C13C93274F76130008173C /* PaymentMethodCell.swift in Sources */,
 				9A3A913F26C14ABF0041D7D9 /* CompleteJobVC.swift in Sources */,
+				88C13C8F274F6A8F0008173C /* AddCardViewController.swift in Sources */,
 				881277A426F89886005E8F37 /* AddVehicleResModel.swift in Sources */,
 				84EEA57626E2276C0026558F /* URLSessionRequestManager.swift in Sources */,
 				9A3A913326C133AC0041D7D9 /* SideMenuItemContent.swift in Sources */,
 				9A5B093A26B2788500BA0CB4 /* Date+Extension.swift in Sources */,
+				88C13C91274F751F0008173C /* PaymentMethodVC.swift in Sources */,
 				8812778626F87432005E8F37 /* menufactureDatum.swift in Sources */,
 				88F416C026F9A76900400594 /* editVehicleResModel.swift in Sources */,
 				88E61D9E26FB4B82002BD61F /* nonMemberPlanListCell.swift in Sources */,
@@ -1317,17 +1382,21 @@
 				9A873B5226C62773004C37CF /* LeftViewController.swift in Sources */,
 				9A5512C026C505C100DDA313 /* GasDoorOpenPopUpVC.swift in Sources */,
 				9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */,
+				888BD7902750D5C100BE17D4 /* WebViewVC.swift in Sources */,
 				88F4171926F9E01900400594 /* vehicalListResModel.swift in Sources */,
 				90F21FEE27214456001732ED /* MessageBarController.swift in Sources */,
 				84EEA58126E227BA0026558F /* UploadMediaModel.swift in Sources */,
+				8873CA72274B668E00881458 /* cancelMemberPlanResModel.swift in Sources */,
 				8877AD5F27033E4E0083C883 /* memberPlanViewModel.swift in Sources */,
 				84EEA59B26E2478A0026558F /* LocationService.swift in Sources */,
 				886DF1B926FC347100A36B51 /* LogoutUserModel.swift in Sources */,
 				9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */,
+				88C13C98274F818E0008173C /* cardListResModel.swift in Sources */,
 				88AD5BC227073364000CFA25 /* appleLoginResModel.swift in Sources */,
 				9A3A914526C16E690041D7D9 /* ChangePasswordVC.swift in Sources */,
 				9A5B094226B279AE00BA0CB4 /* Storyboards.swift in Sources */,
 				9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */,
+				888BD78E275099F300BE17D4 /* MonthYearPickerView.swift in Sources */,
 				9A5B08EB26B26CEF00BA0CB4 /* Fonts.swift in Sources */,
 				8877AD5D2703358A0083C883 /* membershipplanResModel.swift in Sources */,
 				8877AD582703334D0083C883 /* membershipPlanCell.swift in Sources */,
@@ -1358,6 +1427,7 @@
 				844F7C0026E62CC50047DFF4 /* NavigationViewController.swift in Sources */,
 				880B76A02747A6600058FD1A /* yearcolorstateListResModel.swift in Sources */,
 				9A4A8B9926C3E70500966B2D /* InProgressCell.swift in Sources */,
+				88C13C9C274F99D80008173C /* DeleteCardResModel.swift in Sources */,
 				844F7BFA26E622240047DFF4 /* AuthViewModelChange.swift in Sources */,
 				88DC0C002743A7BB002A2BD3 /* SendMessageReqModel.swift in Sources */,
 				84EEA59726E240110026558F /* AppInfo.swift in Sources */,
@@ -1372,11 +1442,13 @@
 				88F4171D26F9F48B00400594 /* UpdateProfile.swift in Sources */,
 				84593CC326E1EECF00BB5A48 /* MarkerInfoWindowView.swift in Sources */,
 				9A4A8B9626C3DEF500966B2D /* MyOrdersVC.swift in Sources */,
+				8873CA74274B679C00881458 /* cancelPlanViewModel.swift in Sources */,
 				84A3BB3F26E723DA00740337 /* ChangePasswordViewModel.swift in Sources */,
 				84C4951926E72CE700659A5D /* LoginModel.swift in Sources */,
 				9A5B08ED26B26DF100BA0CB4 /* AppTheme_FontColor.swift in Sources */,
 				9A3A914126C1671E0041D7D9 /* NotificationListVC.swift in Sources */,
 				84EEA59F26E24A320026558F /* UserDefault+Extension.swift in Sources */,
+				88C13C9E274FA8970008173C /* checktimeResModel.swift in Sources */,
 				84EEA59526E23E520026558F /* InitModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1537,7 +1609,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gas2you.customer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1564,7 +1636,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gas2you.customer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

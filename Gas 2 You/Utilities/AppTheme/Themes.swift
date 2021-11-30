@@ -32,31 +32,31 @@ class ThemeLabel: UILabel{
                 if UIDevice.current.userInterfaceIdiom == .phone{
                     self.font = CustomFont.PoppinsBold.returnFont(Font_Size)
                 }else if UIDevice.current.userInterfaceIdiom == .pad{
-                    self.font = CustomFont.PoppinsBold.returnFont(Font_Size + 5)
+                    self.font = CustomFont.PoppinsBold.returnFont(Font_Size + 4)
                 }
             } else if isSemibold {
                 if UIDevice.current.userInterfaceIdiom == .phone{
                     self.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size)
                 }else if UIDevice.current.userInterfaceIdiom == .pad{
-                    self.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size + 5)
+                    self.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size + 4)
                 }
             } else if isMedium {
                 if UIDevice.current.userInterfaceIdiom == .phone{
                     self.font = CustomFont.PoppinsMedium.returnFont(Font_Size)
                 }else if UIDevice.current.userInterfaceIdiom == .pad{
-                    self.font = CustomFont.PoppinsMedium.returnFont(Font_Size + 5)
+                    self.font = CustomFont.PoppinsMedium.returnFont(Font_Size + 4)
                 }
             } else if isLight {
                 if UIDevice.current.userInterfaceIdiom == .phone{
                     self.font = CustomFont.PoppinsLight.returnFont(Font_Size)
                 }else if UIDevice.current.userInterfaceIdiom == .pad{
-                    self.font = CustomFont.PoppinsLight.returnFont(Font_Size + 5)
+                    self.font = CustomFont.PoppinsLight.returnFont(Font_Size + 4)
                 }
             } else {
                 if UIDevice.current.userInterfaceIdiom == .phone{
                     self.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
                 }else if UIDevice.current.userInterfaceIdiom == .pad{
-                    self.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 5)
+                    self.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 4)
                 }
             }
     }
@@ -111,37 +111,37 @@ class ThemeButton: UIButton {
             if UIDevice.current.userInterfaceIdiom == .phone{
                 self.titleLabel?.font = CustomFont.PoppinsBold.returnFont(Font_Size)
             }else if UIDevice.current.userInterfaceIdiom == .pad{
-                self.titleLabel?.font = CustomFont.PoppinsBold.returnFont(Font_Size + 5)
+                self.titleLabel?.font = CustomFont.PoppinsBold.returnFont(Font_Size + 4)
             }
         } else if isSemibold {
             if UIDevice.current.userInterfaceIdiom == .phone{
                 self.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size)
             }else if UIDevice.current.userInterfaceIdiom == .pad{
-                self.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size + 5)
+                self.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(Font_Size + 4)
             }
         } else if isMedium {
             if UIDevice.current.userInterfaceIdiom == .phone{
                 self.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(Font_Size)
             }else if UIDevice.current.userInterfaceIdiom == .pad{
-                self.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(Font_Size + 5)
+                self.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(Font_Size + 4)
             }
         } else if isLight {
             if UIDevice.current.userInterfaceIdiom == .phone{
                 self.titleLabel?.font = CustomFont.PoppinsLight.returnFont(Font_Size)
             }else if UIDevice.current.userInterfaceIdiom == .pad{
-                self.titleLabel?.font = CustomFont.PoppinsLight.returnFont(Font_Size + 5)
+                self.titleLabel?.font = CustomFont.PoppinsLight.returnFont(Font_Size + 4)
             }
         } else if isRegular {
             if UIDevice.current.userInterfaceIdiom == .phone{
                 self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
             }else if UIDevice.current.userInterfaceIdiom == .pad{
-                self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 5)
+                self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 4)
             }
         } else {
             if UIDevice.current.userInterfaceIdiom == .phone{
                 self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size)
             }else if UIDevice.current.userInterfaceIdiom == .pad{
-                self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 5)
+                self.titleLabel?.font = CustomFont.PoppinsRegular.returnFont(Font_Size + 4)
             }
         }
         
@@ -149,7 +149,7 @@ class ThemeButton: UIButton {
             if UIDevice.current.userInterfaceIdiom == .phone{
                 self.setunderline(title: self.titleLabel?.text ?? "", color: UIColor.appColor(ThemeColor.themeButtonBlue), font: CustomFont.PoppinsRegular.returnFont(Font_Size))
             }else if UIDevice.current.userInterfaceIdiom == .pad{
-                self.setunderline(title: self.titleLabel?.text ?? "", color: UIColor.appColor(ThemeColor.themeButtonBlue), font: CustomFont.PoppinsRegular.returnFont(Font_Size + 5))
+                self.setunderline(title: self.titleLabel?.text ?? "", color: UIColor.appColor(ThemeColor.themeButtonBlue), font: CustomFont.PoppinsRegular.returnFont(Font_Size + 4))
             }
         }
         if shadow {
@@ -263,7 +263,7 @@ class ThemeCustomShadowButton : UIControl {
         if UIDevice.current.userInterfaceIdiom == .phone{
             label.font = FontBook.regular.of(size: Font_Size)
         }else if UIDevice.current.userInterfaceIdiom == .pad{
-            label.font = FontBook.regular.of(size: Font_Size + 5)
+            label.font = FontBook.regular.of(size: Font_Size + 4)
         }
         label.textColor = fontColor
         imageView.addSubview(label)
@@ -450,7 +450,7 @@ class ThemeTextfield : UITextField {
         if UIDevice.current.userInterfaceIdiom == .phone{
             self.font = FontBook.regular.of(size : Font_Size)
         }else if UIDevice.current.userInterfaceIdiom == .pad{
-            self.font = FontBook.regular.of(size : Font_Size + 5)
+            self.font = FontBook.regular.of(size : Font_Size + 4)
         }
         self.layer.borderWidth = Border_Width
         self.layer.borderColor = Border_Color.cgColor
@@ -524,7 +524,11 @@ class SingleDigitField: UITextField {
         backgroundColor = .clear
         isSecureTextEntry = false
         clipsToBounds = true
-        font = CustomFont.medium.returnFont(17)
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            font = CustomFont.medium.returnFont(17)
+        }else{
+            font = CustomFont.medium.returnFont(22)
+        }
         tintColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
     }
 }
@@ -655,15 +659,27 @@ class ChatScreenLabel : UILabel {
     override func awakeFromNib() {
         self.numberOfLines = 0
         if lblSender {
-            self.font = CustomFont.PoppinsMedium.returnFont(12)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.font = CustomFont.PoppinsMedium.returnFont(12)
+            }else{
+                self.font = CustomFont.PoppinsMedium.returnFont(17)
+            }
             self.textColor = UIColor.white
             self.textAlignment = .right
         } else if lblReciver {
-            self.font = CustomFont.PoppinsMedium.returnFont(12)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.font = CustomFont.PoppinsMedium.returnFont(12)
+            }else{
+                self.font = CustomFont.PoppinsMedium.returnFont(17)
+            }
             self.textColor = UIColor.white
             self.textAlignment = .left
         } else if lblHeader {
-            self.font = CustomFont.PoppinsMedium.returnFont(9)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.font = CustomFont.PoppinsMedium.returnFont(9)
+            }else{
+                self.font = CustomFont.PoppinsMedium.returnFont(14)
+            }
             self.textColor = UIColor(hexString: "#ACB1C0")
             self.textAlignment = .center
         }

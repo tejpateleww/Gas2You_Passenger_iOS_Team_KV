@@ -7,9 +7,11 @@
 
 import UIKit
 
-class MyProfileVC: BaseVC , memberdelegate{
+class MyProfileVC: BaseVC{
+    
     
     var updateprofileviewmodel = MyProfileViewModel()
+    var cancelPlanModel = cancelPlanViewModel()
     let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
     
     @IBOutlet weak var changePassButton: ThemeButton!
@@ -26,9 +28,13 @@ class MyProfileVC: BaseVC , memberdelegate{
     @IBOutlet weak var txtLastName: UITextField!
     @IBOutlet weak var vwMember: UIView!
     @IBOutlet weak var vwNonmember: UIView!
+    @IBOutlet weak var lblType: ThemeLabel!
+    @IBOutlet weak var lblPrice: ThemeLabel!
+    @IBOutlet weak var lblExpiryDate: ThemeLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cancelPlanModel.cancelplanvc = self
         updateprofileviewmodel.myprofilevc = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Profile", controller: self)
         navBarRightImage()
@@ -39,7 +45,16 @@ class MyProfileVC: BaseVC , memberdelegate{
         changePassButton.layer.cornerRadius = 10
         changePassButton.layer.borderWidth = 2
         changePassButton.layer.borderColor = UIColor.appColor(.themeBlue).cgColor
-        changePassButton.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(14)
+        if Singleton.sharedInstance.userProfilData?.isSocial?.toInt() == 1{
+            changePassButton.isHidden = true
+        }else{
+            changePassButton.isHidden = false
+        }
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            changePassButton.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(14)
+        }else{
+            changePassButton.titleLabel?.font = CustomFont.PoppinsMedium.returnFont(19)
+        }
         changePassButton.setTitleColor(UIColor.appColor(.themeBlue), for: .normal)
     }
     func setData(){
@@ -51,6 +66,9 @@ class MyProfileVC: BaseVC , memberdelegate{
         setupPhoneTextField()
         if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
             vwMember.isHidden = false
+            lblType.text = (Singleton.sharedInstance.userProfilData?.type ?? "") + arrow
+            lblPrice.text = CurrencySymbol + (Singleton.sharedInstance.userProfilData?.amount ?? "")
+            lblExpiryDate.text = Singleton.sharedInstance.userProfilData?.expiry_date
             vwNonmember.isHidden = true
         }else{
             vwMember.isHidden = true
@@ -63,6 +81,9 @@ class MyProfileVC: BaseVC , memberdelegate{
     }
     func myprofilerefresh() {
         memberDisplay()
+        self.lblPrice.text = Singleton.sharedInstance.userProfilData?.amount
+        self.lblType.text = (Singleton.sharedInstance.userProfilData?.type ?? "") + arrow
+        self.lblExpiryDate.text = Singleton.sharedInstance.userProfilData?.expiry_date
     }
     private func setupPhoneTextField() {
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 20))
@@ -103,15 +124,25 @@ class MyProfileVC: BaseVC , memberdelegate{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func btnCancel(_ sender: UIButton) {
-        vwMember.isHidden = true
-        vwNonmember.isHidden = false
+        let alert = UIAlertController(title: AppInfo.appName, message: "Are you sure you want to cancel your membership?", preferredStyle: UIAlertController.Style.alert)
+
+                // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
+            self.cancelPlanModel.webservicecancelPlan()
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel,handler: { UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+        }))
+
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
     }
     @IBAction func btnChangePasswordTap(_ sender: ThemeButton) {
         self.push(ChangePasswordVC.getNewInstance())
     }
     @IBAction func getMemberShipPlan(_ sender: Any) {
         let vc : MemberPlanVC = MemberPlanVC.instantiate(fromAppStoryboard: .Main)
-        vc.delegateMember = self
+        vc.isFromMyprofile = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

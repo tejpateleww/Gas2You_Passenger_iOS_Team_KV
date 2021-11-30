@@ -48,7 +48,10 @@ class ProfileModel: Codable {
     let isVerify, verifyToken, createdAt, updatedAt: String?
     let deletedAt: String?
     var xAPIKey: String?
-    let is_membership_user : Bool?
+    var is_membership_user : Bool?
+    var type: String?//"Yearly",
+    var amount : String?//: "228.00",
+    var expiry_date : String?// "2022-11-21"
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -77,5 +80,8 @@ class ProfileModel: Codable {
         case deletedAt = "deleted_at"
         case xAPIKey = "x-api-key"
         case is_membership_user = "is_membership_user"
+        case type = "type"
+        case amount = "amount"
+        case expiry_date = "expiry_date"
     }
 }

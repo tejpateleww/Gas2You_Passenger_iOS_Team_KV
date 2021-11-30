@@ -64,7 +64,10 @@ enum ApiKey: String {
     case serviceList        = "service_type_list"
     case dateList           = "get_time_slot"
     case memberPlan         = "membership_plan_list"
+    case purchasePlan       = "purchase_membership_plan"
+    case cancelPurchasePlan = "cancel_membership"
     case nonMemberPlan      = "non_membership_plan_list"
+    case checkbookingtime   = "check_booking_time"
     case AddBooking         = "add_booking"
     case bookingList        = "booking_list"
     case bookingDetail      = "get_order_detail"
@@ -73,6 +76,9 @@ enum ApiKey: String {
     case messageList        = "message_list/"
     case chatHistory        = "chat_history/"
     case sendMesssage       = "send_message"
+    case addCard            = "add_new_card"
+    case cardList           = "card_list"
+    case deleteCardList     = "delete_card"
     case logout             = "logout/"
 }
 

@@ -13,6 +13,7 @@ import UserNotifications
 import GoogleMaps
 import UserNotifications
 
+
 extension AppDelegate : MessagingDelegate {
     
     func registerForPushNotifications() {
@@ -60,104 +61,200 @@ extension AppDelegate : MessagingDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
         print(#function, notification)
+        guard let isUserLogin = UserDefaults.standard.value(forKey: UserDefaultsKey.isUserLogin.rawValue) as? Bool,isUserLogin == true,userDefault.getUserData() != nil else {
+            print("User is not login, can not process push")
+            return
+        }
+        
         let content = notification.request.content
         let userInfo = notification.request.content.userInfo
-        
         print(userInfo)
-        print(AppDel.window?.rootViewController?.navigationController?.children.first as Any)
         
-        NotificationCenter.default.post(name: NotificationBadges, object: content)
-        completionHandler([.alert, .sound])
-        print(#function, notification)
-        
-        if let mainDic = userInfo as? [String: Any]{
-            
-            let pushObj = NotificationObjectModel()
-            if let bookingId = mainDic["gcm.notification.booking_id"]{
-                pushObj.booking_id = bookingId as? String ?? ""
+        print("USER INFo : ",userInfo)
+        if NotificationTypes(rawValue: (userInfo["gcm.notification.type"] as? String ?? "")) != nil {
+            notificationType = NotificationTypes(rawValue: (userInfo["gcm.notification.type"] as? String ?? ""))!
+            var orderDict = [String:Any]()
+            if let response = userInfo["gcm.notification.data"] as? String {
+                let jsonData = response.data(using: .utf8)!
+                orderDict = try! (JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as? [String : Any] ?? [:])
+                
             }
-            if let type = mainDic["gcm.notification.type"]{
-                pushObj.type = type as? String ?? ""
+            orderid = (orderDict["order_id"] as? String ?? "")
+            status = (orderDict["status"] as? Int ?? 0)
+            switch notificationType{
+            case .JobStarted :
+                completionHandler([.alert, .sound])
+            case .JobCompleted :
+                completionHandler([.alert, .sound])
+            case .InvoiceGenerated:
+                completionHandler([.alert, .sound])
+            case .Chatnewmessagereceived:
+                completionHandler([.alert, .sound])
+            default:
+                completionHandler([.alert, .sound])
             }
-            if let title = mainDic["title"]{
-                pushObj.title = title as? String ?? ""
-            }
-            if let text = mainDic["text"]{
-                pushObj.text = text as? String ?? ""
-            }
-            
-            AppDelegate.pushNotificationObj = pushObj
-            AppDelegate.pushNotificationType = pushObj.type
-            
-            if pushObj.type == NotificationTypes.notifLoggedOut.rawValue {
-                AppDel.dologout()
-                return
-            }
-            
-            if pushObj.type == NotificationTypes.newBooking.rawValue {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    if (UIApplication.appTopViewController()?.isKind(of: MainViewController.self) ?? false){
-                        NotificationCenter.default.post(name: .refreshHomeScreen, object: nil)
-                    }
-                }
-                return
-            }
-            
-            if pushObj.type == NotificationTypes.newMessage.rawValue {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    if (AppDel.isChatScreen){
-                        NotificationCenter.default.post(name: .refreshChatScreen, object: nil)
-                    }
-                }
-                return
-            }
+        }else{
+            completionHandler([.alert, .sound])
         }
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print(response)
+        
+        
+        guard let isUserLogin = UserDefaults.standard.value(forKey: UserDefaultsKey.isUserLogin.rawValue) as? Bool,isUserLogin == true,userDefault.getUserData() != nil else {
+            print("User is not login, can not process push")
+            return
+        }
+        
+        
         let userInfo = response.notification.request.content.userInfo
         print("USER INFo : ",userInfo)
+//        guard let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") as? String else  {
+//            return
+//        }
         
+//        if key == "Account Active" {
+//            SingletonClass.sharedInstance.OwnerProfileInfo?.profile.active = "1"
+//            user_defaults.setUserData()
+//            appDelegate.delegateEditProfile?.accountActivated()
+//        }
+
         
-        if let mainDic = userInfo as? [String: Any]{
+        if NotificationTypes(rawValue: (userInfo["gcm.notification.type"] as? String ?? "")) != nil {
+            notificationType = NotificationTypes(rawValue: (userInfo["gcm.notification.type"] as? String ?? ""))!
+//            var orderDict = [String:Any]()
+//            if let response = userInfo["gcm.notification.data"] as? String {
+//                let jsonData = response.data(using: .utf8)!
+//                orderDict = try! (JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as? [String : Any] ?? [:])
+//
+//                if let dictUser = orderDict["BookingListDatum"] as? [String:Any] {
+////                    ObjUserData =
+//                print(ObjUserData)
+//                print(orderDict)
+//            }
+//            }
+//            var deliveryBoyId = "\(orderDict["sender_id"] ?? 0)"
+//            let orderid = (orderDict["order_id"] as? String ?? "")
+//            print(orderid,"Order id")
             
-            let pushObj = NotificationObjectModel()
-            if let bookingId = mainDic["gcm.notification.booking_id"]{
-                pushObj.booking_id = bookingId as? String ?? ""
-            }
-            if let type = mainDic["gcm.notification.type"]{
-                pushObj.type = type as? String ?? ""
-            }
-            if let title = mainDic["title"]{
-                pushObj.title = title as? String ?? ""
-            }
-            if let text = mainDic["text"]{
-                pushObj.text = text as? String ?? ""
-            }
-            
-            AppDelegate.pushNotificationObj = pushObj
-            AppDelegate.pushNotificationType = pushObj.type
-            
-            if pushObj.type == NotificationTypes.notifLoggedOut.rawValue {
-                AppDel.dologout()
-                completionHandler()
-                return
-            }
-            
-            if pushObj.type == NotificationTypes.newMessage.rawValue {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    if (AppDel.isChatScreen){
-                        AppDelegate.pushNotificationType = nil
-                        AppDelegate.pushNotificationObj = nil
+        
+            switch notificationType {
+            case .JobStarted:
+                print("JobStarted")
+                //
+                guard let dictParam = (userInfo as NSDictionary).object(forKey: "gcm.notification.extra_param") as? String else {
+                    return
+                }
+                let jsonData = dictParam.data(using: .utf8)!
+                let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+                
+                  guard let personsDictionary = dictionary  as? [String: Any] else {
+                      return
+                   }
+                guard let bookingid = personsDictionary["booking_id"] as? String  else {
+                        return
+                  }
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    if let vc = (AppDel.window?.rootViewController as! UINavigationController).viewControllers.first as? MyOrdersVC {
+                        vc.isFromPayment = true
                     }else{
-                        NotificationCenter.default.post(name: .goToChatScreen, object: nil)
+                        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
+                            let MyOrdersVC : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+                            MyOrdersVC.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
+                            Navigation.hidesBottomBarWhenPushed = true
+                            Navigation.pushViewController(MyOrdersVC, animated: true)
+                        }
+                        //self.Gotomyorderscreen()
                     }
                 }
-                return
+                
+            case .JobCompleted :
+                print("JobCompleted")
+                if let vc = (AppDel.window?.rootViewController as! UINavigationController).viewControllers.first as? MyOrdersVC {
+                    vc.isInProcess = 2
+                }else{
+                    self.GotocompleteOrderscreen()
+                }
+                
+            case .InvoiceGenerated :
+                print("InvoiceGenerated")
+                if let _ = (AppDel.window?.rootViewController as! UINavigationController).viewControllers.first as? CompleteJobVC {
+                }else{
+                    GotoCompletejobvc()
+                }
+                
+            case .Chatnewmessagereceived :
+                print("Chatnewmessagereceived")
+                guard let dictParam = (userInfo as NSDictionary).object(forKey: "gcm.notification.extra_param") as? String else {
+                    return
+                }
+                let jsonData = dictParam.data(using: .utf8)!
+                let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+                
+                  guard let personsDictionary = dictionary  as? [String: Any] else {
+                      return
+                   }
+                guard let bookingid = personsDictionary["booking_id"] as? String  else {
+                        return
+                  }
+                if let _ = (AppDel.window?.rootViewController as! UINavigationController).viewControllers.first as? ChatViewController {
+                }else{
+                    if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
+                        let chatVc : ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+                        chatVc.bookingID = bookingid
+                        //                    chatVc.objUser = ObjUserData
+                        //                    chatVc.isfromPush = true
+                        //                    chatVc.deliveryBoyid = deliveryBoyId
+                        chatVc.callChatHistoryAPI()
+                        Navigation.hidesBottomBarWhenPushed = true
+                        Navigation.pushViewController(chatVc, animated: true)
+                    }
+                    //chatPushClickTonavigate()
+                }
+            default :
+                completionHandler()
+                break
             }
-
+        }
+        print(notificationType)
+        completionHandler()
+    }
+    @objc func Gotomyorderscreen(){
+        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
+            let MyOrdersVC : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+            MyOrdersVC.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
+            Navigation.hidesBottomBarWhenPushed = true
+            Navigation.pushViewController(MyOrdersVC, animated: true)
+        }
+    }
+    @objc func GotocompleteOrderscreen(){
+        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
+            let MyOrdersVC : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+            MyOrdersVC.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")
+            Navigation.hidesBottomBarWhenPushed = true
+            Navigation.pushViewController(MyOrdersVC, animated: true)
+        }
+    }
+    @objc func GotoCompletejobvc(){
+        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
+            let CompleteJobVC : CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
+            CompleteJobVC.bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: orderid))
+            Navigation.hidesBottomBarWhenPushed = true
+            Navigation.pushViewController(CompleteJobVC, animated: true)
+        }
+    }
+    @objc func chatPushClickTonavigate(){
+        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
+            let chatVc : ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+//            chatVc.bookingID = bookingid
+            //                    chatVc.objUser = ObjUserData
+            //                    chatVc.isfromPush = true
+            //                    chatVc.deliveryBoyid = deliveryBoyId
+            chatVc.callChatHistoryAPI()
+            Navigation.hidesBottomBarWhenPushed = true
+            Navigation.pushViewController(chatVc, animated: true)
         }
     }
 }

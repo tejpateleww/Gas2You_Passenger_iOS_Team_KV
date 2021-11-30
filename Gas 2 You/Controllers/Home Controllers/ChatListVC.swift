@@ -60,7 +60,7 @@ extension ChatListVC: UITableViewDelegate, UITableViewDataSource {
         if self.arrUserList.count != 0 {
             return self.arrUserList.count
         } else {
-            return (isReload) ? 5 : 1
+            return (isReload) ? 1 : 5
         }
     }
     

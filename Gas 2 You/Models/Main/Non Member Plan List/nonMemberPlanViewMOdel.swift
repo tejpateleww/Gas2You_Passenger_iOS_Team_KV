@@ -11,13 +11,12 @@ class nonMemberPlanViewMOdel{
     weak var homevc : HomeVC?
     weak var nonmemberplanvc : NonMemberPlanVC?
     func webserviceofNonMemberPlanList(){
-        WebServiceSubClass.nonMemberPlanList(completion: { (status, message, response, error) in
+        let nonmemberList = nonMemberPlanListReqModel()
+        nonmemberList.customer_id = Singleton.sharedInstance.userId
+        WebServiceSubClass.nonMemberPlanList(reqModel: nonmemberList, completion: { (status, message, response, error) in
             if status{
                 if let model = response?.data{
                     self.homevc?.nonmemberplanlist = model
-                    if Singleton.sharedInstance.userProfilData?.is_membership_user == false{
-                        self.homevc?.nonmemberplanlist[0].isSelected = true
-                    }
                     self.homevc?.tblNonMemberPLan.reloadData()
                 }
             }else{
@@ -27,13 +26,12 @@ class nonMemberPlanViewMOdel{
         })
     }
     func webserviceofNonMemberList(){
-        WebServiceSubClass.nonMemberPlanList(completion: { (status, message, response, error) in
+        let nonmemberList = nonMemberPlanListReqModel()
+        nonmemberList.customer_id = Singleton.sharedInstance.userId
+        WebServiceSubClass.nonMemberPlanList(reqModel: nonmemberList, completion: { (status, message, response, error) in
             if status{
                 if let model = response?.data{
                     self.nonmemberplanvc?.nonmemberplanlist = model
-                    if Singleton.sharedInstance.userProfilData?.is_membership_user == false{
-                        self.nonmemberplanvc?.nonmemberplanlist[0].isSelected = true
-                    }
                     self.nonmemberplanvc?.tblNonMemberPlan.reloadData()
                 }
             }else{

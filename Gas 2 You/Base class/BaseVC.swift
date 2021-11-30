@@ -24,8 +24,11 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
         if pushToRoot {
             self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         }
-        
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PoppinsMedium.returnFont(16)]
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PoppinsMedium.returnFont(16)]
+        }else{
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PoppinsMedium.returnFont(21)]
+        }
         
         //        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "UpdateCartValue"), object: nil)
     }
@@ -150,13 +153,21 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             
             label.textAlignment = NSTextAlignment.left
             label.backgroundColor = UIColor.clear
-            label.font = CustomFont.PoppinsBold.returnFont(16.0)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                label.font = CustomFont.PoppinsBold.returnFont(16.0)
+            }else{
+                label.font = CustomFont.PoppinsBold.returnFont(21.0)
+            }
             customView.addSubview(label)
             
             let leftButton = UIBarButtonItem(customView: customView)
             self.navigationItem.leftBarButtonItem = leftButton
         }else{
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PoppinsMedium.returnFont(16.0)]
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PoppinsMedium.returnFont(16.0)]
+            }else{
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PoppinsMedium.returnFont(21.0)]
+            }
             let customView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width - 40 - 40, height: 40.0))
             customView.backgroundColor = UIColor.clear
             
@@ -198,8 +209,11 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
             } else {
                 label.textColor = .black
             }
-            
-            label.font = CustomFont.PoppinsBold.returnFont(16)
+            if UIDevice.current.userInterfaceIdiom == .phone{
+                label.font = CustomFont.PoppinsBold.returnFont(16)
+            }else{
+                label.font = CustomFont.PoppinsBold.returnFont(21)
+            }
             customView.addSubview(label)
             customView.addSubview(button)
             

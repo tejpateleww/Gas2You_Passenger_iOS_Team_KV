@@ -8,7 +8,8 @@
 import UIKit
 
 
-protocol AddVehicleDelegate{
+protocol
+AddVehicleDelegate{
     func refreshVehicleScreen()
 }
 protocol editVehicleDelegate{
@@ -78,7 +79,7 @@ class AddVehicleVC: BaseVC {
         statePicker.delegate = self
         statePicker.dataSource = self
         dismissPickerView()
-        yearPicker.addDoneOnKeyboardWithTarget(self, action: #selector(self.donePicker))
+//        yearPicker.addDoneOnKeyboardWithTarget(self, action: #selector(self.donePicker))
         txtEnterYear.delegate = self
         txtEnterMake.delegate = self
         txtEnterModel.delegate = self

@@ -25,6 +25,9 @@ class MyOrdersVC: BaseVC {
     var currentPage = 1
     var isStopPaging = false
     var pagingSpinner = UIActivityIndicatorView()
+    var isFromPayment : Bool = false
+    
+    
     @IBOutlet weak var myOrdersTV: UITableView!
     @IBOutlet weak var btnUpcoming: ThemeButton!
     @IBOutlet weak var vwUpcomingLine: UIView!
@@ -42,9 +45,14 @@ class MyOrdersVC: BaseVC {
         myOrdersTV.dataSource = self
         BookingList.myordervc = self
         addTableFooter()
-        BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
+        if isFromPayment{
+            btnInProgressTap(btnInProgress)
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "\(currentPage)")
+        }else{
+            btnUpcomingTap(btnUpcoming)
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
+        }
         NotificationCenter.default.post(name: notifRefreshHomeScreen, object: nil)
-        btnUpcomingTap(btnUpcoming)
         myOrdersTV.register(UINib(nibName:"ShimmerCell", bundle: nil), forCellReuseIdentifier: "ShimmerCell")
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Orders", controller: self)
         
@@ -84,11 +92,18 @@ class MyOrdersVC: BaseVC {
     @IBAction func btnUpcomingTap(_ sender: ThemeButton) {
         
         NavbarrightButton()
-        sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
+        
         vwUpcomingLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
-        btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwInProgressLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
-        btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
+            btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+            btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+        }else{
+            sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(19)
+            btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(19)
+            btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(19)
+        }
         vwCompletedLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         self.currentPage = 1
         isStopPaging = false
@@ -98,6 +113,8 @@ class MyOrdersVC: BaseVC {
         cancelOrderData.cancelOrder = self
         if arrBookingList.filter({$0.status == "0"}).count == 0{
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
+        }else{
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
         myOrdersTV.reloadData()
     }
@@ -106,9 +123,16 @@ class MyOrdersVC: BaseVC {
         NavbarrightButton()
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwInProgressLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
-        btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwUpcomingLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
-        btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
+            btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+            btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+        }else{
+            sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(19)
+            btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(19)
+            btnCompleted.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(19)
+        }
         vwCompletedLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         self.currentPage = 1
         isStopPaging = false
@@ -117,6 +141,8 @@ class MyOrdersVC: BaseVC {
         isReload = false
         if arrBookingList.filter({$0.status == "1"}).count == 0{
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
+        }else{
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
             myOrdersTV.reloadData()
     }
@@ -124,9 +150,16 @@ class MyOrdersVC: BaseVC {
     @IBAction func btnCompletedTap(_ sender: ThemeButton) {
         sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
         vwCompletedLine.backgroundColor = UIColor.init(hexString: "#1F79CD")
-        btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
         vwInProgressLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
-        btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(14)
+            btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+            btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(14)
+        }else{
+            sender.titleLabel?.font = CustomFont.PoppinsBold.returnFont(19)
+            btnInProgress.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(19)
+            btnUpcoming.titleLabel?.font = CustomFont.PoppinsSemiBold.returnFont(19)
+        }
         vwUpcomingLine.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 0.3)
         self.currentPage = 1
         isStopPaging = false
@@ -134,6 +167,8 @@ class MyOrdersVC: BaseVC {
         isLoading = true
         isReload = false
         if arrBookingList.filter({$0.status == "2"}).count == 0{
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
+        }else{
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
         myOrdersTV.reloadData()
@@ -146,7 +181,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         if arrBookingList.count != 0{
             return arrBookingList.count
         }else{
-            return (isReload) ? 5 : 1
+            return (isReload) ? 1 : 5
         }
     }
     
@@ -176,6 +211,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
                     noDataCell.imgNodata.image = UIImage(named: "ic_Order")
                     noDataCell.lblData.text = "No upcoming order found"
+                    if UIDevice.current.userInterfaceIdiom == .phone{
+                        noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(16.0)
+                    }else{
+                        noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(21.0)
+                    }
                     noDataCell.selectionStyle = .none
                     return noDataCell
                 }
@@ -207,6 +247,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
                     noDataCell.imgNodata.image = UIImage(named: "ic_Order")
                     noDataCell.lblData.text = "No in-progress order found"
+                    if UIDevice.current.userInterfaceIdiom == .phone{
+                        noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(16.0)
+                    }else{
+                        noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(21.0)
+                    }
                     noDataCell.selectionStyle = .none
                     return noDataCell
                 }
@@ -226,7 +271,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     completedCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     completedCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     completedCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
-                    if arrBookingList[indexPath.row].statusLabel == "Cancel" {
+                    if arrBookingList[indexPath.row].orderStatus == "Cancel" {
                         completedCell.lblTopHalf.text = "Cancelled"
                         completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.9433980584, green: 0.3328252435, blue: 0.4380534887, alpha: 1)
                     } else {
@@ -238,6 +283,11 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
                     noDataCell.imgNodata.image = UIImage(named: "ic_Order")
                     noDataCell.lblData.text = "No completed order found"
+                    if UIDevice.current.userInterfaceIdiom == .phone{
+                        noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(16.0)
+                    }else{
+                        noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(21.0)
+                    }
                     noDataCell.selectionStyle = .none
                     return noDataCell
                 }
@@ -280,7 +330,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         } else if isInProcess == 1 {
             print("InProgress cell pressed")
         } else if isInProcess == 2 {
-            if arrBookingList[indexPath.row].statusLabel == "Cancel" {
+            if arrBookingList[indexPath.row].orderStatus == "Cancel" {
                 let completeJobVC: CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
                 completeJobVC.orderId = arrBookingList[indexPath.row].id ?? ""
                 completeJobVC.isCancel = true
