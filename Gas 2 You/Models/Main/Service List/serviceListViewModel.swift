@@ -62,16 +62,25 @@ class ServiceListViewModel{
                     if model.availableDates?.count != 0{
                         self.serviceList?.availableDate = model.availableDates ?? []
                         if isFromToday == true {
-                            let today = Date()
-                            let strDate = self.serviceList?.dateFormatter.string(from: today)
-                            self.serviceList?.txtDateSelected.text = strDate//self.serviceList?.dateFormatter.string(from: today)
+                            if model.currentDate == ""{
+                                let today = Date()
+                                let strDate = self.serviceList?.dateFormatter.string(from: today)
+                                self.serviceList?.txtDateSelected.text = strDate
+                            }else{
+                                self.serviceList?.txtDateSelected.text = self.serviceList?.convertDateFormat(inputDate: model.currentDate ?? "")//model.currentDate
+                            }
+                            //self.serviceList?.dateFormatter.string(from: today)
                         }
                     }else{
                         self.serviceList?.availableDate =  model.availableDates ?? []
-                        let today = Date()
-                        let strDate = self.serviceList?.dateFormatter.string(from: today)
-                        self.serviceList?.availableDate.append(strDate ?? "")
-                        self.serviceList?.txtDateSelected.text = strDate//self.serviceList?.convertDateFormat(inputDate: strDate ?? "")
+                        if model.currentDate == ""{
+                            let today = Date()
+                            let strDate = self.serviceList?.dateFormatter.string(from: today)
+                            self.serviceList?.availableDate.append(strDate ?? "")
+                            self.serviceList?.txtDateSelected.text = strDate
+                        }else{
+                            self.serviceList?.txtDateSelected.text = self.serviceList?.convertDateFormat(inputDate: model.currentDate ?? "")
+                        }//self.serviceList?.convertDateFormat(inputDate: strDate ?? "")
                     }
                     if model.data?.count == 0{
                         Toast.show(title: UrlConstant.Failed, message: "No Slot Available", state: .failure)

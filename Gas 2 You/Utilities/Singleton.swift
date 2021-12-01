@@ -22,7 +22,7 @@ class Singleton: NSObject{
     var api_Key = String()
     var deviceType : String = "ios"
     var deviceToken : String = UIDevice.current.identifierForVendor?.uuidString ?? ""
-    
+    var userInforForNotification : [AnyHashable : Any] = [:]
     
     //MARK:- User' Custom Details
     var userCurrentLocation = CLLocation()

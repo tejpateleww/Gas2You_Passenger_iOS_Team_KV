@@ -26,7 +26,7 @@ class MyOrdersVC: BaseVC {
     var isStopPaging = false
     var pagingSpinner = UIActivityIndicatorView()
     var isFromPayment : Bool = false
-    
+    var isFromComplete : Bool = false
     
     @IBOutlet weak var myOrdersTV: UITableView!
     @IBOutlet weak var btnUpcoming: ThemeButton!
@@ -48,6 +48,9 @@ class MyOrdersVC: BaseVC {
         if isFromPayment{
             btnInProgressTap(btnInProgress)
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "\(currentPage)")
+        }else if isFromComplete{
+            btnCompletedTap(btnCompleted)
+            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "\(currentPage)")
         }else{
             btnUpcomingTap(btnUpcoming)
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
@@ -236,11 +239,26 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     inprogressCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     inprogressCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
                     inprogressCell.lblBookingID.text = arrBookingList[indexPath.row].id
+                    if self.arrBookingList[indexPath.row].driverContactNumber?.toInt() != 0{
+                        inprogressCell.vwCallandChat.isHidden = false
+                    }else{
+                        inprogressCell.vwCallandChat.isHidden = true
+                    }
                     inprogressCell.chatClick = {
                         let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
                         chatVC.bookingID = self.arrBookingList[indexPath.row].id ?? ""
                         chatVC.isFromPush = true
                         self.navigationController?.pushViewController(chatVC, animated: true)
+                    }
+                    inprogressCell.callClick = {
+                        
+                            if let phoneCallURL = URL(string: "tel://\(self.arrBookingList[indexPath.row].driverContactNumber ?? "")") {
+                                
+                                let application:UIApplication = UIApplication.shared
+                                if (application.canOpenURL(phoneCallURL)) {
+                                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                                }
+                            }
                     }
                     return inprogressCell
                 }else{

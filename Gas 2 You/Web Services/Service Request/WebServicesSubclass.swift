@@ -185,6 +185,16 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
+    class func getNotificationListApi(reqModel : NotificationReqModel , completion: @escaping (Bool,String,notificationListResModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.notificationList.rawValue, requestModel: reqModel, responseModel: notificationListResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func changeNotificationStatusApi(reqModel : NotificationStatusReqModel , completion: @escaping (Bool,String,LoginResponseModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.changeNotification.rawValue, requestModel: reqModel, responseModel: LoginResponseModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
     class func Logout(completion: @escaping (Bool,String,logoutResModel?,Any) -> ()) {
         URLSessionRequestManager.makeGetRequest(urlString: ApiKey.logout.rawValue + Singleton.sharedInstance.userId, responseModel: logoutResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)

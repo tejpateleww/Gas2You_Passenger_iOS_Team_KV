@@ -61,200 +61,81 @@ extension AppDelegate : MessagingDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print(#function, notification)
-        guard let isUserLogin = UserDefaults.standard.value(forKey: UserDefaultsKey.isUserLogin.rawValue) as? Bool,isUserLogin == true,userDefault.getUserData() != nil else {
-            print("User is not login, can not process push")
-            return
-        }
         
+       
+
         let content = notification.request.content
         let userInfo = notification.request.content.userInfo
+
         print(userInfo)
         
-        print("USER INFo : ",userInfo)
-        if NotificationTypes(rawValue: (userInfo["gcm.notification.type"] as? String ?? "")) != nil {
-            notificationType = NotificationTypes(rawValue: (userInfo["gcm.notification.type"] as? String ?? ""))!
-            var orderDict = [String:Any]()
-            if let response = userInfo["gcm.notification.data"] as? String {
-                let jsonData = response.data(using: .utf8)!
-                orderDict = try! (JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as? [String : Any] ?? [:])
-                
+        if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") {
+           
+            if (key as? String ?? "") == "newMessage" {
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: ChatViewController.self) {
+                        self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                    } else {
+                        completionHandler([.alert, .sound])
+                    }
+                }
             }
-            orderid = (orderDict["order_id"] as? String ?? "")
-            status = (orderDict["status"] as? Int ?? 0)
-            switch notificationType{
-            case .JobStarted :
+            else {
+                if (key as? String ?? "") == "jobStart" || (key as? String ?? "") == "jobComplete" || (key as? String ?? "") == "invoiceGenerated" {
+                    self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                }
                 completionHandler([.alert, .sound])
-            case .JobCompleted :
-                completionHandler([.alert, .sound])
-            case .InvoiceGenerated:
-                completionHandler([.alert, .sound])
-            case .Chatnewmessagereceived:
-                completionHandler([.alert, .sound])
-            default:
-                completionHandler([.alert, .sound])
+               
             }
-        }else{
-            completionHandler([.alert, .sound])
+           
         }
+        
+        print(#function)
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print(response)
-        
-        
-        guard let isUserLogin = UserDefaults.standard.value(forKey: UserDefaultsKey.isUserLogin.rawValue) as? Bool,isUserLogin == true,userDefault.getUserData() != nil else {
-            print("User is not login, can not process push")
-            return
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")
+        if UIApplication.shared.applicationState == .active {
+            self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo)
+        } else if UIApplication.shared.applicationState == .background {
+            self.navigateToChatVC(userData: userInfo)
+        } else if UIApplication.shared.applicationState == .inactive {
+            Singleton.sharedInstance.userInforForNotification = userInfo
+            NotificationCenter.default.addObserver(self, selector: #selector(GoToChatFromNotification), name: NSNotification.Name(rawValue: "MessageScreenNotification"), object: userInfo)
         }
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        print(#function)
+        print(userInfo)
         
-        
-        let userInfo = response.notification.request.content.userInfo
-        print("USER INFo : ",userInfo)
-//        guard let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") as? String else  {
-//            return
-//        }
-        
-//        if key == "Account Active" {
-//            SingletonClass.sharedInstance.OwnerProfileInfo?.profile.active = "1"
-//            user_defaults.setUserData()
-//            appDelegate.delegateEditProfile?.accountActivated()
-//        }
-
-        
-        if NotificationTypes(rawValue: (userInfo["gcm.notification.type"] as? String ?? "")) != nil {
-            notificationType = NotificationTypes(rawValue: (userInfo["gcm.notification.type"] as? String ?? ""))!
-//            var orderDict = [String:Any]()
-//            if let response = userInfo["gcm.notification.data"] as? String {
-//                let jsonData = response.data(using: .utf8)!
-//                orderDict = try! (JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as? [String : Any] ?? [:])
-//
-//                if let dictUser = orderDict["BookingListDatum"] as? [String:Any] {
-////                    ObjUserData =
-//                print(ObjUserData)
-//                print(orderDict)
-//            }
-//            }
-//            var deliveryBoyId = "\(orderDict["sender_id"] ?? 0)"
-//            let orderid = (orderDict["order_id"] as? String ?? "")
-//            print(orderid,"Order id")
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    @objc func GoToChatFromNotification() {
+        navigateToChatVC(userData: Singleton.sharedInstance.userInforForNotification)
+    }
+     func navigateToChatVC(userData : [AnyHashable : Any]) {
+       
+        if let BookingID = userData["gcm.notification.booking_id"] as? String {
             
-        
-            switch notificationType {
-            case .JobStarted:
-                print("JobStarted")
-                //
-                guard let dictParam = (userInfo as NSDictionary).object(forKey: "gcm.notification.extra_param") as? String else {
-                    return
-                }
-                let jsonData = dictParam.data(using: .utf8)!
-                let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
-                
-                  guard let personsDictionary = dictionary  as? [String: Any] else {
-                      return
-                   }
-                guard let bookingid = personsDictionary["booking_id"] as? String  else {
-                        return
-                  }
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                    if let vc = (AppDel.window?.rootViewController as! UINavigationController).viewControllers.first as? MyOrdersVC {
-                        vc.isFromPayment = true
-                    }else{
-                        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
-                            let MyOrdersVC : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-                            MyOrdersVC.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
-                            Navigation.hidesBottomBarWhenPushed = true
-                            Navigation.pushViewController(MyOrdersVC, animated: true)
-                        }
-                        //self.Gotomyorderscreen()
+            
+            if let topVc = UIApplication.appTopViewController() {
+                if topVc.isKind(of: ChatViewController.self) {
+                    let chatVc = topVc as! ChatViewController
+                    if chatVc.bookingID == BookingID {
+                        chatVc.isFromPush = true
+                        chatVc.callHistory()
+                    } else {
+                        
                     }
+                } else {
+                    let chatVc : ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+                    chatVc.bookingID = BookingID
+                    chatVc.isFromPush = true
+                    chatVc.callChatHistoryAPI()
+                    
+                    topVc.navigationController?.hidesBottomBarWhenPushed = true
+                    topVc.navigationController?.pushViewController(chatVc, animated: true)
                 }
-                
-            case .JobCompleted :
-                print("JobCompleted")
-                if let vc = (AppDel.window?.rootViewController as! UINavigationController).viewControllers.first as? MyOrdersVC {
-                    vc.isInProcess = 2
-                }else{
-                    self.GotocompleteOrderscreen()
-                }
-                
-            case .InvoiceGenerated :
-                print("InvoiceGenerated")
-                if let _ = (AppDel.window?.rootViewController as! UINavigationController).viewControllers.first as? CompleteJobVC {
-                }else{
-                    GotoCompletejobvc()
-                }
-                
-            case .Chatnewmessagereceived :
-                print("Chatnewmessagereceived")
-                guard let dictParam = (userInfo as NSDictionary).object(forKey: "gcm.notification.extra_param") as? String else {
-                    return
-                }
-                let jsonData = dictParam.data(using: .utf8)!
-                let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
-                
-                  guard let personsDictionary = dictionary  as? [String: Any] else {
-                      return
-                   }
-                guard let bookingid = personsDictionary["booking_id"] as? String  else {
-                        return
-                  }
-                if let _ = (AppDel.window?.rootViewController as! UINavigationController).viewControllers.first as? ChatViewController {
-                }else{
-                    if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
-                        let chatVc : ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
-                        chatVc.bookingID = bookingid
-                        //                    chatVc.objUser = ObjUserData
-                        //                    chatVc.isfromPush = true
-                        //                    chatVc.deliveryBoyid = deliveryBoyId
-                        chatVc.callChatHistoryAPI()
-                        Navigation.hidesBottomBarWhenPushed = true
-                        Navigation.pushViewController(chatVc, animated: true)
-                    }
-                    //chatPushClickTonavigate()
-                }
-            default :
-                completionHandler()
-                break
             }
-        }
-        print(notificationType)
-        completionHandler()
-    }
-    @objc func Gotomyorderscreen(){
-        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
-            let MyOrdersVC : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-            MyOrdersVC.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
-            Navigation.hidesBottomBarWhenPushed = true
-            Navigation.pushViewController(MyOrdersVC, animated: true)
-        }
-    }
-    @objc func GotocompleteOrderscreen(){
-        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
-            let MyOrdersVC : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-            MyOrdersVC.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")
-            Navigation.hidesBottomBarWhenPushed = true
-            Navigation.pushViewController(MyOrdersVC, animated: true)
-        }
-    }
-    @objc func GotoCompletejobvc(){
-        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
-            let CompleteJobVC : CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
-            CompleteJobVC.bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: orderid))
-            Navigation.hidesBottomBarWhenPushed = true
-            Navigation.pushViewController(CompleteJobVC, animated: true)
-        }
-    }
-    @objc func chatPushClickTonavigate(){
-        if let Navigation = AppDel.window?.rootViewController as? UINavigationController{
-            let chatVc : ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
-//            chatVc.bookingID = bookingid
-            //                    chatVc.objUser = ObjUserData
-            //                    chatVc.isfromPush = true
-            //                    chatVc.deliveryBoyid = deliveryBoyId
-            chatVc.callChatHistoryAPI()
-            Navigation.hidesBottomBarWhenPushed = true
-            Navigation.pushViewController(chatVc, animated: true)
+            
         }
     }
 }
@@ -273,4 +154,101 @@ extension UIApplication {
         }
         return controller
     }
+}
+extension AppDelegate {
+    func  handlePushnotifications(NotificationType:String , userData : [AnyHashable : Any]) {
+        switch NotificationType {
+        case "jobStart":
+         print("jobStart")
+//            if let BookingID = userData["gcm.notification.booking_id"] as? String {
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: MyOrdersVC.self) {
+                        let orderVc = topVc as! MyOrdersVC
+                       // if jobVc.orderId == BookingID {
+                        orderVc.isFromPayment = true//btnInProgressTap(orderVc.btnInProgress)
+                        orderVc.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")//bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: BookingID))
+                        //
+                    } else {
+                        let orderVc : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+                        orderVc.isFromPayment = true
+                        orderVc.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
+                        topVc.navigationController?.hidesBottomBarWhenPushed = true
+                        topVc.navigationController?.pushViewController(orderVc, animated: true)
+                    }
+                }
+//            }
+        case "jobComplete":
+            print("jobComplete")
+            if let topVc = UIApplication.appTopViewController() {
+                if topVc.isKind(of: MyOrdersVC.self) {
+                    let orderVc = topVc as! MyOrdersVC
+                   // if jobVc.orderId == BookingID {
+                    orderVc.isFromComplete = true
+                    orderVc.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")//bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: BookingID))
+                    //
+                } else {
+                    let orderVc : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+                    orderVc.isFromComplete = true
+                    orderVc.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")
+                    topVc.navigationController?.hidesBottomBarWhenPushed = true
+                    topVc.navigationController?.pushViewController(orderVc, animated: true)
+                }
+            }
+        case "invoiceGenerated" :
+            print("invoiceGenerated")
+            if let BookingID = userData["gcm.notification.booking_id"] as? String {
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: CompleteJobVC.self) {
+                        let jobVc = topVc as! CompleteJobVC
+                        if jobVc.orderId == BookingID {
+                            jobVc.bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: BookingID))
+                        } else {
+                            
+                        }
+                    } else {
+                        let jobVc : CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
+                        jobVc.orderId = BookingID
+                        
+                        jobVc.bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: BookingID))
+                        topVc.navigationController?.hidesBottomBarWhenPushed = true
+                        topVc.navigationController?.pushViewController(jobVc, animated: true)
+                    }
+                }
+            }
+        case "newMessage" :
+            if let BookingID = userData["gcm.notification.booking_id"] as? String {
+                
+                
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: ChatViewController.self) {
+                        let chatVc = topVc as! ChatViewController
+                        if chatVc.bookingID == BookingID {
+                            chatVc.isFromPush = true
+                            chatVc.callHistory()
+                        } else {
+                            
+                        }
+                    } else {
+                        let chatVc : ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+                        chatVc.bookingID = BookingID
+                        chatVc.isFromPush = true
+                        chatVc.callHistory()
+                        topVc.navigationController?.hidesBottomBarWhenPushed = true
+                        topVc.navigationController?.pushViewController(chatVc, animated: true)
+                    }
+                }
+                
+            }
+            
+            
+            print("newMessage")
+            
+        default:
+            break
+        }
+    }
+    
+    
+    
+    
 }

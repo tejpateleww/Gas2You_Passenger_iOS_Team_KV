@@ -33,38 +33,6 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
         //        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "UpdateCartValue"), object: nil)
     }
     
-    //MARK:- Methods
-    
-    //    func NavbarrightButton(){
-    //        let newBackButton = UIBarButtonItem(image: #imageLiteral(resourceName: "imgCart"), style: .plain, target: self, action: #selector(rightButtonAction(_:)))
-    //        newBackButton.tintColor = .white
-    //        navigationItem.rightBarButtonItem = newBackButton
-    //
-    //        let customView = UIView(frame: CGRect(x: 10.0, y: -10.0, width: 40, height: 40.0))
-    //        customView.backgroundColor = UIColor.clear
-    //
-    //        let button =  UIButton(type: .custom)
-    //        button.setImage(UIImage(named: "imgCart"), for: .normal)
-    //        button.addTarget(self, action: #selector(rightButtonAction(_:)), for: .touchUpInside)
-    //        button.frame = CGRect(x: 0, y: 20, width: 20, height: 20)
-    //        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)   //move image to the right
-    //
-    //        customView.addSubview(button)
-    //
-    //        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-    //        label.text = String(SingletonClass.sharedInstance.CartValue)
-    //        label.textAlignment = .center
-    //        label.textColor = .white
-    //        label.backgroundColor =  .clear
-    ////        label.textContainerInset = UIEdgeInsetsMake(10, 0, 10, 0);
-    //
-    ////        button.backgroundColor = .red
-    //        customView.addSubview(label)
-    //
-    //        let barButton = UIBarButtonItem(customView: customView)
-    //        navigationItem.rightBarButtonItem = barButton
-    //    }
-    
     func NavbarrightButton() {
         
         let newBackButton = UIBarButtonItem(image: #imageLiteral(resourceName: "IC_chat"), style: .plain, target: self, action: #selector(rightButtonAction(_:)))
@@ -81,8 +49,6 @@ class BaseVC : UIViewController, UINavigationControllerDelegate, UIGestureRecogn
         navigationItem.rightBarButtonItem = rightBarButton
         //        self.navigationItem.rightBarButtonItem = rightButtonItem
     }
-    
-    
     
     @objc func rightButtonAction(_ sender: UIBarButtonItem?) {
         let chatListVC: ChatListVC = ChatListVC.instantiate(fromAppStoryboard: .Main)

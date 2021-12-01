@@ -25,11 +25,13 @@ class PaymentMethodVC: BaseVC, AddCardDelegate {
     var isfromMember : Bool = false
     var isfromPayment : Bool = false
     var isfromPlan : Bool = false
-    
+    let dateFormatter = DateFormatter()
     
     @IBOutlet weak var tblPaymentMethod: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateStyle = .long
+        dateFormatter.dateFormat = "MMM dd, yyyy"
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Payment Method", isTitlewhite: false, controller: self)
         tblPaymentMethod.delegate = self
         tblPaymentMethod.dataSource = self
@@ -107,7 +109,7 @@ extension PaymentMethodVC:UITableViewDelegate,UITableViewDataSource{
             return cell
         }else{
             let noDataCell:NoDataCell = tblPaymentMethod.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
-            noDataCell.imgNodata.image = UIImage(named: "IC_membership")
+            noDataCell.imgNodata.image = UIImage(named: "ic_card")
             noDataCell.lblData.text = "No Card found"
             if UIDevice.current.userInterfaceIdiom == .phone{
                 noDataCell.lblData.font = CustomFont.PoppinsRegular.returnFont(16.0)

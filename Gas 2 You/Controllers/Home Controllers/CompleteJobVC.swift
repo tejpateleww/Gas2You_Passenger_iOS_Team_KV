@@ -129,6 +129,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
             btnGiveRateReview.isHidden = true
         }
         setUI()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -158,12 +159,12 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         lbltotalGallon.text = (objBookingDetail?.totalGallon ?? "" ) + " Gallon"
         lblPricePerGallon.text = CurrencySymbol +  (objBookingDetail?.pricePerGallon ?? "") + " Per Gallon"
         lblTotalAmount.text = CurrencySymbol + (objBookingDetail?.finalAmount ?? "")
-        if objBookingDetail?.invoiceurl  == ""{
-            btnDownloadInvoice.isHidden = true
+        self.url = objBookingDetail?.invoiceurl ?? ""
+        self.number = objBookingDetail?.invoiceNumber ?? ""
+        if(self.pdfFileAlreadySaved(url: url, fileName: number) == true){
+            self.btnDownloadInvoice.setTitle(" VIEW INVOICE", for: .normal)
         }else{
-            self.url = objBookingDetail?.invoiceurl ?? ""
-            self.number = objBookingDetail?.invoiceNumber ?? ""
-            btnDownloadInvoice.isHidden = false
+            self.btnDownloadInvoice.setTitle("DOWNLOAD INVOICE", for: .normal)
         }
         if objBookingDetail?.rate == ""{
             vwRating.isHidden = true

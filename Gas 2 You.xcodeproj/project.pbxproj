@@ -124,6 +124,11 @@
 		88DC0BFD2743A6AA002A2BD3 /* sendMessageResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC0BFB2743A6AA002A2BD3 /* sendMessageResModel.swift */; };
 		88DC0C002743A7BB002A2BD3 /* SendMessageReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC0BFF2743A7BB002A2BD3 /* SendMessageReqModel.swift */; };
 		88DC0C042743B974002A2BD3 /* AppDelegate+PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC0C032743B974002A2BD3 /* AppDelegate+PushNotification.swift */; };
+		88DF12692757717B009B546F /* NotificationStatusReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF12682757717B009B546F /* NotificationStatusReqModel.swift */; };
+		88DF126B27577201009B546F /* NotificationChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF126A27577201009B546F /* NotificationChangeViewModel.swift */; };
+		88DF126F275773F3009B546F /* notificationListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF126D275773F3009B546F /* notificationListResModel.swift */; };
+		88DF127327577858009B546F /* NotiShimmerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF127127577857009B546F /* NotiShimmerCell.swift */; };
+		88DF127427577858009B546F /* NotiShimmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DF127227577857009B546F /* NotiShimmerCell.xib */; };
 		88E61D6926FAF109002BD61F /* serviceListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E61D6626FAF109002BD61F /* serviceListResModel.swift */; };
 		88E61D6F26FAF243002BD61F /* serviceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E61D6E26FAF243002BD61F /* serviceListViewModel.swift */; };
 		88E61D7226FAFECC002BD61F /* SubServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E61D7126FAFECC002BD61F /* SubServiceCell.swift */; };
@@ -325,6 +330,11 @@
 		88DC0BFB2743A6AA002A2BD3 /* sendMessageResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sendMessageResModel.swift; sourceTree = "<group>"; };
 		88DC0BFF2743A7BB002A2BD3 /* SendMessageReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageReqModel.swift; sourceTree = "<group>"; };
 		88DC0C032743B974002A2BD3 /* AppDelegate+PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AppDelegate+PushNotification.swift"; path = "../AppDelegate+PushNotification.swift"; sourceTree = "<group>"; };
+		88DF12682757717B009B546F /* NotificationStatusReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatusReqModel.swift; sourceTree = "<group>"; };
+		88DF126A27577201009B546F /* NotificationChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationChangeViewModel.swift; sourceTree = "<group>"; };
+		88DF126D275773F3009B546F /* notificationListResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notificationListResModel.swift; sourceTree = "<group>"; };
+		88DF127127577857009B546F /* NotiShimmerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiShimmerCell.swift; sourceTree = "<group>"; };
+		88DF127227577857009B546F /* NotiShimmerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotiShimmerCell.xib; sourceTree = "<group>"; };
 		88E61D6626FAF109002BD61F /* serviceListResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serviceListResModel.swift; sourceTree = "<group>"; };
 		88E61D6E26FAF243002BD61F /* serviceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceListViewModel.swift; sourceTree = "<group>"; };
 		88E61D7126FAFECC002BD61F /* SubServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubServiceCell.swift; sourceTree = "<group>"; };
@@ -658,6 +668,7 @@
 		8812771B26F84C6F005E8F37 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				88DF12672757715B009B546F /* Notofication */,
 				88C13C94274F813E0008173C /* card */,
 				88D9A70F274681B500F4A8A6 /* Date List */,
 				88DC0BFA2743A681002A2BD3 /* Send Message */,
@@ -741,6 +752,7 @@
 		8896402327425D0800B3379B /* Shimmer Cell */ = {
 			isa = PBXGroup;
 			children = (
+				88DF127027577857009B546F /* Notification Shimmer */,
 				8896402427425D0800B3379B /* ChatShimmer.swift */,
 				8896402527425D0800B3379B /* ChatShimmer.xib */,
 				8896402627425D0800B3379B /* ShimmerCell.xib */,
@@ -824,6 +836,25 @@
 				88DC0BFF2743A7BB002A2BD3 /* SendMessageReqModel.swift */,
 			);
 			path = "Send Message";
+			sourceTree = "<group>";
+		};
+		88DF12672757715B009B546F /* Notofication */ = {
+			isa = PBXGroup;
+			children = (
+				88DF126D275773F3009B546F /* notificationListResModel.swift */,
+				88DF12682757717B009B546F /* NotificationStatusReqModel.swift */,
+				88DF126A27577201009B546F /* NotificationChangeViewModel.swift */,
+			);
+			path = Notofication;
+			sourceTree = "<group>";
+		};
+		88DF127027577857009B546F /* Notification Shimmer */ = {
+			isa = PBXGroup;
+			children = (
+				88DF127127577857009B546F /* NotiShimmerCell.swift */,
+				88DF127227577857009B546F /* NotiShimmerCell.xib */,
+			);
+			path = "Notification Shimmer";
 			sourceTree = "<group>";
 		};
 		88E61D6526FAF0CF002BD61F /* Service List */ = {
@@ -1186,6 +1217,7 @@
 				18F4011D26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf in Resources */,
 				9A5512BD26C4D86800DDA313 /* Auth.storyboard in Resources */,
 				9A5B08B526B266EA00BA0CB4 /* Assets.xcassets in Resources */,
+				88DF127427577858009B546F /* NotiShimmerCell.xib in Resources */,
 				90C83A99270C318400BAFA92 /* animation.json in Resources */,
 				90C83AA5270C3A7200BAFA92 /* Splash.json in Resources */,
 				9A4A8B9A26C3E70500966B2D /* InProgressCell.xib in Resources */,
@@ -1332,10 +1364,12 @@
 				844F7C0526E643310047DFF4 /* RegisterModel.swift in Sources */,
 				880F43FB26FDB1530076C9EA /* BookingListViewModel.swift in Sources */,
 				9A70292C26C2452800DB1040 /* MyProfileVC.swift in Sources */,
+				88DF12692757717B009B546F /* NotificationStatusReqModel.swift in Sources */,
 				9A21857226C28AE8005BAAA1 /* AddAddressVC.swift in Sources */,
 				9A5B094626B27AB400BA0CB4 /* ThemeShadow.swift in Sources */,
 				8896401D27423DDC00B3379B /* ChatUserModel.swift in Sources */,
 				84EEA57726E2276C0026558F /* WebServicesSubclass.swift in Sources */,
+				88DF126B27577201009B546F /* NotificationChangeViewModel.swift in Sources */,
 				880F453F26FDDDBF0076C9EA /* CancelOrderResModel.swift in Sources */,
 				9AC568C626B7C25C0039FCCF /* HomeVC.swift in Sources */,
 				9A3A912426C128E90041D7D9 /* AddressListVC.swift in Sources */,
@@ -1362,6 +1396,7 @@
 				9A81083726B963B5003DE6CC /* CarParkingLocationVC.swift in Sources */,
 				9A3A912F26C133AC0041D7D9 /* SideMenuItemOptions.swift in Sources */,
 				84EEA58A26E2340E0026558F /* Singleton.swift in Sources */,
+				88DF126F275773F3009B546F /* notificationListResModel.swift in Sources */,
 				188A52FB26D8E9540053FED7 /* SplashViewController.swift in Sources */,
 				9A65A6BA26C51E3500F0592A /* SlideToConfirmVC.swift in Sources */,
 				8896402E274291AC00B3379B /* ChatListShimmerCell.swift in Sources */,
@@ -1434,6 +1469,7 @@
 				84C4951B26E72D0200659A5D /* PasswordModel.swift in Sources */,
 				88D296F62701906700BC6AE2 /* socialLoginReqModel.swift in Sources */,
 				880F42B526FD8BBD0076C9EA /* AddBookingReqModel.swift in Sources */,
+				88DF127327577858009B546F /* NotiShimmerCell.swift in Sources */,
 				88964020274251AD00B3379B /* chatHistoryResModel.swift in Sources */,
 				9A5B08F026B2703000BA0CB4 /* String+extension.swift in Sources */,
 				84C4951E26E7473900659A5D /* OtpVC.swift in Sources */,

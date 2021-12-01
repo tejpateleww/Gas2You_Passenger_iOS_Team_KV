@@ -77,7 +77,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var serviceid = ""
     var subserviceid = ""
     var vehicalid = ""
-    var addonid = ""
+    var addonid = [String]()
     var time = ""
     var locationManager : LocationService?
     var PlaceName = userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String
@@ -91,9 +91,10 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     
     //MARK:- VIEW LIFE CYCLE
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "MessageScreenNotification"), object: nil, userInfo: nil)
         if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) != nil , userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as! String  != ""{
             locationLabel.text = PlaceName
         }else if Singleton.sharedInstance.userCurrentLocation.coordinate.latitude == 0.0 && Singleton.sharedInstance.userCurrentLocation.coordinate.longitude == 0.0 && userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) == nil{
@@ -146,6 +147,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         LblOctane.text = "93 Octane"
         dismissPickerView()
     }
+    
+
     
     func setup(){
         if listOfVehicle.count != 0{
@@ -447,7 +450,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             return nonmemberplanlist.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell:nonMemberListCell = tblNonMemberPLan.dequeueReusableCell(withIdentifier: nonMemberListCell.className) as! nonMemberListCell
+        let cell:nonMemberListCell = tblNonMemberPLan.dequeueReusableCell(withIdentifier: nonMemberListCell.className) as! nonMemberListCell
         if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
             if nonmemberplanlist[indexPath.row].title == "Service Charge"{
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
@@ -456,15 +459,29 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             }
         }else{
             cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
+            
         }
-            cell.lbltitle.text = (nonmemberplanlist[indexPath.row].title ?? "") + arrow
-            cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isChecked == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
-            self.addonid = (nonmemberplanlist[indexPath.row].isChecked == true) ? self.nonmemberplanlist[indexPath.row].id ?? "" : ""
-            cell.selectionStyle = .none
-            return cell
+        
+        
+//            if self.addonid.contains(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
+            if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
+                self.addonid.remove(at: index)
+//                append(self.nonmemberplanlist[indexPath.row].id ?? "")
+            }
+                if nonmemberplanlist[indexPath.row].isChecked ?? false{
+                    self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+                }
+            
+        
+        
+        cell.lbltitle.text = (nonmemberplanlist[indexPath.row].title ?? "") + arrow
+        cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isChecked == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+        cell.selectionStyle = .none
+        return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
+//        self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
             tblNonMemberPLan.reloadData()
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -486,11 +503,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
                 cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
                 self.LblOctane.text = self.serviceList[self.selectedIndex].subServices?[indexPath.row].name
                 self.priceTagLabel.text = CurrencySymbol + (self.serviceList[self.selectedIndex].subServices?[indexPath.row].price ?? "")
-//                if serviceList[selectedIndex].subServices?.count != 0{
-//
-//                }else{
-//                    self.subserviceid = ""
-//                }
+                self.subserviceid = serviceList[selectedIndex].subServices?[SelectIndex].id ?? ""
                 if self.serviceList[self.selectedIndex].subServices?.count ?? 0 > 2{
                     self.imgSubserviceArrow.isHidden = false
                 }else{
@@ -505,8 +518,8 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         }else{
             let cell:timeListCell = collectionTimeList.dequeueReusableCell(withReuseIdentifier: timeListCell.className, for: indexPath) as! timeListCell
             cell.lblListData.text = arrTimeList[indexPath.row]
-            self.time = arrTimeList[indexPath.row]
             if dateSelected == indexPath.row{
+                self.time = arrTimeList[dateSelected]
                 cell.layoutSubviews()
                 cell.layoutIfNeeded()
                 cell.vwMain.layer.cornerRadius = 10
@@ -525,10 +538,11 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectionTimeList{
             dateSelected = indexPath.row
+            self.time = arrTimeList[dateSelected]
             collectionTimeList.reloadData()
         }else{
             SelectIndex = indexPath.row
-            self.subserviceid = serviceList[SelectIndex].subServices?[indexPath.row].id ?? ""
+            self.subserviceid = serviceList[selectedIndex].subServices?[SelectIndex].id ?? ""
             collectionViewSubService.reloadData()
         }
     }

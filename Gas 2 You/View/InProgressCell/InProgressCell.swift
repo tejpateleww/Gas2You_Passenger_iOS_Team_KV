@@ -24,7 +24,9 @@ class InProgressCell: UITableViewCell,ShimmeringViewProtocol {
     @IBOutlet weak var imgLocation: UIImageView!
     @IBOutlet weak var imgCalender: UIImageView!
     @IBOutlet weak var lblBookingID: UILabel!
+    @IBOutlet weak var vwCallandChat: UIView!
     var chatClick : (()->())?
+    var callClick : (()->())?
     var shimmeringAnimatedItems: [UIView] {
            [
             lblServices,
@@ -55,6 +57,11 @@ class InProgressCell: UITableViewCell,ShimmeringViewProtocol {
     @IBAction func btnActionchat(_ sender: UIButton) {
         if let btnclicked = chatClick {
             btnclicked()
+        }
+    }
+    @IBAction func btnActioncall(_ sender: UIButton) {
+        if let click = callClick {
+            click()
         }
     }
 }

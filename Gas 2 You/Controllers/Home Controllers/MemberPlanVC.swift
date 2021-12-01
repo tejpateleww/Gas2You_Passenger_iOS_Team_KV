@@ -100,7 +100,6 @@ extension MemberPlanVC:UITableViewDelegate,UITableViewDataSource{
             cell.icCheck.image = (selectedIndex == indexPath.row) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
         }else{
             cell.icCheck.image = memberPlanList[indexPath.row].isPurchased == true ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
-            
         }
         cell.selectionStyle = .none
         return cell

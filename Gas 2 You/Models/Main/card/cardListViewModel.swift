@@ -8,6 +8,7 @@
 import Foundation
 class cardListViewModel{
     var cardList : PaymentMethodVC?
+    var todaysDate = Date()
     func webserviceCardList() {
         let cardList = cardListReqModel()
         cardList.customer_id = Singleton.sharedInstance.userId
@@ -44,9 +45,16 @@ class cardListViewModel{
            
             Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure){
                 if status{
-                    let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-                    myOrdersVC.isFromPayment = true
-                    self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
+                    let today = Date()
+                    let strDate = self.cardList?.dateFormatter.string(from: today)
+                    if self.cardList?.getDataModel?.date == strDate{
+                        let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+                        myOrdersVC.isFromPayment = true
+                        self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
+                    }else{
+                        let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+                        self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
+                    }
                 }
             }
         })

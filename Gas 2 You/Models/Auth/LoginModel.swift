@@ -52,6 +52,7 @@ class ProfileModel: Codable {
     var type: String?//"Yearly",
     var amount : String?//: "228.00",
     var expiry_date : String?// "2022-11-21"
+    var notification : String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -83,5 +84,6 @@ class ProfileModel: Codable {
         case type = "type"
         case amount = "amount"
         case expiry_date = "expiry_date"
+        case notification = "notification"
     }
 }

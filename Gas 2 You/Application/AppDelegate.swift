@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         ApplicationDelegate.initializeSDK(nil)
         GIDSignIn.sharedInstance().clientID = "651860703785-am67b73lv131cjjv47dhpsf079e4cfic.apps.googleusercontent.com"
         // Thread.sleep(forTimeInterval: 3.0)
-        
         IQKeyboardManager.shared.enable = true
         GMSServices.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
         GMSPlacesClient.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")

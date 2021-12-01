@@ -20,7 +20,7 @@ class ChatViewController: BaseVC {
     
     //MARK: -Properties
     var delegateChat : chatListRefresh?
-    var isFromPush = false
+    var isFromPush : Bool = false
     var bookingID = ""
     var senderID = ""
     var isTblReload = false
@@ -70,9 +70,12 @@ class ChatViewController: BaseVC {
         super.viewDidLoad()
 
         self.prepareView()
-        self.addNotificationObs()
-        self.callChatHistoryAPI()
-        super.viewDidLoad()
+//            self.addNotificationObs()
+        if isFromPush{
+            
+        }else{
+            self.callChatHistoryAPI()
+        }
         // Do any additional setup after loading the view.
         
         txtviewComment.delegate = self
@@ -163,9 +166,6 @@ class ChatViewController: BaseVC {
     
     @objc func callHistory(){
         self.callChatHistoryAPI()
-        
-        AppDelegate.pushNotificationObj = nil
-        AppDelegate.pushNotificationType = nil
     }
     func setLocalization() {
         
