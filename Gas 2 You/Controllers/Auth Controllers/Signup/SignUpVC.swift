@@ -27,9 +27,9 @@ class SignUpVC: BaseVC {
     
     private let viewModel = SignupViewModel()
     var otpUserModel = SignupViewModel()
-    var registerRequestModel = RegisterRequestModel()
     
     
+    var strOtp = ""
     let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
     let ACCEPTABLE_CHARACTERS_FOR_EMAIL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@."
     let ACCEPTABLE_CHARACTERS_FOR_PHONE = "0123456789"
@@ -41,19 +41,28 @@ class SignUpVC: BaseVC {
         btnTerms.underline()
         btnPrivacy.underline()
         setupUI()
-        otpUserModel.signupmodel = self
+        
     }
     func storeDataInRegisterModel(){
-        self.registerRequestModel.firstName = self.txtFirstName.text ?? ""
-        self.registerRequestModel.lastName = self.txtLastName.text ?? ""
-        self.registerRequestModel.countryCode = "+91"
+        let registerRequestModel = RegisterRequestModel()
+        registerRequestModel.firstName = self.txtFirstName.text ?? ""
+        registerRequestModel.lastName = self.txtLastName.text ?? ""
+        registerRequestModel.countryCode = "+91"
         
-        self.registerRequestModel.phone = self.txtPhoneNo.text ?? ""
-        self.registerRequestModel.email = self.txtEmail.text ?? ""
-        self.registerRequestModel.password = self.txtPassword.text ?? ""
-        let otpReqModel = OTPRequestModel()
-        otpReqModel.email = txtEmail.text
-        otpUserModel.webserviceSignupOtp(reqModel: otpReqModel)
+        registerRequestModel.phone = self.txtPhoneNo.text ?? ""
+        registerRequestModel.email = self.txtEmail.text ?? ""
+        registerRequestModel.password = self.txtPassword.text ?? ""
+        if #available(iOS 13.0, *) {
+            let OtpVC = storyboard?.instantiateViewController(identifier: OtpVC.className) as! OtpVC
+            OtpVC.registerRequestModel = registerRequestModel
+            OtpVC.StringOTP = self.strOtp
+            navigationController?.pushViewController(OtpVC, animated: true)
+        }else{
+            let OtpVC = storyboard?.instantiateViewController(withIdentifier: OtpVC.className) as! OtpVC
+            OtpVC.registerRequestModel = registerRequestModel
+            OtpVC.StringOTP = self.strOtp
+            navigationController?.pushViewController(OtpVC, animated: true)
+        }
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -86,7 +95,7 @@ class SignUpVC: BaseVC {
     
     @IBAction func btnTermsClick(_ sender: Any) {
         var TC = ""
-        if let TCLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "terms_and_condition"}) {
+        if let TCLink = Singleton.sharedInstance.appInitModel?.appLinks.filter({ $0.name == "terms_and_condition"}) {
             if TCLink.count > 0 {
                 TC = TCLink[0].url ?? ""
                 self.previewDocument(strURL: TC)
@@ -95,7 +104,7 @@ class SignUpVC: BaseVC {
     }
     @IBAction func btnPrivacyClick(_ sender: Any) {
         var PP = ""
-        if let PPLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "privacy_policy"}) {
+        if let PPLink = Singleton.sharedInstance.appInitModel?.appLinks.filter({ $0.name == "privacy_policy"}) {
             if PPLink.count > 0 {
                 PP = PPLink[0].url ?? ""
                 self.previewDocument(strURL: PP)
@@ -105,7 +114,7 @@ class SignUpVC: BaseVC {
     @IBAction func btnSignupTap(_ sender: ThemeButton) {
         view.endEditing(true)
         if self.validation(){
-            self.storeDataInRegisterModel()
+            self.callOtpApi()
         }
     }
     func validation() -> Bool{
@@ -119,7 +128,7 @@ class SignUpVC: BaseVC {
         let checkEmail = txtTemp.validatedText(validationType: .email)
         let mobileNo = txtPhoneNo.validatedText(validationType: .requiredField(field: txtPhoneNo.placeholder?.lowercased() ?? ""))
         let password = txtPassword.validatedText(validationType: .password(field: txtPassword.placeholder?.lowercased() ?? ""))
-        let Confpassword = txtConfirmPassword.validatedText(validationType: .password(field: txtPassword.placeholder?.lowercased() ?? ""))
+        let Confpassword = txtConfirmPassword.validatedText(validationType: .password(field: txtConfirmPassword.placeholder?.lowercased() ?? ""))
         
         
         if !firstName.0{
@@ -131,14 +140,11 @@ class SignUpVC: BaseVC {
             return checkEmailRequired.0
         }else if !checkEmail.0{
             strTitle = checkEmail.1
-        }else if !(txtPhoneNo.text?.isEmptyOrWhitespace() ?? false){
-            if txtPhoneNo.text?.count != 10 {
-                strTitle = UrlConstant.ValidPhoneNo
-            }
+        }else if !mobileNo.0{
+            strTitle = mobileNo.1
+        }else if txtPhoneNo.text?.count != 10 {
+            strTitle = UrlConstant.ValidPhoneNo
         }
-//        else if !mobileNo.0{
-//            strTitle = mobileNo.1
-//        }
         else if !password.0{
             strTitle = password.1
         }else if !Confpassword.0{
@@ -248,3 +254,11 @@ extension SignUpVC: UITextFieldDelegate {
 
 }
 
+extension SignUpVC{
+    func callOtpApi(){
+        otpUserModel.signupmodel = self
+        let otpReqModel = OTPRequestModel()
+        otpReqModel.email = txtEmail.text
+        otpUserModel.webserviceSignupOtp(reqModel: otpReqModel)
+    }
+}

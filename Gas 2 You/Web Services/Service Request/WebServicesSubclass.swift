@@ -110,8 +110,8 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
-    class func CancelMemberPlan(reqModel : cancelMemberPlanReqModel,completion: @escaping (Bool, String, cancelMemberPlanResModel?, Any) -> ()){
-        URLSessionRequestManager.makePostRequest(urlString: ApiKey.cancelPurchasePlan.rawValue, requestModel: reqModel, responseModel: cancelMemberPlanResModel.self) { (status, message, response, error) in
+    class func CancelMemberPlan(reqModel : cancelMemberPlanReqModel,completion: @escaping (Bool, String, CancelMemberPlanResModel?, Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.cancelPurchasePlan.rawValue, requestModel: reqModel, responseModel: CancelMemberPlanResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }
@@ -192,6 +192,16 @@ class WebServiceSubClass{
     }
     class func changeNotificationStatusApi(reqModel : NotificationStatusReqModel , completion: @escaping (Bool,String,LoginResponseModel?,Any) -> ()){
         URLSessionRequestManager.makePostRequest(urlString: ApiKey.changeNotification.rawValue, requestModel: reqModel, responseModel: LoginResponseModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func addLocation(reqModel : AddLocationReqModel,completion: @escaping (Bool, String, AddLocationResModel?, Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.addLocation.rawValue, requestModel: reqModel, responseModel: AddLocationResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
+    class func LocationList(reqModel : LocationListReqModel,completion: @escaping (Bool, String, AddLocationResModel?, Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.LocationList.rawValue, requestModel: reqModel, responseModel: AddLocationResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }

@@ -49,6 +49,18 @@ class PaymentMethodVC: BaseVC, AddCardDelegate {
     func refreshCardListScreen() {
         cardListModel.webserviceCardList()
     }
+    func convertDateFormat(inputDate: String) -> String {
+
+         let olDateFormatter = DateFormatter()
+         olDateFormatter.dateFormat = "yyyy-MM-dd"
+
+         let oldDate = olDateFormatter.date(from: inputDate)
+
+         let convertDateFormatter = DateFormatter()
+         convertDateFormatter.dateFormat = "MMM dd, yyyy"
+
+         return convertDateFormatter.string(from: oldDate!)
+    }
 }
 extension PaymentMethodVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,7 +85,7 @@ extension PaymentMethodVC:UITableViewDelegate,UITableViewDataSource{
                 cell.vwRadius.layer.borderWidth = 1
                 cell.vwRadius.layer.borderColor = UIColor.init(hexString: "#1C75BB").cgColor
                 if self.isfromPayment{
-                    cell.btnSelected.isUserInteractionEnabled = false
+                    cell.btnSelected.isHidden = true
                 }
                 cell.payClick = {
                     if self.isfromMember{

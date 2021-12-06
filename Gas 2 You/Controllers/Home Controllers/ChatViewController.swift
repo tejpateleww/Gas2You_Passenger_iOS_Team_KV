@@ -72,7 +72,7 @@ class ChatViewController: BaseVC {
         self.prepareView()
 //            self.addNotificationObs()
         if isFromPush{
-            
+            self.callChatHistoryAPI()
         }else{
             self.callChatHistoryAPI()
         }
@@ -252,10 +252,6 @@ class ChatViewController: BaseVC {
     //MARK: -API Calls
     
 }
-
-
-
-
 //MARK:- Textview Delegate
 extension ChatViewController : UITextViewDelegate {
     
@@ -348,7 +344,6 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
                     } else {
                         cell.lblReciverMessage.text = obj?.message ?? ""
                     }
-                
                     cell.btnSenderTapCousure = {
                         if(self.isValidUrl(url: obj?.message ?? "")){
                             self.previewDocument(strURL: obj?.message ?? "")

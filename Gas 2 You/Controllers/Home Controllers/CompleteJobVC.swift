@@ -205,9 +205,10 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
 //                    self.delegate?.onSaveInvoice()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         Toast.show(title: UrlConstant.Success, message: "Invoice successfully downloaded!", state: .success)
+                        self.setData()
                     }
                 } catch {
-                    Utilities.showAlertAction(message: "Invoice could not be saved!", vc: self)
+                    Toast.show(title: UrlConstant.Failed, message: "Invoice could not be saved!", state: .failure)
                 }
                 Utilities.hideHud()
             }

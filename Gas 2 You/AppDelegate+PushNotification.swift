@@ -62,15 +62,15 @@ extension AppDelegate : MessagingDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-       
-
+        
+        
         let content = notification.request.content
         let userInfo = notification.request.content.userInfo
-
+        
         print(userInfo)
         
         if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") {
-           
+            
             if (key as? String ?? "") == "newMessage" {
                 if let topVc = UIApplication.appTopViewController() {
                     if topVc.isKind(of: ChatViewController.self) {
@@ -79,18 +79,36 @@ extension AppDelegate : MessagingDelegate {
                         completionHandler([.alert, .sound])
                     }
                 }
-            }
-            else {
+            }else if (key as? String ?? "") == "sessionTimeout"{
+                AppDel.dologout()
+                completionHandler([.alert, .sound])
+            }else {
                 if (key as? String ?? "") == "jobStart" || (key as? String ?? "") == "jobComplete" || (key as? String ?? "") == "invoiceGenerated" {
                     self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
                 }
                 completionHandler([.alert, .sound])
-               
+                
             }
-           
+            
         }
         
         print(#function)
+    }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")
+        if UIApplication.shared.applicationState == .active {
+            self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo)
+        } else if UIApplication.shared.applicationState == .background {
+            self.navigateToChatVC(userData: userInfo)
+        } else if UIApplication.shared.applicationState == .inactive {
+            Singleton.sharedInstance.userInforForNotification = userInfo
+            NotificationCenter.default.addObserver(self, selector: #selector(GoToChatFromNotification), name: NSNotification.Name(rawValue: "MessageScreenNotification"), object: userInfo)
+        }
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        print(#function)
+        print(userInfo)
+        
     }
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")
@@ -160,23 +178,24 @@ extension AppDelegate {
         switch NotificationType {
         case "jobStart":
          print("jobStart")
-//            if let BookingID = userData["gcm.notification.booking_id"] as? String {
+            if let BookingID = userData["gcm.notification.booking_id"] as? String {
                 if let topVc = UIApplication.appTopViewController() {
                     if topVc.isKind(of: MyOrdersVC.self) {
                         let orderVc = topVc as! MyOrdersVC
-                       // if jobVc.orderId == BookingID {
+                        if orderVc.bookingid == BookingID {
                         orderVc.isFromPayment = true//btnInProgressTap(orderVc.btnInProgress)
                         orderVc.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")//bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: BookingID))
-                        //
+                        }
                     } else {
                         let orderVc : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
                         orderVc.isFromPayment = true
+                        orderVc.bookingid = BookingID
                         orderVc.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "1")
                         topVc.navigationController?.hidesBottomBarWhenPushed = true
                         topVc.navigationController?.pushViewController(orderVc, animated: true)
                     }
                 }
-//            }
+            }
         case "jobComplete":
             print("jobComplete")
             if let topVc = UIApplication.appTopViewController() {
@@ -216,6 +235,7 @@ extension AppDelegate {
                 }
             }
         case "newMessage" :
+            print("newMessage")
             if let BookingID = userData["gcm.notification.booking_id"] as? String {
                 
                 
@@ -239,9 +259,9 @@ extension AppDelegate {
                 }
                 
             }
+        case "sessionTimeout":
+            AppDel.dologout()
             
-            
-            print("newMessage")
             
         default:
             break

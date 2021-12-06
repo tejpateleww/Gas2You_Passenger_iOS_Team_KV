@@ -20,17 +20,37 @@ class SplashViewController: BaseVC {
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
-
+ 
+    
     @IBOutlet var vmAnimation: AnimationView!
-
-
+    @IBOutlet weak var imgSplash: UIImageView!
+    
+ 
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        observeAnimationAndVersionChange()
+      
+        
+        self.imgSplash.layoutIfNeeded()
+        self.imgSplash.layoutSubviews()
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            self.imgSplash.frame.origin.x = -80
+        } else {
+            self.imgSplash.frame.origin.x = -40
+        }
+        UIView.animate(withDuration: 2.5, animations: {
+            self.imgSplash.frame.origin.x = 0
+        }, completion: {finished in
+           
+        })
+       
+        self.observeAnimationAndVersionChange()
+        
+        
     }
 
     override func viewDidLayoutSubviews() {
@@ -95,7 +115,6 @@ class SplashViewController: BaseVC {
 
 //MARK:- Apis
 extension SplashViewController {
-
     func webserviceInit(completion: @escaping EmptyClosure){
         WebServiceSubClass.InitApi { (status, message, response, error) in
             if let dic = error as? [String: Any], let msg = dic["The request timed out"] as? String, msg == UrlConstant.NoInternetConnection || msg == UrlConstant.SomethingWentWrong || msg == UrlConstant.RequestTimeOut{

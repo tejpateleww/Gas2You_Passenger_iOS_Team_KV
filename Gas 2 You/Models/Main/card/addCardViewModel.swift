@@ -15,8 +15,9 @@ class addCardViewModel{
         addcardData.name_on_card = name
         addcardData.expiry_date = expDate
         addcardData.cvv = cvv
+        Utilities.showHud()
         WebServiceSubClass.AddCard(reqModel: addcardData, completion: { (status, apiMessage, response, error) in
-            
+            Utilities.hideHud()
             Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? apiMessage : apiMessage, state: status ? .success : .failure){
                 if status{
                     self.addCard?.navigationController?.popViewController(animated: true)

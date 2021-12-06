@@ -28,6 +28,11 @@ class AddVehicleVC: BaseVC {
     @IBOutlet weak var txtLicencePlateNo: UITextField!
     @IBOutlet weak var txtStateName: UITextField!
     @IBOutlet weak var btnSave: ThemeButton!
+    @IBOutlet weak var txtOtherMake: UITextField!
+    @IBOutlet weak var txtOtherModel: UITextField!
+    @IBOutlet weak var stackOtherMake: UIStackView!
+    @IBOutlet weak var stackOtherModel: UIStackView!
+    @IBOutlet weak var stackModel: UIStackView!
     
     var delegateAdd : AddVehicleDelegate!
     var delegateEdit : editVehicleDelegate!
@@ -52,7 +57,8 @@ class AddVehicleVC: BaseVC {
     var model = ""
     var color = ""
     var state = ""
-        
+    var isotherMake : Bool = false
+    var isothermodel : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +68,9 @@ class AddVehicleVC: BaseVC {
         }else{
             NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Add Vehicle", controller: self)
         }
+        self.stackModel.isHidden = false
+        self.stackOtherMake.isHidden = true
+        self.stackOtherModel.isHidden = true
         self.makeandmodelList.webserviceofmakeandmodel()
         self.makeandmodelList.addvehicle = self
         self.vehiclecolorList.webserviceofcolorList()
@@ -78,6 +87,8 @@ class AddVehicleVC: BaseVC {
         colorPicker.dataSource = self
         statePicker.delegate = self
         statePicker.dataSource = self
+        txtOtherMake.delegate = self
+        txtOtherModel.delegate = self
         dismissPickerView()
 //        yearPicker.addDoneOnKeyboardWithTarget(self, action: #selector(self.donePicker))
         txtEnterYear.delegate = self
@@ -104,7 +115,16 @@ class AddVehicleVC: BaseVC {
                     self.make = self.makeVal[row].id ?? ""
                     self.SelectedMakeIndex = row
                     self.txtEnterMake.text = self.makeVal[row].manufacturerName
+                    if self.makeVal[row].manufacturerName == "Other"{
+                        self.stackOtherMake.isHidden = false
+                    }else{
+                        self.stackOtherMake.isHidden = true
+                    }
                     self.txtEnterModel.text = ""
+                    self.txtOtherMake.text = ""
+                    self.txtOtherModel.text = ""
+                    self.stackModel.isHidden = false
+                    self.stackOtherModel.isHidden = true
                     txtEnterMake.endEditing(true)
                 }else{
                     txtEnterMake.endEditing(true)
@@ -114,7 +134,16 @@ class AddVehicleVC: BaseVC {
                     self.make = self.makeVal[row].id ?? ""
                     self.SelectedMakeIndex = row
                     self.txtEnterMake.text = self.makeVal[row].manufacturerName
+                    if self.makeVal[row].manufacturerName == "Other"{
+                        self.stackOtherMake.isHidden = false
+                    }else{
+                        self.stackOtherMake.isHidden = true
+                    }
+                    self.txtOtherMake.text = ""
+                    self.txtOtherModel.text = ""
                     self.txtEnterModel.text = ""
+                    self.stackModel.isHidden = false
+                    self.stackOtherModel.isHidden = true
                     txtEnterMake.endEditing(true)
                 }else{
                     txtEnterMake.endEditing(true)
@@ -126,6 +155,11 @@ class AddVehicleVC: BaseVC {
                 if self.makeVal[SelectedMakeIndex].models?.count != 0{
                     self.model = self.makeVal[SelectedMakeIndex].models?[row].id ?? ""
                     self.txtEnterModel.text = self.makeVal[SelectedMakeIndex].models?[row].modelName
+                    if self.makeVal[SelectedMakeIndex].models?[row].modelName == "Other"{
+                        self.stackOtherModel.isHidden = false
+                    }else{
+                        self.stackOtherModel.isHidden = true
+                    }
                     txtEnterModel.endEditing(true)
                 }else{
                     txtEnterModel.endEditing(true)
@@ -134,6 +168,11 @@ class AddVehicleVC: BaseVC {
                 if self.makeVal[self.SelectedMakeIndex].models?.count != 0{
                     self.model = self.makeVal[self.SelectedMakeIndex].models?[row].id ?? ""
                     self.txtEnterModel.text = self.makeVal[self.SelectedMakeIndex].models?[row].modelName
+                    if self.makeVal[SelectedMakeIndex].models?[row].modelName == "Other"{
+                        self.stackOtherModel.isHidden = false
+                    }else{
+                        self.stackOtherModel.isHidden = true
+                    }
                     txtEnterModel.endEditing(true)
                 }else{
                     txtEnterModel.endEditing(true)
@@ -176,12 +215,12 @@ class AddVehicleVC: BaseVC {
     @IBAction func btnSaveTap(_ sender: ThemeButton) {
         if isfromEdit{
             if validation(){
-                EditVehicle.doLogin(vehicleId: objData?.id ?? "", year: txtEnterYear.text ?? "", make: make, model: model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "")
+                EditVehicle.doLogin(vehicleId: objData?.id ?? "", year: txtEnterYear.text ?? "", make: make, model: model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "",isothermodel: isothermodel,modelname: txtOtherModel.text ?? "",isothermake: isotherMake,makename: txtOtherMake.text ?? "")
                 NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
             }
         }else{
-            if validation(){
-                AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "")
+                if validation(){
+                AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "",isothermodel: isothermodel,modelname: txtOtherModel.text ?? "",isothermake: isotherMake,makename: txtOtherMake.text ?? "")
             }
         }
     }
@@ -199,37 +238,63 @@ class AddVehicleVC: BaseVC {
     }
     //MARK: - Validation
     func validation() -> Bool{
-        var stringData : String?
-        let strTitle = "Please select "
+        var isvalid = true
+        let row = modelPicker.selectedRow(inComponent: 0);
+        let contains = makeVal.contains(where: { $0.manufacturerName == txtOtherMake.text })
+        let strTitle = "Please select"
+        var messages: [String] = []
         let plateno = txtLicencePlateNo.validatedText(validationType: .requiredField(field: txtLicencePlateNo.placeholder?.lowercased() ?? ""))
         if txtEnterYear.text == ""{
-            Toast.show(title: UrlConstant.Required, message: strTitle + "year", state: .info)
-            return false
-        }else if txtEnterMake.text == ""{
-            //            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "make")
-            Toast.show(title: UrlConstant.Required, message: strTitle + "make", state: .info)
-            return false
-        }else if txtEnterModel.text == ""{
-            //            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "model")
-            Toast.show(title: UrlConstant.Required, message: strTitle + "model", state: .info)
-            return false
-        }else if txtEnterColor.text == ""{
-            //            Utilities.ShowAlertOfrequired(OfMessage: strTitle + "color")
-            Toast.show(title: UrlConstant.Required, message: strTitle + "color", state: .info)
-            return false
-        }else if txtStateName.text == ""{
-            Toast.show(title: UrlConstant.Required, message: strTitle + "state", state: .info)
-            return false
-        }else if !plateno.0 {
-            stringData = plateno.1
+            isvalid = false
+            messages.append("year")
         }
         
-        if let str = stringData  {
-            //            Utilities.ShowAlertOfrequired(OfMessage: str)
-            Toast.show(title: UrlConstant.Required, message: str, state: .info)
-            return false
+        if isvalid, txtEnterMake.text == ""{
+            isvalid = false
+            messages.append("make")
         }
-        return true
+        if isvalid, makeVal[SelectedMakeIndex].manufacturerName == "Other"{
+            if isvalid, txtOtherMake.text == ""{
+                isvalid = false
+                messages.append("Other make")
+            }
+            if isvalid, txtOtherModel.text == ""{
+                isvalid = false
+                messages.append("Other model")
+            }
+        }
+        if contains{
+            if isvalid, txtEnterModel.text == ""{
+                isvalid = false
+                messages.append("model")
+            }
+        }
+        if isvalid, makeVal[SelectedMakeIndex].models?[row].modelName == "Other"{
+            if isvalid, txtOtherModel.text == ""{
+                isvalid = false
+                messages.append("Other model")
+            }
+        }
+        if isvalid, txtEnterColor.text == ""{
+            isvalid = false
+            messages.append("color")
+        }
+        if isvalid, txtStateName.text == ""{
+            isvalid = false
+            messages.append("state")
+        }
+        
+        if isvalid, !plateno.0 {
+            isvalid = false
+            messages.append(plateno.1)
+        }
+        
+        if messages.isEmpty == false {
+            let messageStr = messages.map({"\(strTitle) \($0)"}).joined(separator: "\n")
+            Toast.show(title: UrlConstant.Required, message: messageStr, state: .info)
+            
+        }
+        return isvalid
     }
 }
 
@@ -247,7 +312,6 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
         } else if txtEnterModel.isFirstResponder {
             if isfromEdit{
                 if SelectedMakeIndex != -1 {
-                    
                     return makeVal[SelectedMakeIndex].models?.count ?? 0
                 } else {
                     return 0
@@ -293,16 +357,58 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
 extension AddVehicleVC: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
-        let currentString: NSString = txtLicencePlateNo.text! as NSString
-        let newString: NSString =
-            currentString.replacingCharacters(in: range, with: string) as NSString
-        let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
-        let filtered = string.components(separatedBy: cs).joined(separator: "")
-        if textField != txtLicencePlateNo{
-            return false
-        }else{
-            return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimitPASSWORD) : false
+        switch textField {
+        case txtLicencePlateNo:
+            let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-()"
+            let currentString: NSString = txtLicencePlateNo.text! as NSString
+            let newString: NSString =
+                currentString.replacingCharacters(in: range, with: string) as NSString
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            if textField != txtLicencePlateNo{
+                return false
+            }else{
+                return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimitPASSWORD) : false
+            }
+        case txtOtherMake:
+            let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-"
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            return (string == filtered)
+        case txtOtherModel:
+            let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            return (string == filtered)
+        default:
+            return true
+        }
+        
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == txtOtherMake{
+            let contains = makeVal.contains(where: { $0.manufacturerName == txtOtherMake.text })
+            if contains{
+                for i in 0..<makeVal.count{
+                    if makeVal[i].manufacturerName == txtOtherMake.text{
+                        if makeVal[i].models?.count != 0{
+                            txtEnterModel.inputView = modelPicker
+                            SelectedMakeIndex = i
+                            self.isothermodel = true
+                            self.isotherMake = true
+                            return
+                        }else{
+                            Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+                        }
+                    }
+                }
+            }else{
+                self.stackModel.isHidden = true
+                self.stackOtherModel.isHidden = false
+            }
+        }else if textField == txtOtherModel{
+            self.isothermodel = true
+            self.isotherMake = true
         }
     }
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -354,38 +460,44 @@ extension AddVehicleVC: UITextFieldDelegate {
                 }
             }
         case txtEnterColor:
-            if txtEnterYear.text == ""{
-                Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
-            }else if txtEnterMake.text == ""{
-                Toast.show(title: UrlConstant.Required, message: "Please select make", state: .info)
-            }else if txtEnterModel.text == ""{
-                Toast.show(title: UrlConstant.Required, message: "Please select model", state: .info)
-            }else{
+//            if txtEnterYear.text == ""{
+//                Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
+//            }else if txtEnterMake.text == ""{
+//                Toast.show(title: UrlConstant.Required, message: "Please select make", state: .info)
+//            }else if txtEnterModel.text == ""{
+//                if txtOtherModel.text == ""{
+//                    Toast.show(title: UrlConstant.Required, message: "Please select model", state: .info)
+//                }
+//            }else{
                 if colorVal.count != 0{
                     txtEnterColor.inputView = colorPicker
                     return true
                 }else{
                     Toast.show(title: UrlConstant.Failed, message: "Color data is empty", state: .failure)
                 }
-            }
+//            }
         case txtStateName:
-            if txtEnterYear.text == ""{
-                Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
-            }else if txtEnterMake.text == ""{
-                Toast.show(title: UrlConstant.Required, message: "Please select make", state: .info)
-            }else if txtEnterModel.text == ""{
-                Toast.show(title: UrlConstant.Required, message: "Please select model", state: .info)
-            }else if txtEnterColor.text == ""{
-                Toast.show(title: UrlConstant.Required, message: "Please select color", state: .info)
-            }else{
+//            if txtEnterYear.text == ""{
+//                Toast.show(title: UrlConstant.Required, message: "Please select year", state: .info)
+//            }else if txtEnterMake.text == ""{
+//                Toast.show(title: UrlConstant.Required, message: "Please select make", state: .info)
+//            }else if txtEnterModel.text == ""{
+//                Toast.show(title: UrlConstant.Required, message: "Please select model", state: .info)
+//            }else if txtEnterColor.text == ""{
+//                Toast.show(title: UrlConstant.Required, message: "Please select color", state: .info)
+//            }else{
                 if stateList.count != 0{
                     txtStateName.inputView = statePicker
                     return true
                 }else{
                     Toast.show(title: UrlConstant.Failed, message: "Color data is empty", state: .failure)
                 }
-            }
+//            }
         case txtLicencePlateNo:
+            return true
+        case txtOtherMake:
+            return true
+        case txtOtherModel:
             return true
         default:
             break

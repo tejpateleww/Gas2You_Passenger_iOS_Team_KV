@@ -18,11 +18,6 @@ class SettingsVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareView()
-        
-        
-//        switchNotification.layer.cornerRadius = switchNotification.bounds.height/2
-//        switchNotification.layer.borderWidth = 1
-//        switchNotification.layer.borderColor = #colorLiteral(red: 0.1801939905, green: 0.8354453444, blue: 0.6615549922, alpha: 1)
     }
     func prepareView(){
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Settings", controller: self)
@@ -49,7 +44,7 @@ class SettingsVC: BaseVC {
     }
     @IBAction func btnAboutClick(_ sender: Any) {
         var AS = ""
-        if let ASLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "about_us"}) {
+        if let ASLink = Singleton.sharedInstance.appInitModel?.appLinks.filter({ $0.name == "about_us"}) {
             if ASLink.count > 0 {
                 AS = ASLink[0].url ?? ""
                 self.previewDocument(strURL: AS)
@@ -58,7 +53,7 @@ class SettingsVC: BaseVC {
     }
     @IBAction func btnTermsClick(_ sender: Any) {
         var TC = ""
-        if let TCLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "terms_and_condition"}) {
+        if let TCLink = Singleton.sharedInstance.appInitModel?.appLinks.filter({ $0.name == "terms_and_condition"}) {
             if TCLink.count > 0 {
                 TC = TCLink[0].url ?? ""
                 self.previewDocument(strURL: TC)
@@ -67,7 +62,7 @@ class SettingsVC: BaseVC {
     }
     @IBAction func btnPrivacyClick(_ sender: Any) {
         var PP = ""
-        if let PPLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "privacy_policy"}) {
+        if let PPLink = Singleton.sharedInstance.appInitModel?.appLinks.filter({ $0.name == "privacy_policy"}) {
             if PPLink.count > 0 {
                 PP = PPLink[0].url ?? ""
                 self.previewDocument(strURL: PP)

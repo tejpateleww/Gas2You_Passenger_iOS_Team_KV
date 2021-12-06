@@ -11,7 +11,9 @@ class MarkerInfoWindowView: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-
+    @IBOutlet weak var imgArrow: UIImageView!
+    @IBOutlet weak var imgArrowHeigh: NSLayoutConstraint!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()

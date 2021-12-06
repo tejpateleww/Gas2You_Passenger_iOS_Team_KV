@@ -64,7 +64,7 @@ class MyProfileVC: BaseVC{
         txtUserName.text = userData?.firstName
         txtLastName.text = userData?.lastName
         setupPhoneTextField()
-        if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
+        if userData?.is_membership_user == true{
             vwMember.isHidden = false
             lblType.text = (Singleton.sharedInstance.userProfilData?.type ?? "") + arrow
             lblPrice.text = CurrencySymbol + (Singleton.sharedInstance.userProfilData?.amount ?? "")
@@ -101,10 +101,10 @@ class MyProfileVC: BaseVC{
             strTitle = firstName.1
         }else if !lastName.0{
             strTitle = lastName.1
-        }else if !(txtMobile.text?.isEmptyOrWhitespace() ?? false){
-            if txtMobile.text?.count != 10 {
-                strTitle = UrlConstant.ValidPhoneNo
-            }
+        }else if !mobileNo.0{
+            strTitle = mobileNo.1
+        }else if txtMobile.text?.count != 10 {
+            strTitle = UrlConstant.ValidPhoneNo
         }
         
         if let str = strTitle{

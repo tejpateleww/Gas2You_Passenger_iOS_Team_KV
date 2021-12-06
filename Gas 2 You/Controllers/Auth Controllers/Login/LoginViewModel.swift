@@ -14,8 +14,12 @@ class LoginViewModel {
         
         WebServiceSubClass.LoginApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             self.loginvc?.btnLogin.hideLoading()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
-                if status{
+                
+                if !status {
+                    Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
+                     
+                    }
+                } else {
                     Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
                     Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
                     
@@ -33,7 +37,7 @@ class LoginViewModel {
                     }
                     AppDel.navigateToHome()
                 }
-            }
+           
         }
     }
     
@@ -42,24 +46,25 @@ class LoginViewModel {
         
         WebServiceSubClass.SocialLoginApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
-                if status{
-                    Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
-                    Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
-                    
-                    Singleton.sharedInstance.userProfilData = response?.data
-                    Constants.userDefaults.setUserData()
-                    
-                    if let apikey = response?.data?.xAPIKey{
-                        Singleton.sharedInstance.api_Key = apikey
-                        Constants.userDefaults.setValue(apikey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
-                    }
-                    if let userID = response?.data?.id{
-                        Singleton.sharedInstance.userId = userID
-                    }
-                    
-                    AppDel.navigateToHome()
+            if !status{
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
                 }
+            } else {
+                Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
+                Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
+                
+                Singleton.sharedInstance.userProfilData = response?.data
+                Constants.userDefaults.setUserData()
+                
+                if let apikey = response?.data?.xAPIKey{
+                    Singleton.sharedInstance.api_Key = apikey
+                    Constants.userDefaults.setValue(apikey, forKey: UserDefaultsKey.X_API_KEY.rawValue)
+                }
+                if let userID = response?.data?.id{
+                    Singleton.sharedInstance.userId = userID
+                }
+                
+                AppDel.navigateToHome()
             }
         }
     }

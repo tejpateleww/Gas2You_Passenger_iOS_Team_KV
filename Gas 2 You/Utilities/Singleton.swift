@@ -18,7 +18,6 @@ class Singleton: NSObject{
     //Objects
     var appInitModel : InitResponseModel?
     var userProfilData : ProfileModel?
-    
     var api_Key = String()
     var deviceType : String = "ios"
     var deviceToken : String = UIDevice.current.identifierForVendor?.uuidString ?? ""

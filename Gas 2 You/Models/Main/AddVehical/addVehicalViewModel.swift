@@ -63,8 +63,8 @@ class VehicleColorListViewModel{
 }
 class AddVehicleGetViewModel{
     weak var addvehicle : AddVehicleVC?
-    func doLogin(customerid: String, year: String, make: String, model: String, color: String,state :String, plateno: String) {
-        let reqModel = AddVehicleReqModel(customerid: customerid, year: year, make: make, model: model, color: color, state: state, plateno: plateno)
+    func doLogin(customerid: String, year: String, make: String, model: String, color: String,state :String, plateno: String,isothermodel:Bool,modelname:String,isothermake:Bool,makename:String) {
+        let reqModel = AddVehicleReqModel(customerid: customerid, year: year, make: make, model: model, color: color, state: state, plateno: plateno,isothermodel: isothermodel,modelname: modelname,isothermake: isothermake,makename: makename)
         webserviceAddVehicle(reqModel)
     }
     func webserviceAddVehicle(_ reqModel: AddVehicleReqModel){
@@ -82,8 +82,8 @@ class AddVehicleGetViewModel{
 }
 class EditVehicleGetViewModel{
     weak var addvehicle : AddVehicleVC?
-    func doLogin(vehicleId: String, year: String, make: String, model: String, color: String,state:String, plateno: String) {
-        let reqModel = EditVehicleReqModel(vehicle_id: vehicleId, year: year, make: make, model: model, color: color, state: state, plateno: plateno)
+    func doLogin(vehicleId: String, year: String, make: String, model: String, color: String,state:String, plateno: String,isothermodel:Bool,modelname:String,isothermake:Bool,makename:String) {
+        let reqModel = EditVehicleReqModel(vehicle_id: vehicleId, year: year, make: make, model: model, color: color, state: state, plateno: plateno,isothermodel: isothermodel,modelname: modelname,isothermake: isothermake,makename: makename)
         webserviceEditVehicle(reqModel)
     }
     func webserviceEditVehicle(_ reqModel: EditVehicleReqModel){

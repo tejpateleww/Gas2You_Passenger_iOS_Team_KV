@@ -52,7 +52,7 @@ class OtpVC: BaseVC,OTPTextFieldDelegate,UITextFieldDelegate {
         super.viewDidLoad()
         email = registerRequestModel.email ?? ""
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Verify OTP", isTitlewhite: true, controller: self)
-        self.callOtpApi()
+//        self.callOtpApi()
         self.lblCheckEmail.text = self.emailMessageString
         for i in txtOtp {
             i.addBottomBorder()

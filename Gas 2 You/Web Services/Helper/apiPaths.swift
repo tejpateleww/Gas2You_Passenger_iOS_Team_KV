@@ -81,6 +81,8 @@ enum ApiKey: String {
     case deleteCardList     = "delete_card"
     case changeNotification = "change_notification"
     case notificationList   = "notification"
+    case addLocation        = "add_location"
+    case LocationList       = "location_list"
     case logout             = "logout/"
 }
 

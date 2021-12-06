@@ -136,6 +136,9 @@
 		88E61D8F26FB236E002BD61F /* nonMemberPlanViewMOdel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E61D8E26FB236E002BD61F /* nonMemberPlanViewMOdel.swift */; };
 		88E61D9226FB2817002BD61F /* nonMemberListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E61D9126FB2817002BD61F /* nonMemberListCell.swift */; };
 		88E61D9E26FB4B82002BD61F /* nonMemberPlanListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E61D9D26FB4B82002BD61F /* nonMemberPlanListCell.swift */; };
+		88E8187C275A205800904F6F /* AddLocationResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8187B275A205800904F6F /* AddLocationResModel.swift */; };
+		88E8187F275A221800904F6F /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8187E275A221800904F6F /* AddLocationViewModel.swift */; };
+		88E81881275A2D2600904F6F /* locationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E81880275A2D2600904F6F /* locationListCell.swift */; };
 		88F416BC26F9A5E900400594 /* EditProfileReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F416BB26F9A5E900400594 /* EditProfileReqModel.swift */; };
 		88F416C026F9A76900400594 /* editVehicleResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F416BE26F9A76800400594 /* editVehicleResModel.swift */; };
 		88F4171926F9E01900400594 /* vehicalListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4171726F9E01900400594 /* vehicalListResModel.swift */; };
@@ -342,6 +345,9 @@
 		88E61D8E26FB236E002BD61F /* nonMemberPlanViewMOdel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nonMemberPlanViewMOdel.swift; sourceTree = "<group>"; };
 		88E61D9126FB2817002BD61F /* nonMemberListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nonMemberListCell.swift; sourceTree = "<group>"; };
 		88E61D9D26FB4B82002BD61F /* nonMemberPlanListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nonMemberPlanListCell.swift; sourceTree = "<group>"; };
+		88E8187B275A205800904F6F /* AddLocationResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationResModel.swift; sourceTree = "<group>"; };
+		88E8187E275A221800904F6F /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
+		88E81880275A2D2600904F6F /* locationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationListCell.swift; sourceTree = "<group>"; };
 		88F416BB26F9A5E900400594 /* EditProfileReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileReqModel.swift; sourceTree = "<group>"; };
 		88F416BE26F9A76800400594 /* editVehicleResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editVehicleResModel.swift; sourceTree = "<group>"; };
 		88F4171726F9E01900400594 /* vehicalListResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = vehicalListResModel.swift; sourceTree = "<group>"; };
@@ -668,6 +674,7 @@
 		8812771B26F84C6F005E8F37 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				88E8187D275A21FA00904F6F /* Add LOcation */,
 				88DF12672757715B009B546F /* Notofication */,
 				88C13C94274F813E0008173C /* card */,
 				88D9A70F274681B500F4A8A6 /* Date List */,
@@ -875,6 +882,15 @@
 			path = "Non Member Plan List";
 			sourceTree = "<group>";
 		};
+		88E8187D275A21FA00904F6F /* Add LOcation */ = {
+			isa = PBXGroup;
+			children = (
+				88E8187B275A205800904F6F /* AddLocationResModel.swift */,
+				88E8187E275A221800904F6F /* AddLocationViewModel.swift */,
+			);
+			path = "Add LOcation";
+			sourceTree = "<group>";
+		};
 		88F416BA26F9A51F00400594 /* Edit Vehicle */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,6 +934,7 @@
 				8877AD572703334D0083C883 /* membershipPlanCell.swift */,
 				880B769927479E930058FD1A /* MemberListHomeCell.swift */,
 				88C13C92274F76130008173C /* PaymentMethodCell.swift */,
+				88E81880275A2D2600904F6F /* locationListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1325,6 +1342,7 @@
 				888BD78C2750917300BE17D4 /* addCardViewModel.swift in Sources */,
 				9A4A8B9026C3B84600966B2D /* MemberPlanVC.swift in Sources */,
 				88E61D8F26FB236E002BD61F /* nonMemberPlanViewMOdel.swift in Sources */,
+				88E8187F275A221800904F6F /* AddLocationViewModel.swift in Sources */,
 				88C13C9A274F86AE0008173C /* cardListViewModel.swift in Sources */,
 				9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */,
 				9A5B093926B2788500BA0CB4 /* UIButton+Extension.swift in Sources */,
@@ -1377,6 +1395,7 @@
 				881277B826F8AD07005E8F37 /* RemoveVehicleResModel.swift in Sources */,
 				84EEA58226E227BA0026558F /* apiPaths.swift in Sources */,
 				88F4172026F9FC5600400594 /* MyProfileViewModel.swift in Sources */,
+				88E8187C275A205800904F6F /* AddLocationResModel.swift in Sources */,
 				88D296FB2701993400BC6AE2 /* SocialSignInManager.swift in Sources */,
 				9A3A913026C133AC0041D7D9 /* Options.swift in Sources */,
 				8812776D26F86385005E8F37 /* vehicalListReqModel.swift in Sources */,
@@ -1438,6 +1457,7 @@
 				9A3A913D26C141700041D7D9 /* ChatListVC.swift in Sources */,
 				9A5B093C26B2788500BA0CB4 /* UIImage+Extension.swift in Sources */,
 				844F7BEF26E5E6A70047DFF4 /* LoginViewModel.swift in Sources */,
+				88E81881275A2D2600904F6F /* locationListCell.swift in Sources */,
 				8896401A27423B9100B3379B /* chatListResModel.swift in Sources */,
 				84EEA58426E227BA0026558F /* CodableResponseServiceClass.swift in Sources */,
 				844F7C0726E64F290047DFF4 /* ForgotPasswordViewModel.swift in Sources */,

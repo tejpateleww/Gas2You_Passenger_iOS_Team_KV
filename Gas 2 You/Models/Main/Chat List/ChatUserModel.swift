@@ -50,7 +50,7 @@ class ChatUserModel{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.chatViewController?.filterArrayData(isFromDidLoad: true)
                 }
-
+ 
             }else{
                 Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
             }

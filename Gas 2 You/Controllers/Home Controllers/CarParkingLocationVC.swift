@@ -18,20 +18,28 @@ class CarParkingLocationVC: BaseVC {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var txtSearchBar: UITextField!
     @IBOutlet weak var btnMap: UIButton!
+    @IBOutlet weak var tblLocationList: UITableView!
+    @IBOutlet weak var vwThemeview: ThemeView!
     var delegatetext : searchDataDelegate!
     var locationManager = CLLocationManager()
     var place = ""
     var PlaceName = userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String
     var latitude = userDefault.object(forKey: UserDefaultsKey.Latitude.rawValue) as? Double
     var longitude = userDefault.object(forKey: UserDefaultsKey.longitude.rawValue) as? Double
-    
+    var sublocality = ""
+    var thoroughfare = ""
     var path = GMSPath()
     var polyline : GMSPolyline!
     var CurrentLocLat:String = "0.0"
     var CurrentLocLong:String = "0.0"
     var CurrentLocMarker: GMSMarker?
+    var addLocationModel = AddLocationViewModel()
+    var arrLocation = [AddLocationDatum]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        addLocationModel.AddLocation = self
+        addLocationModel.webserviceLocationList()
         self.mapView.mapType = .normal
         if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String == nil{
             txtSearchBar.text = place
@@ -39,7 +47,11 @@ class CarParkingLocationVC: BaseVC {
         }else{
             txtSearchBar.text = PlaceName
             location(Lat: latitude ?? 0.0, Long: longitude ?? 0.0)
+            setupMap()
         }
+        tblLocationList.delegate = self
+        tblLocationList.dataSource = self
+        tblLocationList.reloadData()
         mapView.delegate = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
         //        setUIMapPin()
@@ -89,9 +101,11 @@ class CarParkingLocationVC: BaseVC {
                         var addressString : String = ""
                         if pm.subLocality != nil {
                             addressString = addressString + pm.subLocality! + ", "
+                            self.sublocality = pm.subLocality ?? ""
                         }
                         if pm.thoroughfare != nil {
                             addressString = addressString + pm.thoroughfare! + ", "
+                            self.thoroughfare = pm.thoroughfare ?? ""
                         }
                         if pm.locality != nil {
                             addressString = addressString + pm.locality! + ", "
@@ -248,11 +262,36 @@ extension CarParkingLocationVC: CLLocationManagerDelegate {
 
 extension CarParkingLocationVC: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        // Get a reference for the custom overlay
-        // let index:Int! = Int(marker.accessibilityLabel!)
         let view = MarkerInfoWindowView()
-        view.sizeToFit()
+        view.titleLabel.numberOfLines = 0
+        
+        if(marker == self.CurrentLocMarker){
+            view.titleLabel.text = "You"
+            view.titleLabel.textAlignment = .center
+            view.imgArrow.isHidden = true
+            view.imgArrowHeigh.constant = 0
+            view.frame.size.width = 60
+            view.frame.size.height = view.titleLabel.bounds.size.height - 15
+            view.sizeToFit()
+        }else{
+            view.titleLabel.text = PlaceName
+            view.titleLabel.textAlignment = .left
+            view.imgArrow.isHidden = false
+            view.imgArrowHeigh.constant = 20
+            let width = view.titleLabel.text?.stringWidth // 74.6
+            view.frame = CGRect(x: 0, y: 0, width: width ?? 0, height: 50)
+            view.sizeToFit()
+        }
         return view
+    }
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        return false
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        if(marker != self.CurrentLocMarker){
+            Utilities.showAlert("Parking Location", message: "Parking Location", vc: self)
+        }
     }
 }
 extension CarParkingLocationVC: GMSAutocompleteViewControllerDelegate {
@@ -268,8 +307,10 @@ extension CarParkingLocationVC: GMSAutocompleteViewControllerDelegate {
         userDefault.synchronize()
         
         txtSearchBar.text =  place.name
+        
         Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         location(Lat: place.coordinate.latitude, Long: place.coordinate.longitude)
+        addLocationModel.webserviceAddLocation(location: place.name ?? "", lat: place.coordinate.latitude, lng: place.coordinate.longitude)
         dismiss(animated: true, completion: nil)
     }
     
@@ -294,3 +335,27 @@ extension CarParkingLocationVC: GMSAutocompleteViewControllerDelegate {
     
 }
 
+extension CarParkingLocationVC:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrLocation.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:locationListCell = tblLocationList.dequeueReusableCell(withIdentifier: locationListCell.className) as! locationListCell
+        cell.lblLocation.text = arrLocation[indexPath.row].location
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        userDefault.setValue(arrLocation[indexPath.row].location, forKey: UserDefaultsKey.PlaceName.rawValue)
+        userDefault.setValue(arrLocation[indexPath.row].longitude, forKey: UserDefaultsKey.longitude.rawValue)
+        userDefault.setValue(arrLocation[indexPath.row].latitude, forKey: UserDefaultsKey.Latitude.rawValue)
+        
+        userDefault.synchronize()
+        self.txtSearchBar.text = arrLocation[indexPath.row].location
+        location(Lat: Double(arrLocation[indexPath.row].latitude) ?? 0.00, Long: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
+        Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: Double(arrLocation[indexPath.row].latitude) ?? 0.00, longitude: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
+    }
+}

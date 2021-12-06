@@ -70,7 +70,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var nonmemberListData = nonMemberPlanViewMOdel()
     var addBookingData = AddBookingViewModel()
     var memberPlanModel = memberPlanViewModel()
-    var arrTimeList : [String] = []
+    var arrTimeList = [DateResDatum]()
     var selectedIndex = 0
     var SelectIndex = 0
     var dateSelected = 0
@@ -110,8 +110,6 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         tblNonMemberPLan.dataSource = self
         tblNonMemberPLan.reloadData()
         tblNonMemberPLan.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
-        NavbarrightButton()
-        NavBarTitle(isOnlyTitle: false, isMenuButton: true, title: "Schedule Service", controller: self)
         addBookingData.addbooking = self
         ServiceListData.serviceList = self
         ServiceListData.webserviceofserviceList()
@@ -134,20 +132,20 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         txtSelectedService.delegate = self
         txtSelectedVehicle.delegate = self
         txtDateSelected.delegate = self
-        ServiceListData.webserviceofDateList(booking_date: dateFormatter.string(from: todaysDate as Date), isFromToday: true)
-//        let today = Date()
-//        let nextDate = Calendar.current.date(byAdding: .day, value: 3, to: today)
-//        if let date = nextDate {
-//
-////            selectedDate.text = dateFormatter.string(from: date)
-//
-//        }
+        let DateToShare = convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? "")
+        
+//        let date = dateFormatter.string(from: <#T##Date#>)
+        
+        ServiceListData.webserviceofDateList(booking_date:DateToShare, isFromToday: true)
 
-      //  DateFormatter.standardDate.date(from: "2018-09-18")!.dayOfWeek
         LblOctane.text = "93 Octane"
         dismissPickerView()
     }
-    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        NavbarrightButton()
+        NavBarTitle(isOnlyTitle: false, isMenuButton: true, title: "Schedule Service", controller: self)
+    }
 
     
     func setup(){
@@ -454,35 +452,47 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
             if nonmemberplanlist[indexPath.row].title == "Service Charge"{
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
+                cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
+                if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
+                    self.addonid.remove(at: index)
+                }
             }else{
                 cell.lblPrice.text = "Free"
             }
+            cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
         }else{
-            cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
-            
-        }
-        
-        
-//            if self.addonid.contains(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
-            if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
-                self.addonid.remove(at: index)
-//                append(self.nonmemberplanlist[indexPath.row].id ?? "")
-            }
+            if nonmemberplanlist[indexPath.row].title == "Service Charge"{
+                cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
+                cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
+                if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
+                    self.addonid.remove(at: index)
+                }
                 if nonmemberplanlist[indexPath.row].isChecked ?? false{
                     self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
                 }
-            
-        
-        
+            }else{
+                cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
+                if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
+                    self.addonid.remove(at: index)
+                }
+                if nonmemberplanlist[indexPath.row].isChecked ?? false{
+                    self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+                }
+                cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isChecked == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+            }
+        }
         cell.lbltitle.text = (nonmemberplanlist[indexPath.row].title ?? "") + arrow
-        cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isChecked == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+       
         cell.selectionStyle = .none
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
+            if nonmemberplanlist[indexPath.row].title == "Service Charge"{}}
+        else{
             nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
-//        self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
             tblNonMemberPLan.reloadData()
+        }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionViewSubService{
@@ -517,9 +527,9 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             return cell
         }else{
             let cell:timeListCell = collectionTimeList.dequeueReusableCell(withReuseIdentifier: timeListCell.className, for: indexPath) as! timeListCell
-            cell.lblListData.text = arrTimeList[indexPath.row]
+            cell.lblListData.text = arrTimeList[indexPath.row].displayTime
             if dateSelected == indexPath.row{
-                self.time = arrTimeList[dateSelected]
+                self.time = arrTimeList[dateSelected].displayTime ?? ""
                 cell.layoutSubviews()
                 cell.layoutIfNeeded()
                 cell.vwMain.layer.cornerRadius = 10
@@ -538,7 +548,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectionTimeList{
             dateSelected = indexPath.row
-            self.time = arrTimeList[dateSelected]
+            self.time = arrTimeList[dateSelected].displayTime ?? ""
             collectionTimeList.reloadData()
         }else{
             SelectIndex = indexPath.row
@@ -549,9 +559,9 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collectionTimeList{
             if UIDevice.current.userInterfaceIdiom == .phone{
-                return CGSize(width: 90, height: 36.95)
+                return CGSize(width: collectionView.frame.width/1.5, height: 36.95)
             }else{
-                return CGSize(width: 150, height: 36.95)
+                return CGSize(width: collectionView.frame.width/2, height: 36.95)
             }
         }else{
             return CGSize(width: collectionViewSubService.frame.width / 2, height: collectionViewSubService.frame.width)

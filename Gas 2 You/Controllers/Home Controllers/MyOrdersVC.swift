@@ -27,6 +27,7 @@ class MyOrdersVC: BaseVC {
     var pagingSpinner = UIActivityIndicatorView()
     var isFromPayment : Bool = false
     var isFromComplete : Bool = false
+    var bookingid = ""
     
     @IBOutlet weak var myOrdersTV: UITableView!
     @IBOutlet weak var btnUpcoming: ThemeButton!
@@ -241,12 +242,14 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     inprogressCell.lblBookingID.text = arrBookingList[indexPath.row].id
                     if self.arrBookingList[indexPath.row].driverContactNumber?.toInt() != 0{
                         inprogressCell.vwCallandChat.isHidden = false
+                        inprogressCell.lblOnTheWay.isHidden = false
                     }else{
                         inprogressCell.vwCallandChat.isHidden = true
+                        inprogressCell.lblOnTheWay.isHidden = true
                     }
                     inprogressCell.chatClick = {
                         let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
-                        chatVC.bookingID = self.arrBookingList[indexPath.row].id ?? ""
+                        chatVC.bookingID = self.bookingid//self.arrBookingList[indexPath.row].id ?? ""
                         chatVC.isFromPush = true
                         self.navigationController?.pushViewController(chatVC, animated: true)
                     }

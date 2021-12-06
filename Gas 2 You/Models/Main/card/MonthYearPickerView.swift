@@ -20,15 +20,25 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
     
     var month = Calendar.current.component(.month, from: Date()) {
         didSet {
-            let index = months.index(of: month)
+            let index = months.firstIndex(of: month)
             selectRow(index ?? 0, inComponent: 0, animated: false)
         }
     }
     
     var year = Calendar.current.component(.year, from: Date()) {
         didSet {
-            selectRow(years.index(of: year) ?? 0, inComponent: 1, animated: true)
+            selectRow(years.firstIndex(of: year) ?? 0, inComponent: 1, animated: true)
         }
+    }
+    
+    var selectedMonth: String {
+        let row =  self.selectedRow(inComponent: 0)
+        return String(format: "%02d", months[row])
+    }
+    
+    var selectedYear: String {
+        let row =  self.selectedRow(inComponent: 1)
+        return String(years[row])
     }
     
     var onDateSelected: ((_ month: Int, _ year: Int) -> Void)?
@@ -74,7 +84,7 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
 //        self.selectRow(months.index(of: currentMonth) ?? 0, inComponent: 0, animated: false)
         self.findCurrentMonthAndYear()
         self.updateMonthsArrayIfCurrentYearIsSelected(row: 0)
-        let index = self.months.index(of: month)
+        let index = self.months.firstIndex(of: month)
         selectRow(index ?? 0, inComponent: 0, animated: false)
 
     }
@@ -112,33 +122,33 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         if component == 1 {
             self.updateMonthsArrayIfCurrentYearIsSelected(row:row)
         }
-        
-        //Selection
-        //Month component selection
-        if component == 0 {
-             print("month component has been changed")
-             let monthRow = self.selectedRow(inComponent: 0)
-             month = self.months[monthRow]
-             print("selected month \(month)")
-        }else {
-            //Component 1
-            //Year is changing
-            print("year component has changed")
-            year = years[self.selectedRow(inComponent: 1)]
-            //If current year is changed, months array is updated
-            let selectedMonthRow = self.selectedRow(inComponent: 0)
-            if selectedMonthRow <= self.months.count - 1 {
-                month = self.months[selectedMonthRow]
-                print("Normal selected month \(month)")
-            }else{
-                month = self.months.last ?? 0
-                print("Month boundary condition, selected month \(month)")
-            }
-        }
-
-        if let block = onDateSelected {
-            block(month, year)
-        }
+//
+//        //Selection
+//        //Month component selection
+//        if component == 0 {
+//             print("month component has been changed")
+//             let monthRow = self.selectedRow(inComponent: 0)
+//             month = self.months[monthRow]
+//             print("selected month \(month)")
+//        }else {
+//            //Component 1
+//            //Year is changing
+//            print("year component has changed")
+//            year = years[self.selectedRow(inComponent: 1)]
+//            //If current year is changed, months array is updated
+//            let selectedMonthRow = self.selectedRow(inComponent: 0)
+//            if selectedMonthRow <= self.months.count - 1 {
+//                month = self.months[selectedMonthRow]
+//                print("Normal selected month \(month)")
+//            }else{
+//                month = self.months.last ?? 0
+//                print("Month boundary condition, selected month \(month)")
+//            }
+//        }
+//
+//        if let block = onDateSelected {
+//            block(month, year)
+//        }
     }
     
     func updateMonthsArrayIfCurrentYearIsSelected(row: Int) {

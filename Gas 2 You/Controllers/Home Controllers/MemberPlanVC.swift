@@ -98,6 +98,9 @@ extension MemberPlanVC:UITableViewDelegate,UITableViewDataSource{
         self.lblDescription.text = memberPlanList[indexPath.row].descriptionField ?? ""
         if isFromMyprofile{
             cell.icCheck.image = (selectedIndex == indexPath.row) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+            self.plan_Id = memberPlanList[selectedIndex].id ?? ""
+            self.amount = memberPlanList[selectedIndex].price ?? ""
+            self.type = memberPlanList[selectedIndex].type ?? ""
         }else{
             cell.icCheck.image = memberPlanList[indexPath.row].isPurchased == true ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
         }

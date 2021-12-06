@@ -40,14 +40,14 @@ class cardListViewModel{
             webserviceAddBooking(reqModel)
     }
     func webserviceAddBooking(_ reqModel: AddBookingReqModel){
-        
+        Utilities.showHud()
         WebServiceSubClass.addBooking(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-           
+            Utilities.hideHud()
             Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure){
                 if status{
                     let today = Date()
                     let strDate = self.cardList?.dateFormatter.string(from: today)
-                    if self.cardList?.getDataModel?.date == strDate{
+                    if self.cardList?.getDataModel?.date == self.cardList?.convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? ""){
                         let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
                         myOrdersVC.isFromPayment = true
                         self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
@@ -66,10 +66,12 @@ class cardListViewModel{
         memberPlan.card_id = cardId
         WebServiceSubClass.purchaseMemberPlan(reqModel: memberPlan, completion: { (status, apiMessage, response, error) in
                 if status{
+                    userDefault.setValue(response?.data?.isMembershipUser, forKey: UserDefaultsKey.MemberPlan.rawValue)
                     Singleton.sharedInstance.userProfilData?.type = self.cardList?.memberDataModel?.type
-                    Singleton.sharedInstance.userProfilData?.amount = self.cardList?.memberDataModel?.amount//memberplanvc?.memberPlanList[self.memberplanvc?.selectedIndex ?? 0].price ?? ""
+                    Singleton.sharedInstance.userProfilData?.amount = self.cardList?.memberDataModel?.amount
                     Singleton.sharedInstance.userProfilData?.expiry_date = response?.data?.expiryDate
                     Singleton.sharedInstance.userProfilData?.is_membership_user = true
+                    userDefault.setUserData()//memberplanvc?.memberPlanList[self.memberplanvc?.selectedIndex ?? 0].price ?? ""
                     NotificationCenter.default.post(name: notifRefreshHomeScreen, object: nil)
                     if self.cardList?.isfromMember == true{
                         self.popToMyProfile()

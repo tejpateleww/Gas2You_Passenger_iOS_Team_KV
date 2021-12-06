@@ -18,8 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="MtM-ij-H9U">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash-screen - 5" translatesAutoresizingMaskIntoConstraints="NO" id="MtM-ij-H9U">
+                                <rect key="frame" x="-40" y="0.0" width="454" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXQ-3E-skk" customClass="AnimationView" customModule="Lottie">
                                 <rect key="frame" x="57" y="298" width="300" height="300"/>
@@ -35,10 +36,6 @@
                         <viewLayoutGuide key="safeArea" id="3xe-F2-ZRu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="MtM-ij-H9U" firstAttribute="leading" secondItem="3xe-F2-ZRu" secondAttribute="leading" id="838-hj-QlL"/>
-                            <constraint firstAttribute="bottom" secondItem="MtM-ij-H9U" secondAttribute="bottom" id="8SJ-wK-mTS"/>
-                            <constraint firstAttribute="trailing" secondItem="MtM-ij-H9U" secondAttribute="trailing" id="C8U-8d-14n"/>
-                            <constraint firstItem="MtM-ij-H9U" firstAttribute="top" secondItem="elM-BL-9uC" secondAttribute="top" id="Ey0-or-2OU"/>
                             <constraint firstItem="UXQ-3E-skk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3xe-F2-ZRu" secondAttribute="leading" id="JO4-hu-Msp"/>
                             <constraint firstItem="UXQ-3E-skk" firstAttribute="centerX" secondItem="elM-BL-9uC" secondAttribute="centerX" id="fq7-Q3-Ibz"/>
                             <constraint firstItem="3xe-F2-ZRu" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UXQ-3E-skk" secondAttribute="trailing" id="pqv-jL-l7b"/>
@@ -53,6 +50,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="IP9-3O-zqO"/>
                     <connections>
+                        <outlet property="imgSplash" destination="MtM-ij-H9U" id="vfH-2o-5RU"/>
                         <outlet property="vmAnimation" destination="UXQ-3E-skk" id="ay8-f2-iT7"/>
                     </connections>
                 </viewController>
@@ -555,7 +553,7 @@ and Pr</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQ3-0l-fMC">
                                                         <rect key="frame" x="0.0" y="222" width="374" height="50"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile No (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X0X-0u-khC">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile No" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X0X-0u-khC">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

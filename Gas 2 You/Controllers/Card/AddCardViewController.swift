@@ -19,8 +19,11 @@ class AddCardViewController: BaseVC {
     var addcardmodel = addCardViewModel()
     var delegateAddcard : AddCardDelegate!
     var isCreditCardValid = Bool()
-    var pickerView = UIPickerView()
-    var aryMonth = [String]()
+    var aryMonth = [String]() {
+        didSet {
+            print(aryMonth.count)
+        }
+    }
     var aryYear = [String]()
     var strMonth = ""
     var strYear = ""
@@ -39,12 +42,7 @@ class AddCardViewController: BaseVC {
         txtExpiryDate.delegate = self
         txtExpiryDate.tintColor = .clear
         txtCardNumber.delegate = self
-        pickerView.delegate = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Add card", isTitlewhite: false, controller: self)
-//        txtCardName.placeHolderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.47)
-//        txtCardNumber.placeHolderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.47)
-//        txtExpiryDate.placeHolderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.47)
-
         txtCardNumber.addTarget(self, action: #selector(reformatAsCardNumber), for: .editingChanged)
         
         txtCVV.delegate = self
@@ -95,12 +93,6 @@ class AddCardViewController: BaseVC {
             isValidate = false
             ValidatorMessage = "Your card number is invalid"
         }
-        
-        //        else if txtCardNumber.text?.count != 19 {
-        //            isValidate = false
-        //            ValidatorMessage = "Please enter valid card number."
-        //        }
-        
         else if txtExpiryDate.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0 {
             isValidate = false
             ValidatorMessage = "Please select expiry date"
@@ -111,13 +103,6 @@ class AddCardViewController: BaseVC {
         }
         
         return (isValidate,ValidatorMessage)
-    }
-    func pickerSetup() {
-        let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: Date())
-        aryYear = (currentYear...(currentYear + 15)).map { String($0) }
-        aryMonth = ["01","02","03","04","05","06","07","08","09","10","11","12"]
-        
     }
     //MARK: - Validation
     func detectCardNumberType(number: String) {
@@ -136,8 +121,10 @@ class AddCardViewController: BaseVC {
         }
     }
     @objc func onDoneButtonTappedService() {
-            let row = pickerView.selectedRow(inComponent: 0);
-            self.txtExpiryDate.text = "\(strMonth) / \(strYear)"
+        strMonth = expiryDatePicker.selectedMonth
+        strYear = expiryDatePicker.selectedYear
+        txtExpiryDate.text = "\(strMonth)/\(strYear)"
+            self.txtExpiryDate.text = "\(strMonth)/\(strYear)"
             self.txtExpiryDate.endEditing(true)
     }
     func validateCardNumber(number: String) {
@@ -153,50 +140,36 @@ class AddCardViewController: BaseVC {
         let CardNumber = txtCardNumber.validatedText(validationType: .requiredField(field: txtCardNumber.placeholder?.lowercased() ?? ""))
         let ExpDate = txtExpiryDate.validatedText(validationType: .requiredField(field: txtExpiryDate.placeholder?.lowercased() ?? ""))
         let Cvv = txtCVV.validatedText(validationType: .requiredField(field: txtCVV.placeholder ?? ""))
-        
-//        let CardNumber = txtCardNumber.textField.validatedText(validationType: .cardNumber(field: txtCardNumber.textField.placeholder ?? ""))
-//        let ExpDate = txtExpiryDate.textField.validatedText(validationType: .expDate)
-//        let Cvv = txtCvv.textField.validatedText(validationType: .cvv)
-        
         if (!CardHolderName.0) {
-            //            Utilities.ShowAlert(OfMessage: invalidPhone.1)
             Toast.show(title: UrlConstant.Required, message: CardHolderName.1, state: .info)
-//            Utilities.showAlert(AppInfo.appName, message: CardHolderName.1, vc: self)
             return CardHolderName.0
         }else if(!CardNumber.0) {
             Toast.show(title: UrlConstant.Required, message: CardNumber.1, state: .info)
-//            Utilities.showAlert(AppInfo.appName, message: CardNumber.1, vc: self)
             return CardNumber.0
         }
         else if (txtCardNumber.text?.count ?? 0) < 15
         {
             Toast.show(title: UrlConstant.Failed, message: "Please enter valid Card number", state: .failure)
-//            Utilities.showAlert(AppInfo.appName, message: "Please enter valid Card number", vc: self)
             return false
         }
         else  if(!ExpDate.0)
         {
             Toast.show(title: UrlConstant.Required, message: ExpDate.1, state: .info)
-//            Utilities.showAlert(AppInfo.appName, message: ExpDate.1, vc: self)
             return ExpDate.0
         }
         else if (!expDateValidation(dateStr: txtExpiryDate.text ?? ""))
         {
             Toast.show(title: UrlConstant.Failed, message: "Please select valid expiry date", state: .failure)
-//            Utilities.showAlert(AppInfo.appName, message: "Please select valid expiry date", vc: self)
             return false
         }
         else  if(!Cvv.0)
         {
             Toast.show(title: UrlConstant.Required, message: Cvv.1, state: .info)
-//            Utilities.showAlert(AppInfo.appName, message: Cvv.1, vc: self)
             return Cvv.0
         }
         else if (txtCVV.text?.count ?? 0) < 3
         {
-            // Utilities.ShowAlert(OfMessage: "Please enter valid phone number")
             Toast.show(title: UrlConstant.Failed, message: "Please enter valid CVV", state: .failure)
-//            Utilities.showAlert(AppInfo.appName, message: "Please enter valid CVV", vc: self)
             return false
         }
         
@@ -205,33 +178,24 @@ class AddCardViewController: BaseVC {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == txtCVV{
-
-            // Length Processing
-            // Need to convert the NSRange to a Swift-appropriate type
             if let text = txtCVV.text, let range = Range(range, in: text) {
-
                 let proposedText = text.replacingCharacters(in: range, with: string)
-
-                // Check proposed text length does not exceed max character count
                 guard proposedText.count <= 4 else {
                     return false
                 }
             }
-
         }
-        
         previousTextFieldContent = txtCardNumber.text;
         previousSelection = txtCardNumber.selectedTextRange;
             return true
         }
     func expDateValidation(dateStr:String) -> Bool {
 
-        let currentYear = Calendar.current.component(.year, from: Date()) % 100   // This will give you current year (i.e. if 2019 then it will be 19)
-        let currentMonth = Calendar.current.component(.month, from: Date()) // This will give you current month (i.e if June then it will be 6)
-
-        let enterdYr = Int(dateStr.suffix(2)) ?? 0   // get last two digit from entered string as year
-        let enterdMonth = Int(dateStr.prefix(2)) ?? 0  // get first two digit from entered string as month
-        print(dateStr) // This is MM/YY Entered by user
+        let currentYear = Calendar.current.component(.year, from: Date()) % 100
+        let currentMonth = Calendar.current.component(.month, from: Date())
+        let enterdYr = Int(dateStr.suffix(2)) ?? 0
+        let enterdMonth = Int(dateStr.prefix(2)) ?? 0
+        print(dateStr)
 
         if enterdYr > currentYear{
             if (1 ... 12).contains(enterdMonth){
@@ -371,47 +335,6 @@ extension AddCardViewController : UITextFieldDelegate {
             self.strMonth = String(format: "%02d", expiryDatePicker.month)
             self.txtExpiryDate.text = string
         }
-    }
-}
-extension AddCardViewController : UIPickerViewDelegate,UIPickerViewDataSource {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return aryMonth.count
-        }
-        else {
-            return aryYear.count
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
-            return aryMonth[row]
-        }
-        else {
-            return aryYear[row]
-        }
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0 {
-             strMonth = aryMonth[row]
-        }else {
-             strYear = aryYear[row]
-           
-        }
-        if strYear.isEmpty {
-            strYear = aryYear[0]
-        }
-        
-        if strMonth.isEmpty {
-            strMonth = aryMonth[0]
-        }
-        
-        txtExpiryDate.text = "\(strMonth) / \(strYear)"
     }
 }
 public class CreditCardValidator {

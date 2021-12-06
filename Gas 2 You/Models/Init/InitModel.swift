@@ -6,21 +6,21 @@
 import Foundation
 
 class InitResponseModel : Codable {
-    
-    let appLinks : [InitResponseAppLink]?
-    let status : Bool?
-    
-    enum CodingKeys: String, CodingKey {
-        case appLinks = "app_links"
-        case status = "status"
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        appLinks = try values.decodeIfPresent([InitResponseAppLink].self, forKey: .appLinks)
-        status = try values.decodeIfPresent(Bool.self, forKey: .status)
-    }
-    
+        let status: Bool
+        let appLinks: [InitResponseAppLink]
+        let currentDate: String
+
+        enum CodingKeys: String, CodingKey {
+            case status
+            case appLinks = "app_links"
+            case currentDate = "current_date"
+        }
+
+        init(status: Bool, appLinks: [InitResponseAppLink], currentDate: String) {
+            self.status = status
+            self.appLinks = appLinks
+            self.currentDate = currentDate
+        }
 }
 
 class InitResponseAppLink : Codable {

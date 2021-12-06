@@ -67,7 +67,7 @@ class ServiceListViewModel{
                                 let strDate = self.serviceList?.dateFormatter.string(from: today)
                                 self.serviceList?.txtDateSelected.text = strDate
                             }else{
-                                self.serviceList?.txtDateSelected.text = self.serviceList?.convertDateFormat(inputDate: model.currentDate ?? "")//model.currentDate
+                                self.serviceList?.txtDateSelected.text =  self.serviceList?.convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? "")//Singleton.sharedInstance.appInitModel?.currentDate//model.currentDate
                             }
                             //self.serviceList?.dateFormatter.string(from: today)
                         }
@@ -79,7 +79,7 @@ class ServiceListViewModel{
                             self.serviceList?.availableDate.append(strDate ?? "")
                             self.serviceList?.txtDateSelected.text = strDate
                         }else{
-                            self.serviceList?.txtDateSelected.text = self.serviceList?.convertDateFormat(inputDate: model.currentDate ?? "")
+                            self.serviceList?.txtDateSelected.text = self.serviceList?.convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? "")//Singleton.sharedInstance.appInitModel?.currentDate//self.serviceList?.convertDateFormat(inputDate: model.currentDate ?? "")
                         }//self.serviceList?.convertDateFormat(inputDate: strDate ?? "")
                     }
                     if model.data?.count == 0{

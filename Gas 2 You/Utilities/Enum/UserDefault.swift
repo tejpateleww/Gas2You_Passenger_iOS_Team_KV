@@ -17,4 +17,5 @@ enum UserDefaultsKey : String {
     case PlaceName = "PlaceName"
     case Latitude = "Latitude"
     case longitude = "longitude"
+    case MemberPlan = "MemberPlan"
 }

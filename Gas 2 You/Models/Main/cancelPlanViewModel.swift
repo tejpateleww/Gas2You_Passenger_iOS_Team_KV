@@ -12,11 +12,12 @@ class cancelPlanViewModel{
         let memberPlan = cancelMemberPlanReqModel()
         memberPlan.customer_id = Singleton.sharedInstance.userId
         WebServiceSubClass.CancelMemberPlan(reqModel: memberPlan, completion: { (status, apiMessage, response, error) in
-//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? apiMessage ? apiMessage, state: <#T##MessageAlertState#>)
             if status{
+                userDefault.removeObject(forKey: UserDefaultsKey.MemberPlan.rawValue)
                 Singleton.sharedInstance.userProfilData?.is_membership_user = false
                 self.cancelplanvc?.vwMember.isHidden = true
                 self.cancelplanvc?.vwNonmember.isHidden = false
+                userDefault.setUserData()
                 NotificationCenter.default.post(name: notifRefreshHomeScreen, object: nil)
             }
     })
