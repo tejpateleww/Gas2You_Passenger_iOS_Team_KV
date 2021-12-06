@@ -44,9 +44,10 @@ class ChatUserModel{
            self.chatViewController?.isTblReload = true
             if status{
                 self.chatViewController?.bookingID = response?.bookingId ?? ""
-                self.chatViewController?.senderID = response?.driverId ?? ""
+             //   self.chatViewController?.senderID = response?.driverId ?? ""
                 self.chatViewController?.setProfileInfo(name: response?.driverName ?? "", profile: response?.driverProfilePicture ?? "")
                 self.chatViewController?.arrayChatHistory = response?.data ?? []
+                self.chatViewController?.receiverID = response?.driverId ?? ""
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.chatViewController?.filterArrayData(isFromDidLoad: true)
                 }

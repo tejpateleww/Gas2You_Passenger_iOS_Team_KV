@@ -21,8 +21,9 @@ class ChatViewController: BaseVC {
     //MARK: -Properties
     var delegateChat : chatListRefresh?
     var isFromPush : Bool = false
+    var receiverID = ""
     var bookingID = ""
-    var senderID = ""
+    //var senderID = ""
     var isTblReload = false
     var isLoading = true {
         didSet {
@@ -534,7 +535,7 @@ extension ChatViewController{
         self.chatUserModel.chatViewController = self
         let SendMsgReqModel = SendMsgReqModel()
         SendMsgReqModel.bookingId = self.bookingID
-        SendMsgReqModel.receiverId = Singleton.sharedInstance.userId
+        SendMsgReqModel.receiverId = receiverID// Singleton.sharedInstance.userId
         SendMsgReqModel.message = self.txtviewComment.text ?? ""
 
         self.chatUserModel.webserviceSendMsgAPI(reqModel: SendMsgReqModel)

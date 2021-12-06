@@ -167,10 +167,40 @@ extension UIApplication {
                 return appTopViewController(controller: selected)
             }
         }
+        if let sideMenu = controller as? MainViewController {
+            if let selected = sideMenu.children.first {
+                return appTopViewController(controller: selected)
+            }
+        }
         if let presented = controller?.presentedViewController {
             return appTopViewController(controller: presented)
         }
         return controller
+    }
+}
+extension UIApplication{
+    class func getPresentedViewController() -> UIViewController? {
+        var presentViewController = UIApplication.shared.keyWindow?.rootViewController
+        while let pVC = presentViewController?.presentedViewController
+        {
+            presentViewController = pVC
+        }
+        
+        return presentViewController
+    }
+    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
     }
 }
 extension AppDelegate {
@@ -240,6 +270,7 @@ extension AppDelegate {
                 
                 
                 if let topVc = UIApplication.appTopViewController() {
+                    print("ATDebug :: \(topVc)")
                     if topVc.isKind(of: ChatViewController.self) {
                         let chatVc = topVc as! ChatViewController
                         if chatVc.bookingID == BookingID {
