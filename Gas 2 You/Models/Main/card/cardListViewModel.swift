@@ -45,16 +45,8 @@ class cardListViewModel{
             Utilities.hideHud()
             Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure){
                 if status{
-                    let today = Date()
-                    let strDate = self.cardList?.dateFormatter.string(from: today)
-                    if self.cardList?.getDataModel?.date == self.cardList?.convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? ""){
-                        let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-                        myOrdersVC.isFromPayment = true
-                        self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
-                    }else{
                         let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
                         self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
-                    }
                 }
             }
         })

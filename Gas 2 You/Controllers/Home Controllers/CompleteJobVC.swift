@@ -260,5 +260,4 @@ extension CompleteJobVC:UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
-    
 }

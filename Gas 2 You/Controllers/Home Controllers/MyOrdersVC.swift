@@ -73,6 +73,9 @@ class MyOrdersVC: BaseVC {
         
         isLoading = true
     }
+    override func BackButtonWithTitle(button: UIButton) {
+        AppDel.navigateToHome()
+    }
     @objc func refresh(_ sender: AnyObject) {
         arrBookingList.removeAll()
         self.currentPage = 1
