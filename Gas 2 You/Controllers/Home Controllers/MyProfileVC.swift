@@ -13,6 +13,7 @@ class MyProfileVC: BaseVC{
     var updateprofileviewmodel = MyProfileViewModel()
     var cancelPlanModel = cancelPlanViewModel()
     let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+    let ACCEPTABLE_CHARACTERS_FOR_PHONE = "0123456789"
     
     @IBOutlet weak var changePassButton: ThemeButton!
     @IBOutlet weak var lblFullName: ThemeLabel!
@@ -120,8 +121,8 @@ class MyProfileVC: BaseVC{
     }
     
     @IBAction func btnNonMemberPlanDisplay(_ sender: Any) {
-        let vc : NonMemberPlanVC = NonMemberPlanVC.instantiate(fromAppStoryboard: .Main)
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc : NonMemberPlanVC = NonMemberPlanVC.instantiate(fromAppStoryboard: .Main)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func btnCancel(_ sender: UIButton) {
         let alert = UIAlertController(title: AppInfo.appName, message: "Are you sure you want to cancel your membership?", preferredStyle: UIAlertController.Style.alert)
@@ -196,6 +197,12 @@ extension MyProfileVC: UITextFieldDelegate {
                    return false
                }
             return (string == filtered) ? (newString.length <= TEXTFIELD_MaximumLimit) : false
+        case self.txtMobile:
+            let cs = NSCharacterSet(charactersIn: ACCEPTABLE_CHARACTERS_FOR_PHONE).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            let currentString: NSString = textField.text as NSString? ?? ""
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            return (string == filtered) ? (newString.length <= MAX_PHONE_DIGITS) : false
         default:
             print("")
         }

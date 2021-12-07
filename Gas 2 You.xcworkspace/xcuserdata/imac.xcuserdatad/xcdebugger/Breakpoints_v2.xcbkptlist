@@ -87,22 +87,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "08C1AEAF-3BC7-4F6C-82F1-115237C406EA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gas 2 You/Controllers/Home Controllers/HomeVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "490"
-            endingLineNumber = "490"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D4A4BC9E-780D-4AAF-929F-7F956EC16648"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -110,8 +94,8 @@
             filePath = "Gas 2 You/AppDelegate+PushNotification.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "handlePushnotifications(NotificationType:userData:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,9 +110,9 @@
             filePath = "Gas 2 You/AppDelegate+PushNotification.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "handlePushnotifications(NotificationType:userData:)"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "topViewController(base:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -174,8 +158,8 @@
             filePath = "Gas 2 You/Controllers/Home Controllers/AddVehicleVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
             landmarkName = "textFieldDidEndEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -86,15 +86,13 @@ class ChatViewController: BaseVC {
         tblChat.register(UINib(nibName:"ChatShimmer", bundle: nil), forCellReuseIdentifier: "ChatShimmer")
         tblChat.register(UINib(nibName:"NoDataCell", bundle: nil), forCellReuseIdentifier: "NoDataCell")
         
-        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Ellen Lambert", controller: self)
+        NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
 //        navBarRightImage()
         if UIDevice.current.userInterfaceIdiom == .phone{
             txtviewComment.font = CustomFont.PoppinsRegular.returnFont(16)
         }else{
             txtviewComment.font = CustomFont.PoppinsRegular.returnFont(21)
         }
-        //        self.setNavigationBarInViewController(controller: self, naviColor: colors.white.value, naviTitle: "", leftImage: #imageLiteral(resourceName: "IC_backButton"), rightImages: [], isTranslucent: true, CommonViewTitles: [], isTwoLabels: false)
-        
         tblChat.reloadData()
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshChatScreen), name: .refreshChatScreen, object: nil)
         

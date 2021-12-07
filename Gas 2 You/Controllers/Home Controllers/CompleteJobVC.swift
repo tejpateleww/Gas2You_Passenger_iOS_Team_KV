@@ -23,12 +23,8 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     
     
     
-    @IBOutlet weak var StackDownloadinvoiceBottom: NSLayoutConstraint!
-    @IBOutlet weak var stackDownloadInvoiceTop: NSLayoutConstraint!
     @IBOutlet weak var btnDownloadInvoiceHeight: NSLayoutConstraint!
-    @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var lblStatus: ThemeLabel!
-    @IBOutlet weak var viewStatus: UIView?
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var imgGas: UIImageView!
     @IBOutlet weak var lblGas: ThemeLabel!
@@ -47,10 +43,6 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     @IBOutlet weak var lblUserReview: ThemeLabel!
     @IBOutlet weak var lblTimeandDate: ThemeLabel!
     @IBOutlet weak var lblPlatNumber: ThemeLabel!
-    @IBOutlet weak var lblItemName: ThemeLabel!
-    @IBOutlet weak var lblTotalAmount: ThemeLabel!
-    @IBOutlet weak var lbltotalGallon: ThemeLabel!
-    @IBOutlet weak var lblPricePerGallon: ThemeLabel!
     @IBOutlet weak var vwCosmos: CosmosView!
     @IBOutlet var borderedButtons: [UIButton]! {
         didSet {
@@ -74,6 +66,8 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
             }
         }
     }
+    @IBOutlet weak var tblDetails: UITableView!
+    @IBOutlet weak var tblDetailsHeight: NSLayoutConstraint!
     var shimmeringAnimatedItems: [UIView] {
         [
             lblGas,
@@ -86,10 +80,6 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
             lblDateTime,
             lblPlatNumber,
             lblTimeandDate,
-            lblItemName,
-            lbltotalGallon,
-            lblPricePerGallon,
-            lblTotalAmount,
             btnDownloadInvoice,
             btnGiveRateReview,
             lblRating,
@@ -101,15 +91,18 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     var locationManager = CLLocationManager()
     var isfromCancelled = false
     var strTitle = ""
-    var objBookingDetail : bookingDetailDatum?
+    var objBookingDetail : BookingDetailDatum?
     var bookingDetailViewModel = bookingDetailsViewModel()
     var orderId = String()
     var isCancel : Bool = false
     var url = ""
     var number = ""
+    var arrService = [Service]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bookingDetailViewModel.BookingDetails = self
+        tblDetails.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
         bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: orderId))
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: strTitle == "" ? "Completed" : "Cancelled", controller: self)
         if #available(iOS 13.0, *) {
@@ -117,19 +110,17 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         } else {
             view.backgroundColor = .white
         }
-        setUIMapPin()
         if isfromCancelled{
             btnDownloadInvoiceHeight.constant = 0
-            stackDownloadInvoiceTop.constant = 0
-            StackDownloadinvoiceBottom.constant = 0
         }
         if isCancel{
             vwRating.isHidden = true
             vwReviewFeedBack.isHidden = true
             btnGiveRateReview.isHidden = true
         }
-        setUI()
-        
+        tblDetails.delegate = self
+        tblDetails.dataSource = self
+        tblDetails.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -145,7 +136,11 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+    }
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
+        if(keyPath == "contentSize"){
+            self.tblDetailsHeight.constant = tblDetails.contentSize.height
+        }
     }
     func setData(){
         let makename = objBookingDetail?.makeName ?? ""
@@ -155,11 +150,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         lblAddress.text = objBookingDetail?.parkingLocation
         lblTimeandDate.text = (objBookingDetail?.time ?? "") + ", " + (objBookingDetail?.date ?? "")
         lblPlatNumber.text = objBookingDetail?.plateNumber
-        lblItemName.text = objBookingDetail?.mainServiceName
-        lbltotalGallon.text = (objBookingDetail?.totalGallon ?? "" ) + " Gallon"
-        lblPricePerGallon.text = CurrencySymbol +  (objBookingDetail?.pricePerGallon ?? "") + " Per Gallon"
-        lblTotalAmount.text = CurrencySymbol + (objBookingDetail?.finalAmount ?? "")
-        self.url = objBookingDetail?.invoiceurl ?? ""
+        self.url = objBookingDetail?.invoiceURL ?? ""
         self.number = objBookingDetail?.invoiceNumber ?? ""
         if(self.pdfFileAlreadySaved(url: url, fileName: number) == true){
             self.btnDownloadInvoice.setTitle(" VIEW INVOICE", for: .normal)
@@ -205,7 +196,6 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
 //                    self.delegate?.onSaveInvoice()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         Toast.show(title: UrlConstant.Success, message: "Invoice successfully downloaded!", state: .success)
-                        self.setData()
                     }
                 } catch {
                     Toast.show(title: UrlConstant.Failed, message: "Invoice could not be saved!", state: .failure)
@@ -241,51 +231,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     }
     
     
-    func setUI() {
-        viewStatus?.layer.masksToBounds = true
-        viewStatus?.layer.cornerRadius = 5
-        viewStatus?.backgroundColor = #colorLiteral(red: 0.4391005337, green: 0.8347155452, blue: 0.5683938265, alpha: 1)
-        vwRating.addShadow(view: vwRating, shadowColor: nil)
-        vwReviewFeedBack.addShadow(view: vwReviewFeedBack, shadowColor: nil)
-    }
     
-    func setUIMapPin() {
-        initializeTheLocationManager()
-        let position = CLLocationCoordinate2DMake(23.033863,72.585022)
-        let marker = GMSMarker(position: position)
-        marker.icon = drawImageWithProfilePic(pp: nil, image: #imageLiteral(resourceName: "IC_pinImg"))
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.map = mapView
-    }
-    
-    func drawImageWithProfilePic(pp: UIImage?, image: UIImage) -> UIImage {
-
-        let imgView = UIImageView(image: image)
-        let picImgView = UIImageView(image: pp)
-        picImgView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-
-        imgView.addSubview(picImgView)
-        picImgView.center.x = imgView.center.x
-        picImgView.center.y = imgView.center.y - 7
-        picImgView.layer.cornerRadius = picImgView.frame.width/2
-        picImgView.clipsToBounds = true
-        imgView.setNeedsLayout()
-        picImgView.setNeedsLayout()
-
-        let newImage = imageWithView(view: imgView)
-        return newImage
-    }
-
-    func imageWithView(view: UIView) -> UIImage {
-        var image: UIImage?
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.0)
-        if let context = UIGraphicsGetCurrentContext() {
-            view.layer.render(in: context)
-            image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-        }
-        return image ?? UIImage()
-    }
     func refreshCompleteJobScreen(rate: Double, review: String) {
         vwCosmos.rating = rate
         lblUserReview.text = review
@@ -296,29 +242,23 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     }
     
 }
-
-extension CompleteJobVC: CLLocationManagerDelegate {
-    
-    func initializeTheLocationManager() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+extension CompleteJobVC:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrService.count
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let location = locationManager.location?.coordinate
-        
-        cameraMoveToLocation(toLocation: location)
-        
-    }
-    
-    func cameraMoveToLocation(toLocation: CLLocationCoordinate2D?) {
-        if toLocation != nil {
-            mapView.camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: 4)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:CompleteJobCell = tblDetails.dequeueReusableCell(withIdentifier: CompleteJobCell.className) as! CompleteJobCell
+        cell.lblItemName.text = arrService[indexPath.row].title
+        cell.lblQty.text = arrService[indexPath.row].serviceDescription
+        if arrService[indexPath.row].price == "FREE"{
+            cell.lblTotal.text = (arrService[indexPath.row].price)
+        }else{
+            cell.lblTotal.text = CurrencySymbol + (arrService[indexPath.row].price)
         }
+        cell.selectionStyle = .none
+        return cell
     }
-    
     
     
 }

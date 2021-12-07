@@ -64,7 +64,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var nonmemberplanlist = [nonMemberPlanDatum]()
     var memberPlanList = [memberPlanListDatum]()
     var datePicker  = UIPickerView()
-    let dateFormatter = DateFormatter() 
+    let dateFormatter = DateFormatter()
     var ServiceListData = ServiceListViewModel()
     var vehicleListData = VehicalListViewModel()
     var nonmemberListData = nonMemberPlanViewMOdel()
@@ -133,8 +133,6 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         txtSelectedVehicle.delegate = self
         txtDateSelected.delegate = self
         let DateToShare = convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? "")
-        
-//        let date = dateFormatter.string(from: <#T##Date#>)
         
         ServiceListData.webserviceofDateList(booking_date:DateToShare, isFromToday: true)
 
@@ -450,18 +448,18 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:nonMemberListCell = tblNonMemberPLan.dequeueReusableCell(withIdentifier: nonMemberListCell.className) as! nonMemberListCell
         if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
-            if nonmemberplanlist[indexPath.row].title == "Service Charge"{
+            if nonmemberplanlist[indexPath.row].title == "Service Charge" || nonmemberplanlist[indexPath.row].title == "Windshield Washer Fluid Refill"{
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
-                cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
+                
                 if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
                     self.addonid.remove(at: index)
                 }
             }else{
                 cell.lblPrice.text = "Free"
             }
-            cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
+            cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isChecked == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
         }else{
-            if nonmemberplanlist[indexPath.row].title == "Service Charge"{
+            if nonmemberplanlist[indexPath.row].title == "Service Charge" || nonmemberplanlist[indexPath.row].title == "Windshield Washer Fluid Refill"{
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
                 cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
                 if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
@@ -488,8 +486,9 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
-            if nonmemberplanlist[indexPath.row].title == "Service Charge"{}}
-        else{
+            nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
+            tblNonMemberPLan.reloadData()
+        }else{
             nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
             tblNonMemberPLan.reloadData()
         }
@@ -529,7 +528,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             let cell:timeListCell = collectionTimeList.dequeueReusableCell(withReuseIdentifier: timeListCell.className, for: indexPath) as! timeListCell
             cell.lblListData.text = arrTimeList[indexPath.row].displayTime
             if dateSelected == indexPath.row{
-                self.time = arrTimeList[dateSelected].displayTime ?? ""
+                self.time = arrTimeList[dateSelected].time ?? ""
                 cell.layoutSubviews()
                 cell.layoutIfNeeded()
                 cell.vwMain.layer.cornerRadius = 10
@@ -548,7 +547,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectionTimeList{
             dateSelected = indexPath.row
-            self.time = arrTimeList[dateSelected].displayTime ?? ""
+            self.time = arrTimeList[dateSelected].time ?? ""
             collectionTimeList.reloadData()
         }else{
             SelectIndex = indexPath.row

@@ -91,6 +91,7 @@
 		8877AD582703334D0083C883 /* membershipPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD572703334D0083C883 /* membershipPlanCell.swift */; };
 		8877AD5D2703358A0083C883 /* membershipplanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5B2703358A0083C883 /* membershipplanResModel.swift */; };
 		8877AD5F27033E4E0083C883 /* memberPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */; };
+		88828847275F729600F657BF /* CompleteJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88828846275F729600F657BF /* CompleteJobCell.swift */; };
 		888BD78A27508FEC00BE17D4 /* addCardResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78927508FEC00BE17D4 /* addCardResModel.swift */; };
 		888BD78C2750917300BE17D4 /* addCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78B2750917300BE17D4 /* addCardViewModel.swift */; };
 		888BD78E275099F300BE17D4 /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78D275099F300BE17D4 /* MonthYearPickerView.swift */; };
@@ -300,6 +301,7 @@
 		8877AD572703334D0083C883 /* membershipPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = membershipPlanCell.swift; sourceTree = "<group>"; };
 		8877AD5B2703358A0083C883 /* membershipplanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = membershipplanResModel.swift; sourceTree = "<group>"; };
 		8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memberPlanViewModel.swift; sourceTree = "<group>"; };
+		88828846275F729600F657BF /* CompleteJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteJobCell.swift; sourceTree = "<group>"; };
 		888BD78927508FEC00BE17D4 /* addCardResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCardResModel.swift; sourceTree = "<group>"; };
 		888BD78B2750917300BE17D4 /* addCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addCardViewModel.swift; sourceTree = "<group>"; };
 		888BD78D275099F300BE17D4 /* MonthYearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerView.swift; sourceTree = "<group>"; };
@@ -935,6 +937,7 @@
 				880B769927479E930058FD1A /* MemberListHomeCell.swift */,
 				88C13C92274F76130008173C /* PaymentMethodCell.swift */,
 				88E81880275A2D2600904F6F /* locationListCell.swift */,
+				88828846275F729600F657BF /* CompleteJobCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1407,6 +1410,7 @@
 				84593CC726E1F1DF00BB5A48 /* UIView+Extension.swift in Sources */,
 				888BD78A27508FEC00BE17D4 /* addCardResModel.swift in Sources */,
 				84C4952026E74BC100659A5D /* OTPViewModel.swift in Sources */,
+				88828847275F729600F657BF /* CompleteJobCell.swift in Sources */,
 				9A770D0626CBAA9400FBB1A4 /* NonMemberPlanVC.swift in Sources */,
 				88F416BC26F9A5E900400594 /* EditProfileReqModel.swift in Sources */,
 				9A3A914326C16C4C0041D7D9 /* ForgotPasswordVC.swift in Sources */,

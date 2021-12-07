@@ -7,7 +7,7 @@
 
 import UIKit
 class MemberPlanVC: BaseVC {
-
+    
     var memberPlanList = [memberPlanListDatum]()
     var memberPlanModel = memberPlanViewModel()
     var selectedIndex = 0
@@ -16,12 +16,9 @@ class MemberPlanVC: BaseVC {
     var amount = ""
     var isFromMyprofile : Bool = false
     @IBOutlet weak var currentPlanIV: UIImageView!
-    @IBOutlet weak var memberPlanDescriptionView: UIView!
-    @IBOutlet var membershipPlanButtons: [ThemeButton]!
     @IBOutlet weak var tblMembershipPlan: UITableView!
     @IBOutlet weak var btnPayNow: ThemeButton!
-    @IBOutlet weak var lblDescription: ThemeLabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         memberPlanModel.memberplanvc = self
@@ -30,61 +27,56 @@ class MemberPlanVC: BaseVC {
         tblMembershipPlan.dataSource = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Select Plan", controller: self)
         
-        setUI()
     }
-    
-    @IBAction func membershipPlans(_ sender: ThemeButton) {
-            
-            for i in 0..<membershipPlanButtons.count {
-                if sender.tag == i {
-                    membershipPlanButtons[i].setImage(#imageLiteral(resourceName: "IC_selected"), for: .normal)
-                } else {
-                    membershipPlanButtons[i].setImage(#imageLiteral(resourceName: "IC_boxUnselected"), for: .normal)
-                }
-            }
-    }
-    
-    
     @IBAction func btnPayNowTap(_ sender: ThemeButton) {
-        if isFromMyprofile{
-            let vc: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
-            let objdatamodel = memberData(type: type, amount: amount, Planid: plan_Id)
-            vc.isfromMember = true
-            vc.memberDataModel = objdatamodel
-            self.navigationController?.pushViewController(vc, animated: true)
-        }else{
+//        if isFromMyprofile{
+//            let vc: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
+//            let objdatamodel = memberData(type: type, amount: amount, Planid: plan_Id)
+//            vc.isfromMember = true
+//            vc.memberDataModel = objdatamodel
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }else{
             if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
-                let alert = UIAlertController(title: AppInfo.appName, message: "You are already a member of Gas 2 you, Are you sure you want to change membership ?", preferredStyle: UIAlertController.Style.alert)
-
-                        // add the actions (buttons)
-                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
+                if self.type == "Yearly"{
+                    let alert = UIAlertController(title: AppInfo.appName, message: "You already have a monthly membership plan", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
+                        let vc: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
+                        vc.isfromPlan = true
+                        let objdatamodel = memberData(type: self.type, amount: self.amount, Planid: self.plan_Id)
+                        vc.memberDataModel = objdatamodel
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }))
+                    alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel,handler: { UIAlertAction in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: AppInfo.appName, message: "you already have a yearly Gas 2 You membership plan", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
+                        let vc: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
+                        vc.isfromPlan = true
+                        let objdatamodel = memberData(type: self.type, amount: self.amount, Planid: self.plan_Id)
+                        vc.memberDataModel = objdatamodel
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }))
+                    alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel,handler: { UIAlertAction in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }else{
+                if self.plan_Id != ""{
                     let vc: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
+                    let objdatamodel = memberData(type: type, amount: amount, Planid: plan_Id)
                     vc.isfromPlan = true
-                    let objdatamodel = memberData(type: self.type, amount: self.amount, Planid: self.plan_Id)
                     vc.memberDataModel = objdatamodel
                     self.navigationController?.pushViewController(vc, animated: true)
-                }))
-                alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel,handler: { UIAlertAction in
-                    self.dismiss(animated: true, completion: nil)
-                }))
-
-                        // show the alert
-                        self.present(alert, animated: true, completion: nil)
+                }else {
+                    Toast.show(title: UrlConstant.Required, message: "Please select plan", state: .info)
+                }
             }
         }
-
-    }
-    
-    func setUI() {
-        
-        memberPlanDescriptionView.layer.cornerRadius = 5
-        memberPlanDescriptionView.layer.borderWidth = 1
-        memberPlanDescriptionView.layer.borderColor = UIColor.lightGray.cgColor
-        
-    }
-
-    
-
+//    }
 }
 extension MemberPlanVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,9 +85,18 @@ extension MemberPlanVC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:membershipPlanCell = tblMembershipPlan.dequeueReusableCell(withIdentifier: membershipPlanCell.className) as! membershipPlanCell
-        cell.lblDetails.text = memberPlanList[indexPath.row].planName ?? "" + arrow
+        cell.lblDetails.text = (memberPlanList[indexPath.row].planName ?? "") + arrow
         cell.lblPrice.text = CurrencySymbol + (memberPlanList[indexPath.row].price ?? "")
-        self.lblDescription.text = memberPlanList[indexPath.row].descriptionField ?? ""
+        cell.lblDescription.text = memberPlanList[indexPath.row].descriptionField ?? ""
+        cell.memberPlanDescriptionView.layer.cornerRadius = 5
+        cell.memberPlanDescriptionView.layer.borderWidth = 1
+        if memberPlanList[indexPath.row].planName == "Monthly Plan"{
+            cell.lblDescription.fontColor = UIColor.red
+            cell.memberPlanDescriptionView.layer.borderColor = UIColor.red.cgColor
+        }else{
+            cell.lblDescription.fontColor = UIColor.init(hexString: "#1C75BB")
+            cell.memberPlanDescriptionView.layer.borderColor = UIColor.init(hexString: "#1C75BB").cgColor
+        }
         if isFromMyprofile{
             cell.icCheck.image = (selectedIndex == indexPath.row) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
             self.plan_Id = memberPlanList[selectedIndex].id ?? ""
@@ -113,7 +114,6 @@ extension MemberPlanVC:UITableViewDelegate,UITableViewDataSource{
             self.plan_Id = memberPlanList[selectedIndex].id ?? ""
             self.amount = memberPlanList[selectedIndex].price ?? ""
             self.type = memberPlanList[selectedIndex].type ?? ""
-            self.lblDescription.text = memberPlanList[selectedIndex].descriptionField ?? ""
             tblMembershipPlan.reloadData()
         }else{
             let _ = memberPlanList.map({$0.isPurchased = false})
@@ -121,10 +121,7 @@ extension MemberPlanVC:UITableViewDelegate,UITableViewDataSource{
             self.plan_Id = memberPlanList[indexPath.row].id ?? ""
             self.amount = memberPlanList[indexPath.row].price ?? ""
             self.type = memberPlanList[indexPath.row].type ?? ""
-            self.lblDescription.text = memberPlanList[indexPath.row].descriptionField ?? ""
             tblMembershipPlan.reloadData()
         }
     }
 }
-
-

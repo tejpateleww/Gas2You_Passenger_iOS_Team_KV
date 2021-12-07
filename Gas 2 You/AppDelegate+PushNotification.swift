@@ -82,14 +82,31 @@ extension AppDelegate : MessagingDelegate {
             }else if (key as? String ?? "") == "sessionTimeout"{
                 AppDel.dologout()
                 completionHandler([.alert, .sound])
-            }else {
-                if (key as? String ?? "") == "jobStart" || (key as? String ?? "") == "jobComplete" || (key as? String ?? "") == "invoiceGenerated" {
-                    self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+            }else if (key as? String ?? "") == "jobStart"{
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: MyOrdersVC.self) {
+                        self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                    } else {
+                        completionHandler([.alert, .sound])
+                    }
                 }
-                completionHandler([.alert, .sound])
-                
+            }else if (key as? String ?? "") == "jobComplete" {
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: MyOrdersVC.self) {
+                        self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                    } else {
+                        completionHandler([.alert, .sound])
+                    }
+                }
+            }else if (key as? String ?? "") == "invoiceGenerated"{
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: CompleteJobVC.self) {
+                        self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                    } else {
+                        completionHandler([.alert, .sound])
+                    }
+                }
             }
-            
         }
         
         print(#function)
@@ -267,8 +284,6 @@ extension AppDelegate {
         case "newMessage" :
             print("newMessage")
             if let BookingID = userData["gcm.notification.booking_id"] as? String {
-                
-                
                 if let topVc = UIApplication.appTopViewController() {
                     print("ATDebug :: \(topVc)")
                     if topVc.isKind(of: ChatViewController.self) {
@@ -288,7 +303,6 @@ extension AppDelegate {
                         topVc.navigationController?.pushViewController(chatVc, animated: true)
                     }
                 }
-                
             }
         case "sessionTimeout":
             AppDel.dologout()

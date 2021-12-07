@@ -5,118 +5,113 @@
 
 import Foundation
 
-struct bookingDetailResModel : Codable {
-    
-    let data : bookingDetailDatum?
-    let message : String?
-    let status : Bool?
-    
-    enum CodingKeys: String, CodingKey {
-        case data = "data"
-        case message = "message"
-        case status = "status"
+// MARK: - BookingDetailResModel
+class BookingDetailResModel: Codable {
+    let status: Bool
+    let message: String
+    let data: BookingDetailDatum
+
+    init(status: Bool, message: String, data: BookingDetailDatum) {
+        self.status = status
+        self.message = message
+        self.data = data
     }
-    
-    init(from decoder: Decoder) throws {
-        let values = try? decoder.container(keyedBy: CodingKeys.self)
-        data = try? values?.decodeIfPresent(bookingDetailDatum.self, forKey: .data)
-        message = try? values?.decodeIfPresent(String.self, forKey: .message)
-        status = try? values?.decodeIfPresent(Bool.self, forKey: .status)
-    }
-    
 }
-struct bookingDetailDatum : Codable {
-    
-    let colorName : String?
-    let completeOrderDateTime : String?
-    let customerId : String?
-    let date : String?
-    let finalAmount : String?
-    let id : String?
-    let invoiceNumber : String?
-    let latitude : String?
-    let longitude : String?
-    let mainServiceName : String?
-    let makeName : String?
-    let modelName : String?
-    let orderStatus : String?
-    let parkingLocation : String?
-    let plateNumber : String?
-    let pricePerGallon : String?
-    let serviceId : String?
-    let status : String?
-    let subServiceId : String?
-    let subServiceName : String?
-    let time : String?
-    let totalAmount : String?
-    let totalGallon : String?
-    let vehicleId : String?
-    let rate : String?
-    let review : String?
-    let invoiceurl : String?
-    
+
+// MARK: - DataClass
+class BookingDetailDatum: Codable {
+    let id, customerID, driverID, serviceID: String
+    let subServiceID, parkingLocation, latitude, longitude: String
+    let date, time, vehicleID, status: String
+    let mainServiceName, plateNumber, orderStatus, completeOrderDateTime: String
+    let invoiceNumber, totalAmount, totalGallon, pricePerGallon: String
+    let finalAmount, rate, review, subServiceName: String
+    let makeName, modelName, colorName: String
+    let invoiceURL: String
+    let driverContactNumber, driverContactNumberCode: String
+    let services: [Service]
+
     enum CodingKeys: String, CodingKey {
-        case colorName = "color_name"
-        case completeOrderDateTime = "complete_order_date_time"
-        case customerId = "customer_id"
-        case date = "date"
-        case finalAmount = "final_amount"
-        case id = "id"
-        case invoiceNumber = "invoice_number"
-        case latitude = "latitude"
-        case longitude = "longitude"
-        case mainServiceName = "main_service_name"
-        case makeName = "make_name"
-        case modelName = "model_name"
-        case orderStatus = "order_status"
+        case id
+        case customerID = "customer_id"
+        case driverID = "driver_id"
+        case serviceID = "service_id"
+        case subServiceID = "sub_service_id"
         case parkingLocation = "parking_location"
+        case latitude, longitude, date, time
+        case vehicleID = "vehicle_id"
+        case status
+        case mainServiceName = "main_service_name"
         case plateNumber = "plate_number"
-        case pricePerGallon = "price_per_gallon"
-        case serviceId = "service_id"
-        case status = "status"
-        case subServiceId = "sub_service_id"
-        case subServiceName = "sub_service_name"
-        case time = "time"
+        case orderStatus = "order_status"
+        case completeOrderDateTime = "complete_order_date_time"
+        case invoiceNumber = "invoice_number"
         case totalAmount = "total_amount"
         case totalGallon = "total_gallon"
-        case vehicleId = "vehicle_id"
-        case rate = "rate"
-        case review = "review"
-        case invoiceurl = "invoice_url"
+        case pricePerGallon = "price_per_gallon"
+        case finalAmount = "final_amount"
+        case rate, review
+        case subServiceName = "sub_service_name"
+        case makeName = "make_name"
+        case modelName = "model_name"
+        case colorName = "color_name"
+        case invoiceURL = "invoice_url"
+        case driverContactNumber = "driver_contact_number"
+        case driverContactNumberCode = "driver_contact_number_code"
+        case services
     }
-    
-    init(from decoder: Decoder) throws {
-        let values = try? decoder.container(keyedBy: CodingKeys.self)
-        colorName = try? values?.decodeIfPresent(String.self, forKey: .colorName)
-        completeOrderDateTime = try? values?.decodeIfPresent(String.self, forKey: .completeOrderDateTime)
-        customerId = try? values?.decodeIfPresent(String.self, forKey: .customerId)
-        date = try? values?.decodeIfPresent(String.self, forKey: .date)
-        finalAmount = try? values?.decodeIfPresent(String.self, forKey: .finalAmount)
-        id = try? values?.decodeIfPresent(String.self, forKey: .id)
-        invoiceNumber = try? values?.decodeIfPresent(String.self, forKey: .invoiceNumber)
-        latitude = try? values?.decodeIfPresent(String.self, forKey: .latitude)
-        longitude = try? values?.decodeIfPresent(String.self, forKey: .longitude)
-        mainServiceName = try? values?.decodeIfPresent(String.self, forKey: .mainServiceName)
-        makeName = try? values?.decodeIfPresent(String.self, forKey: .makeName)
-        modelName = try? values?.decodeIfPresent(String.self, forKey: .modelName)
-        orderStatus = try? values?.decodeIfPresent(String.self, forKey: .orderStatus)
-        parkingLocation = try? values?.decodeIfPresent(String.self, forKey: .parkingLocation)
-        plateNumber = try? values?.decodeIfPresent(String.self, forKey: .plateNumber)
-        pricePerGallon = try? values?.decodeIfPresent(String.self, forKey: .pricePerGallon)
-        serviceId = try? values?.decodeIfPresent(String.self, forKey: .serviceId)
-        status = try? values?.decodeIfPresent(String.self, forKey: .status)
-        subServiceId = try? values?.decodeIfPresent(String.self, forKey: .subServiceId)
-        subServiceName = try? values?.decodeIfPresent(String.self, forKey: .subServiceName)
-        time = try? values?.decodeIfPresent(String.self, forKey: .time)
-        totalAmount = try? values?.decodeIfPresent(String.self, forKey: .totalAmount)
-        totalGallon = try? values?.decodeIfPresent(String.self, forKey: .totalGallon)
-        vehicleId = try? values?.decodeIfPresent(String.self, forKey: .vehicleId)
-        rate = try? values?.decodeIfPresent(String.self, forKey: .rate)
-        review = try? values?.decodeIfPresent(String.self, forKey: .review)
-        invoiceurl = try? values?.decodeIfPresent(String.self, forKey: .invoiceurl)
+
+    init(id: String, customerID: String, driverID: String, serviceID: String, subServiceID: String, parkingLocation: String, latitude: String, longitude: String, date: String, time: String, vehicleID: String, status: String, mainServiceName: String, plateNumber: String, orderStatus: String, completeOrderDateTime: String, invoiceNumber: String, totalAmount: String, totalGallon: String, pricePerGallon: String, finalAmount: String, rate: String, review: String, subServiceName: String, makeName: String, modelName: String, colorName: String, invoiceURL: String, driverContactNumber: String, driverContactNumberCode: String, services: [Service]) {
+        self.id = id
+        self.customerID = customerID
+        self.driverID = driverID
+        self.serviceID = serviceID
+        self.subServiceID = subServiceID
+        self.parkingLocation = parkingLocation
+        self.latitude = latitude
+        self.longitude = longitude
+        self.date = date
+        self.time = time
+        self.vehicleID = vehicleID
+        self.status = status
+        self.mainServiceName = mainServiceName
+        self.plateNumber = plateNumber
+        self.orderStatus = orderStatus
+        self.completeOrderDateTime = completeOrderDateTime
+        self.invoiceNumber = invoiceNumber
+        self.totalAmount = totalAmount
+        self.totalGallon = totalGallon
+        self.pricePerGallon = pricePerGallon
+        self.finalAmount = finalAmount
+        self.rate = rate
+        self.review = review
+        self.subServiceName = subServiceName
+        self.makeName = makeName
+        self.modelName = modelName
+        self.colorName = colorName
+        self.invoiceURL = invoiceURL
+        self.driverContactNumber = driverContactNumber
+        self.driverContactNumberCode = driverContactNumberCode
+        self.services = services
     }
-    
 }
+
+// MARK: - Service
+class Service: Codable {
+    let title, price, serviceDescription: String
+
+    enum CodingKeys: String, CodingKey {
+        case title, price
+        case serviceDescription = "description"
+    }
+
+    init(title: String, price: String, serviceDescription: String) {
+        self.title = title
+        self.price = price
+        self.serviceDescription = serviceDescription
+    }
+}
+
 class bookingDetailReqModel: Encodable{
     var customer_id : String?
     var order_id : String?

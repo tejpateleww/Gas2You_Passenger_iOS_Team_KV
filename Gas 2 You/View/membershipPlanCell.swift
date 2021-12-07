@@ -12,6 +12,8 @@ class membershipPlanCell: UITableViewCell {
     @IBOutlet weak var lblPrice: ThemeLabel!
     @IBOutlet weak var icCheck: UIImageView!
     @IBOutlet weak var lblDetails: ThemeLabel!
+    @IBOutlet weak var lblDescription: ThemeLabel!
+    @IBOutlet weak var memberPlanDescriptionView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

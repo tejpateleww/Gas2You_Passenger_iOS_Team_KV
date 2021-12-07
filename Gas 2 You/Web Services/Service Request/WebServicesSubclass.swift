@@ -140,8 +140,8 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
-    class func BookingDetail(reqModel : bookingDetailReqModel , completion: @escaping (Bool,String,bookingDetailResModel?,Any) -> ()){
-        URLSessionRequestManager.makePostRequest(urlString: ApiKey.bookingDetail.rawValue, requestModel: reqModel, responseModel: bookingDetailResModel.self) { (status, message, response, error) in
+    class func BookingDetail(reqModel : bookingDetailReqModel , completion: @escaping (Bool,String,BookingDetailResModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.bookingDetail.rawValue, requestModel: reqModel, responseModel: BookingDetailResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }

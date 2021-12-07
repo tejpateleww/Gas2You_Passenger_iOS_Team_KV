@@ -78,6 +78,8 @@ class bookingDetailsViewModel{
             if status{
                 if let userData = response?.data{
                     self.BookingDetails?.objBookingDetail = userData
+                    self.BookingDetails?.arrService = userData.services
+                    self.BookingDetails?.tblDetails.reloadData()
                     self.BookingDetails?.setData()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         self.BookingDetails?.view.setTemplateWithSubviews(false)
