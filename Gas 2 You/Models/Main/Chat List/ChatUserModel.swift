@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 class ChatUserModel{
     
     weak var chatListVC : ChatListVC? = nil
@@ -45,7 +46,6 @@ class ChatUserModel{
            self.chatViewController?.isTblReload = true
             if status{
                 self.chatViewController?.bookingID = response?.bookingId ?? ""
-             //   self.chatViewController?.senderID = response?.driverId ?? ""
                 self.chatViewController?.setProfileInfo(name: response?.driverName ?? "", profile: response?.driverProfilePicture ?? "")
                 self.chatViewController?.arrayChatHistory = response?.data ?? []
                 self.chatViewController?.receiverID = response?.driverId ?? ""

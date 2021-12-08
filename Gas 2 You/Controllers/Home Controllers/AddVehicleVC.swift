@@ -243,7 +243,6 @@ class AddVehicleVC: BaseVC {
         let contains = makeVal.contains(where: { $0.manufacturerName == txtOtherMake.text })
         let strTitle = "Please select"
         var messages: [String] = []
-        let plateno = txtLicencePlateNo.validatedText(validationType: .requiredField(field: txtLicencePlateNo.placeholder?.lowercased() ?? ""))
         if txtEnterYear.text == ""{
             isvalid = false
             messages.append("year")

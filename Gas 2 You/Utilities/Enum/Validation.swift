@@ -74,8 +74,8 @@ struct UserNameValidator: ValidatorConvertible {
     func validated(_ value: String) -> (Bool, String) {
         guard value != "" else {return (false,ValidationError("Please enter \(fieldName)").message)}
         
-        guard value.count >= 3 else {
-            return (false , ValidationError("\(fieldName.capitalizingFirstLetter()) must contain more than three characters").message)
+        guard value.count >= 2 else {
+            return (false , ValidationError("\(fieldName.capitalizingFirstLetter()) must contain more than two characters").message)
             // ValidationError("Username must contain more than three characters" )
         }
         guard value.count <= 25 else {

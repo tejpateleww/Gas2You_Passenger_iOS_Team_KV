@@ -74,7 +74,14 @@ class MyOrdersVC: BaseVC {
         isLoading = true
     }
     override func BackButtonWithTitle(button: UIButton) {
-        AppDel.navigateToHome()
+            guard let navVC = self.navigationController,
+                  let profileVC = navVC.viewControllers.first(where: {$0.isKind(of: HomeVC.self)}) as? HomeVC else {
+                return
+            }
+            profileVC.refreshhomescreen()
+        profileVC.ServiceListData.webserviceofDateList(booking_date: profileVC.convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? ""), isFromToday: true)
+            navVC.popToViewController(profileVC, animated: true)
+            
     }
     @objc func refresh(_ sender: AnyObject) {
         arrBookingList.removeAll()
@@ -151,7 +158,7 @@ class MyOrdersVC: BaseVC {
         }else{
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
-            myOrdersTV.reloadData()
+        myOrdersTV.reloadData()
     }
     
     @IBAction func btnCompletedTap(_ sender: ThemeButton) {
@@ -208,10 +215,29 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     upcomingCell.lblService.text = arrBookingList[indexPath.row].mainServiceName
                     upcomingCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     upcomingCell.lblDateandTime.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
-                    upcomingCell.lblVehicleDetail.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
+//                    upcomingCell.lblVehicleDetail.text = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
+                    
+                    let mainString = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
+                            let searchString = arrBookingList[indexPath.row].plateNumber ?? ""
+                            let range = (mainString as NSString).range(of: searchString)
+                            let fullRange = NSRange(location: 0, length: mainString.count)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                    mutableAttributedString.addAttribute(.foregroundColor, value: UIColor.black, range: fullRange)
+                    mutableAttributedString.addAttribute(.foregroundColor, value: colors.themeBlue.value, range: range)
+                            mutableAttributedString.addAttribute(.font, value: FontBook.semibold.of(size: 14), range: fullRange)
+                    upcomingCell.lblVehicleDetail.attributedText = mutableAttributedString
+                    
+                    
                     upcomingCell.lblBookingid.text = arrBookingList[indexPath.row].id ?? ""
                     upcomingCell.buttonCancel = {
-                        self.cancelOrderData.cancelOrder(customerid: Singleton.sharedInstance.userId, order_id: self.arrBookingList[indexPath.row].id ?? "", row: indexPath.row)
+                        self.showAlertWithTitleFromVC( title: "Cancel Order", message: "Are you sure want to cancel order?", buttons: ["No", "Yes"]) { index in
+                            if index == 1 {
+                                self.cancelOrderData.cancelOrder(customerid: Singleton.sharedInstance.userId, order_id: self.arrBookingList[indexPath.row].id ?? "", row: indexPath.row)
+                            } else {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                        
                     }
                     return upcomingCell
                 }else{
@@ -241,8 +267,18 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     inprogressCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
                     inprogressCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     inprogressCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
-                    inprogressCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
-                    inprogressCell.lblBookingID.text = arrBookingList[indexPath.row].id
+//                    inprogressCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
+                    
+                    let mainString = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
+                    let searchString = (arrBookingList[indexPath.row].plateNumber ?? "")
+                    let range = (mainString as NSString).range(of: searchString)
+                    let fullRange = NSRange(location: 0, length: mainString.count)
+                    let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                    mutableAttributedString.addAttribute(.foregroundColor, value: UIColor.black, range: fullRange)
+                    mutableAttributedString.addAttribute(.foregroundColor, value: colors.themeBlue.value, range: range)
+                    mutableAttributedString.addAttribute(.font, value: FontBook.semibold.of(size: 14), range: fullRange)
+                    inprogressCell.lblVehicleDetails.attributedText = mutableAttributedString
+                    
                     if self.arrBookingList[indexPath.row].driverContactNumber?.toInt() != 0{
                         inprogressCell.vwCallandChat.isHidden = false
                         inprogressCell.lblOnTheWay.isHidden = false
@@ -250,6 +286,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                         inprogressCell.vwCallandChat.isHidden = true
                         inprogressCell.lblOnTheWay.isHidden = true
                     }
+                    inprogressCell.lblBookingID.text = arrBookingList[indexPath.row].id
                     inprogressCell.chatClick = {
                         let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
                         chatVC.bookingID = self.arrBookingList[indexPath.row].id ?? ""// self.bookingid//
@@ -294,8 +331,21 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     completedCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
                     completedCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     completedCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
-                    completedCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " (" + (arrBookingList[indexPath.row].plateNumber ?? "") + ")"
-                    if arrBookingList[indexPath.row].orderStatus == "Cancel" {
+                    //                    completedCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
+                    
+                    
+                    let mainString = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
+                    let searchString = (arrBookingList[indexPath.row].plateNumber ?? "")
+                    let range = (mainString as NSString).range(of: searchString)
+                    let fullRange = NSRange(location: 0, length: mainString.count)
+                    let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                    mutableAttributedString.addAttribute(.foregroundColor, value: UIColor.black, range: fullRange)
+                    mutableAttributedString.addAttribute(.foregroundColor, value: colors.themeBlue.value, range: range)
+                    mutableAttributedString.addAttribute(.font, value: FontBook.semibold.of(size: 14), range: fullRange)
+                    completedCell.lblVehicleDetails.attributedText = mutableAttributedString
+                    
+                    completedCell.lblBookingid.text = arrBookingList[indexPath.row].id ?? ""
+                    if arrBookingList[indexPath.row].statuslabel == "Cancelled" {
                         completedCell.lblTopHalf.text = "Cancelled"
                         completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.9433980584, green: 0.3328252435, blue: 0.4380534887, alpha: 1)
                     } else {
@@ -354,7 +404,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         } else if isInProcess == 1 {
             print("InProgress cell pressed")
         } else if isInProcess == 2 {
-            if arrBookingList[indexPath.row].orderStatus == "Cancel" {
+            if arrBookingList[indexPath.row].statuslabel == "Cancelled" {
                 let completeJobVC: CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
                 completeJobVC.orderId = arrBookingList[indexPath.row].id ?? ""
                 completeJobVC.isCancel = true

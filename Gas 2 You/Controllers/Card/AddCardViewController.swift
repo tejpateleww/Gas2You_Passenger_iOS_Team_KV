@@ -36,6 +36,7 @@ class AddCardViewController: BaseVC {
     @IBOutlet weak var txtCardNumber: UITextField!
     @IBOutlet weak var txtExpiryDate: UITextField!
     @IBOutlet weak var txtCVV: UITextField!
+    @IBOutlet weak var btnAddCart: ThemeButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         addcardmodel.addCard = self
@@ -189,6 +190,19 @@ class AddCardViewController: BaseVC {
         previousSelection = txtCardNumber.selectedTextRange;
             return true
         }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case txtCardName:
+            txtCardNumber.becomeFirstResponder()
+        case txtCardNumber:
+            txtExpiryDate.becomeFirstResponder()
+        case txtExpiryDate:
+            txtCVV.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
+    }
     func expDateValidation(dateStr:String) -> Bool {
 
         let currentYear = Calendar.current.component(.year, from: Date()) % 100

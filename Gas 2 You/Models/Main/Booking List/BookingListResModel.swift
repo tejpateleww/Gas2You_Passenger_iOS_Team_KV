@@ -42,7 +42,7 @@ struct BookingListDatum : Codable {
             let mainServiceName : String?
             let makeName : String?
             let modelName : String?
-            let orderStatus : String?
+            let statuslabel : String?
             let parkingLocation : String?
             let plateNumber : String?
             let pricePerGallon : String?
@@ -74,7 +74,7 @@ struct BookingListDatum : Codable {
                     case mainServiceName = "main_service_name"
                     case makeName = "make_name"
                     case modelName = "model_name"
-                    case orderStatus = "order_status"
+                    case statuslabel = "status_label"
                     case parkingLocation = "parking_location"
                     case plateNumber = "plate_number"
                     case pricePerGallon = "price_per_gallon"
@@ -108,7 +108,7 @@ struct BookingListDatum : Codable {
                     mainServiceName = try? values?.decodeIfPresent(String.self, forKey: .mainServiceName)
                     makeName = try? values?.decodeIfPresent(String.self, forKey: .makeName)
                     modelName = try? values?.decodeIfPresent(String.self, forKey: .modelName)
-                    orderStatus = try? values?.decodeIfPresent(String.self, forKey: .orderStatus)
+                    statuslabel = try? values?.decodeIfPresent(String.self, forKey: .statuslabel)
                     parkingLocation = try? values?.decodeIfPresent(String.self, forKey: .parkingLocation)
                     plateNumber = try? values?.decodeIfPresent(String.self, forKey: .plateNumber)
                     pricePerGallon = try? values?.decodeIfPresent(String.self, forKey: .pricePerGallon)

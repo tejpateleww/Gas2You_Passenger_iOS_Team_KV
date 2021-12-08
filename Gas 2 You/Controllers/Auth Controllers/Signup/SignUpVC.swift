@@ -114,7 +114,15 @@ class SignUpVC: BaseVC {
     @IBAction func btnSignupTap(_ sender: ThemeButton) {
         view.endEditing(true)
         if self.validation(){
-            self.callOtpApi()
+            if(self.txtConfirmPassword.text == "" ){
+                Toast.show(title: UrlConstant.Required, message: "Please re-enter password", state: .info)
+                return
+            }else if (self.txtPassword.text != self.txtConfirmPassword.text){
+                Toast.show(title: UrlConstant.Required, message: UrlConstant.PasswordNotMatch, state: .info)
+                return
+            }else{
+                self.callOtpApi()
+            }
         }
     }
     func validation() -> Bool{
@@ -147,12 +155,13 @@ class SignUpVC: BaseVC {
         }
         else if !password.0{
             strTitle = password.1
-        }else if !Confpassword.0{
-            strTitle = Confpassword.1
-        }else if txtPassword.text?.lowercased() != txtConfirmPassword.text?.lowercased(){
-            Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .info)
-            return false
         }
+//        else if !Confpassword.0{
+//            strTitle = Confpassword.1
+//        }else if txtPassword.text?.lowercased() != txtConfirmPassword.text?.lowercased(){
+//            Toast.show(title: UrlConstant.Required, message: "Password and confirm password must be same", state: .info)
+//            return false
+//        }
         
         
         if let str = strTitle{

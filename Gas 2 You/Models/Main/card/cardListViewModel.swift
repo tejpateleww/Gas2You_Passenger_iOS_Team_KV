@@ -18,6 +18,8 @@ class cardListViewModel{
                 if let userdevice =  response?.data
                 {
                     self.cardList?.arrCardList = userdevice
+                    self.cardList?.isLoading = false
+                    self.cardList?.isReload = true
                     self.cardList?.tblPaymentMethod.reloadData()
                 }
             }

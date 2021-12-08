@@ -145,6 +145,8 @@
 		88F4171926F9E01900400594 /* vehicalListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4171726F9E01900400594 /* vehicalListResModel.swift */; };
 		88F4171D26F9F48B00400594 /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4171C26F9F48B00400594 /* UpdateProfile.swift */; };
 		88F4172026F9FC5600400594 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4171F26F9FC5600400594 /* MyProfileViewModel.swift */; };
+		88F57B1B2760DC3100F6873D /* cardShimmerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F57B192760DC3100F6873D /* cardShimmerCell.swift */; };
+		88F57B1C2760DC3100F6873D /* cardShimmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F57B1A2760DC3100F6873D /* cardShimmerCell.xib */; };
 		90C83A99270C318400BAFA92 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 90C83A98270C318400BAFA92 /* animation.json */; };
 		90C83AA5270C3A7200BAFA92 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 90C83AA4270C3A7200BAFA92 /* Splash.json */; };
 		90F21FEE27214456001732ED /* MessageBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F21FED27214456001732ED /* MessageBarController.swift */; };
@@ -355,6 +357,8 @@
 		88F4171726F9E01900400594 /* vehicalListResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = vehicalListResModel.swift; sourceTree = "<group>"; };
 		88F4171C26F9F48B00400594 /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
 		88F4171F26F9FC5600400594 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
+		88F57B192760DC3100F6873D /* cardShimmerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardShimmerCell.swift; sourceTree = "<group>"; };
+		88F57B1A2760DC3100F6873D /* cardShimmerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = cardShimmerCell.xib; sourceTree = "<group>"; };
 		90C83A98270C318400BAFA92 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
 		90C83AA4270C3A7200BAFA92 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
 		90F21FED27214456001732ED /* MessageBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBarController.swift; sourceTree = "<group>"; };
@@ -768,6 +772,8 @@
 				8896402727425D0800B3379B /* ShimmerCell.swift */,
 				8896402C274291AC00B3379B /* ChatListShimmerCell.swift */,
 				8896402D274291AC00B3379B /* ChatListShimmerCell.xib */,
+				88F57B192760DC3100F6873D /* cardShimmerCell.swift */,
+				88F57B1A2760DC3100F6873D /* cardShimmerCell.xib */,
 			);
 			path = "Shimmer Cell";
 			sourceTree = "<group>";
@@ -1242,6 +1248,7 @@
 				90C83AA5270C3A7200BAFA92 /* Splash.json in Resources */,
 				9A4A8B9A26C3E70500966B2D /* InProgressCell.xib in Resources */,
 				18F4012A26CBC8F3002C1ABB /* Poppins-Bold.ttf in Resources */,
+				88F57B1C2760DC3100F6873D /* cardShimmerCell.xib in Resources */,
 				18F4012B26CBC8F3002C1ABB /* Poppins-Black.ttf in Resources */,
 				18F4012726CBC8F3002C1ABB /* OFL.txt in Resources */,
 				88AD5BBA270725D8000CFA25 /* NoDataCell.xib in Resources */,
@@ -1345,6 +1352,7 @@
 				888BD78C2750917300BE17D4 /* addCardViewModel.swift in Sources */,
 				9A4A8B9026C3B84600966B2D /* MemberPlanVC.swift in Sources */,
 				88E61D8F26FB236E002BD61F /* nonMemberPlanViewMOdel.swift in Sources */,
+				88F57B1B2760DC3100F6873D /* cardShimmerCell.swift in Sources */,
 				88E8187F275A221800904F6F /* AddLocationViewModel.swift in Sources */,
 				88C13C9A274F86AE0008173C /* cardListViewModel.swift in Sources */,
 				9A70293226C25B2000DB1040 /* VehicleListCell.swift in Sources */,

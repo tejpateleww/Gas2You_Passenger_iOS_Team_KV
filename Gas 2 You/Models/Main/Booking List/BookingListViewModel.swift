@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 class BookingListViewModel{
     var myordervc : MyOrdersVC?
     func doBookingList(customerid: String, status: String, page: String) {
@@ -61,7 +62,8 @@ class CancelOrder{
     func webserviceCancelOrder(_ reqModel: CancelOrderReqModel,row:Int){
         WebServiceSubClass.cancelOrder(reqModel: reqModel, completion: { (status, apiMessage, response, error)  in
             if status{
-                self.cancelOrder?.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "0", page: "\(self.cancelOrder?.currentPage ?? 0)")
+                self.cancelOrder?.btnCompletedTap(self.cancelOrder?.btnCompleted ?? ThemeButton())
+                self.cancelOrder?.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "\(self.cancelOrder?.currentPage ?? 0)")
             }
             else
             {

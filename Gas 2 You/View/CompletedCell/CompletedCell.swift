@@ -20,6 +20,7 @@ class CompletedCell: UITableViewCell, ShimmeringViewProtocol{
     @IBOutlet weak var imgLocation: UIImageView!
     @IBOutlet weak var imgCalender: UIImageView!
     @IBOutlet weak var lblTimeandDate: ThemeLabel!
+    @IBOutlet weak var lblBookingid: UILabel!
     var shimmeringAnimatedItems: [UIView] {
            [
             lblServices,

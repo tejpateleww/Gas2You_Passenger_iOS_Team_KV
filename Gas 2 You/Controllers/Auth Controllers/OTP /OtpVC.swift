@@ -65,7 +65,7 @@ class OtpVC: BaseVC,OTPTextFieldDelegate,UITextFieldDelegate {
         self.txtOtp[1].delegate = self
         self.txtOtp[2].delegate = self
         self.txtOtp[3].delegate = self
-        
+        reversetimer()
     }
     func reversetimer(){
         self.timer.invalidate() // just in case this button is tapped multiple times
@@ -103,7 +103,7 @@ class OtpVC: BaseVC,OTPTextFieldDelegate,UITextFieldDelegate {
         } else {
             self.lblTimer.isHidden = true
             self.btnResend.isUserInteractionEnabled = true
-            self.btnResend.setTitleColor(#colorLiteral(red: 0.1201425865, green: 0.5393100977, blue: 0.7819268107, alpha: 1), for: .normal)
+            self.btnResend.setTitleColor(colors.themeBlue.value, for: .normal)
             self.timer.invalidate()
         }
     }

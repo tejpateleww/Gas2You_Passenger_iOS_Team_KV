@@ -83,6 +83,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var PlaceName = userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String
     var availableDate : [String] = []
     var todaysDate = NSDate()
+    
 //    var timeSlotDate = [String]()
     
     //MARK:- GLOBAL PROPERTIES
@@ -132,8 +133,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         txtSelectedService.delegate = self
         txtSelectedVehicle.delegate = self
         txtDateSelected.delegate = self
-        let DateToShare = convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? "")
         
+        let DateToShare = convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? "")
         ServiceListData.webserviceofDateList(booking_date:DateToShare, isFromToday: true)
 
         LblOctane.text = "93 Octane"
@@ -199,6 +200,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         ServiceListData.webserviceofserviceList()
         vehicleListData.webserviceofgetvehicalListforHome()
         nonmemberListData.webserviceofNonMemberPlanList()
+
         dateSelected = 0
         collectionTimeList.reloadData()
     }
@@ -363,6 +365,11 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
                 if self.serviceList[row].subServices?.count != 0{
                     self.selectedIndex = row
                     self.ViewForShowPrice.isHidden = false
+                    if self.serviceList[self.selectedIndex].subServices?.count ?? 0 > 2{
+                        self.imgSubserviceArrow.isHidden = false
+                    }else{
+                        self.imgSubserviceArrow.isHidden = true
+                    }
                     self.collectionViewSubService.reloadData()
                 } else {
                     self.LblOctane.text = self.serviceList[row].name

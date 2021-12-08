@@ -43,7 +43,24 @@ class CarParkingLocationVC: BaseVC {
         self.mapView.mapType = .normal
         if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String == nil{
             txtSearchBar.text = place
-            setupMap()
+            location(Lat: latitude ?? 0.0, Long: longitude ?? 0.0)
+            self.mapView.clear()
+            self.path = GMSPath()
+            self.polyline = GMSPolyline()
+            
+            self.CurrentLocLat = String(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude)
+            self.CurrentLocLong = String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
+            
+            let camera = GMSCameraPosition.camera(withLatitude: self.latitude ?? 0.00, longitude: self.longitude ?? 0.0, zoom: 18.0)
+            self.mapView.camera = camera
+            
+            let marker = GMSMarker()
+            let markerImage = UIImage(named: "IC_pinImg")
+            let markerView = UIImageView(image: markerImage)
+            marker.position = CLLocationCoordinate2D(latitude:  self.latitude ?? 0.00, longitude: self.longitude ?? 0.0)
+            self.getAddressFromLatLon(pdblLatitude: String(self.latitude ?? 0.00), withLongitude: String(self.longitude ?? 0.00))
+            marker.iconView = markerView
+            marker.map = mapView
         }else{
             txtSearchBar.text = PlaceName
             location(Lat: latitude ?? 0.0, Long: longitude ?? 0.0)
@@ -207,21 +224,13 @@ class CarParkingLocationVC: BaseVC {
     @IBAction func btnSearchLocation(_ sender: Any) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
-        
-        // Specify the place data types to return.
         let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
                                                   UInt(GMSPlaceField.placeID.rawValue) |
                                                   UInt(GMSPlaceField.coordinate.rawValue) |
                                                   GMSPlaceField.addressComponents.rawValue |
                                                   GMSPlaceField.formattedAddress.rawValue)
         autocompleteController.placeFields = fields
-        
-        // Specify a filter.
         let filter = GMSAutocompleteFilter()
-      //  filter.type = .address
-      //  autocompleteController.autocompleteFilter = filter
-        
-        // Display the autocomplete view controller.
         present(autocompleteController, animated: true, completion: nil)
     }
     func imageWithView(view: UIView) -> UIImage {
@@ -245,11 +254,8 @@ extension CarParkingLocationVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         let location = locationManager.location?.coordinate
-        
         cameraMoveToLocation(toLocation: location)
-        
     }
     
     func cameraMoveToLocation(toLocation: CLLocationCoordinate2D?) {
@@ -263,7 +269,7 @@ extension CarParkingLocationVC: CLLocationManagerDelegate {
 extension CarParkingLocationVC: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         let view = MarkerInfoWindowView()
-        view.titleLabel.numberOfLines = 0
+        view.titleLabel.numberOfLines = 1
         
         if(marker == self.CurrentLocMarker){
             view.titleLabel.text = "You"
@@ -357,5 +363,6 @@ extension CarParkingLocationVC:UITableViewDelegate,UITableViewDataSource{
         self.txtSearchBar.text = arrLocation[indexPath.row].location
         location(Lat: Double(arrLocation[indexPath.row].latitude) ?? 0.00, Long: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
         Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: Double(arrLocation[indexPath.row].latitude) ?? 0.00, longitude: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
+        self.navigationController?.popViewController(animated: true)
     }
 }
