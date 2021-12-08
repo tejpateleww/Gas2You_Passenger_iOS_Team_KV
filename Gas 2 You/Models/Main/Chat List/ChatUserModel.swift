@@ -31,6 +31,7 @@ class ChatUserModel{
         WebServiceSubClass.sendMsgAPI(reqModel: reqModel) { (status, apiMessage, response, error) in
             if status{
                 self.chatViewController?.arrayChatHistory.append((response?.data)!)
+                
                 self.chatViewController?.filterArrayData(isFromDidLoad: true)
                 self.chatViewController?.delegateChat?.chatListRefreshScreen()
             }else{

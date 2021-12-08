@@ -252,7 +252,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     }
                     inprogressCell.chatClick = {
                         let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
-                        chatVC.bookingID = self.bookingid//self.arrBookingList[indexPath.row].id ?? ""
+                        chatVC.bookingID = self.arrBookingList[indexPath.row].id ?? ""// self.bookingid//
                         chatVC.isFromPush = true
                         self.navigationController?.pushViewController(chatVC, animated: true)
                     }

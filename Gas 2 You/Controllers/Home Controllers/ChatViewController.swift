@@ -368,7 +368,9 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
             return self.filterKeysArr.count
         } else {
             return 1
-        }    }
+        }
+        
+    }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }

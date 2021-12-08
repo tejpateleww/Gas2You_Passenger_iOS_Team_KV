@@ -69,10 +69,10 @@ extension ChatListVC: UITableViewDelegate, UITableViewDataSource {
         
         
         if !isReload{
-            let ChatListShimmerCell = chatListTV.dequeueReusableCell(withIdentifier: ChatListShimmerCell.className) as! ChatListShimmerCell
-            ChatListShimmerCell.lblName.text = "dummy datadummy data"
-            ChatListShimmerCell.lblMessage.text = "dummy datadummy datadummy"
-            return ChatListShimmerCell
+            let chatListShimmerCell = chatListTV.dequeueReusableCell(withIdentifier: ChatListShimmerCell.className) as! ChatListShimmerCell
+            chatListShimmerCell.lblName.text = "dummy datadummy data"
+            chatListShimmerCell.lblMessage.text = "dummy datadummy datadummy"
+            return chatListShimmerCell
         }else{
             if self.arrUserList.count != 0{
                 let cell = chatListTV.dequeueReusableCell(withIdentifier: ChatListCell.className, for: indexPath) as! ChatListCell
