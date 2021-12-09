@@ -252,42 +252,49 @@ class AddVehicleVC: BaseVC {
             isvalid = false
             messages.append("make")
         }
-        if isvalid, makeVal[SelectedMakeIndex].manufacturerName == "Other"{
-            if isvalid, txtOtherMake.text == ""{
-                isvalid = false
-                messages.append("Other make")
-            }
-            if isvalid, txtOtherModel.text == ""{
-                isvalid = false
-                messages.append("Other model")
-            }
-        }
-        if contains{
-            if isvalid, txtEnterModel.text == ""{
-                isvalid = false
-                messages.append("model")
-            }
-        }
-        if isvalid, makeVal[SelectedMakeIndex].models?[row].modelName == "Other"{
-            if isvalid, txtOtherModel.text == ""{
-                isvalid = false
-                messages.append("Other model")
-            }
-        }
-        if isvalid, txtEnterColor.text == ""{
+        if SelectedMakeIndex == -1{
             isvalid = false
-            messages.append("color")
+            Toast.show(title: UrlConstant.Required, message: "make is not available", state: .info)
+        }else{
+            if isvalid, makeVal[SelectedMakeIndex].manufacturerName == "Other"{
+                if isvalid, txtOtherMake.text == ""{
+                    isvalid = false
+                    messages.append("Other make")
+                }
+                if isvalid, txtOtherModel.text == ""{
+                    isvalid = false
+                    messages.append("Other model")
+                }
+            }
+            
+            if contains{
+                if isvalid, txtEnterModel.text == ""{
+                    isvalid = false
+                    messages.append("model")
+                }
+            }
+            if isvalid, makeVal[SelectedMakeIndex].models?[row].modelName == "Other"{
+                if isvalid, txtOtherModel.text == ""{
+                    isvalid = false
+                    messages.append("Other model")
+                }
+            }
+            if isvalid, txtEnterColor.text == ""{
+                isvalid = false
+                messages.append("color")
+            }
+            if isvalid, txtStateName.text == ""{
+                isvalid = false
+                messages.append("state")
+            }
+            
+            if isvalid, txtLicencePlateNo.text == "" {
+                isvalid = false
+                messages.append(txtLicencePlateNo.placeholder?.lowercased() ?? "")
+            }
+            
+            
         }
-        if isvalid, txtStateName.text == ""{
-            isvalid = false
-            messages.append("state")
-        }
-        
-        if isvalid, txtLicencePlateNo.text == "" {
-            isvalid = false
-            messages.append(txtLicencePlateNo.placeholder?.lowercased() ?? "")
-        }
-        
         if messages.isEmpty == false {
             let messageStr = messages.map({"\(strTitle) \($0)"}).joined(separator: "\n")
             Toast.show(title: UrlConstant.Required, message: messageStr, state: .info)

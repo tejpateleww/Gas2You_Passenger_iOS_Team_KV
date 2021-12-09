@@ -74,14 +74,14 @@ class MyOrdersVC: BaseVC {
         isLoading = true
     }
     override func BackButtonWithTitle(button: UIButton) {
-            guard let navVC = self.navigationController,
-                  let profileVC = navVC.viewControllers.first(where: {$0.isKind(of: HomeVC.self)}) as? HomeVC else {
-                return
-            }
-            profileVC.refreshhomescreen()
+        guard let navVC = self.navigationController,
+              let profileVC = navVC.viewControllers.first(where: {$0.isKind(of: HomeVC.self)}) as? HomeVC else {
+            return
+        }
+        profileVC.refreshhomescreen()
         profileVC.ServiceListData.webserviceofDateList(booking_date: profileVC.convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? ""), isFromToday: true)
-            navVC.popToViewController(profileVC, animated: true)
-            
+        navVC.popToViewController(profileVC, animated: true)
+        
     }
     @objc func refresh(_ sender: AnyObject) {
         arrBookingList.removeAll()

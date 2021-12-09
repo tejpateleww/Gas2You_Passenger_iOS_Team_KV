@@ -84,7 +84,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var availableDate : [String] = []
     var todaysDate = NSDate()
     
-//    var timeSlotDate = [String]()
+    //    var timeSlotDate = [String]()
     
     //MARK:- GLOBAL PROPERTIES
     
@@ -136,7 +136,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         let DateToShare = convertDateFormat(inputDate: Singleton.sharedInstance.appInitModel?.currentDate ?? "")
         ServiceListData.webserviceofDateList(booking_date:DateToShare, isFromToday: true)
-
+        
         LblOctane.text = "93 Octane"
         dismissPickerView()
     }
@@ -145,7 +145,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         NavbarrightButton()
         NavBarTitle(isOnlyTitle: false, isMenuButton: true, title: "Schedule Service", controller: self)
     }
-
+    
     
     func setup(){
         if listOfVehicle.count != 0{
@@ -185,22 +185,22 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         vehicleListData.webserviceofgetvehicalListforHome()
     }
     func convertDateFormat(inputDate: String) -> String {
-
-         let olDateFormatter = DateFormatter()
-         olDateFormatter.dateFormat = "yyyy-MM-dd"
-
-         let oldDate = olDateFormatter.date(from: inputDate)
-
-         let convertDateFormatter = DateFormatter()
-         convertDateFormatter.dateFormat = "MMM dd, yyyy"
-
-         return convertDateFormatter.string(from: oldDate!)
+        
+        let olDateFormatter = DateFormatter()
+        olDateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let oldDate = olDateFormatter.date(from: inputDate)
+        
+        let convertDateFormatter = DateFormatter()
+        convertDateFormatter.dateFormat = "MMM dd, yyyy"
+        
+        return convertDateFormatter.string(from: oldDate!)
     }
     @objc func refreshhomescreen(){
         ServiceListData.webserviceofserviceList()
         vehicleListData.webserviceofgetvehicalListforHome()
         nonmemberListData.webserviceofNonMemberPlanList()
-
+        
         dateSelected = 0
         collectionTimeList.reloadData()
     }
@@ -450,7 +450,7 @@ extension HomeVC: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return nonmemberplanlist.count
+        return nonmemberplanlist.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:nonMemberListCell = tblNonMemberPLan.dequeueReusableCell(withIdentifier: nonMemberListCell.className) as! nonMemberListCell
@@ -487,7 +487,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             }
         }
         cell.lbltitle.text = (nonmemberplanlist[indexPath.row].title ?? "") + arrow
-       
+        
         cell.selectionStyle = .none
         return cell
     }
