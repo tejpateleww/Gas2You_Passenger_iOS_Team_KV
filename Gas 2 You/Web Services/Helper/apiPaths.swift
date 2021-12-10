@@ -86,7 +86,7 @@ enum ApiKey: String {
     case logout             = "logout/"
 }
 
- 
+  
 
 enum SocketKeys: String {
     

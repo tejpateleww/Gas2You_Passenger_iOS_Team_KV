@@ -38,7 +38,7 @@ class MyProfileVC: BaseVC{
         cancelPlanModel.cancelplanvc = self
         updateprofileviewmodel.myprofilevc = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Profile", controller: self)
-        navBarRightImage()
+        
         setData()
         txtUserName.delegate = self
         txtMobile.delegate = self
@@ -66,6 +66,7 @@ class MyProfileVC: BaseVC{
         txtLastName.text = userData?.lastName
         setupPhoneTextField()
         if userData?.is_membership_user == true{
+            navBarRightImage()
             vwMember.isHidden = false
             lblType.text = (Singleton.sharedInstance.userProfilData?.type ?? "") + arrow
             lblPrice.text = CurrencySymbol + (Singleton.sharedInstance.userProfilData?.amount ?? "")

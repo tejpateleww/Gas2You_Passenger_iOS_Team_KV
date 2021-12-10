@@ -74,7 +74,16 @@ extension AppDelegate : MessagingDelegate {
             if (key as? String ?? "") == "newMessage" {
                 if let topVc = UIApplication.appTopViewController() {
                     if topVc.isKind(of: ChatViewController.self) {
-                        self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                        let vc = topVc as! ChatViewController
+                        if let BookingID = userInfo["gcm.notification.booking_id"] as? String {
+                            if vc.bookingID != BookingID {
+                                completionHandler([.alert, .sound])
+                            } else {
+                                self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                            }
+                        }
+                       
+                        
                     } else {
                         completionHandler([.alert, .sound])
                     }
@@ -101,6 +110,14 @@ extension AppDelegate : MessagingDelegate {
             }else if (key as? String ?? "") == "invoiceGenerated"{
                 if let topVc = UIApplication.appTopViewController() {
                     if topVc.isKind(of: CompleteJobVC.self) {
+                        self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                    } else {
+                        completionHandler([.alert, .sound])
+                    }
+                }
+            }else if (key as? String ?? "") == "leavCarDoorCapOpen"{
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: GasDoorOpenPopUpVC.self) {
                         self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
                     } else {
                         completionHandler([.alert, .sound])
@@ -158,7 +175,8 @@ extension AppDelegate : MessagingDelegate {
                         chatVc.isFromPush = true
                         chatVc.callHistory()
                     } else {
-                        
+                        chatVc.isFromPush = true
+                        chatVc.callHistory()
                     }
                 } else {
                     let chatVc : ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
@@ -292,6 +310,15 @@ extension AppDelegate {
                             chatVc.isFromPush = true
                             chatVc.callHistory()
                         } else {
+                            if let navController = chatVc.navigationController {
+                                chatVc.navigationController?.popViewController(animated: false)
+                                let newChatVC : ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+                                newChatVC.bookingID = BookingID
+                                newChatVC.isFromPush = true
+                                newChatVC.callHistory()
+                                navController.hidesBottomBarWhenPushed = true
+                                navController.pushViewController(chatVc, animated: true)
+                            }
                             
                         }
                     } else {
@@ -307,7 +334,14 @@ extension AppDelegate {
         case "sessionTimeout":
             AppDel.dologout()
             
-            
+        case "leavCarDoorCapOpen":
+            if let topVc = UIApplication.appTopViewController() {
+                if topVc.isKind(of: GasDoorOpenPopUpVC.self) {
+                    let gasdoorVc = topVc as! GasDoorOpenPopUpVC
+                    gasdoorVc.modalPresentationStyle = .overFullScreen
+                    topVc.present(gasdoorVc, animated: false, completion: nil)
+                }
+            }
         default:
             break
         }

@@ -16,8 +16,6 @@ protocol chatListRefresh {
 }
 class ChatViewController: BaseVC {
     
-    
-    
     //MARK: -Properties
     var delegateChat : chatListRefresh?
     var isFromPush : Bool = false
@@ -71,14 +69,11 @@ class ChatViewController: BaseVC {
         super.viewDidLoad()
 
         self.prepareView()
-//            self.addNotificationObs()
         if isFromPush{
             self.callChatHistoryAPI()
         }else{
             self.callChatHistoryAPI()
         }
-        // Do any additional setup after loading the view.
-        
         txtviewComment.delegate = self
         txtviewComment.textColor = txtviewComment.text == "" ? .black : .gray
         setLocalization()
@@ -87,7 +82,6 @@ class ChatViewController: BaseVC {
         tblChat.register(UINib(nibName:"NoDataCell", bundle: nil), forCellReuseIdentifier: "NoDataCell")
         
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
-//        navBarRightImage()
         if UIDevice.current.userInterfaceIdiom == .phone{
             txtviewComment.font = CustomFont.PoppinsRegular.returnFont(16)
         }else{
@@ -170,6 +164,7 @@ class ChatViewController: BaseVC {
         
     }
     func setValue() {
+        
     }
     func scrollAt(){
         if self.arrayChatHistory.count > 0 {

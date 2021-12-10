@@ -20,7 +20,6 @@ class AddLocationViewModel{
             DispatchQueue.main.async {
                 if status{
                     self.AddLocation?.addLocationModel.webserviceLocationList()
-                    Toast.show(title: UrlConstant.Success, message: apiMessage, state: .success)
                 }else{
                     Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
                 }
