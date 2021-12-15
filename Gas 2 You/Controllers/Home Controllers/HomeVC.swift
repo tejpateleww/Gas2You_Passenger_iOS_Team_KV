@@ -343,7 +343,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
                 }
             }else{
                 if self.serviceList.count != 0{
-                    self.addBookingData.webserviceCheckTime(bookingDate: self.txtDateSelected.text ?? "", bookingTime: self.time)
+                    self.addBookingData.webserviceCheckTime(bookingDate: self.txtDateSelected.text ?? "", bookingTime: self.time, vehicleId: self.vehicalid)
                 }else{
                     Toast.show(title: UrlConstant.Required, message:"Service list is empty", state: .info)
                 }

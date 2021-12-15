@@ -9,17 +9,19 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 import GooglePlaces
+
 protocol searchDataDelegate{
     func refreshSearchLIstScreen(text:String)
 }
+
 class CarParkingLocationVC: BaseVC {
-    
     
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var txtSearchBar: UITextField!
     @IBOutlet weak var btnMap: UIButton!
     @IBOutlet weak var tblLocationList: UITableView!
     @IBOutlet weak var vwThemeview: ThemeView!
+    
     var delegatetext : searchDataDelegate!
     var locationManager = CLLocationManager()
     var place = ""
@@ -38,8 +40,10 @@ class CarParkingLocationVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addLocationModel.AddLocation = self
         addLocationModel.webserviceLocationList()
+        
         self.mapView.mapType = .normal
         if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String == nil{
             txtSearchBar.text = place
@@ -74,6 +78,7 @@ class CarParkingLocationVC: BaseVC {
         //        setUIMapPin()
         //        checkMapPermission()
     }
+    
     @IBAction func btnSateliteClick(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if(sender.isSelected){
@@ -82,10 +87,12 @@ class CarParkingLocationVC: BaseVC {
             self.mapView.mapType = .normal
         }
     }
+    
     override func BackButtonWithTitle(button: UIButton) {
         self.navigationController?.popViewController(animated: true)
         delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
     }
+    
     func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
             var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
             let lat: Double = Double("\(pdblLatitude)")!
@@ -109,12 +116,6 @@ class CarParkingLocationVC: BaseVC {
 
                     if pm.count > 0 {
                         let pm = placemarks![0]
-                        print(pm.country)
-                        print(pm.locality)
-                        print(pm.subLocality)
-                        print(pm.thoroughfare)
-                        print(pm.postalCode)
-                        print(pm.subThoroughfare)
                         var addressString : String = ""
                         if pm.subLocality != nil {
                             addressString = addressString + pm.subLocality! + ", "
@@ -179,9 +180,11 @@ class CarParkingLocationVC: BaseVC {
         //        marker.title = cartDetails?.name
         marker.map = mapView
     }
+    
     @IBAction func btnCurrentLocation(_ sender: Any) {
         setupMap()
     }
+    
     func locationData(){
         mapView.clear()
         let camera = GMSCameraPosition.camera(withLatitude:Singleton.sharedInstance.userCurrentLocation.coordinate.latitude , longitude: Singleton.sharedInstance.userCurrentLocation.coordinate.longitude, zoom: 18.0)
@@ -230,7 +233,6 @@ class CarParkingLocationVC: BaseVC {
                                                   GMSPlaceField.addressComponents.rawValue |
                                                   GMSPlaceField.formattedAddress.rawValue)
         autocompleteController.placeFields = fields
-        let filter = GMSAutocompleteFilter()
         present(autocompleteController, animated: true, completion: nil)
     }
     func imageWithView(view: UIView) -> UIImage {
@@ -312,11 +314,11 @@ extension CarParkingLocationVC: GMSAutocompleteViewControllerDelegate {
         
         userDefault.synchronize()
         
-        txtSearchBar.text =  place.name
+        txtSearchBar.text =  place.formattedAddress ?? place.name
         
         Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         location(Lat: place.coordinate.latitude, Long: place.coordinate.longitude)
-        addLocationModel.webserviceAddLocation(location: place.name ?? "", lat: place.coordinate.latitude, lng: place.coordinate.longitude)
+        addLocationModel.webserviceAddLocation(location: txtSearchBar.text ?? "", lat: place.coordinate.latitude, lng: place.coordinate.longitude)
         dismiss(animated: true, completion: nil)
     }
     
@@ -358,11 +360,12 @@ extension CarParkingLocationVC:UITableViewDelegate,UITableViewDataSource{
         userDefault.setValue(arrLocation[indexPath.row].location, forKey: UserDefaultsKey.PlaceName.rawValue)
         userDefault.setValue(arrLocation[indexPath.row].longitude, forKey: UserDefaultsKey.longitude.rawValue)
         userDefault.setValue(arrLocation[indexPath.row].latitude, forKey: UserDefaultsKey.Latitude.rawValue)
-        
         userDefault.synchronize()
+        
         self.txtSearchBar.text = arrLocation[indexPath.row].location
         location(Lat: Double(arrLocation[indexPath.row].latitude) ?? 0.00, Long: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
         Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: Double(arrLocation[indexPath.row].latitude) ?? 0.00, longitude: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
+        delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
         self.navigationController?.popViewController(animated: true)
     }
 }

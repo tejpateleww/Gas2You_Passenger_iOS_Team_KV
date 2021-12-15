@@ -37,19 +37,22 @@ class cardListViewModel{
             }
         })
     }
+    
     func doAddBooking(customerid: String, serviceid: String, subserviceid: String, parkinglocation: String, lat: String, lng: String, date: String, time: String, vehicleid: String, totalAmount: String, addonid: String,card_id:String) {
         let reqModel = AddBookingReqModel(customerid: customerid, serviceid: serviceid, subserviceid: subserviceid, parkinglocation: parkinglocation, lat: lat, lng: lng, date: date, time: time, vehicleid: vehicleid, totalAmount: totalAmount, addonid: addonid, card_id: card_id)
             webserviceAddBooking(reqModel)
     }
+    
     func webserviceAddBooking(_ reqModel: AddBookingReqModel){
         Utilities.showHud()
         WebServiceSubClass.addBooking(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure){
-                if status{
-                        let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-                        self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure)
+            }
+            if status{
+                let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+                self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
             }
         })
     }

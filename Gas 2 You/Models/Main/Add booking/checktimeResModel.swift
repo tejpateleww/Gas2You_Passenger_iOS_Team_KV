@@ -23,10 +23,15 @@ struct checktimeResModel : Codable {
 
 }
 class CheckTimeReqModel: Encodable{
+    var customerid : String? = Singleton.sharedInstance.userId
     var booking_time : String?
     var booking_date : String?
+    var vehicle_id : String?
+    
     enum CodingKeys: String, CodingKey {
         case booking_time = "booking_time"
         case booking_date = "booking_date"
+        case vehicle_id = "vehicle_id"
+        case customerid = "user_id"
     }
 }

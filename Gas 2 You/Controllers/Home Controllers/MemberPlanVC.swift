@@ -91,8 +91,8 @@ extension MemberPlanVC:UITableViewDelegate,UITableViewDataSource{
         cell.memberPlanDescriptionView.layer.cornerRadius = 5
         cell.memberPlanDescriptionView.layer.borderWidth = 1
         if memberPlanList[indexPath.row].planName == "Monthly Plan"{
-            cell.lblDescription.fontColor = UIColor.red
-            cell.memberPlanDescriptionView.layer.borderColor = UIColor.red.cgColor
+            cell.lblDescription.fontColor = UIColor.init(hexString: "#1C75BB")
+            cell.memberPlanDescriptionView.layer.borderColor = UIColor.init(hexString: "#1C75BB").cgColor
         }else{
             cell.lblDescription.fontColor = UIColor.init(hexString: "#1C75BB")
             cell.memberPlanDescriptionView.layer.borderColor = UIColor.init(hexString: "#1C75BB").cgColor

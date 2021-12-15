@@ -10,10 +10,11 @@ import UIKit
 
 class AddBookingViewModel{
     var addbooking : HomeVC?
-    func webserviceCheckTime(bookingDate:String,bookingTime:String){
+    func webserviceCheckTime(bookingDate:String,bookingTime:String,vehicleId:String){
         let checkTime = CheckTimeReqModel()
         checkTime.booking_date = bookingDate
         checkTime.booking_time = bookingTime
+        checkTime.vehicle_id = vehicleId
         self.addbooking?.btnAddBooking.showLoading()
         WebServiceSubClass.checkTime(reqModel: checkTime, completion: { (status, apiMessage, response, error) in
             self.addbooking?.btnAddBooking.hideLoading()

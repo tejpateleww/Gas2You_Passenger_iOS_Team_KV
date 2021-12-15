@@ -292,9 +292,8 @@ class AddVehicleVC: BaseVC {
                 isvalid = false
                 messages.append(txtLicencePlateNo.placeholder?.lowercased() ?? "")
             }
-            
-            
         }
+        
         if messages.isEmpty == false {
             let messageStr = messages.map({"\(strTitle) \($0)"}).joined(separator: "\n")
             Toast.show(title: UrlConstant.Required, message: messageStr, state: .info)

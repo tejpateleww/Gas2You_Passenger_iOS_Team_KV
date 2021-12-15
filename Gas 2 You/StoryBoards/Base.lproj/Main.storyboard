@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TYe-P8-lph">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TYe-P8-lph">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -645,7 +645,7 @@
                                                                                         </constraints>
                                                                                         <prototypes>
                                                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nonMemberListCell" id="rNQ-Nj-5VL" customClass="nonMemberListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="24.5" width="374" height="31"/>
+                                                                                                <rect key="frame" x="0.0" y="44.5" width="374" height="31"/>
                                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rNQ-Nj-5VL" id="Qx1-ht-IGo">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="31"/>
@@ -721,7 +721,7 @@
                                                                                                 </connections>
                                                                                             </tableViewCell>
                                                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemberListHomeCell" id="uiK-Bb-Ciz" customClass="MemberListHomeCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="55.5" width="374" height="44"/>
+                                                                                                <rect key="frame" x="0.0" y="75.5" width="374" height="44"/>
                                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uiK-Bb-Ciz" id="5iz-up-6og">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -1046,7 +1046,7 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationListCell" id="EBh-Th-SCt" customClass="locationListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="374" height="72"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="374" height="72"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EBh-Th-SCt" id="AI2-Il-ToY">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="72"/>
@@ -1169,7 +1169,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="ugE-NY-Mox" customClass="AddressCell" customModule="Gas_2_You" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="83"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ugE-NY-Mox" id="A3K-5Y-z50">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
@@ -1310,7 +1310,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatListCell" id="e3l-d4-5kw" customClass="ChatListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="101"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e3l-d4-5kw" id="Gb5-p7-sYx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="101"/>
@@ -1830,7 +1830,7 @@
                                                                                         </constraints>
                                                                                         <prototypes>
                                                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CompleteJobCell" id="Qsp-s5-r9S" customClass="CompleteJobCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="24.5" width="374" height="30.5"/>
+                                                                                                <rect key="frame" x="0.0" y="44.5" width="374" height="30.5"/>
                                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qsp-s5-r9S" id="eqK-KZ-7vh">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="30.5"/>
@@ -2006,7 +2006,7 @@
                                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </label>
-                                                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0YW-UW-82g" customClass="CosmosView" customModule="Cosmos">
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0YW-UW-82g" customClass="CosmosView" customModule="Cosmos">
                                                                                         <rect key="frame" x="229" y="15" width="120" height="20"/>
                                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                         <userDefinedRuntimeAttributes>
@@ -2201,7 +2201,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotificationCell" id="mdM-Oa-E6u" customClass="NotificationCell" customModule="Gas_2_You" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="89"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mdM-Oa-E6u" id="XYb-xq-Jps">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
@@ -3181,7 +3181,7 @@
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="VehicleListCell" id="qtY-fe-Nif" customClass="VehicleListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="390" height="200.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="390" height="200.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qtY-fe-Nif" id="QrL-pF-HG2">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="200.5"/>
@@ -4038,7 +4038,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="membershipPlanCell" id="Kxp-Zz-WVa" customClass="membershipPlanCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="366" height="184"/>
+                                                                        <rect key="frame" x="0.0" y="44.5" width="366" height="184"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kxp-Zz-WVa" id="egk-Dj-mci">
                                                                             <rect key="frame" x="0.0" y="0.0" width="366" height="184"/>
@@ -4892,9 +4892,9 @@ Open Today</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgR-P1-7Q0">
-                                        <rect key="frame" x="25" y="263.5" width="364" height="291"/>
+                                        <rect key="frame" x="25" y="264" width="364" height="290.5"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b7g-3W-6E7">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="291"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="290"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFk-Bs-qVE">
@@ -4934,8 +4934,8 @@ Open Today</string>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Uo-d8-Q6h" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                    <rect key="frame" x="34" y="27.5" width="256" height="41"/>
-                                                                    <string key="text">We'll close the door once fuelling 
+                                                                    <rect key="frame" x="36" y="27.5" width="252.5" height="41"/>
+                                                                    <string key="text">We'll close the door once fueling 
 is completed</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -5034,9 +5034,9 @@ is completed</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0B8-GA-aav">
-                                        <rect key="frame" x="25" y="202.5" width="364" height="413.5"/>
+                                        <rect key="frame" x="25" y="202.5" width="364" height="413"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RTV-vg-W9B">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="413.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="413"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="5xb-s6-u9Y">
@@ -5395,7 +5395,7 @@ is completed</string>
                                                         </constraints>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeftViewMenuItemCell" id="PQX-fO-kBC" customClass="LeftViewMenuItemCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="24.5" width="364" height="65"/>
+                                                                <rect key="frame" x="0.0" y="44.5" width="364" height="65"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PQX-fO-kBC" id="wer-2H-0dY">
                                                                     <rect key="frame" x="0.0" y="0.0" width="364" height="65"/>
@@ -5685,7 +5685,7 @@ is completed</string>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatHeaderCell" id="soW-AN-6Kw" customClass="chatHeaderCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="414" height="44.5"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="414" height="44.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="soW-AN-6Kw" id="wgi-BF-2P7">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
@@ -5730,7 +5730,7 @@ is completed</string>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatSenderCell" id="XUn-of-3vC" customClass="chatSenderCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="69" width="414" height="70.5"/>
+                                                <rect key="frame" x="0.0" y="89" width="414" height="70.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XUn-of-3vC" id="PKR-Xw-acC">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70.5"/>
@@ -5832,7 +5832,7 @@ is completed</string>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatReciverCell" id="Qzl-K1-NwB" customClass="chatReciverCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="139.5" width="414" height="70.5"/>
+                                                <rect key="frame" x="0.0" y="159.5" width="414" height="70.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qzl-K1-NwB" id="fRd-2g-GtK">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70.5"/>
@@ -6117,7 +6117,7 @@ is completed</string>
                                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nonMemberPlanListCell" id="1by-R3-Xs2" customClass="nonMemberPlanListCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="414" height="37"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="414" height="37"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1by-R3-Xs2" id="dPK-Pa-pzq">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
@@ -6609,7 +6609,7 @@ is completed</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PaymentMethodCell" id="5hE-2O-uXn" customClass="PaymentMethodCell" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="390" height="118"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="390" height="118"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5hE-2O-uXn" id="RLj-aR-0Ju">
                                                             <rect key="frame" x="0.0" y="0.0" width="390" height="118"/>
@@ -6874,6 +6874,14 @@ is completed</string>
             <point key="canvasLocation" x="7652" y="-699"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="0YW-UW-82g">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+        <designable name="NtG-sR-ss8">
+            <size key="intrinsicContentSize" width="215" height="35"/>
+        </designable>
+    </designables>
     <resources>
         <image name="IC_Profile" width="60" height="60"/>
         <image name="IC_aboutUS" width="31" height="31"/>
