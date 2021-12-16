@@ -61,9 +61,6 @@ extension AppDelegate : MessagingDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        
-        
         let content = notification.request.content
         let userInfo = notification.request.content.userInfo
         
@@ -117,10 +114,9 @@ extension AppDelegate : MessagingDelegate {
                 }
             }else if (key as? String ?? "") == "leavCarDoorCapOpen"{
                 if let topVc = UIApplication.appTopViewController() {
-                    if topVc.isKind(of: GasDoorOpenPopUpVC.self) {
+                    completionHandler([.alert, .sound])
+                    if !topVc.isKind(of: GasDoorOpenPopUpVC.self) {
                         self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
-                    } else {
-                        completionHandler([.alert, .sound])
                     }
                 }
             }
@@ -129,7 +125,46 @@ extension AppDelegate : MessagingDelegate {
         print(#function)
     }
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        
         let userInfo = response.notification.request.content.userInfo
+        print("USER INFo : ",userInfo)
+        
+        
+        if let mainDic = userInfo as? [String: Any]{
+            
+            let pushObj = NotificationObjectModel()
+            if let booking_id = mainDic["gcm.notification.booking_id"]{
+                pushObj.booking_id = booking_id as? String ?? ""
+            }
+            if let type = mainDic["gcm.notification.type"]{
+                pushObj.type = type as? String ?? ""
+            }
+            if let title = mainDic["title"]{
+                pushObj.title = title as? String ?? ""
+            }
+            if let text = mainDic["text"]{
+                pushObj.text = text as? String ?? ""
+            }
+            
+            AppDelegate.pushNotificationObj = pushObj
+            AppDelegate.pushNotificationType = pushObj.type
+            
+            if pushObj.type == "leavCarDoorCapOpen"{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if (UIApplication.appTopViewController()?.isKind(of: GasDoorOpenPopUpVC.self) ?? false){
+                        AppDelegate.pushNotificationObj = nil
+                        AppDelegate.pushNotificationType = nil
+                    }else{
+                        NotificationCenter.default.post(name: .openCarDoorScreen, object: nil)
+                    }
+                }
+                return
+            }
+        }
+
+        
+        
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")
         if UIApplication.shared.applicationState == .active {
             self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo)
@@ -160,9 +195,11 @@ extension AppDelegate : MessagingDelegate {
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
+    
     @objc func GoToChatFromNotification() {
         navigateToChatVC(userData: Singleton.sharedInstance.userInforForNotification)
     }
+    
      func navigateToChatVC(userData : [AnyHashable : Any]) {
        
         if let BookingID = userData["gcm.notification.booking_id"] as? String {
@@ -192,6 +229,7 @@ extension AppDelegate : MessagingDelegate {
         }
     }
 }
+
 extension UIApplication {
     class func appTopViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         if let navigationController = controller as? UINavigationController {
@@ -335,13 +373,7 @@ extension AppDelegate {
             AppDel.dologout()
             
         case "leavCarDoorCapOpen":
-            if let topVc = UIApplication.appTopViewController() {
-                if topVc.isKind(of: GasDoorOpenPopUpVC.self) {
-                    let gasdoorVc = topVc as! GasDoorOpenPopUpVC
-                    gasdoorVc.modalPresentationStyle = .overFullScreen
-                    topVc.present(gasdoorVc, animated: false, completion: nil)
-                }
-            }
+            AppDel.showCarDoorOpenVC()
         default:
             break
         }

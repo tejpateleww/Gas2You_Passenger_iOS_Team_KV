@@ -167,6 +167,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         let loginNavVC = LogInVC.getNewInstance().bindToNavigation()
         setRootViewController(loginNavVC)
     }
+    
+    func showCarDoorOpenVC(){
+        let topVC = UIApplication.appTopViewController()
+        if (topVC?.isKind(of: GasDoorOpenPopUpVC.self) ?? false){
+            return
+        }else{
+//            let GasDoorOpenPopUpVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: GasDoorOpenPopUpVC.storyboardID) as! GasDoorOpenPopUpVC
+//            GasDoorOpenPopUpVC.modalPresentationStyle = .fullScreen
+//            topVC?.present(GasDoorOpenPopUpVC, animated: false, completion: nil)
+            
+            let GasDoorOpenPopUpVC: GasDoorOpenPopUpVC = GasDoorOpenPopUpVC.instantiate(fromAppStoryboard: .Main)
+            GasDoorOpenPopUpVC.modalPresentationStyle = .overFullScreen
+            topVC?.present(GasDoorOpenPopUpVC, animated: false, completion: nil)
+        }
+    }
+    
+    func hideCarDoorOpenVC(){
+        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
 
     func navigateToHome() {
         let homeNavVC = MainViewController.getNewInstance().bindToNavigation()
@@ -191,6 +210,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         Constants.userDefaults.synchronize()
         AppDel.navigateToLogin()
     }
+    
+    
 }
 
 
@@ -205,6 +226,7 @@ extension Notification.Name {
     static let refreshHomeScreen = NSNotification.Name("refreshHomeScreen")
     static let refreshChatScreen = NSNotification.Name("refreshChatScreen")
     static let goToChatScreen = NSNotification.Name("goToChatScreen")
+    static let openCarDoorScreen = NSNotification.Name("openCarDoorScreen")
 }
 
 enum NotificationTypes : String {

@@ -4784,87 +4784,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hT-Ej-j1K">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hT-Ej-j1K">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <subviews>
-                                    <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPX-Wl-rQM">
-                                        <rect key="frame" x="25" y="243" width="364" height="332"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xzU-Yb-9q0">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="332"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-Zy-YqX">
-                                                    <rect key="frame" x="125" y="42" width="114" height="88"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="pp3-Zy-YqX" secondAttribute="height" multiplier="1.3:1" id="UM9-PK-aI6"/>
-                                                        <constraint firstAttribute="height" constant="88" id="aJ9-cX-GUj"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_gasCap" translatesAutoresizingMaskIntoConstraints="NO" id="2Bb-61-QZy">
-                                                    <rect key="frame" x="140.5" y="148" width="83" height="83"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="83" id="5Oa-ks-rEI"/>
-                                                        <constraint firstAttribute="width" secondItem="2Bb-61-QZy" secondAttribute="height" multiplier="1:1" id="FCS-FD-ieY"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0o-ab-NkX">
-                                                    <rect key="frame" x="322" y="12" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="t0o-ab-NkX" secondAttribute="height" multiplier="1:1" id="2K5-GX-tMf"/>
-                                                        <constraint firstAttribute="height" constant="30" id="4NX-GE-JSK"/>
-                                                    </constraints>
-                                                    <state key="normal" image="imgCloseBtn"/>
-                                                    <connections>
-                                                        <action selector="btnCloseTap:" destination="pqh-fB-F9E" eventType="touchUpInside" id="5rN-lG-imH"/>
-                                                    </connections>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3v-Ho-Vh7" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="256" width="324" height="41"/>
-                                                    <string key="text">Leave your Car's Gas Door
-Open Today</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                                            <real key="value" value="20"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isMedium" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstItem="2Bb-61-QZy" firstAttribute="centerX" secondItem="pp3-Zy-YqX" secondAttribute="centerX" id="4CU-1G-UFu"/>
-                                                <constraint firstItem="pp3-Zy-YqX" firstAttribute="centerX" secondItem="xzU-Yb-9q0" secondAttribute="centerX" id="7RY-XA-VCn"/>
-                                                <constraint firstAttribute="trailing" secondItem="n3v-Ho-Vh7" secondAttribute="trailing" constant="20" symbolic="YES" id="J2h-ok-vmG"/>
-                                                <constraint firstAttribute="trailing" secondItem="t0o-ab-NkX" secondAttribute="trailing" constant="12" id="MaY-E3-Te4"/>
-                                                <constraint firstItem="t0o-ab-NkX" firstAttribute="top" secondItem="xzU-Yb-9q0" secondAttribute="top" constant="12" id="R0k-aD-ilp"/>
-                                                <constraint firstItem="pp3-Zy-YqX" firstAttribute="top" secondItem="t0o-ab-NkX" secondAttribute="bottom" id="T1x-TW-eTy"/>
-                                                <constraint firstAttribute="bottom" secondItem="n3v-Ho-Vh7" secondAttribute="bottom" constant="35" id="dIt-dC-gWg"/>
-                                                <constraint firstItem="2Bb-61-QZy" firstAttribute="top" secondItem="pp3-Zy-YqX" secondAttribute="bottom" constant="18" id="dYU-59-VPv"/>
-                                                <constraint firstItem="n3v-Ho-Vh7" firstAttribute="top" secondItem="2Bb-61-QZy" secondAttribute="bottom" constant="25" id="dma-vN-LKO"/>
-                                                <constraint firstItem="n3v-Ho-Vh7" firstAttribute="leading" secondItem="xzU-Yb-9q0" secondAttribute="leading" constant="20" symbolic="YES" id="ggu-bj-2AX"/>
-                                            </constraints>
-                                        </view>
-                                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <blurEffect style="regular"/>
-                                    </visualEffectView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="EPX-Wl-rQM" firstAttribute="centerY" secondItem="5hT-Ej-j1K" secondAttribute="centerY" id="63W-mw-Mwn"/>
-                                    <constraint firstItem="EPX-Wl-rQM" firstAttribute="leading" secondItem="5hT-Ej-j1K" secondAttribute="leading" constant="25" id="8f3-47-vbz"/>
-                                    <constraint firstAttribute="trailing" secondItem="EPX-Wl-rQM" secondAttribute="trailing" constant="25" id="tnR-Ce-Tpq"/>
-                                </constraints>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPX-Wl-rQM">
+                                <rect key="frame" x="25" y="287" width="364" height="332"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xzU-Yb-9q0">
+                                    <rect key="frame" x="0.0" y="0.0" width="364" height="332"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-Zy-YqX">
+                                            <rect key="frame" x="125" y="42" width="114" height="88"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="pp3-Zy-YqX" secondAttribute="height" multiplier="1.3:1" id="UM9-PK-aI6"/>
+                                                <constraint firstAttribute="height" constant="88" id="aJ9-cX-GUj"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_gasCap" translatesAutoresizingMaskIntoConstraints="NO" id="2Bb-61-QZy">
+                                            <rect key="frame" x="140.5" y="148" width="83" height="83"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="83" id="5Oa-ks-rEI"/>
+                                                <constraint firstAttribute="width" secondItem="2Bb-61-QZy" secondAttribute="height" multiplier="1:1" id="FCS-FD-ieY"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0o-ab-NkX">
+                                            <rect key="frame" x="322" y="12" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="t0o-ab-NkX" secondAttribute="height" multiplier="1:1" id="2K5-GX-tMf"/>
+                                                <constraint firstAttribute="height" constant="30" id="4NX-GE-JSK"/>
+                                            </constraints>
+                                            <state key="normal" image="imgCloseBtn"/>
+                                            <connections>
+                                                <action selector="btnCloseTap:" destination="pqh-fB-F9E" eventType="touchUpInside" id="5rN-lG-imH"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3v-Ho-Vh7" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="256" width="324" height="41"/>
+                                            <string key="text">Leave your Car's Gas Door
+Open Today</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                                    <real key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isMedium" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="2Bb-61-QZy" firstAttribute="centerX" secondItem="pp3-Zy-YqX" secondAttribute="centerX" id="4CU-1G-UFu"/>
+                                        <constraint firstItem="pp3-Zy-YqX" firstAttribute="centerX" secondItem="xzU-Yb-9q0" secondAttribute="centerX" id="7RY-XA-VCn"/>
+                                        <constraint firstAttribute="trailing" secondItem="n3v-Ho-Vh7" secondAttribute="trailing" constant="20" symbolic="YES" id="J2h-ok-vmG"/>
+                                        <constraint firstAttribute="trailing" secondItem="t0o-ab-NkX" secondAttribute="trailing" constant="12" id="MaY-E3-Te4"/>
+                                        <constraint firstItem="t0o-ab-NkX" firstAttribute="top" secondItem="xzU-Yb-9q0" secondAttribute="top" constant="12" id="R0k-aD-ilp"/>
+                                        <constraint firstItem="pp3-Zy-YqX" firstAttribute="top" secondItem="t0o-ab-NkX" secondAttribute="bottom" id="T1x-TW-eTy"/>
+                                        <constraint firstAttribute="bottom" secondItem="n3v-Ho-Vh7" secondAttribute="bottom" constant="35" id="dIt-dC-gWg"/>
+                                        <constraint firstItem="2Bb-61-QZy" firstAttribute="top" secondItem="pp3-Zy-YqX" secondAttribute="bottom" constant="18" id="dYU-59-VPv"/>
+                                        <constraint firstItem="n3v-Ho-Vh7" firstAttribute="top" secondItem="2Bb-61-QZy" secondAttribute="bottom" constant="25" id="dma-vN-LKO"/>
+                                        <constraint firstItem="n3v-Ho-Vh7" firstAttribute="leading" secondItem="xzU-Yb-9q0" secondAttribute="leading" constant="20" symbolic="YES" id="ggu-bj-2AX"/>
+                                    </constraints>
+                                </view>
+                                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Idz-wR-SRT"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="EPX-Wl-rQM" firstAttribute="centerX" secondItem="5hT-Ej-j1K" secondAttribute="centerX" id="8rY-dt-d3o"/>
                             <constraint firstItem="Idz-wR-SRT" firstAttribute="trailing" secondItem="5hT-Ej-j1K" secondAttribute="trailing" id="KZb-Ti-fx1"/>
+                            <constraint firstItem="EPX-Wl-rQM" firstAttribute="centerY" secondItem="5hT-Ej-j1K" secondAttribute="centerY" id="joJ-rx-YcE"/>
                             <constraint firstItem="5hT-Ej-j1K" firstAttribute="leading" secondItem="Idz-wR-SRT" secondAttribute="leading" id="lsg-Jg-zbg"/>
                             <constraint firstItem="Idz-wR-SRT" firstAttribute="bottom" secondItem="5hT-Ej-j1K" secondAttribute="bottom" id="lxA-ZG-Cb3"/>
+                            <constraint firstItem="EPX-Wl-rQM" firstAttribute="width" secondItem="5hT-Ej-j1K" secondAttribute="width" multiplier="0.879227" id="vR4-5S-Zob"/>
                             <constraint firstItem="5hT-Ej-j1K" firstAttribute="top" secondItem="Idz-wR-SRT" secondAttribute="top" id="xHW-0G-bAS"/>
                         </constraints>
                     </view>
@@ -4873,7 +4869,7 @@ Open Today</string>
                         <outlet property="imgGasdoor" destination="2Bb-61-QZy" id="1mA-kb-7AE"/>
                         <outlet property="imgLogo" destination="pp3-Zy-YqX" id="mB9-iy-hFo"/>
                         <outlet property="lblMessage" destination="n3v-Ho-Vh7" id="E54-Vk-Dkm"/>
-                        <outlet property="vwBlur" destination="EPX-Wl-rQM" id="geV-Gx-WMX"/>
+                        <outlet property="vwBlur" destination="EPX-Wl-rQM" id="CVi-Rp-f2f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cck-Ts-d5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4892,9 +4888,9 @@ Open Today</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgR-P1-7Q0">
-                                        <rect key="frame" x="25" y="264" width="364" height="290.5"/>
+                                        <rect key="frame" x="25" y="263.5" width="364" height="291"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b7g-3W-6E7">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="290"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="291"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFk-Bs-qVE">
@@ -5034,9 +5030,9 @@ is completed</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0B8-GA-aav">
-                                        <rect key="frame" x="25" y="202.5" width="364" height="413"/>
+                                        <rect key="frame" x="25" y="202.5" width="364" height="413.5"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RTV-vg-W9B">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="413"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="414"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="5xb-s6-u9Y">

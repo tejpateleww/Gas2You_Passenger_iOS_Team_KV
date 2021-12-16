@@ -92,6 +92,18 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     
     //MARK:- VIEW LIFE CYCLE
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.addNotificationObs()
+        if listOfVehicle.count >= 1{
+            btnAddVehicleData.isHidden = true
+            txtSelectedVehicle.isHidden = false
+        }else{
+            txtSelectedVehicle.isHidden = true
+            btnAddVehicleData.isHidden = false
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,11 +151,22 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         LblOctane.text = "93 Octane"
         dismissPickerView()
+        
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         NavbarrightButton()
         NavBarTitle(isOnlyTitle: false, isMenuButton: true, title: "Schedule Service", controller: self)
+    }
+    
+    //MARK: - Custom methods
+    func addNotificationObs(){
+        NotificationCenter.default.removeObserver(self, name: .openCarDoorScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.openCarDoor), name: .openCarDoorScreen, object: nil)
+    }
+    
+    @objc func openCarDoor() {
+        AppDel.showCarDoorOpenVC()
     }
     
     
@@ -167,17 +190,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         txtSelectedVehicle.inputAccessoryView = toolBar
         txtDateSelected.inputAccessoryView = toolBar
     }
-    override func viewWillAppear(_ animated: Bool) {
-        if listOfVehicle.count >= 1{
-            btnAddVehicleData.isHidden = true
-            txtSelectedVehicle.isHidden = false
-        }else{
-            txtSelectedVehicle.isHidden = true
-            btnAddVehicleData.isHidden = false
-        }
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
-    }
+
     @objc func refreshVehicleList(){
         vehicleListData.webserviceofgetvehicalListforHome()
     }

@@ -61,7 +61,12 @@ class cardListViewModel{
         memberPlan.customer_id = Singleton.sharedInstance.userId
         memberPlan.plan_id = planID
         memberPlan.card_id = cardId
+        Utilities.showHud()
         WebServiceSubClass.purchaseMemberPlan(reqModel: memberPlan, completion: { (status, apiMessage, response, error) in
+            Utilities.hideHud()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
+            }
                 if status{
                     userDefault.setValue(response?.data?.isMembershipUser, forKey: UserDefaultsKey.MemberPlan.rawValue)
                     Singleton.sharedInstance.userProfilData?.type = self.cardList?.memberDataModel?.type

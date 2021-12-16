@@ -20,6 +20,7 @@ class GasDoorOpenPopUpVC: UIViewController {
         vwBlur.layer.cornerRadius = 20
     }
     @IBAction func btnCloseTap(_ sender: UIButton) {
-        dismiss(animated: false, completion: nil)
+        AppDel.hideCarDoorOpenVC()
     }
+    
 }
