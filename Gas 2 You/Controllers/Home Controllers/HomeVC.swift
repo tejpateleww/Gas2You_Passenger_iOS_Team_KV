@@ -113,6 +113,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         }else if Singleton.sharedInstance.userCurrentLocation.coordinate.latitude == 0.0 && Singleton.sharedInstance.userCurrentLocation.coordinate.longitude == 0.0 && userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) == nil{
             locationLabel.text = "Please Select Address"
         }else{
+            Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Singleton.sharedInstance.userCurrentLocation.coordinate.latitude, longitude: Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
             self.getAddressFromLatLon(pdblLatitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
         }
         collectionViewSubService.delegate = self
@@ -151,6 +152,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         LblOctane.text = "93 Octane"
         dismissPickerView()
+
         
     }
     override func viewWillLayoutSubviews() {
@@ -336,6 +338,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     @IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
         if self.listOfVehicle.count == 0{
             Toast.show(title: UrlConstant.Required, message:"No vehicle has been added yet, please add vehicle to proceed further!", state: .info)
+        }else if(self.locationLabel.text == ""){
+            Toast.show(title: UrlConstant.Required, message:"Please select parking location", state: .info)
         }else {
             let LocationStatus = CLLocationManager.authorizationStatus()
             if LocationStatus == .notDetermined {
@@ -560,7 +564,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
                 cell.vwMain.backgroundColor = UIColor.white
                 cell.lblListData.textColor = hexStringToUIColor(hex: "#0C233C")
             }
-            //            cell.btnSubService.setTitle(serviceList[selectedIndex].subServices?[indexPath.row].name, for: .normal)
+            //cell.btnSubService.setTitle(serviceList[selectedIndex].subServices?[indexPath.row].name, for: .normal)
             return cell
         }
     }

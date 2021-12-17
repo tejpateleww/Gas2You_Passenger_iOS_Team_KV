@@ -17,9 +17,11 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
     
     var getvehicalList =  VehicalListViewModel()
     var removeVehicle = RemoveVehicleViewModel()
-    @IBOutlet weak var vehicleListTV: UITableView!
     var arrVehicalList = [VehicleListDatum]()
     var isReload = false
+    
+    @IBOutlet weak var vehicleListTV: UITableView!
+    @IBOutlet weak var btnAddVehicle: ThemeButton!
     
     
     override func viewDidLoad() {
@@ -35,14 +37,19 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
     }
     
     @IBAction func btnAddVehicleTap(_ sender: ThemeButton) {
-        if #available(iOS 13.0, *) {
-            let addVehicleVC = storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
-            addVehicleVC.delegateAdd = self
-            navigationController?.pushViewController(addVehicleVC, animated: true)
-        }else {
-            let addVehicleVC = storyboard?.instantiateViewController(withIdentifier: AddVehicleVC.className) as! AddVehicleVC
-            addVehicleVC.delegateAdd = self
-            navigationController?.pushViewController(addVehicleVC, animated: true)
+        
+        if(Singleton.sharedInstance.userProfilData?.is_membership_user == false){
+            Toast.show(title: UrlConstant.Failed, message: "Please upgrade your plan to add multiple vehicle", state: .info)
+        }else{
+            if #available(iOS 13.0, *) {
+                let addVehicleVC = storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
+                addVehicleVC.delegateAdd = self
+                navigationController?.pushViewController(addVehicleVC, animated: true)
+            }else {
+                let addVehicleVC = storyboard?.instantiateViewController(withIdentifier: AddVehicleVC.className) as! AddVehicleVC
+                addVehicleVC.delegateAdd = self
+                navigationController?.pushViewController(addVehicleVC, animated: true)
+            }
         }
     }
         
@@ -99,6 +106,7 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if !isReload{
             return UITableView.automaticDimension
@@ -118,6 +126,7 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         }
         return .delete
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if #available(iOS 13.0, *) {
             cell.setTemplateWithSubviews(isLoading, viewBackgroundColor: .systemBackground)
@@ -126,8 +135,6 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if arrVehicalList.count != 0{
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in

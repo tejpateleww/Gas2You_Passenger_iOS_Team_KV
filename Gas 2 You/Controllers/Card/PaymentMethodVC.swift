@@ -117,8 +117,8 @@ extension PaymentMethodVC:UITableViewDelegate,UITableViewDataSource{
                                                                 serviceid: self.getDataModel?.serviceID ?? "",
                                                                 subserviceid:self.getDataModel?.subserviceId ?? "" ,
                                                                 parkinglocation: self.getDataModel?.parkingLocation ?? "",
-                                                                lat: "\(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude)",
-                                                                lng: "\(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)",
+                                                                lat: "\(Singleton.sharedInstance.carParkingLocation.coordinate.latitude )", //Singleton.sharedInstance.userCurrentLocation.coordinate.latitude
+                                                                lng: "\(Singleton.sharedInstance.carParkingLocation.coordinate.longitude )", //Singleton.sharedInstance.userCurrentLocation.coordinate.longitude
                                                                 date: self.getDataModel?.date ?? "",
                                                                 time: self.getDataModel?.time ?? "",
                                                                 vehicleid: self.getDataModel?.vehicleId ?? "", totalAmount: "0",

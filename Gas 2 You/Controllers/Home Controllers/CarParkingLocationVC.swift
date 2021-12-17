@@ -90,58 +90,59 @@ class CarParkingLocationVC: BaseVC {
     
     override func BackButtonWithTitle(button: UIButton) {
         self.navigationController?.popViewController(animated: true)
-        delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
+        //delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
     }
     
     func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
-            var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-            let lat: Double = Double("\(pdblLatitude)")!
-            //21.228124
-            let lon: Double = Double("\(pdblLongitude)")!
-            //72.833770
-            let ceo: CLGeocoder = CLGeocoder()
-            center.latitude = lat
-            center.longitude = lon
-
-            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-
-
-            ceo.reverseGeocodeLocation(loc, completionHandler:
-                {(placemarks, error) in
-                    if (error != nil)
-                    {
-                        print("reverse geodcode fail: \(error!.localizedDescription)")
-                    }
-                    let pm = placemarks! as [CLPlacemark]
-
-                    if pm.count > 0 {
-                        let pm = placemarks![0]
-                        var addressString : String = ""
-                        if pm.subLocality != nil {
-                            addressString = addressString + pm.subLocality! + ", "
-                            self.sublocality = pm.subLocality ?? ""
-                        }
-                        if pm.thoroughfare != nil {
-                            addressString = addressString + pm.thoroughfare! + ", "
-                            self.thoroughfare = pm.thoroughfare ?? ""
-                        }
-                        if pm.locality != nil {
-                            addressString = addressString + pm.locality! + ", "
-                        }
-                        if pm.country != nil {
-                            addressString = addressString + pm.country! + ", "
-                        }
-                        if pm.postalCode != nil {
-                            addressString = addressString + pm.postalCode! + " "
-                        }
-//                        self.PlaceName = addressString
-                        userDefault.setValue(addressString, forKey: UserDefaultsKey.PlaceName.rawValue)
-                        self.txtSearchBar.text = addressString
-                        print(addressString)
-                  }
-            })
-
-        }
+        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
+        let lat: Double = Double("\(pdblLatitude)")!
+        //21.228124
+        let lon: Double = Double("\(pdblLongitude)")!
+        //72.833770
+        let ceo: CLGeocoder = CLGeocoder()
+        center.latitude = lat
+        center.longitude = lon
+        
+        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+        
+        
+        ceo.reverseGeocodeLocation(loc, completionHandler:
+                                    {(placemarks, error) in
+            if (error != nil)
+            {
+                print("reverse geodcode fail: \(error!.localizedDescription)")
+            }
+            let pm = placemarks! as [CLPlacemark]
+            
+            if pm.count > 0 {
+                let pm = placemarks![0]
+                var addressString : String = ""
+                if pm.subLocality != nil {
+                    addressString = addressString + pm.subLocality! + ", "
+                    self.sublocality = pm.subLocality ?? ""
+                }
+                if pm.thoroughfare != nil {
+                    addressString = addressString + pm.thoroughfare! + ", "
+                    self.thoroughfare = pm.thoroughfare ?? ""
+                }
+                if pm.locality != nil {
+                    addressString = addressString + pm.locality! + ", "
+                }
+                if pm.country != nil {
+                    addressString = addressString + pm.country! + ", "
+                }
+                if pm.postalCode != nil {
+                    addressString = addressString + pm.postalCode! + " "
+                }
+                //                        self.PlaceName = addressString
+                userDefault.setValue(addressString, forKey: UserDefaultsKey.PlaceName.rawValue)
+                self.txtSearchBar.text = addressString
+                print(addressString)
+            }
+        })
+        
+    }
+    
     func setupMap(){
         self.mapView.clear()
         self.path = GMSPath()
@@ -161,6 +162,7 @@ class CarParkingLocationVC: BaseVC {
         marker.iconView = markerView
         marker.map = mapView
     }
+    
     func  location(Lat:Double,Long:Double){
         self.mapView.clear()
         self.path = GMSPath()
@@ -197,6 +199,7 @@ class CarParkingLocationVC: BaseVC {
         //        marker.title = cartDetails?.name
         marker.map = mapView
     }
+    
     func setUIMapPin() {
         initializeTheLocationManager()
         let position = CLLocationCoordinate2DMake(23.033863,72.585022)
@@ -205,7 +208,7 @@ class CarParkingLocationVC: BaseVC {
         marker.appearAnimation = GMSMarkerAnimation.pop
         marker.map = mapView
     }
-
+    
     func drawImageWithProfilePic(pp: UIImage?, image: UIImage) -> UIImage {
         
         let imgView = UIImageView(image: image)
@@ -317,6 +320,7 @@ extension CarParkingLocationVC: GMSAutocompleteViewControllerDelegate {
         txtSearchBar.text =  place.formattedAddress ?? place.name
         
         Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         location(Lat: place.coordinate.latitude, Long: place.coordinate.longitude)
         addLocationModel.webserviceAddLocation(location: txtSearchBar.text ?? "", lat: place.coordinate.latitude, lng: place.coordinate.longitude)
         dismiss(animated: true, completion: nil)
@@ -347,7 +351,7 @@ extension CarParkingLocationVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrLocation.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:locationListCell = tblLocationList.dequeueReusableCell(withIdentifier: locationListCell.className) as! locationListCell
         cell.lblLocation.text = arrLocation[indexPath.row].location
@@ -365,6 +369,7 @@ extension CarParkingLocationVC:UITableViewDelegate,UITableViewDataSource{
         self.txtSearchBar.text = arrLocation[indexPath.row].location
         location(Lat: Double(arrLocation[indexPath.row].latitude) ?? 0.00, Long: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
         Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: Double(arrLocation[indexPath.row].latitude) ?? 0.00, longitude: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
+        Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Double(arrLocation[indexPath.row].latitude) ?? 0.00, longitude: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
         delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
         self.navigationController?.popViewController(animated: true)
     }

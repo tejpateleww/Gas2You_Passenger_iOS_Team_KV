@@ -25,6 +25,7 @@ class Singleton: NSObject{
     
     //MARK:- User' Custom Details
     var userCurrentLocation = CLLocation()
+    var carParkingLocation = CLLocation()
   
 //    func locationString() -> (latitude: String, longitude: String){
 //        return (String(userCurrentLocation?.latitude ?? 0.0), String(userCurrentLocation?.longitude ?? 0.0))

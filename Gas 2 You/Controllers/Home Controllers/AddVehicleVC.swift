@@ -8,13 +8,14 @@
 import UIKit
 
 
-protocol
-AddVehicleDelegate{
+protocol AddVehicleDelegate{
     func refreshVehicleScreen()
 }
+
 protocol editVehicleDelegate{
     func refreshVehicleScreenEdit()
 }
+
 class AddVehicleVC: BaseVC {
     @IBOutlet weak var lblMake: ThemeLabel!
     @IBOutlet weak var lblYear: ThemeLabel!
@@ -350,12 +351,16 @@ extension AddVehicleVC: UIPickerViewDelegate, UIPickerViewDataSource {
         } else if txtEnterColor.isFirstResponder {
             return colorVal[row].color
         } else if txtStateName.isFirstResponder{
+            
             return stateList[row].stateName
         }
         return colorVal[row].color
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        if(pickerView == self.statePicker){
+            self.txtLicencePlateNo.text = "\(stateList[row].stateCode ?? "") - "
+        }
+//
     }
 }
 extension AddVehicleVC: UITextFieldDelegate {
@@ -363,6 +368,16 @@ extension AddVehicleVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch textField {
         case txtLicencePlateNo:
+            
+            if let char = string.cString(using: String.Encoding.utf8) {
+                let isBackSpace = strcmp(char, "\\b")
+                if (isBackSpace == -92) {
+                    if(textField.text?.last == " "){
+                        return false
+                    }
+                }
+            }
+            
             let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-() "
             let currentString: NSString = txtLicencePlateNo.text! as NSString
             let newString: NSString =
