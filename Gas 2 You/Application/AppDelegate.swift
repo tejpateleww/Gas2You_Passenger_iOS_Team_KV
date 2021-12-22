@@ -56,6 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         FirebaseApp.configure()
         registerForPushNotifications()
         
+        ApplicationDelegate.shared.application(
+            application,
+            didFinishLaunchingWithOptions:
+                launchOptions
+        )
+        
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
                 // Show the app's signed-out state.
@@ -89,15 +95,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         }
     }
     
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        var handled: Bool
+//        handled = GIDSignIn.sharedInstance.handle(url)
+//        if handled {
+//            return true
+//        }
+//        return false
+//    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        var handled: Bool
-        handled = GIDSignIn.sharedInstance.handle(url)
-        if handled {
-            return true
-        }
-        return false
+        
+        return ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            options: options
+        )
     }
-   
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
         Singleton.sharedInstance.userCurrentLocation = location
