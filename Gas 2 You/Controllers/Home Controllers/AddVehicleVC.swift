@@ -243,7 +243,10 @@ class AddVehicleVC: BaseVC {
         let row = modelPicker.selectedRow(inComponent: 0);
         let contains = makeVal.contains(where: { $0.manufacturerName == txtOtherMake.text })
         let strTitle = "Please select"
+        var isVehicleError = false
+        let strTitleForVehicle = "Please enter"
         var messages: [String] = []
+        
         if txtEnterYear.text == ""{
             isvalid = false
             messages.append("year")
@@ -254,8 +257,10 @@ class AddVehicleVC: BaseVC {
             messages.append("make")
         }
         if SelectedMakeIndex == -1{
-            isvalid = false
-            Toast.show(title: UrlConstant.Required, message: "make is not available", state: .info)
+            if(isvalid){
+                isvalid = false
+                Toast.show(title: UrlConstant.Required, message: "make is not available", state: .info)
+            }
         }else{
             if isvalid, makeVal[SelectedMakeIndex].manufacturerName == "Other"{
                 if isvalid, txtOtherMake.text == ""{
@@ -280,6 +285,10 @@ class AddVehicleVC: BaseVC {
                     messages.append("Other model")
                 }
             }
+            if isvalid, txtEnterModel.text == ""{
+                isvalid = false
+                messages.append("model")
+            }
             if isvalid, txtEnterColor.text == ""{
                 isvalid = false
                 messages.append("color")
@@ -291,12 +300,20 @@ class AddVehicleVC: BaseVC {
             
             if isvalid, txtLicencePlateNo.text == "" {
                 isvalid = false
+                isVehicleError = true
+                messages.append(txtLicencePlateNo.placeholder?.lowercased() ?? "")
+            }
+            
+            let fullLicenceArr = txtLicencePlateNo.text?.components(separatedBy: "- ")
+            if(fullLicenceArr?[1] == nil || fullLicenceArr?[1] == ""){
+                isvalid = false
+                isVehicleError = true
                 messages.append(txtLicencePlateNo.placeholder?.lowercased() ?? "")
             }
         }
         
         if messages.isEmpty == false {
-            let messageStr = messages.map({"\(strTitle) \($0)"}).joined(separator: "\n")
+            let messageStr = (isVehicleError) ? messages.map({"\(strTitleForVehicle) \($0)"}).joined(separator: "\n") : messages.map({"\(strTitle) \($0)"}).joined(separator: "\n")
             Toast.show(title: UrlConstant.Required, message: messageStr, state: .info)
         }
         return isvalid

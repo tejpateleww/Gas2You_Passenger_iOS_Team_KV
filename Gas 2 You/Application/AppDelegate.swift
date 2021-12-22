@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     static var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
+    let signInConfig = GIDConfiguration.init(clientID: "651860703785-am67b73lv131cjjv47dhpsf079e4cfic.apps.googleusercontent.com")
 
     //Location
     var locationService = LocationService()
@@ -45,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         ApplicationDelegate.initializeSDK(nil)
-        GIDSignIn.sharedInstance().clientID = "651860703785-am67b73lv131cjjv47dhpsf079e4cfic.apps.googleusercontent.com"
+        // GIDSignIn.sharedInstance().clientID = "651860703785-am67b73lv131cjjv47dhpsf079e4cfic.apps.googleusercontent.com"
         // Thread.sleep(forTimeInterval: 3.0)
         IQKeyboardManager.shared.enable = true
         GMSServices.provideAPIKey("AIzaSyAiBKDiFXeYbV2f23EBtmpk8pmZYgNgExo")
@@ -54,9 +55,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
         registerForPushNotifications()
+        
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+                // Show the app's signed-out state.
+            } else {
+                // Show the app's signed-in state.
+            }
+        }
+        
         return true
     }
     // MARK: - LocationManagerDelegate
+    
+    
     
     func setUpLocationServices() {
         locationManager = CLLocationManager()
@@ -78,17 +90,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return ApplicationDelegate.shared.application(
-            app,
-            open: url,
-            options: options
-        )
+        var handled: Bool
+        handled = GIDSignIn.sharedInstance.handle(url)
+        if handled {
+            return true
+        }
+        return false
     }
    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
         Singleton.sharedInstance.userCurrentLocation = location
-        //print(location.coordinate.latitude)
     }
     // MARK: - LocationManagerDelegate
     
@@ -198,20 +210,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
 
     func dologout(){
         for (key, _) in UserDefaults.standard.dictionaryRepresentation() {
-
+            
             if key != UserDefaultsKey.DeviceToken.rawValue && key  != "language"  {
                 UserDefaults.standard.removeObject(forKey: key)
             }
         }
-
+        
         Constants.userDefaults.setValue(false, forKey: UserDefaultsKey.isUserLogin.rawValue)
         Singleton.sharedInstance.clearSingletonClass()
         Constants.userDefaults.setUserData()
         Constants.userDefaults.synchronize()
         AppDel.navigateToLogin()
     }
-    
-    
 }
 
 

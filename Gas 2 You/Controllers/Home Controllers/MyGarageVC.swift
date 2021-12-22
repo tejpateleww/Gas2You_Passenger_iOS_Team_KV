@@ -38,7 +38,7 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
     
     @IBAction func btnAddVehicleTap(_ sender: ThemeButton) {
         
-        if(Singleton.sharedInstance.userProfilData?.is_membership_user == false){
+        if(Singleton.sharedInstance.userProfilData?.is_membership_user == false && self.arrVehicalList.count > 0){
             Toast.show(title: UrlConstant.Failed, message: "Please upgrade your plan to add multiple vehicle", state: .info)
         }else{
             if #available(iOS 13.0, *) {
@@ -139,8 +139,7 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
         if arrVehicalList.count != 0{
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
             self.removeVehicle.webserviceofRemovevehical(vehicleId: self.arrVehicalList[indexPath.row].id ?? "", row: indexPath.row)
-            
-            // Perform your action here
+            //Perform your action here
             completion(true)
         }
 

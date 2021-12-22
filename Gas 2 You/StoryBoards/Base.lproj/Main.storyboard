@@ -4018,23 +4018,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tho-SB-xDG" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
+                                <rect key="frame" x="20" y="807" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rwa-3J-enD"/>
+                                </constraints>
+                                <state key="normal" title="Pay Now"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="background">
+                                        <color key="value" red="0.10980392160000001" green="0.45882352939999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnPayNowTap:" destination="blU-FC-JNt" eventType="touchUpInside" id="Vqa-cn-p1A"/>
+                                    <action selector="btnPayNowTap:" destination="J3m-Gm-hFp" eventType="touchUpInside" id="rgL-bx-weI"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYI-dX-pSa">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9er-oL-V7L">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDl-vu-IF5">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="746"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Eb-e0-6aa">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="746"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_member" translatesAutoresizingMaskIntoConstraints="NO" id="Qsb-sq-8BU">
                                                                 <rect key="frame" x="0.0" y="10" width="414" height="255.5"/>
                                                             </imageView>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zXu-PP-c4I">
-                                                                <rect key="frame" x="24" y="275.5" width="366" height="450.5"/>
+                                                                <rect key="frame" x="24" y="275.5" width="366" height="482.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="membershipPlanCell" id="Kxp-Zz-WVa" customClass="membershipPlanCell" customModule="Gas_2_You" customModuleProvider="target">
@@ -4144,7 +4170,7 @@
                                                             <constraint firstItem="Qsb-sq-8BU" firstAttribute="centerX" secondItem="8Eb-e0-6aa" secondAttribute="centerX" id="Bgc-Fb-P8Z"/>
                                                             <constraint firstItem="zXu-PP-c4I" firstAttribute="leading" secondItem="8Eb-e0-6aa" secondAttribute="leading" constant="24" id="QSH-v2-leV"/>
                                                             <constraint firstItem="zXu-PP-c4I" firstAttribute="top" secondItem="Qsb-sq-8BU" secondAttribute="bottom" constant="10" id="Vew-na-gi5"/>
-                                                            <constraint firstAttribute="bottom" secondItem="zXu-PP-c4I" secondAttribute="bottom" constant="20" id="mjc-yq-CTa"/>
+                                                            <constraint firstAttribute="bottom" secondItem="zXu-PP-c4I" secondAttribute="bottom" id="mjc-yq-CTa"/>
                                                             <constraint firstAttribute="trailing" secondItem="zXu-PP-c4I" secondAttribute="trailing" constant="24" id="pI2-ya-qdN"/>
                                                             <constraint firstAttribute="trailing" secondItem="Qsb-sq-8BU" secondAttribute="trailing" id="r1G-ZC-lFo"/>
                                                         </constraints>
@@ -4166,51 +4192,6 @@
                                                     </mask>
                                                 </variation>
                                             </scrollView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vof-SW-HWo">
-                                                <rect key="frame" x="0.0" y="758" width="414" height="60"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tho-SB-xDG" customClass="ThemeButton" customModule="Gas_2_You" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="5" width="374" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="rwa-3J-enD"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Pay Now"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                                                <real key="value" value="16"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="background">
-                                                                <color key="value" red="0.10980392160000001" green="0.45882352939999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
-                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                                                <real key="value" value="9"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="btnPayNowTap:" destination="blU-FC-JNt" eventType="touchUpInside" id="Vqa-cn-p1A"/>
-                                                            <action selector="btnPayNowTap:" destination="J3m-Gm-hFp" eventType="touchUpInside" id="rgL-bx-weI"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="Tho-SB-xDG" secondAttribute="bottom" constant="5" id="7ty-4y-GMk"/>
-                                                    <constraint firstItem="Tho-SB-xDG" firstAttribute="leading" secondItem="Vof-SW-HWo" secondAttribute="leading" constant="20" id="G9q-aP-dHE"/>
-                                                    <constraint firstItem="Tho-SB-xDG" firstAttribute="top" secondItem="Vof-SW-HWo" secondAttribute="top" constant="5" id="ace-kl-bIp"/>
-                                                    <constraint firstItem="Tho-SB-xDG" firstAttribute="centerX" secondItem="Vof-SW-HWo" secondAttribute="centerX" id="hKR-kw-tAf"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Tho-SB-xDG" secondAttribute="trailing" constant="20" id="uEz-3W-56l"/>
-                                                </constraints>
-                                                <variation key="heightClass=regular-widthClass=regular">
-                                                    <mask key="constraints">
-                                                        <exclude reference="G9q-aP-dHE"/>
-                                                        <exclude reference="uEz-3W-56l"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -4227,22 +4208,22 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="eYI-dX-pSa" firstAttribute="top" secondItem="5mw-YH-71A" secondAttribute="top" id="056-CL-0F7"/>
-                            <constraint firstItem="Tho-SB-xDG" firstAttribute="width" secondItem="wZe-Ab-5G6" secondAttribute="width" multiplier="0.7" id="2Du-2O-ynx"/>
                             <constraint firstItem="8Eb-e0-6aa" firstAttribute="width" secondItem="wZe-Ab-5G6" secondAttribute="width" multiplier="0.7" id="MLH-PM-M4R"/>
+                            <constraint firstItem="Tho-SB-xDG" firstAttribute="top" secondItem="eYI-dX-pSa" secondAttribute="bottom" constant="5" id="P5I-sI-CLg"/>
                             <constraint firstItem="eYI-dX-pSa" firstAttribute="trailing" secondItem="5mw-YH-71A" secondAttribute="trailing" id="PJC-eu-ez6"/>
-                            <constraint firstItem="5mw-YH-71A" firstAttribute="bottom" secondItem="eYI-dX-pSa" secondAttribute="bottom" id="ZsC-yr-wCE"/>
+                            <constraint firstItem="5mw-YH-71A" firstAttribute="trailing" secondItem="Tho-SB-xDG" secondAttribute="trailing" constant="20" id="dZx-en-rTd"/>
                             <constraint firstItem="eYI-dX-pSa" firstAttribute="leading" secondItem="5mw-YH-71A" secondAttribute="leading" id="ggI-SY-p70"/>
+                            <constraint firstItem="5mw-YH-71A" firstAttribute="bottom" secondItem="Tho-SB-xDG" secondAttribute="bottom" constant="5" id="kV5-Jd-vhJ"/>
+                            <constraint firstItem="Tho-SB-xDG" firstAttribute="leading" secondItem="5mw-YH-71A" secondAttribute="leading" constant="20" id="sgX-wf-wtc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="MLH-PM-M4R"/>
-                                <exclude reference="2Du-2O-ynx"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
                                 <include reference="MLH-PM-M4R"/>
-                                <include reference="2Du-2O-ynx"/>
                             </mask>
                         </variation>
                     </view>

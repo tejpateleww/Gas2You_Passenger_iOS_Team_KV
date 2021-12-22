@@ -12,13 +12,13 @@ import FBSDKLoginKit
 import UIKit
 
 class SocialUser: Codable{
-    var userId : String = ""
-    var token : String = ""
-    var firstName : String = ""
-    var lastName : String = ""
-    var email : String? = nil
-    var profile : String = ""
-    var socialType : String = ""
+    var userId : String?
+    var token : String?
+    var firstName : String?
+    var lastName : String?
+    var email : String?
+    var profile : String?
+    var socialType : String?
 }
 
 enum LoginResult {
@@ -84,43 +84,73 @@ class FacebookLoginProvider {
     }
 }
 
-class GoogleLoginProvider: NSObject {
+//class GoogleLoginProvider: NSObject {
+//
+//    var delegate : SocialSignInDelegate? = nil
+//
+//    init(_ viewController: UIViewController) {
+//        super.init()
+//        GIDSignIn.sharedInstance()?.presentingViewController = viewController
+//        GIDSignIn.sharedInstance().delegate = self
+//        GIDSignIn.sharedInstance()?.signIn()
+//    }
+//}
+//
+//extension GoogleLoginProvider: GIDSignInDelegate {
+//     @objc func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+//        guard error == nil else {
+//            let errorCode = (error as NSError).code
+//            if let signInError = GIDSignInErrorCode(rawValue: errorCode) {
+//                if case .canceled = signInError {
+//                    self.delegate?.FetchUser(socialType: .Google, success: false, user: nil, error: "Cancelled")
+//                    return
+//                }
+//            }
+//
+//            self.delegate?.FetchUser(socialType: .Google, success: false, user: nil, error: error.localizedDescription)
+//            return
+//        }
+//
+//        let obj = SocialUser()
+//        obj.socialType = SocialType.Google.rawValue
+//        obj.userId = user.userID
+//        obj.token = user.authentication.idToken
+//        obj.email = user.profile.email
+//        obj.firstName = user.profile.givenName ?? ""
+//        obj.lastName = user.profile.familyName ?? ""
+//        obj.profile = user.profile.imageURL(withDimension: 200)?.absoluteString ?? ""
+//
+//        self.delegate?.FetchUser(socialType: .Google, success: true, user: obj, error: nil)
+//    }
+//}
 
+class GoogleLoginProvider: NSObject {
+    
     var delegate : SocialSignInDelegate? = nil
     
     init(_ viewController: UIViewController) {
         super.init()
-        GIDSignIn.sharedInstance()?.presentingViewController = viewController
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.signIn()
-    }
-}
-
-extension GoogleLoginProvider: GIDSignInDelegate {
-     @objc func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        guard error == nil else {
-            let errorCode = (error as NSError).code
-            if let signInError = GIDSignInErrorCode(rawValue: errorCode) {
-                if case .canceled = signInError {
-                    self.delegate?.FetchUser(socialType: .Google, success: false, user: nil, error: "Cancelled")
-                    return
-                }
+        
+        GIDSignIn.sharedInstance.signIn(with: AppDel.signInConfig, presenting: viewController) { user, error in
+            if let err = error {
+                self.delegate?.FetchUser(socialType: .Google, success: false, user: nil, error: err.localizedDescription)
+                return
+            }else if let userObj = user{
+                let obj = SocialUser()
+                obj.socialType = SocialType.Google.rawValue
+                obj.userId = userObj.userID
+                obj.token = userObj.authentication.idToken
+                obj.email = userObj.profile?.email
+                obj.firstName = userObj.profile?.givenName
+                obj.lastName = userObj.profile?.familyName
+                obj.profile = userObj.profile?.imageURL(withDimension: 200)?.absoluteString
+                
+                self.delegate?.FetchUser(socialType: .Google, success: true, user: obj, error: nil)
+            }else{
+                self.delegate?.FetchUser(socialType: .Google, success: false, user: nil, error: UrlConstant.SomethingWentWrong)
+                return
             }
-            
-            self.delegate?.FetchUser(socialType: .Google, success: false, user: nil, error: error.localizedDescription)
-            return
         }
-
-        let obj = SocialUser()
-        obj.socialType = SocialType.Google.rawValue
-        obj.userId = user.userID
-        obj.token = user.authentication.idToken
-        obj.email = user.profile.email
-        obj.firstName = user.profile.givenName ?? ""
-        obj.lastName = user.profile.familyName ?? ""
-        obj.profile = user.profile.imageURL(withDimension: 200)?.absoluteString ?? ""
-
-        self.delegate?.FetchUser(socialType: .Google, success: true, user: obj, error: nil)
     }
 }
 

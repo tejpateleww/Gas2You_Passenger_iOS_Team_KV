@@ -14,7 +14,7 @@ target 'Gas 2 You' do
   pod 'lottie-ios'
   pod 'MKProgress'
   pod 'GooglePlaces'
-  pod 'GoogleSignIn','5.0.2'
+  pod 'GoogleSignIn', '6.1.0'
   pod 'FBSDKLoginKit'
   pod 'UIView-Shimmer', '~> 1.0'
   pod 'SwiftMessages'
