@@ -419,7 +419,7 @@ extension AddVehicleVC: UITextFieldDelegate {
                 return (string == filtered) ? (newString.length <= 20) : false
             }
         case txtOtherModel:
-            let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
+            let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789- "
             let currentString: NSString = txtOtherModel.text! as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
@@ -459,8 +459,11 @@ extension AddVehicleVC: UITextFieldDelegate {
         }else if textField == txtOtherModel{
             self.isothermodel = true
             self.isotherMake = true
+        }else if textField == txtOtherMake{
+            self.isotherMake = true
         }
     }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         switch textField {
         case txtEnterYear:
