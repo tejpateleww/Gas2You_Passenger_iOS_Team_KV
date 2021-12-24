@@ -165,10 +165,17 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     func addNotificationObs(){
         NotificationCenter.default.removeObserver(self, name: .openCarDoorScreen, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.openCarDoor), name: .openCarDoorScreen, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: .clearAddonArray, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.clearAddonArray), name: .clearAddonArray, object: nil)
     }
     
     @objc func openCarDoor() {
         AppDel.showCarDoorOpenVC()
+    }
+    
+    @objc func clearAddonArray() {
+        self.addonid = []
     }
     
     
@@ -462,14 +469,16 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
             if nonmemberplanlist[indexPath.row].title == "Service Charge" || nonmemberplanlist[indexPath.row].title == "Windshield Washer Fluid Refill"{
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
-                
-                if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
-                    self.addonid.remove(at: index)
-                }
             }else{
                 cell.lblPrice.text = "Free"
+                if nonmemberplanlist[indexPath.row].isChecked ?? false{
+                    if(!self.addonid.contains(nonmemberplanlist[indexPath.row].id ?? "-1")){
+                        self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+                    }
+                }
             }
             cell.imgCheck.image = (nonmemberplanlist[indexPath.row].isChecked == true) ? UIImage(named: "IC_selectedBlue") : UIImage(named: "IC_unselectedBlue")
+            
         }else{
             if nonmemberplanlist[indexPath.row].title == "Service Charge"{ // || nonmemberplanlist[indexPath.row].title == "Windshield Washer Fluid Refill"
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
@@ -498,10 +507,33 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
-            nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
-            tblNonMemberPLan.reloadData()
+            if(nonmemberplanlist[indexPath.row].isChecked == true && nonmemberplanlist[indexPath.row].title != "Windshield Washer Fluid Refill"){
+                return
+            }else{
+                nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
+                
+                if(self.addonid.contains(nonmemberplanlist[indexPath.row].id ?? "-1")){
+                    if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
+                        self.addonid.remove(at: index)
+                    }
+                }else{
+                    self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+                }
+                
+                tblNonMemberPLan.reloadData()
+            }
+          
         }else{
             nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
+            
+            if(self.addonid.contains(nonmemberplanlist[indexPath.row].id ?? "-1")){
+                if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
+                    self.addonid.remove(at: index)
+                }
+            }else{
+                self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+            }
+            
             tblNonMemberPLan.reloadData()
         }
     }

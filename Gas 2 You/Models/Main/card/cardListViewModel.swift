@@ -51,6 +51,7 @@ class cardListViewModel{
                 Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure)
             }
             if status{
+                NotificationCenter.default.post(name: .clearAddonArray, object: nil)
                 let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
                 self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
             }
