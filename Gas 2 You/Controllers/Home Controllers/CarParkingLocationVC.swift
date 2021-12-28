@@ -21,13 +21,12 @@ class CarParkingLocationVC: BaseVC {
     @IBOutlet weak var btnMap: UIButton!
     @IBOutlet weak var tblLocationList: UITableView!
     @IBOutlet weak var vwThemeview: ThemeView!
+    @IBOutlet weak var vwThemeviewHeight: NSLayoutConstraint!
+    @IBOutlet weak var tblLocationListHeight: NSLayoutConstraint!
     
     var delegatetext : searchDataDelegate!
     var locationManager = CLLocationManager()
     var place = ""
-    var PlaceName = userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String
-    var latitude = userDefault.object(forKey: UserDefaultsKey.Latitude.rawValue) as? Double
-    var longitude = userDefault.object(forKey: UserDefaultsKey.longitude.rawValue) as? Double
     var sublocality = ""
     var thoroughfare = ""
     var path = GMSPath()
@@ -44,39 +43,40 @@ class CarParkingLocationVC: BaseVC {
         addLocationModel.AddLocation = self
         addLocationModel.webserviceLocationList()
         
-        self.mapView.mapType = .normal
-        if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as? String == nil{
-            txtSearchBar.text = place
-            location(Lat: latitude ?? 0.0, Long: longitude ?? 0.0)
-            self.mapView.clear()
-            self.path = GMSPath()
-            self.polyline = GMSPolyline()
-            
-            self.CurrentLocLat = String(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude)
-            self.CurrentLocLong = String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
-            
-            let camera = GMSCameraPosition.camera(withLatitude: self.latitude ?? 0.00, longitude: self.longitude ?? 0.0, zoom: 18.0)
-            self.mapView.camera = camera
-            
-            let marker = GMSMarker()
-            let markerImage = UIImage(named: "IC_pinImg")
-            let markerView = UIImageView(image: markerImage)
-            marker.position = CLLocationCoordinate2D(latitude:  self.latitude ?? 0.00, longitude: self.longitude ?? 0.0)
-            self.getAddressFromLatLon(pdblLatitude: String(self.latitude ?? 0.00), withLongitude: String(self.longitude ?? 0.00))
-            marker.iconView = markerView
-            marker.map = mapView
-        }else{
-            txtSearchBar.text = PlaceName
-            location(Lat: latitude ?? 0.0, Long: longitude ?? 0.0)
-            setupMap()
-        }
-        tblLocationList.delegate = self
-        tblLocationList.dataSource = self
-        tblLocationList.reloadData()
         mapView.delegate = self
+        
+        if(Singleton.sharedInstance.carParkingLocation.coordinate.latitude != 0.0 && Singleton.sharedInstance.carParkingLocation.coordinate.longitude != 0.0){
+            location(Lat: Singleton.sharedInstance.carParkingLocation.coordinate.latitude, Long: Singleton.sharedInstance.carParkingLocation.coordinate.longitude)
+        }else{
+            location(Lat: Singleton.sharedInstance.userCurrentLocation.coordinate.latitude, Long: Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
+        }
+        
+        self.getAddressFromLatLon(pdblLatitude: String( Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
+        
+        self.vwThemeview.isHidden = true
+        self.tblLocationList.delegate = self
+        self.tblLocationList.dataSource = self
+        self.tblLocationList.showsVerticalScrollIndicator = false
+        self.tblLocationList.isScrollEnabled = false
+        self.tblLocationList.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
+        
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "", controller: self)
-        //        setUIMapPin()
-        //        checkMapPermission()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.vwThemeviewHeight.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.updateViewConstraints()
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        self.tblLocationList.layer.removeAllAnimations()
+        self.vwThemeviewHeight.constant = self.tblLocationList.contentSize.height
+        self.tblLocationListHeight.constant = self.tblLocationList.contentSize.height
+        UIView.animate(withDuration: 0.5) {
+            self.updateViewConstraints()
+        }
     }
     
     @IBAction func btnSateliteClick(_ sender: UIButton) {
@@ -90,7 +90,6 @@ class CarParkingLocationVC: BaseVC {
     
     override func BackButtonWithTitle(button: UIButton) {
         self.navigationController?.popViewController(animated: true)
-        //delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
     }
     
     func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
@@ -106,14 +105,12 @@ class CarParkingLocationVC: BaseVC {
         let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
         
         
-        ceo.reverseGeocodeLocation(loc, completionHandler:
-                                    {(placemarks, error) in
-            if (error != nil)
-            {
+        ceo.reverseGeocodeLocation(loc, completionHandler:{(placemarks, error) in
+            if (error != nil){
                 print("reverse geodcode fail: \(error!.localizedDescription)")
             }
-            let pm = placemarks! as [CLPlacemark]
             
+            let pm = placemarks! as [CLPlacemark]
             if pm.count > 0 {
                 let pm = placemarks![0]
                 var addressString : String = ""
@@ -134,8 +131,6 @@ class CarParkingLocationVC: BaseVC {
                 if pm.postalCode != nil {
                     addressString = addressString + pm.postalCode! + " "
                 }
-                //                        self.PlaceName = addressString
-                userDefault.setValue(addressString, forKey: UserDefaultsKey.PlaceName.rawValue)
                 self.txtSearchBar.text = addressString
                 print(addressString)
             }
@@ -179,7 +174,6 @@ class CarParkingLocationVC: BaseVC {
         let markerView = UIImageView(image: markerImage)
         marker.position = CLLocationCoordinate2D(latitude:  Double(self.CurrentLocLat) ?? 0.0, longitude: Double(self.CurrentLocLong) ?? 0.0)
         marker.iconView = markerView
-        //        marker.title = cartDetails?.name
         marker.map = mapView
     }
     
@@ -285,7 +279,7 @@ extension CarParkingLocationVC: GMSMapViewDelegate {
             view.frame.size.height = view.titleLabel.bounds.size.height - 15
             view.sizeToFit()
         }else{
-            view.titleLabel.text = PlaceName
+            view.titleLabel.text = place
             view.titleLabel.textAlignment = .left
             view.imgArrow.isHidden = false
             view.imgArrowHeigh.constant = 20
@@ -309,20 +303,12 @@ extension CarParkingLocationVC: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name ?? "")")
-        print("Place address: \(place.formattedAddress ?? "")")
-        userDefault.setValue(place.name, forKey: UserDefaultsKey.PlaceName.rawValue)
-        userDefault.setValue(place.coordinate.longitude, forKey: UserDefaultsKey.longitude.rawValue)
-        userDefault.setValue(place.coordinate.latitude, forKey: UserDefaultsKey.Latitude.rawValue)
-        
-        userDefault.synchronize()
-        
+
         txtSearchBar.text =  place.formattedAddress ?? place.name
-        
-        Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         location(Lat: place.coordinate.latitude, Long: place.coordinate.longitude)
         addLocationModel.webserviceAddLocation(location: txtSearchBar.text ?? "", lat: place.coordinate.latitude, lng: place.coordinate.longitude)
+        delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
         dismiss(animated: true, completion: nil)
     }
     
@@ -361,14 +347,8 @@ extension CarParkingLocationVC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        userDefault.setValue(arrLocation[indexPath.row].location, forKey: UserDefaultsKey.PlaceName.rawValue)
-        userDefault.setValue(arrLocation[indexPath.row].longitude, forKey: UserDefaultsKey.longitude.rawValue)
-        userDefault.setValue(arrLocation[indexPath.row].latitude, forKey: UserDefaultsKey.Latitude.rawValue)
-        userDefault.synchronize()
-        
         self.txtSearchBar.text = arrLocation[indexPath.row].location
         location(Lat: Double(arrLocation[indexPath.row].latitude) ?? 0.00, Long: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
-        Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: Double(arrLocation[indexPath.row].latitude) ?? 0.00, longitude: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
         Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Double(arrLocation[indexPath.row].latitude) ?? 0.00, longitude: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
         delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
         self.navigationController?.popViewController(animated: true)

@@ -120,7 +120,8 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         }
         tblDetails.delegate = self
         tblDetails.dataSource = self
-        tblDetails.reloadData()
+        
+        btnDownloadInvoice.centerTextAndImage(spacing: 5)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -142,6 +143,11 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
             self.tblDetailsHeight.constant = tblDetails.contentSize.height
         }
     }
+    
+    func stopShimmer(){
+        self.view.setTemplateWithSubviews(false)
+    }
+    
     func setData(){
         let makename = objBookingDetail?.makeName ?? ""
         let modelName = objBookingDetail?.modelName ?? ""
@@ -163,6 +169,9 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         }else{
             vwRating.isHidden = false
             vwReviewFeedBack.isHidden = false
+            if(objBookingDetail?.review == ""){
+                vwReviewFeedBack.isHidden = true
+            }
             btnGiveRateReview.isHidden = true
         }
         

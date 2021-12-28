@@ -68,6 +68,7 @@ class ChatViewController: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.txtviewComment.isUserInteractionEnabled = false
         self.prepareView()
         if isFromPush{
             self.callChatHistoryAPI()

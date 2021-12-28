@@ -84,45 +84,29 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var availableDate : [String] = []
     var todaysDate = NSDate()
     
-    //    var timeSlotDate = [String]()
     
-    //MARK:- GLOBAL PROPERTIES
-    
-    
-    
-    //MARK:- VIEW LIFE CYCLE
-    
+    //MARK: - VIEW LIFE CYCLE
     override func viewWillAppear(_ animated: Bool) {
         self.addNotificationObs()
-        if listOfVehicle.count >= 1{
-            btnAddVehicleData.isHidden = true
-            txtSelectedVehicle.isHidden = false
-        }else{
-            txtSelectedVehicle.isHidden = true
-            btnAddVehicleData.isHidden = false
-        }
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "MessageScreenNotification"), object: nil, userInfo: nil)
-        if userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) != nil , userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) as! String  != ""{
-            locationLabel.text = PlaceName
-        }else if Singleton.sharedInstance.userCurrentLocation.coordinate.latitude == 0.0 && Singleton.sharedInstance.userCurrentLocation.coordinate.longitude == 0.0 && userDefault.object(forKey: UserDefaultsKey.PlaceName.rawValue) == nil{
+        
+        if Singleton.sharedInstance.userCurrentLocation.coordinate.latitude == 0.0 && Singleton.sharedInstance.userCurrentLocation.coordinate.longitude == 0.0{
             locationLabel.text = "Please Select Address"
         }else{
-            Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Singleton.sharedInstance.userCurrentLocation.coordinate.latitude, longitude: Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
+            Singleton.sharedInstance.userCurrentLocation = CLLocation(latitude: Singleton.sharedInstance.userCurrentLocation.coordinate.latitude, longitude: Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
             self.getAddressFromLatLon(pdblLatitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
         }
+        
         collectionViewSubService.delegate = self
         collectionViewSubService.dataSource = self
         collectionTimeList.delegate = self
         collectionTimeList.dataSource = self
         tblNonMemberPLan.delegate = self
         tblNonMemberPLan.dataSource = self
-        tblNonMemberPLan.reloadData()
         tblNonMemberPLan.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
         addBookingData.addbooking = self
         ServiceListData.serviceList = self
@@ -152,13 +136,29 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         LblOctane.text = "93 Octane"
         dismissPickerView()
-
         
     }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         NavbarrightButton()
         NavBarTitle(isOnlyTitle: false, isMenuButton: true, title: "Schedule Service", controller: self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
+        if(keyPath == "contentSize"){
+            self.tblNonMemberPlanHeight.constant = tblNonMemberPLan.contentSize.height
+        }
     }
     
     //MARK: - Custom methods
@@ -168,6 +168,9 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         NotificationCenter.default.removeObserver(self, name: .clearAddonArray, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.clearAddonArray), name: .clearAddonArray, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
     }
     
     @objc func openCarDoor() {
@@ -178,16 +181,28 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         self.addonid = []
     }
     
-    
-    func setup(){
-        if listOfVehicle.count != 0{
-            btnAddVehicleData.isHidden = true
-            txtSelectedVehicle.isHidden = false
-        }else{
-            txtSelectedVehicle.isHidden = true
-            btnAddVehicleData.isHidden = false
-        }
+    @objc func refreshVehicleList(){
+        vehicleListData.webserviceofgetvehicalListforHome()
     }
+    
+    @objc func refreshhomescreen(){
+        ServiceListData.webserviceofserviceList()
+        vehicleListData.webserviceofgetvehicalListforHome()
+        nonmemberListData.webserviceofNonMemberPlanList()
+        
+        dateSelected = 0
+        collectionTimeList.reloadData()
+    }
+    
+//    func setup(){
+//        if listOfVehicle.count != 0{
+//            btnAddVehicleData.isHidden = true
+//            txtSelectedVehicle.isHidden = false
+//        }else{
+//            txtSelectedVehicle.isHidden = true
+//            btnAddVehicleData.isHidden = false
+//        }
+//    }
     func dismissPickerView() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -199,13 +214,11 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         txtSelectedVehicle.inputAccessoryView = toolBar
         txtDateSelected.inputAccessoryView = toolBar
     }
-
-    @objc func refreshVehicleList(){
-        vehicleListData.webserviceofgetvehicalListforHome()
-    }
+    
     func refreshVehicleScreen() {
         vehicleListData.webserviceofgetvehicalListforHome()
     }
+    
     func convertDateFormat(inputDate: String) -> String {
         
         let olDateFormatter = DateFormatter()
@@ -218,28 +231,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         return convertDateFormatter.string(from: oldDate!)
     }
-    @objc func refreshhomescreen(){
-        ServiceListData.webserviceofserviceList()
-        vehicleListData.webserviceofgetvehicalListforHome()
-        nonmemberListData.webserviceofNonMemberPlanList()
-        
-        dateSelected = 0
-        collectionTimeList.reloadData()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-    }
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
-        if(keyPath == "contentSize"){
-            self.tblNonMemberPlanHeight.constant = tblNonMemberPLan.contentSize.height
-        }
-    }
+    
+    
     func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
         let lat: Double = Double("\(pdblLatitude)") ?? 0.0
@@ -289,6 +282,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         addVehicleVC.delegateAdd = self
         self.navigationController?.pushViewController(addVehicleVC, animated: true)
     }
+    
     @IBAction func btnParkingLocationTap(_ sender: UIButton) {
         let LocationStatus = CLLocationManager.authorizationStatus()
         if LocationStatus == .notDetermined {
@@ -314,26 +308,23 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
             navigationController?.pushViewController(carParkingLocationVC, animated: true)
         }
     }
+    
     @IBAction func btnSelectVehicleTap(_ sender: UIButton) {
         
         if listOfVehicle.count == 0 {
             let addVehicleVC:AddVehicleVC = AddVehicleVC.instantiate(fromAppStoryboard: .Main)
             addVehicleVC.delegateAdd = self
             self.navigationController?.pushViewController(addVehicleVC, animated: true)
-            // show button for adding new vehicle
-        } else {
-            
-            
-            //            setServicePicker()
-            //            setVehiclePicker()
         }
     }
-    //Mark CheckLocation
+    
     @IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
         if self.listOfVehicle.count == 0{
             Toast.show(title: UrlConstant.Required, message:"No vehicle has been added yet, please add vehicle to proceed further!", state: .info)
-        }else if(self.locationLabel.text == ""){
+        }else if(self.locationLabel.text == "" || self.locationLabel.text == "Please Select Address"){
             Toast.show(title: UrlConstant.Required, message:"Please select parking location", state: .info)
+        }else if(self.txtSelectedVehicle.text == "" || self.txtSelectedVehicle.text == "Select Your Vehicle"){
+            Toast.show(title: UrlConstant.Required, message:"Please select Your Vehicle", state: .info)
         }else {
             let LocationStatus = CLLocationManager.authorizationStatus()
             if LocationStatus == .notDetermined {
@@ -364,10 +355,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     
     @IBAction func btnDatePickerTap(_ sender: UIButton) {
         
-        
     }
-    
-    //MARK:- OTHER METHODS
     
     @objc func onDoneButtonTappedService() {
         if txtSelectedService.isFirstResponder {
@@ -417,8 +405,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     }
 }
 
-//MARK:- EXTENSIONS
-
+//MARK: - EXTENSIONS
 extension HomeVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -522,7 +509,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
                 
                 tblNonMemberPLan.reloadData()
             }
-          
+            
         }else{
             nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
             
@@ -625,6 +612,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         }
     }
 }
+
 extension HomeVC: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         switch textField {

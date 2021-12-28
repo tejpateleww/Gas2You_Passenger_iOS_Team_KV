@@ -1042,7 +1042,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="160"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="160" id="dSh-0e-YLN"/>
+                                            <constraint firstAttribute="height" constant="160" id="aWo-w9-oqS"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationListCell" id="EBh-Th-SCt" customClass="locationListCell" customModule="Gas_2_You" customModuleProvider="target">
@@ -1148,8 +1148,10 @@
                         <outlet property="btnMap" destination="xEX-qT-R9m" id="8OL-1v-Ngr"/>
                         <outlet property="mapView" destination="b3d-9H-WWL" id="FhV-ET-RuH"/>
                         <outlet property="tblLocationList" destination="vpa-jm-n8q" id="Juz-hq-bTL"/>
+                        <outlet property="tblLocationListHeight" destination="aWo-w9-oqS" id="btw-vr-k40"/>
                         <outlet property="txtSearchBar" destination="y60-eY-doO" id="e8E-hB-6vf"/>
                         <outlet property="vwThemeview" destination="ioN-br-OPu" id="w1Y-hk-xPB"/>
+                        <outlet property="vwThemeviewHeight" destination="FdJ-QP-LFN" id="Gnu-Pm-PLq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbe-eq-Pud" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1972,7 +1974,7 @@
                                                                                             <constraint firstAttribute="height" constant="46" id="vge-aD-vGg"/>
                                                                                         </constraints>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                                        <state key="normal" title="  DOWNLOAD INVOICE" image="IC_download">
+                                                                                        <state key="normal" title="    DOWNLOAD INVOICE" image="IC_download">
                                                                                             <color key="titleColor" red="0.12156862745098039" green="0.47450980392156861" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         </state>
                                                                                         <connections>
@@ -3165,7 +3167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="haG-IO-C8N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3128" y="810"/>
+            <point key="canvasLocation" x="3048" y="806"/>
         </scene>
         <!--My GarageVC-->
         <scene sceneID="Yff-de-VIu">
@@ -4107,7 +4109,7 @@
                                                                                             <rect key="frame" x="0.0" y="24" width="366" height="150"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member ship plan description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVJ-C8-DIT" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="366" height="150"/>
+                                                                                                    <rect key="frame" x="8" y="8" width="350" height="134"/>
                                                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                                     <nil key="textColor"/>
@@ -4122,11 +4124,11 @@
                                                                                             </subviews>
                                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                             <constraints>
-                                                                                                <constraint firstItem="sVJ-C8-DIT" firstAttribute="top" secondItem="fOG-25-8G1" secondAttribute="top" id="89a-6d-Tkr"/>
+                                                                                                <constraint firstItem="sVJ-C8-DIT" firstAttribute="top" secondItem="fOG-25-8G1" secondAttribute="top" constant="8" id="89a-6d-Tkr"/>
                                                                                                 <constraint firstAttribute="height" constant="150" id="KLo-VN-8Gf"/>
-                                                                                                <constraint firstAttribute="trailing" secondItem="sVJ-C8-DIT" secondAttribute="trailing" id="Ks8-kX-RZj"/>
-                                                                                                <constraint firstAttribute="bottom" secondItem="sVJ-C8-DIT" secondAttribute="bottom" id="RwP-P8-7d4"/>
-                                                                                                <constraint firstItem="sVJ-C8-DIT" firstAttribute="leading" secondItem="fOG-25-8G1" secondAttribute="leading" id="Xue-n3-fdd"/>
+                                                                                                <constraint firstAttribute="trailing" secondItem="sVJ-C8-DIT" secondAttribute="trailing" constant="8" id="Ks8-kX-RZj"/>
+                                                                                                <constraint firstAttribute="bottom" secondItem="sVJ-C8-DIT" secondAttribute="bottom" constant="8" id="RwP-P8-7d4"/>
+                                                                                                <constraint firstItem="sVJ-C8-DIT" firstAttribute="leading" secondItem="fOG-25-8G1" secondAttribute="leading" constant="8" id="Xue-n3-fdd"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                     </subviews>
@@ -5011,9 +5013,9 @@ is completed</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0B8-GA-aav">
-                                        <rect key="frame" x="25" y="202.5" width="364" height="413.5"/>
+                                        <rect key="frame" x="25" y="202.5" width="364" height="413"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RTV-vg-W9B">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="414"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="413"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_image-1" translatesAutoresizingMaskIntoConstraints="NO" id="5xb-s6-u9Y">
@@ -6855,6 +6857,9 @@ is completed</string>
         <designable name="0YW-UW-82g">
             <size key="intrinsicContentSize" width="120" height="20"/>
         </designable>
+        <designable name="NtG-sR-ss8">
+            <size key="intrinsicContentSize" width="215" height="35"/>
+        </designable>
     </designables>
     <resources>
         <image name="IC_Profile" width="60" height="60"/>
@@ -6888,7 +6893,7 @@ is completed</string>
         <image name="IC_unselectedBlue" width="21" height="21"/>
         <image name="Logo_image-1" width="158" height="123"/>
         <image name="bg_menu" width="375" height="813"/>
-        <image name="dummy_user" width="45" height="45"/>
+        <image name="dummy_user" width="74" height="75.5"/>
         <image name="ic_LocationList" width="10" height="14.5"/>
         <image name="ic_logout" width="26" height="26"/>
         <image name="ic_memberPlan" width="372.5" height="244"/>

@@ -51,10 +51,11 @@ class ChatUserModel{
                 self.chatViewController?.receiverID = response?.driverId ?? ""
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.chatViewController?.filterArrayData(isFromDidLoad: true)
+                    self.chatViewController?.txtviewComment.isUserInteractionEnabled = true
                 }
- 
             }else{
                 Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                self.chatViewController?.txtviewComment.isUserInteractionEnabled = true
             }
         })
     }

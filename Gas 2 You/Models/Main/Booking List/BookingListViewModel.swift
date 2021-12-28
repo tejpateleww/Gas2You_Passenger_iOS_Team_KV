@@ -77,15 +77,14 @@ class bookingDetailsViewModel{
     var BookingDetails : CompleteJobVC?
     func webservicebookingDetails(_ reqModel: bookingDetailReqModel){
         WebServiceSubClass.BookingDetail(reqModel: reqModel, completion: { (status, apiMessage, response, error)  in
+            self.BookingDetails?.stopShimmer()
             if status{
-                if let userData = response?.data{
-                    self.BookingDetails?.objBookingDetail = userData
-                    self.BookingDetails?.arrService = userData.services
-                    self.BookingDetails?.tblDetails.reloadData()
-                    self.BookingDetails?.setData()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.BookingDetails?.view.setTemplateWithSubviews(false)
-                    }
+                self.BookingDetails?.objBookingDetail = response?.data
+                self.BookingDetails?.arrService = response?.data.services ?? []
+                self.BookingDetails?.tblDetails.reloadData()
+                self.BookingDetails?.setData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.BookingDetails?.view.setTemplateWithSubviews(false)
                 }
             }
             else

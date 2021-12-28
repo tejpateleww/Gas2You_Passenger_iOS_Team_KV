@@ -70,7 +70,13 @@ class MyProfileVC: BaseVC{
             vwMember.isHidden = false
             lblType.text = (Singleton.sharedInstance.userProfilData?.type ?? "") + arrow
             lblPrice.text = CurrencySymbol + (Singleton.sharedInstance.userProfilData?.amount ?? "")
-            lblExpiryDate.text = Singleton.sharedInstance.userProfilData?.expiry_date
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let dateObj = dateFormatter.date(from: Singleton.sharedInstance.userProfilData?.expiry_date ?? "")
+            dateFormatter.dateFormat = "d MMM yyyy"
+            lblExpiryDate.text = (dateFormatter.string(from: dateObj ?? Date()))
+
             vwNonmember.isHidden = true
         }else{
             vwMember.isHidden = true

@@ -42,24 +42,21 @@ class VehicalListViewModel{
         vehicallistModel.customerid = Singleton.sharedInstance.userId
         WebServiceSubClass.vehicalList(reqModel: vehicallistModel) { (status, apiMessage, response, error)  in
             if status{
-                // print(response)
-                if let userdevice =  response?.data
-                {
-                    self.homevc?.listOfVehicle = userdevice
-                    self.homevc?.vehiclePicker.reloadAllComponents()
-                    if userdevice.count != 0{
-                        self.homevc?.txtSelectedVehicle.text = (userdevice[0].make ?? "") + "(" + (userdevice[0].plateNumber ?? "") + ")"
-                        self.homevc?.vehicalid = userdevice[0].id ?? ""
-                        self.homevc?.setup()
-                    }else{
+                if let userdevice =  response?.data{
+                    if(userdevice.count > 0){
+                        self.homevc?.txtSelectedVehicle.isHidden = false
+                        self.homevc?.btnAddVehicleData.isHidden = true
+                        
+                        self.homevc?.listOfVehicle = userdevice
+                        self.homevc?.vehiclePicker.reloadAllComponents()
                         self.homevc?.txtSelectedVehicle.text = "Select Your Vehicle"
+                    }else{
+                        self.homevc?.txtSelectedVehicle.isHidden = true
+                        self.homevc?.btnAddVehicleData.isHidden = false
                     }
                 }
-            }
-            else
-            {
-                Utilities.ShowAlert(OfMessage: "Any Type device not found ")
-                print(error)
+            }else{
+                Utilities.ShowAlert(OfMessage: apiMessage)
             }
         }
     }

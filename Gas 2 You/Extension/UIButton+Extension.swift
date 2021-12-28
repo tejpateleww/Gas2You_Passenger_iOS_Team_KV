@@ -26,6 +26,17 @@ extension UIButton{
         att.addAttribute(NSAttributedString.Key.foregroundColor, value: color2, range: NSRange(location: str1.count, length: str2.count))
         self.setAttributedTitle(att, for: .normal)
     }
+    
+    func centerTextAndImage(spacing: CGFloat) {
+        let insetAmount = spacing / 2
+        let writingDirection = UIApplication.shared.userInterfaceLayoutDirection
+        let factor: CGFloat = writingDirection == .leftToRight ? 1 : -1
+
+        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount*factor, bottom: 0, right: insetAmount*factor)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount*factor, bottom: 0, right: -insetAmount*factor)
+        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: insetAmount)
+    }
+    
     //MARK:- color and font
     func setColorFont(color: colors, font: UIFont){
         self.setTitleColor(color.value, for: .normal)

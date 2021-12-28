@@ -40,6 +40,7 @@ class AddLocationViewModel{
                         }else{
                             self.AddLocation?.vwThemeview.isHidden = true
                         }
+                        self.AddLocation?.vwThemeview.isHidden = false
                         self.AddLocation?.tblLocationList.reloadData()
                     }
                 }else{

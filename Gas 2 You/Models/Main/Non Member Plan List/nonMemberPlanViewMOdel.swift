@@ -14,6 +14,13 @@ class nonMemberPlanViewMOdel{
         let nonmemberList = nonMemberPlanListReqModel()
         nonmemberList.customer_id = Singleton.sharedInstance.userId
         WebServiceSubClass.nonMemberPlanList(reqModel: nonmemberList, completion: { (status, message, response, error) in
+            
+            if(response?.data?.count ?? 0 > 0){
+                self.homevc?.lblAddOns.isHidden = false
+            }else{
+                self.homevc?.lblAddOns.isHidden = true
+            }
+            
             if status{
                 if let model = response?.data{
                     self.homevc?.nonmemberplanlist = model
