@@ -253,6 +253,8 @@ extension Notification.Name {
     static let goToChatScreen = NSNotification.Name("goToChatScreen")
     static let openCarDoorScreen = NSNotification.Name("openCarDoorScreen")
     static let clearAddonArray = NSNotification.Name("clearAddonArray")
+    static let refreshCompOrderScreen = NSNotification.Name("refreshCompOrderScreen")
+    static let goToCompOrderScreen = NSNotification.Name("goToCompOrderScreen")
 }
 
 enum NotificationTypes : String {

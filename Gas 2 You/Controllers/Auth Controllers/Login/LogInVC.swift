@@ -22,8 +22,6 @@ class LogInVC: UIViewController {
     @IBOutlet weak var btnLogin: ThemeButton!
     @IBOutlet weak var btnTerms: ThemeButton!
     
-    
-    
     private let viewModel = LoginViewModel()
     var googleSignInManager : GoogleLoginProvider?
     var appleSignInManager : AppleSignInProvider?
@@ -84,7 +82,7 @@ class LogInVC: UIViewController {
     private func setupTextfields(textfield: UITextField) {
         
         textfield.rightViewMode = .always
-        let button = UIButton(frame: CGRect(x: 10, y: 0, width: 60, height: 40))
+        let button = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: 40))
         button.setTitle("Forgot?", for: .normal)
         if UIDevice.current.userInterfaceIdiom == .phone{
             button.setColorFont(color:.lightGreyBtn , font: CustomFont.PoppinsMedium.returnFont(14))
@@ -92,7 +90,7 @@ class LogInVC: UIViewController {
             button.setColorFont(color:.lightGreyBtn , font: CustomFont.PoppinsMedium.returnFont(19))
         }
         button.addTarget(self, action: #selector(navigateToForgotPassword), for: .touchUpInside)
-        let view = UIView(frame : CGRect(x: 0, y: 0, width: 80, height: 40))
+        let view = UIView(frame : CGRect(x: 0, y: 0, width: 105, height: 40))
         view.addSubview(button)
         textfield.rightView = view
     }
@@ -238,8 +236,6 @@ extension LogInVC: SocialSignInDelegate{
                 reqModel.country_code = "+91"
                 self.callSocialLoginApi(reqModel: reqModel)
             }
-            
-            
         }
     }
     

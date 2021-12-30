@@ -83,7 +83,7 @@ class ServiceListViewModel{
                         }//self.serviceList?.convertDateFormat(inputDate: strDate ?? "")
                     }
                     if model.data?.count == 0{
-                        Toast.show(title: UrlConstant.Failed, message: "No Slot Available", state: .failure)
+                        Toast.show(title: UrlConstant.ResponseMessage, message: "No time slot available", state: .info)
                         self.serviceList?.collectionTimeList.isHidden = true
                     }else{
                         self.serviceList?.arrTimeList = model.data ?? []

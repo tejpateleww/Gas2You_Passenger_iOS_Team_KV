@@ -88,6 +88,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     //MARK: - VIEW LIFE CYCLE
     override func viewWillAppear(_ animated: Bool) {
         self.addNotificationObs()
+        self.checkForNotification()
     }
     
     override func viewDidLoad() {
@@ -169,8 +170,29 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         NotificationCenter.default.removeObserver(self, name: .clearAddonArray, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.clearAddonArray), name: .clearAddonArray, object: nil)
         
+        NotificationCenter.default.removeObserver(self, name: .goToCompOrderScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.goToCompOrderScreen), name: .goToCompOrderScreen, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
+    }
+    
+    func checkForNotification(){
+        if(AppDelegate.pushNotificationObj != nil){
+            if(AppDelegate.pushNotificationType == NotificationTypes.InvoiceGenerated.rawValue){
+                self.goToCompOrderScreen()
+            }
+        }
+    }
+    
+    @objc func goToCompOrderScreen() {
+        
+        AppDelegate.pushNotificationObj = nil
+        AppDelegate.pushNotificationType = nil
+
+        let MyOrdersVC:MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+        MyOrdersVC.isFromComplete = true
+        self.navigationController?.pushViewController(MyOrdersVC, animated: true)
     }
     
     @objc func openCarDoor() {

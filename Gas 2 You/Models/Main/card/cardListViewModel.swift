@@ -48,7 +48,7 @@ class cardListViewModel{
         WebServiceSubClass.addBooking(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? "Your service has been booked successfully" : apiMessage, state: status ? .success : .failure)
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
             }
             if status{
                 NotificationCenter.default.post(name: .clearAddonArray, object: nil)

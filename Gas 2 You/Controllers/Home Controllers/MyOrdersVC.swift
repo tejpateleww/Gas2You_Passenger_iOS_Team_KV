@@ -37,8 +37,6 @@ class MyOrdersVC: BaseVC {
     @IBOutlet weak var btnCompleted: ThemeButton!
     @IBOutlet weak var vwCompletedLine: UIView!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,13 +46,10 @@ class MyOrdersVC: BaseVC {
         addTableFooter()
         if isFromPayment{
             btnInProgressTap(btnInProgress)
-            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "1", page: "\(currentPage)")
         }else if isFromComplete{
             btnCompletedTap(btnCompleted)
-            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "\(currentPage)")
         }else{
             btnUpcomingTap(btnUpcoming)
-            BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
         NotificationCenter.default.post(name: notifRefreshHomeScreen, object: nil)
         myOrdersTV.register(UINib(nibName:"ShimmerCell", bundle: nil), forCellReuseIdentifier: "ShimmerCell")
@@ -73,6 +68,11 @@ class MyOrdersVC: BaseVC {
         
         isLoading = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.addNotificationObs()
+    }
+    
     override func BackButtonWithTitle(button: UIButton) {
         guard let navVC = self.navigationController,
               let profileVC = navVC.viewControllers.first(where: {$0.isKind(of: HomeVC.self)}) as? HomeVC else {
@@ -83,6 +83,17 @@ class MyOrdersVC: BaseVC {
         navVC.popToViewController(profileVC, animated: true)
         
     }
+    
+    //MARK: - Custom methods
+    func addNotificationObs(){
+        NotificationCenter.default.removeObserver(self, name: .refreshCompOrderScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshCompOrderScreen), name: .refreshCompOrderScreen, object: nil)
+    }
+    
+    @objc func refreshCompOrderScreen(){
+        self.btnCompletedTap(btnCompleted)
+    }
+    
     @objc func refresh(_ sender: AnyObject) {
         arrBookingList.removeAll()
         self.currentPage = 1

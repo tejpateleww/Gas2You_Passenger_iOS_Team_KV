@@ -105,11 +105,10 @@ extension AppDelegate : MessagingDelegate {
                     }
                 }
             }else if (key as? String ?? "") == "invoiceGenerated"{
+                completionHandler([.alert, .sound])
                 if let topVc = UIApplication.appTopViewController() {
-                    if topVc.isKind(of: CompleteJobVC.self) {
-                        self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
-                    } else {
-                        completionHandler([.alert, .sound])
+                    if topVc.isKind(of: MyOrdersVC.self) {
+                        NotificationCenter.default.post(name: .refreshCompOrderScreen, object: nil)
                     }
                 }
             }else if (key as? String ?? "") == "leavCarDoorCapOpen"{
@@ -161,6 +160,18 @@ extension AppDelegate : MessagingDelegate {
                 }
                 return
             }
+            
+            if pushObj.type == "invoiceGenerated"{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if (UIApplication.appTopViewController()?.isKind(of: MyOrdersVC.self) ?? false){
+                        AppDelegate.pushNotificationObj = nil
+                        AppDelegate.pushNotificationType = nil
+                    }else{
+                        NotificationCenter.default.post(name: .goToCompOrderScreen, object: nil)
+                    }
+                }
+                return
+            }
         }
 
         
@@ -198,6 +209,10 @@ extension AppDelegate : MessagingDelegate {
     
     @objc func GoToChatFromNotification() {
         navigateToChatVC(userData: Singleton.sharedInstance.userInforForNotification)
+    }
+    
+    func gotoMyOrders(){
+        
     }
     
      func navigateToChatVC(userData : [AnyHashable : Any]) {

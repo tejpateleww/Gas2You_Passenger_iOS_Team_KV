@@ -348,7 +348,7 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
                 }
             }else{
                 let NoDatacell = self.tblChat.dequeueReusableCell(withIdentifier: "NoDataCell", for: indexPath) as! NoDataCell
-                NoDatacell.imgNodata.image = UIImage(named: "ic_chat")
+                NoDatacell.imgNodata.image = UIImage(named: "IC_chatSmall")
                 NoDatacell.lblData.text = "No chat available!"
                 if UIDevice.current.userInterfaceIdiom == .phone{
                     NoDatacell.lblData.font = CustomFont.PoppinsRegular.returnFont(16.0)
@@ -370,6 +370,7 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height:30.0))
         if(self.arrayChatHistory.count > 0){
@@ -391,6 +392,14 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
         
         }
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(self.arrayChatHistory.count > 0){
+            return UITableView.automaticDimension
+        }else{
+            return tableView.frame.height
+        }
     }
 }
 class chatSenderCell : UITableViewCell {

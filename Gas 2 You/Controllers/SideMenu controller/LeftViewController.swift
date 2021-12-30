@@ -47,6 +47,17 @@ class LeftViewController: MenuViewController {
         super.viewDidAppear(animated)
         prepareView()
     }
+    
+    //MARK: -  Observer method
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        MenuTblView.layer.removeAllAnimations()
+        ConstantMenuTblViewHeight.constant = MenuTblView.contentSize.height
+        UIView.animate(withDuration: 0.5) {
+            self.updateViewConstraints()
+        }
+    }
+
+    
     func DoLogoutFinal(){
         AppDel.dologout()
     }
@@ -78,14 +89,6 @@ class LeftViewController: MenuViewController {
         .lightContent
     }
     
-    //MARK: -  Observer method
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        MenuTblView.layer.removeAllAnimations()
-        ConstantMenuTblViewHeight.constant = MenuTblView.contentSize.height
-        UIView.animate(withDuration: 0.5) {
-            self.updateViewConstraints()
-        }
-    }
     
 }
 extension LeftViewController : UITableViewDelegate, UITableViewDataSource {
