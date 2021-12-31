@@ -158,11 +158,13 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         lblPlatNumber.text = objBookingDetail?.plateNumber
         self.url = objBookingDetail?.invoiceURL ?? ""
         self.number = objBookingDetail?.invoiceNumber ?? ""
-        if(self.pdfFileAlreadySaved(url: url, fileName: number) == true){
+        
+        if(self.pdfFileAlreadySaved(url: objBookingDetail?.invoiceURL ?? "", fileName: objBookingDetail?.invoiceNumber ?? "") == true){
             self.btnDownloadInvoice.setTitle(" VIEW INVOICE", for: .normal)
         }else{
             self.btnDownloadInvoice.setTitle("DOWNLOAD INVOICE", for: .normal)
         }
+        
         if objBookingDetail?.rate == ""{
             vwRating.isHidden = true
             vwReviewFeedBack.isHidden = true
@@ -182,16 +184,17 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         savePdf(urlString: url, fileName: number)
     }
     func savePdf(urlString:String, fileName:String) {
+        Utilities.showHud()
         if(urlString == ""){
             Utilities.hideHud()
             return
         }
         if(self.pdfFileAlreadySaved(url: urlString, fileName: fileName) == true){
-            Utilities.hideHud()
             let vc : WebViewVC  = WebViewVC.instantiate(fromAppStoryboard: .Main)
             vc.isLoadFromURL = true
             vc.strUrl = urlString
             self.navigationController?.pushViewController(vc, animated: true)
+            Utilities.hideHud()
             return
         }else{
             DispatchQueue.main.async {
@@ -202,7 +205,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
                 let actualPath = resourceDocPath.appendingPathComponent(pdfNameFromUrl)
                 do {
                     try pdfData?.write(to: actualPath, options: .atomic)
-//                    self.delegate?.onSaveInvoice()
+                    self.navigationController?.popViewController(animated: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         Toast.show(title: UrlConstant.Success, message: "Invoice successfully downloaded!", state: .success)
                     }
@@ -253,19 +256,27 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
 }
 extension CompleteJobVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrService.count
+        return arrService.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:CompleteJobCell = tblDetails.dequeueReusableCell(withIdentifier: CompleteJobCell.className) as! CompleteJobCell
-        cell.lblItemName.text = arrService[indexPath.row].title
-        cell.lblQty.text = arrService[indexPath.row].serviceDescription
-        if arrService[indexPath.row].price == "FREE"{
-            cell.lblTotal.text = (arrService[indexPath.row].price)
-        }else{
-            cell.lblTotal.text = CurrencySymbol + (arrService[indexPath.row].price)
+        if(self.arrService.count > 0){
+            if(indexPath.row == self.arrService.count){
+                cell.lblItemName.text = ""
+                cell.lblQty.attributedText = NSMutableAttributedString(string: "Total", attributes: [NSAttributedString.Key.font:CustomFont.PoppinsSemiBold.returnFont(13)])
+                cell.lblTotal.text = "$\(objBookingDetail?.totalAmount ?? "")"
+            }else{
+                cell.lblItemName.text = arrService[indexPath.row].title
+                cell.lblQty.text = arrService[indexPath.row].serviceDescription
+                if arrService[indexPath.row].price == "FREE"{
+                    cell.lblTotal.text = (arrService[indexPath.row].price)
+                }else{
+                    cell.lblTotal.text = CurrencySymbol + (arrService[indexPath.row].price)
+                }
+                cell.selectionStyle = .none
+            }
         }
-        cell.selectionStyle = .none
         return cell
     }
     

@@ -22,6 +22,7 @@ class LogInVC: UIViewController {
     @IBOutlet weak var btnLogin: ThemeButton!
     @IBOutlet weak var btnTerms: ThemeButton!
     
+
     private let viewModel = LoginViewModel()
     var googleSignInManager : GoogleLoginProvider?
     var appleSignInManager : AppleSignInProvider?
@@ -236,6 +237,8 @@ extension LogInVC: SocialSignInDelegate{
                 reqModel.country_code = "+91"
                 self.callSocialLoginApi(reqModel: reqModel)
             }
+            
+            
         }
     }
     
