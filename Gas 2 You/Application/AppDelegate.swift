@@ -255,6 +255,7 @@ extension Notification.Name {
     static let clearAddonArray = NSNotification.Name("clearAddonArray")
     static let refreshCompOrderScreen = NSNotification.Name("refreshCompOrderScreen")
     static let goToCompOrderScreen = NSNotification.Name("goToCompOrderScreen")
+    static let goToUpcomingOrderScreen = NSNotification.Name("goToUpcomingOrderScreen")
 }
 
 enum NotificationTypes : String {

@@ -83,6 +83,8 @@ class LoginViewModel {
                     reqModel.userName = response?.appleDetail?.email
                     reqModel.country_code = "+91"
                     self.webserviceSocialLogin(reqModel: reqModel)
+                }else{
+                    Utilities.displayAlert(apiMessage)
                 }
         })
     }

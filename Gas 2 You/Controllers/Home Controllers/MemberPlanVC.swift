@@ -19,7 +19,12 @@ class MemberPlanVC: BaseVC {
     @IBOutlet weak var currentPlanIV: UIImageView!
     @IBOutlet weak var tblMembershipPlan: UITableView!
     @IBOutlet weak var btnPayNow: ThemeButton!
-
+    @IBOutlet weak var lblPlanNotAvailable: ThemeLabel!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        lblPlanNotAvailable.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         memberPlanModel.memberplanvc = self
@@ -29,10 +34,11 @@ class MemberPlanVC: BaseVC {
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Select Plan", controller: self)
         self.btnPayNow.isHidden = true
     }
+    
     @IBAction func btnPayNowTap(_ sender: ThemeButton) {
             if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
                 if self.planType == "Yearly"{
-                    let alert = UIAlertController(title: AppInfo.appName, message: "You already have a \(Singleton.sharedInstance.userProfilData?.type ?? "") Gas 2 You  membership plan. are you sure you wnt to continue?", preferredStyle: UIAlertController.Style.alert)
+                    let alert = UIAlertController(title: AppInfo.appName, message: "You already have a \(Singleton.sharedInstance.userProfilData?.type ?? "") membership plan. are you sure you want to continue?", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
                         let vc: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
                         vc.isfromPlan = true
@@ -45,7 +51,7 @@ class MemberPlanVC: BaseVC {
                     }))
                     self.present(alert, animated: true, completion: nil)
                 }else{
-                    let alert = UIAlertController(title: AppInfo.appName, message: "you already have a \(Singleton.sharedInstance.userProfilData?.type ?? "") Gas 2 You membership plan. are you sure you wnt to continue?", preferredStyle: UIAlertController.Style.alert)
+                    let alert = UIAlertController(title: AppInfo.appName, message: "you already have a \(Singleton.sharedInstance.userProfilData?.type ?? "") membership plan. are you sure you want to continue?", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
                         let vc: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
                         vc.isfromPlan = true

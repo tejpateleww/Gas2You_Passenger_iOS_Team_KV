@@ -19,7 +19,6 @@ class ServiceListViewModel{
                         self.serviceList?.txtSelectedService.text = model[0].name
                         self.serviceList?.priceTagLabel.text = CurrencySymbol + (model[0].price ?? "")
                         self.serviceList?.serviceid = model[0].id ?? ""
-                        self.serviceList?.SelectIndex = 0
                         if model[0].subServices?.count != 0{
                             self.serviceList?.selectedIndex = 0
                             if model[self.serviceList?.selectedIndex ?? 0].subServices?.count ?? 0 > 2{

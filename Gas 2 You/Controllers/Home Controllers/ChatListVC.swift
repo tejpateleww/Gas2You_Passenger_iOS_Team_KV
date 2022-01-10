@@ -66,8 +66,6 @@ extension ChatListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        
         if !isReload{
             let chatListShimmerCell = chatListTV.dequeueReusableCell(withIdentifier: ChatListShimmerCell.className) as! ChatListShimmerCell
             chatListShimmerCell.lblName.text = "dummy datadummy data"

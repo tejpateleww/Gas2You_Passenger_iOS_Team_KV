@@ -65,10 +65,8 @@ class CancelOrder{
                 self.cancelOrder?.btnCompletedTap(self.cancelOrder?.btnCompleted ?? ThemeButton())
                 self.cancelOrder?.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "\(self.cancelOrder?.currentPage ?? 0)")
             }
-            else
-            {
-                Utilities.ShowAlert(OfMessage: apiMessage)
-                print(error)
+            else{
+                Toast.show(title: UrlConstant.Failed, message:apiMessage, state: .failure)
             }
         })
     }

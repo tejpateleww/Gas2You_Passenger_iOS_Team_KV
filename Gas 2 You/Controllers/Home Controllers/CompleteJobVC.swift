@@ -122,11 +122,14 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         tblDetails.dataSource = self
         
         btnDownloadInvoice.centerTextAndImage(spacing: 5)
+        self.vwCosmos.settings.fillMode = .precise
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if #available(iOS 13.0, *) {
@@ -135,9 +138,11 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
             view.setTemplateWithSubviews(true, viewBackgroundColor: .white)
         }
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
         if(keyPath == "contentSize"){
             self.tblDetailsHeight.constant = tblDetails.contentSize.height
@@ -171,7 +176,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         }else{
             vwRating.isHidden = false
             vwReviewFeedBack.isHidden = false
-            if(objBookingDetail?.review == ""){
+            if(objBookingDetail?.review == "" || objBookingDetail?.review == "Write down your review"){
                 vwReviewFeedBack.isHidden = true
             }
             btnGiveRateReview.isHidden = true
@@ -180,9 +185,11 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         vwCosmos.rating = Double(objBookingDetail?.rate ?? "") ?? 0.0
         lblUserReview.text = objBookingDetail?.review
     }
+    
     @IBAction func btnDownloadInvoiceTap(_ sender: UIButton) {
         savePdf(urlString: url, fileName: number)
     }
+    
     func savePdf(urlString:String, fileName:String) {
         Utilities.showHud()
         if(urlString == ""){
@@ -216,6 +223,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
             }
         }
     }
+    
     func pdfFileAlreadySaved(url:String, fileName:String)-> Bool {
         var status = false
         if #available(iOS 10.0, *) {
@@ -242,8 +250,6 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
             present(ratingPopUpVC, animated: false, completion: nil)
     }
     
-    
-    
     func refreshCompleteJobScreen(rate: Double, review: String) {
         vwCosmos.rating = rate
         lblUserReview.text = review
@@ -265,7 +271,7 @@ extension CompleteJobVC:UITableViewDelegate,UITableViewDataSource{
             if(indexPath.row == self.arrService.count){
                 cell.lblItemName.text = ""
                 cell.lblQty.attributedText = NSMutableAttributedString(string: "Total", attributes: [NSAttributedString.Key.font:CustomFont.PoppinsSemiBold.returnFont(13)])
-                cell.lblTotal.text = "$\(objBookingDetail?.totalAmount ?? "")"
+                cell.lblTotal.text = "$\(objBookingDetail?.finalAmount ?? "")"
             }else{
                 cell.lblItemName.text = arrService[indexPath.row].title
                 cell.lblQty.text = arrService[indexPath.row].serviceDescription

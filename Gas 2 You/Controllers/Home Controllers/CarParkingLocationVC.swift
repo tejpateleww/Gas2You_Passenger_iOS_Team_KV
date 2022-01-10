@@ -179,6 +179,8 @@ class CarParkingLocationVC: BaseVC {
     
     @IBAction func btnCurrentLocation(_ sender: Any) {
         setupMap()
+        Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Double(self.CurrentLocLat) ?? 0.00, longitude: Double(self.CurrentLocLong) ?? 0.00)
+        delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
     }
     
     func locationData(){

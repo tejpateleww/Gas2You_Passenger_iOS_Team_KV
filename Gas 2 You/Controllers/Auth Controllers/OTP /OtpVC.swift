@@ -71,7 +71,8 @@ class OtpVC: BaseVC,OTPTextFieldDelegate,UITextFieldDelegate {
         self.timer.invalidate() // just in case this button is tapped multiple times
         self.lblTimer.isHidden = false
         self.btnResend.isUserInteractionEnabled = false
-        self.btnResend.setTitleColor(#colorLiteral(red: 0.1215686275, green: 0.5411764706, blue: 0.7803921569, alpha: 1).withAlphaComponent(0.3), for: .normal)
+        self.btnResend.setTitle("Resend code in", for: .normal)
+        self.btnResend.setTitleColor(colors.themeBlue.value, for: .normal)
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     private func hideMidChars(_ value: String) -> String {
@@ -103,6 +104,7 @@ class OtpVC: BaseVC,OTPTextFieldDelegate,UITextFieldDelegate {
         } else {
             self.lblTimer.isHidden = true
             self.btnResend.isUserInteractionEnabled = true
+            self.btnResend.setTitle("Resend code", for: .normal)
             self.btnResend.setTitleColor(colors.themeBlue.value, for: .normal)
             self.timer.invalidate()
         }

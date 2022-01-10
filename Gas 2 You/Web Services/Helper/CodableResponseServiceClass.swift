@@ -16,7 +16,7 @@ class CodableService {
                 
                 //MARK:- Api Request Error
                 if let ERR = error{
-                    completion(false, ERR.localizedDescription, nil, [UrlConstant.ResponseMessage,ERR.localizedDescription])
+                    completion(false, ERR.localizedDescription, nil, [UrlConstant.NoInternetConnection,ERR.localizedDescription])
                     
                 }else{
                     

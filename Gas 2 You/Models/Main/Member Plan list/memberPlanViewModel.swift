@@ -17,6 +17,12 @@ class memberPlanViewModel{
                 if let model = response?.data{
                     self.memberplanvc?.memberPlanList = model
                     self.memberplanvc?.tblMembershipPlan.reloadData()
+                    
+                    if(self.memberplanvc?.memberPlanList.count ?? 0 > 0){
+                        self.memberplanvc?.lblPlanNotAvailable.isHidden = true
+                    }else{
+                        self.memberplanvc?.lblPlanNotAvailable.isHidden = false
+                    }
                 }
             }else{
                 Utilities.ShowAlert(OfMessage: "No Data Found")

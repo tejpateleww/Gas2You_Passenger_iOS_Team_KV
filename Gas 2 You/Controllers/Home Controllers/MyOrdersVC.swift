@@ -415,12 +415,7 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
         } else if isInProcess == 1 {
             print("InProgress cell pressed")
         } else if isInProcess == 2 {
-            if arrBookingList[indexPath.row].statuslabel == "Cancelled" {
-                let completeJobVC: CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
-                completeJobVC.orderId = arrBookingList[indexPath.row].id ?? ""
-                completeJobVC.isCancel = true
-                navigationController?.pushViewController(completeJobVC, animated: true)
-            } else {
+            if arrBookingList[indexPath.row].statuslabel != "Cancelled" {
                 let completeJobVC: CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
                 completeJobVC.orderId = arrBookingList[indexPath.row].id ?? ""
                 navigationController?.pushViewController(completeJobVC, animated: true)

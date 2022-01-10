@@ -52,8 +52,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     @IBOutlet weak var btnAddBooking: ThemeButton!
     @IBOutlet weak var imgSubserviceArrow: UIImageView!
     @IBOutlet weak var btnAddVehicleData: UIButton!
-    
-    
+
     var toolBarForService = UIToolbar()
     var toolBarForVehicle = UIToolbar()
     var toolBar = UIToolbar()
@@ -72,7 +71,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var memberPlanModel = memberPlanViewModel()
     var arrTimeList = [DateResDatum]()
     var selectedIndex = 0
-    var SelectIndex = 0
+    var SelectIndex = -1
     var dateSelected = 0
     var serviceid = ""
     var subserviceid = ""
@@ -89,6 +88,10 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.addNotificationObs()
         self.checkForNotification()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        imgSubserviceArrow.isUserInteractionEnabled = true
+        imgSubserviceArrow.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func viewDidLoad() {
@@ -163,6 +166,11 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     }
     
     //MARK: - Custom methods
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
+        self.moveToNextCell()
+    }
+    
     func addNotificationObs(){
         NotificationCenter.default.removeObserver(self, name: .openCarDoorScreen, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.openCarDoor), name: .openCarDoorScreen, object: nil)
@@ -172,6 +180,9 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         NotificationCenter.default.removeObserver(self, name: .goToCompOrderScreen, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToCompOrderScreen), name: .goToCompOrderScreen, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: .goToUpcomingOrderScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.goToUpcomingOrderScreen), name: .goToUpcomingOrderScreen, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
@@ -192,6 +203,11 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
 
         let MyOrdersVC:MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
         MyOrdersVC.isFromComplete = true
+        self.navigationController?.pushViewController(MyOrdersVC, animated: true)
+    }
+    
+    @objc func goToUpcomingOrderScreen() {
+        let MyOrdersVC:MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
         self.navigationController?.pushViewController(MyOrdersVC, animated: true)
     }
     
@@ -252,6 +268,16 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         convertDateFormatter.dateFormat = "MMM dd, yyyy"
         
         return convertDateFormatter.string(from: oldDate!)
+    }
+    
+    func moveToNextCell(){
+        let visibleItems: NSArray = self.collectionViewSubService.indexPathsForVisibleItems as NSArray
+        let currentItem: IndexPath = visibleItems.object(at: 0) as! IndexPath
+        let nextItem: IndexPath = IndexPath(item: currentItem.item + 1, section: 0)
+        if nextItem.row < serviceList.count {
+            self.collectionViewSubService.scrollToItem(at: nextItem, at: .left, animated: true)
+            
+        }
     }
     
     
@@ -340,6 +366,20 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         }
     }
     
+    func checkService() -> Bool{
+        let selectedService = self.serviceList.first(where: { $0.id == self.serviceid })
+        if(selectedService?.subServices?.count ?? 0 > 0){
+            if(self.subserviceid == ""){
+                return false
+            }else{
+                return true
+            }
+        }else{
+            return true
+        }
+        
+    }
+    
     @IBAction func fillItUpButtonPressed(_ sender: ThemeButton) {
         if self.listOfVehicle.count == 0{
             Toast.show(title: UrlConstant.Required, message:"No vehicle has been added yet, please add vehicle to proceed further!", state: .info)
@@ -347,6 +387,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
             Toast.show(title: UrlConstant.Required, message:"Please select parking location", state: .info)
         }else if(self.txtSelectedVehicle.text == "" || self.txtSelectedVehicle.text == "Select Your Vehicle"){
             Toast.show(title: UrlConstant.Required, message:"Please select Your Vehicle", state: .info)
+        }else if(!self.checkService()){
+            Toast.show(title: UrlConstant.Required, message:"Please select sub service type", state: .info)
         }else {
             let LocationStatus = CLLocationManager.authorizationStatus()
             if LocationStatus == .notDetermined {
@@ -384,6 +426,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
             let row = servicePicker.selectedRow(inComponent: 0);
             if self.serviceList.count != 0{
                 if self.serviceList[row].subServices?.count != 0{
+                    self.serviceid = self.serviceList[row].id ?? "0"
                     self.selectedIndex = row
                     self.ViewForShowPrice.isHidden = false
                     if self.serviceList[self.selectedIndex].subServices?.count ?? 0 > 2{
@@ -574,7 +617,6 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             }else{
                 cell.imgCheck.image = UIImage(named: "IC_unselectedBlue")
             }
-            //            cell.imgCheck.image = (SelectIndex == indexPath.row) ?  :
             
             return cell
         }else{
@@ -640,6 +682,9 @@ extension HomeVC: UITextFieldDelegate {
         switch textField {
         case txtSelectedService:
             if serviceList.count != 0{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    self.servicePicker.selectRow(0, inComponent: 0, animated: true)
+                }
                 return true
             }else{
                 Toast.show(title: UrlConstant.Failed, message: "Service list is empty", state: .failure)
@@ -654,7 +699,7 @@ extension HomeVC: UITextFieldDelegate {
             if availableDate.count != 0{
                 return true
             }else{
-                Toast.show(title: UrlConstant.Failed, message: "date list is empty", state: .failure)
+                Toast.show(title: UrlConstant.Failed, message: "Date list is empty", state: .failure)
             }
         default:
             break

@@ -52,8 +52,10 @@ class cardListViewModel{
             }
             if status{
                 NotificationCenter.default.post(name: .clearAddonArray, object: nil)
-                let myOrdersVC: MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-                self.cardList?.navigationController?.pushViewController(myOrdersVC, animated: true)
+                self.cardList?.navigationController?.popToRootViewController(animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    NotificationCenter.default.post(name: .goToUpcomingOrderScreen, object: nil)
+                }
             }
         })
     }

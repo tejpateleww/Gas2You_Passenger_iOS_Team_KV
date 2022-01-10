@@ -335,7 +335,7 @@ class AddCardViewController: BaseVC {
     }
     @IBAction func btnAddCardClick(_ sender: UIButton) {
         if (validation()){
-            addcardmodel.webservieAddCard(number: txtCardNumber.text ?? "", name: txtCardName.text ?? "", expDate: txtExpiryDate.text ?? "", cvv: txtCVV.text ?? "")
+            addcardmodel.webservieAddCard(number: txtCardNumber.text ?? "", name: txtCardName.text?.trimmedString ?? "", expDate: txtExpiryDate.text ?? "", cvv: txtCVV.text ?? "")
         }
     }
 }
