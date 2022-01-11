@@ -216,12 +216,12 @@ class AddVehicleVC: BaseVC {
     @IBAction func btnSaveTap(_ sender: ThemeButton) {
         if isfromEdit{
             if validation(){
-                EditVehicle.doLogin(vehicleId: objData?.id ?? "", year: txtEnterYear.text ?? "", make: make, model: model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "",isothermodel: isothermodel,modelname: txtOtherModel.text ?? "",isothermake: isotherMake,makename: txtOtherMake.text ?? "")
+//                EditVehicle.doLogin(vehicleId: objData?.id ?? "", year: txtEnterYear.text ?? "", make: make, model: model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "",isothermodel: isothermodel,modelname: txtOtherModel.text ?? "",isothermake: isotherMake,makename: txtOtherMake.text ?? "")
                 NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
             }
         }else{
                 if validation(){
-                AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "",isothermodel: isothermodel,modelname: txtOtherModel.text ?? "",isothermake: isotherMake,makename: txtOtherMake.text ?? "")
+               // AddVehicle.doLogin(customerid: Singleton.sharedInstance.userId, year: txtEnterYear.text ?? "", make:make, model:model, color: color, state: state, plateno: txtLicencePlateNo.text ?? "",isothermodel: isothermodel,modelname: txtOtherModel.text ?? "",isothermake: isotherMake,makename: txtOtherMake.text ?? "")
             }
         }
     }

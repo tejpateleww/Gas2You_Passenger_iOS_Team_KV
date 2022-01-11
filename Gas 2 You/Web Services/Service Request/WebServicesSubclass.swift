@@ -80,7 +80,7 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
-    class func AddVehicleApi(reqModel : AddVehicleReqModel , completion: @escaping (Bool,String,AddVehicleResModel?,Any) -> ()){
+    class func AddVehicleApi(reqModel : AddNewVehicleReqModel , completion: @escaping (Bool,String,AddVehicleResModel?,Any) -> ()){
         URLSessionRequestManager.makePostRequest(urlString: ApiKey.addVehicle.rawValue, requestModel: reqModel, responseModel: AddVehicleResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
@@ -90,7 +90,7 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
-    class func EditVehicleApi(reqModel : EditVehicleReqModel , completion: @escaping (Bool,String,editVehicleResModel?,Any) -> ()){
+    class func EditVehicleApi(reqModel : EditNewVehicleReqModel , completion: @escaping (Bool,String,editVehicleResModel?,Any) -> ()){
         URLSessionRequestManager.makePostRequest(urlString: ApiKey.editVehicle.rawValue, requestModel: reqModel, responseModel: editVehicleResModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }

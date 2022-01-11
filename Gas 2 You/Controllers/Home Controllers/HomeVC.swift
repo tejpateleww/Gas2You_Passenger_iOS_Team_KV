@@ -267,7 +267,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         let convertDateFormatter = DateFormatter()
         convertDateFormatter.dateFormat = "MMM dd, yyyy"
         
-        return convertDateFormatter.string(from: oldDate!)
+        return convertDateFormatter.string(from: oldDate ?? Date())
     }
     
     func moveToNextCell(){
@@ -279,7 +279,6 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
             
         }
     }
-    
     
     func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
@@ -326,8 +325,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     
     //MARK: - ACTIONS
     @IBAction func btnAddVehicle(_ sender: Any) {
-        let addVehicleVC:AddVehicleVC = AddVehicleVC.instantiate(fromAppStoryboard: .Main)
-        addVehicleVC.delegateAdd = self
+        let addVehicleVC:AddNewVehicleVC = AddNewVehicleVC.instantiate(fromAppStoryboard: .Main)
         self.navigationController?.pushViewController(addVehicleVC, animated: true)
     }
     
@@ -358,10 +356,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     }
     
     @IBAction func btnSelectVehicleTap(_ sender: UIButton) {
-        
         if listOfVehicle.count == 0 {
-            let addVehicleVC:AddVehicleVC = AddVehicleVC.instantiate(fromAppStoryboard: .Main)
-            addVehicleVC.delegateAdd = self
+            let addVehicleVC:AddNewVehicleVC = AddNewVehicleVC.instantiate(fromAppStoryboard: .Main)
             self.navigationController?.pushViewController(addVehicleVC, animated: true)
         }
     }
@@ -574,7 +570,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
                 
                 tblNonMemberPLan.reloadData()
             }
-            
+              
         }else{
             nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
             

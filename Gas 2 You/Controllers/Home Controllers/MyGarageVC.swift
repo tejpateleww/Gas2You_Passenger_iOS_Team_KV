@@ -34,6 +34,9 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
         self.removeVehicle.mygaragevc = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Garage", controller: self)
         vehicleListTV.register(UINib(nibName:"NoDataCell", bundle: nil), forCellReuseIdentifier: "NoDataCell")
+        
+        NotificationCenter.default.removeObserver(self, name: .refreshVehicleScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(initUrlAndRefreshRequestList), name: .refreshVehicleScreen, object: nil)
     }
     
     @IBAction func btnAddVehicleTap(_ sender: ThemeButton) {
@@ -42,15 +45,19 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
             Toast.show(title: UrlConstant.Failed, message: "Please upgrade your plan to add multiple vehicle", state: .info)
         }else{
             if #available(iOS 13.0, *) {
-                let addVehicleVC = storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
-                addVehicleVC.delegateAdd = self
+                let addVehicleVC = storyboard?.instantiateViewController(identifier: AddNewVehicleVC.className) as! AddNewVehicleVC
+                //addVehicleVC.delegateAdd = self
                 navigationController?.pushViewController(addVehicleVC, animated: true)
             }else {
-                let addVehicleVC = storyboard?.instantiateViewController(withIdentifier: AddVehicleVC.className) as! AddVehicleVC
-                addVehicleVC.delegateAdd = self
+                let addVehicleVC = storyboard?.instantiateViewController(withIdentifier: AddNewVehicleVC.className) as! AddNewVehicleVC
+                //addVehicleVC.delegateAdd = self
                 navigationController?.pushViewController(addVehicleVC, animated: true)
             }
         }
+    }
+    
+    @objc func initUrlAndRefreshRequestList() {
+        getvehicalList.webserviceofgetvehicalList()
     }
         
     func refreshVehicleScreenEdit() {
@@ -145,23 +152,18 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
 
         let editAction = UIContextualAction(style: .normal, title: nil) { (action, view, completion) in
             if #available(iOS 13.0, *) {
-                let addVehicleVC = self.storyboard?.instantiateViewController(identifier: AddVehicleVC.className) as! AddVehicleVC
-                addVehicleVC.isfromEdit = true
-                addVehicleVC.delegateEdit = self
-                addVehicleVC.objData = self.arrVehicalList[indexPath.row]
+                let addVehicleVC = self.storyboard?.instantiateViewController(identifier: AddNewVehicleVC.className) as! AddNewVehicleVC
+                addVehicleVC.isFromEdit = true
+                addVehicleVC.editVehicleData = self.arrVehicalList[indexPath.row]
                 self.navigationController?.pushViewController(addVehicleVC, animated: true)
-                // Perform your action here
                 completion(true)
             } else {
-                let addVehicleVC = self.storyboard?.instantiateViewController(withIdentifier: AddVehicleVC.className) as! AddVehicleVC
-                addVehicleVC.isfromEdit = true
-                addVehicleVC.delegateEdit = self
-                addVehicleVC.objData = self.arrVehicalList[indexPath.row]
+                let addVehicleVC = self.storyboard?.instantiateViewController(withIdentifier: AddNewVehicleVC.className) as! AddNewVehicleVC
+                addVehicleVC.isFromEdit = true
+                addVehicleVC.editVehicleData = self.arrVehicalList[indexPath.row]
                 self.navigationController?.pushViewController(addVehicleVC, animated: true)
-                // Perform your action here
                 completion(true)
             }
-            
         }
 
         deleteAction.image = #imageLiteral(resourceName: "IC_bin")

@@ -144,7 +144,19 @@ extension SplashViewController {
                     Utilities.showAlertWithTitleFromWindow(title: Constants.appName, andMessage: message, buttons: []) {_ in}
                 }else{
                     if let responseDic = error as? [String:Any], let _ = responseDic["update"] as? Bool{
-                        self.openForceUpdateAlert(msg: message)
+                        if(responseDic["update"] as? Bool == false){
+                            Utilities.showAlertWithTitleFromWindow(title: Constants.appName, andMessage: message, buttons: [UrlConstant.Ok,UrlConstant.Cancel]) { (ind) in
+                                if ind == 0{
+                                    if let url = URL(string: Constants.appURL) {
+                                        UIApplication.shared.open(url)
+                                    }
+                                }else {
+                                    completion()
+                                }
+                            }
+                        }else{
+                            self.openForceUpdateAlert(msg: message)
+                        }
                     }else{
                         Utilities.showAlertOfAPIResponse(param: error, vc: self)
                     }
@@ -168,7 +180,6 @@ extension SplashViewController {
                 if let url = URL(string: Constants.appURL) {
                     UIApplication.shared.open(url)
                 }
-                self.openForceUpdateAlert(msg: msg)
             }
         }
     }

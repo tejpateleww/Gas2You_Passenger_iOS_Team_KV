@@ -248,6 +248,7 @@ class NotificationObjectModel: Codable {
 }
 extension Notification.Name {
     static let sessionExpire = NSNotification.Name("sessionExpire")
+    static let refreshVehicleScreen = NSNotification.Name("refreshVehicleScreen")
     static let refreshHomeScreen = NSNotification.Name("refreshHomeScreen")
     static let refreshChatScreen = NSNotification.Name("refreshChatScreen")
     static let goToChatScreen = NSNotification.Name("goToChatScreen")

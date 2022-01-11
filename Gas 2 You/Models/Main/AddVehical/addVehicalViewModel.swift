@@ -20,7 +20,6 @@ class addVehicalViewModel{
                         for i in 0...ValueofMakeVal.count - 1 {
                             if (ValueofMakeVal[i].models?.count ?? 0) != 0 {
                                 for j in 0...((ValueofMakeVal[i].models?.count ?? 0) - 1 ){
-                                    print("ATDEBUG :: \(ValueofMakeVal[i].models?[j].modelName?.lowercased()) ::: \(self.addvehicle?.objData?.model?.lowercased())")
                                     if ValueofMakeVal[i].models?[j].modelName?.lowercased() ==  self.addvehicle?.objData?.model?.lowercased() {
                                         self.addvehicle?.SelectedMakeIndex = i
                                     }
@@ -38,6 +37,7 @@ class addVehicalViewModel{
         })
     }
 }
+
 class VehicleColorListViewModel{
     weak var Vehiclecolor : AddVehicleVC?
     func webserviceofcolorList(){
@@ -63,40 +63,40 @@ class VehicleColorListViewModel{
 }
 class AddVehicleGetViewModel{
     weak var addvehicle : AddVehicleVC?
-    func doLogin(customerid: String, year: String, make: String, model: String, color: String,state :String, plateno: String,isothermodel:Bool,modelname:String,isothermake:Bool,makename:String) {
-        let reqModel = AddVehicleReqModel(customerid: customerid, year: year, make: make, model: model, color: color, state: state, plateno: plateno,isothermodel: isothermodel,modelname: modelname,isothermake: isothermake,makename: makename)
-        webserviceAddVehicle(reqModel)
-    }
-    func webserviceAddVehicle(_ reqModel: AddVehicleReqModel){
-        self.addvehicle?.btnSave.showLoading()
-        WebServiceSubClass.AddVehicleApi(reqModel: reqModel) { (status, apiMessage, response, error) in
-            self.addvehicle?.btnSave.hideLoading()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
-                if status{
-                    self.addvehicle?.navigationController?.popViewController(animated: true)
-                    self.addvehicle?.delegateAdd.refreshVehicleScreen()
-                }
-            }
-        }
-    }
+//    func doLogin(customerid: String, year: String, make: String, model: String, color: String,state :String, plateno: String,isothermodel:Bool,modelname:String,isothermake:Bool,makename:String) {
+//        let reqModel = AddVehicleReqModel(customerid: customerid, year: year, make: make, model: model, color: color, state: state, plateno: plateno,isothermodel: isothermodel,modelname: modelname,isothermake: isothermake,makename: makename)
+//        webserviceAddVehicle(reqModel)
+//    }
+//    func webserviceAddVehicle(_ reqModel: AddVehicleReqModel){
+//        self.addvehicle?.btnSave.showLoading()
+//        WebServiceSubClass.AddVehicleApi(reqModel: reqModel) { (status, apiMessage, response, error) in
+//            self.addvehicle?.btnSave.hideLoading()
+//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+//                if status{
+//                    self.addvehicle?.navigationController?.popViewController(animated: true)
+//                    self.addvehicle?.delegateAdd.refreshVehicleScreen()
+//                }
+//            }
+//        }
+//    }
 }
 class EditVehicleGetViewModel{
     weak var addvehicle : AddVehicleVC?
-    func doLogin(vehicleId: String, year: String, make: String, model: String, color: String,state:String, plateno: String,isothermodel:Bool,modelname:String,isothermake:Bool,makename:String) {
-        let reqModel = EditVehicleReqModel(vehicle_id: vehicleId, year: year, make: make, model: model, color: color, state: state, plateno: plateno,isothermodel: isothermodel,modelname: modelname,isothermake: isothermake,makename: makename)
-        webserviceEditVehicle(reqModel)
-    }
-    func webserviceEditVehicle(_ reqModel: EditVehicleReqModel){
-        self.addvehicle?.btnSave.showLoading()
-        WebServiceSubClass.EditVehicleApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-            self.addvehicle?.btnSave.hideLoading()
-            Toast.show(title:status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
-                if status{
-                    self.addvehicle?.setup()
-                    self.addvehicle?.navigationController?.popViewController(animated: true)
-                    self.addvehicle?.delegateEdit.refreshVehicleScreenEdit()
-                }
-            }
-        })
-    }
+//    func doLogin(vehicleId: String, year: String, make: String, model: String, color: String,state:String, plateno: String,isothermodel:Bool,modelname:String,isothermake:Bool,makename:String) {
+//        let reqModel = EditVehicleReqModel(vehicle_id: vehicleId, year: year, make: make, model: model, color: color, state: state, plateno: plateno,isothermodel: isothermodel,modelname: modelname,isothermake: isothermake,makename: makename)
+//        webserviceEditVehicle(reqModel)
+//    }
+//    func webserviceEditVehicle(_ reqModel: EditVehicleReqModel){
+//        self.addvehicle?.btnSave.showLoading()
+//        WebServiceSubClass.EditVehicleApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
+//            self.addvehicle?.btnSave.hideLoading()
+//            Toast.show(title:status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+//                if status{
+//                    self.addvehicle?.setup()
+//                    self.addvehicle?.navigationController?.popViewController(animated: true)
+//                    self.addvehicle?.delegateEdit.refreshVehicleScreenEdit()
+//                }
+//            }
+//        })
+//    }
 }
