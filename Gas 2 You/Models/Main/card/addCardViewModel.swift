@@ -19,7 +19,7 @@ class addCardViewModel{
         WebServiceSubClass.AddCard(reqModel: addcardData, completion: { (status, apiMessage, response, error) in
             self.addCard?.btnAddCart.hideLoading()
             if !status{
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state: status ? .success : .failure){
                 }
             }else{
                 self.addCard?.navigationController?.popViewController(animated: true)

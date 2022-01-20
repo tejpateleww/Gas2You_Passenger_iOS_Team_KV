@@ -15,7 +15,7 @@ class LogoutUserModel{
     func webserviceForLogout(){
         Utilities.showHud()
         WebServiceSubClass.Logout { (status, message, response, error) in
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: message, state: status ? .success : .failure){
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: message, state: status ? .success : .failure){
                 Utilities.hideHud()
                 if status{
                     self.menuViewController?.DoLogoutFinal()

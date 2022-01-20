@@ -16,7 +16,7 @@ class LoginViewModel {
             self.loginvc?.btnLogin.hideLoading()
                 
                 if !status {
-                    Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
+                    Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state: status ? .success : .failure){
                      
                     }
                 } else {
@@ -47,7 +47,7 @@ class LoginViewModel {
         WebServiceSubClass.SocialLoginApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             Utilities.hideHud()
             if !status{
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state: status ? .success : .failure){
                 }
             } else {
                 Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
@@ -72,7 +72,7 @@ class LoginViewModel {
         Utilities.showHud()
         WebServiceSubClass.AppleDetailApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
-//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure){
+//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state: status ? .success : .failure){
                 if status {
                     let reqModel = SocialLoginRequestModel()
                     reqModel.socialId = response?.appleDetail?.appleId

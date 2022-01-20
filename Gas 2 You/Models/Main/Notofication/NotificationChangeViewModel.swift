@@ -36,7 +36,7 @@ class NotiChangeViewModel{
                         self.settingsVC?.switchNotification.setOn(false, animated: true)
                     }
                 }else{
-                    Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                    Toast.show(title: UrlConstant.Error, message: apiMessage, state: .failure)
                 }
             }
         }
@@ -76,7 +76,7 @@ class NotificationModelClass{
                 }
                 self.notificationVC?.reloadData()
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                Toast.show(title: UrlConstant.Error, message: apiMessage, state: .failure)
             }
         }
     }

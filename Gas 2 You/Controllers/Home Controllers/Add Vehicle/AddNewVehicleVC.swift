@@ -92,11 +92,6 @@ class AddNewVehicleVC: BaseVC {
         self.setupData()
     }
     
-    func setupPickerDataSource(picker : UIPickerView?){
-        picker?.dataSource = self
-        picker?.delegate = self
-    }
-    
     func setupUI(){
         if(isFromEdit){
             NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "Edit Vehicle", controller: self)
@@ -112,6 +107,11 @@ class AddNewVehicleVC: BaseVC {
         self.txtState.inputView = self.statePicker
     }
     
+    func setupData(){
+        self.callColorListAPI()
+        self.callMakeAndModelListAPI()
+    }
+    
     func setupEditData(){
         self.txtYear.text = self.editVehicleData?.year
         self.txtMake.text = self.editVehicleData?.make
@@ -123,8 +123,11 @@ class AddNewVehicleVC: BaseVC {
         self.modelID = self.editVehicleData?.modelId ?? ""
         self.colorID = self.editVehicleData?.colorId ?? ""
         self.stateID = self.editVehicleData?.state_id ?? ""
-        
-        
+    }
+    
+    func setupPickerDataSource(picker : UIPickerView?){
+        picker?.dataSource = self
+        picker?.delegate = self
     }
     
     func AddDoneOnPicker(){
@@ -149,13 +152,13 @@ class AddNewVehicleVC: BaseVC {
             self.txtYear.endEditing(true)
         }else if(self.txtMake.isFirstResponder){
             if(self.txtMake.text == ""){
-                self.txtMake.text = self.arrMakeList[0].manufacturerName
+                self.txtMake.text = self.arrMakeList[0].manufacturerName ?? ""
                 self.makeID = self.arrMakeList[0].id ?? ""
                 self.stackOtherMake.isHidden = (self.txtMake.text == "Other") ? false : true
                 self.txtModel.text = ""
                 self.txtModel.isUserInteractionEnabled = true
                 for make in arrMakeList{
-                    if(make.id == self.arrMakeList[0].id){
+                    if(make.id == self.arrMakeList[0].id  ?? ""){
                         self.arrModelList = make.models ?? []
                         break
                     }
@@ -164,31 +167,26 @@ class AddNewVehicleVC: BaseVC {
             self.txtMake.endEditing(true)
         }else if(self.txtModel.isFirstResponder){
             if(self.txtModel.text == ""){
-                self.txtModel.text = self.arrModelList[0].modelName
+                self.txtModel.text = self.arrModelList[0].modelName ?? ""
                 self.modelID = self.arrModelList[0].id ?? ""
                 self.stackOtherModel.isHidden = (self.txtModel.text == "Other") ? false : true
             }
             self.txtModel.endEditing(true)
         }else if(self.txtColor.isFirstResponder){
             if(self.txtColor.text == ""){
-                self.txtColor.text = self.arrColorList[0].color
+                self.txtColor.text = self.arrColorList[0].color ?? ""
                 self.colorID = arrColorList[0].id ?? ""
             }
             self.txtColor.endEditing(true)
         }else if(self.txtState.isFirstResponder){
             if(self.txtState.text == ""){
                 self.txtLicense.isUserInteractionEnabled = true
-                self.txtState.text = self.arrStateList[0].stateName
+                self.txtState.text = self.arrStateList[0].stateName ?? ""
                 self.stateID = self.arrStateList[0].id ?? ""
                 self.txtLicense.text = "\(self.arrStateList[0].stateCode ?? "") - "
             }
             self.txtState.endEditing(true)
         }
-    }
-    
-    func setupData(){
-        self.callColorListAPI()
-        self.callMakeAndModelListAPI()
     }
     
     func enableData(){
@@ -248,8 +246,6 @@ class AddNewVehicleVC: BaseVC {
             Toast.show(title: UrlConstant.Required, message: "Please enter license plate number", state: .info)
             return false
         }
-        
-        
         return true
     }
     
@@ -308,7 +304,6 @@ extension AddNewVehicleVC : UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         
         if(pickerView == self.yearPicker){
             self.txtYear.text = self.arrYearList[row]
@@ -380,7 +375,6 @@ extension AddNewVehicleVC: UITextFieldDelegate {
             return (string == filtered) ? (newString.length <= TEXTFIELD_OTHER_MAKE_MODEL) : false
             
         case txtLicense:
-            
             if let char = string.cString(using: String.Encoding.utf8) {
                 let isBackSpace = strcmp(char, "\\b")
                 if (isBackSpace == -92) {

@@ -448,7 +448,7 @@ extension AddVehicleVC: UITextFieldDelegate {
                             self.isotherMake = true
                             return
                         }else{
-                            Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+                            Toast.show(title: UrlConstant.Error, message: "Model data is empty", state: .failure)
                         }
                     }
                 }
@@ -471,7 +471,7 @@ extension AddVehicleVC: UITextFieldDelegate {
                 txtEnterYear.inputView = yearPicker
                 return true
             }else{
-                Toast.show(title: UrlConstant.Failed, message: "Year data is empty", state: .failure)
+                Toast.show(title: UrlConstant.Error, message: "Year data is empty", state: .failure)
             }
         case txtEnterMake:
             if txtEnterYear.text == ""{
@@ -481,7 +481,7 @@ extension AddVehicleVC: UITextFieldDelegate {
                     txtEnterMake.inputView = makePicker
                     return true
                 }else{
-                    Toast.show(title: UrlConstant.Failed, message: "Make data is empty", state: .failure)
+                    Toast.show(title: UrlConstant.Error, message: "Make data is empty", state: .failure)
                 }
             }
         case txtEnterModel:
@@ -495,7 +495,7 @@ extension AddVehicleVC: UITextFieldDelegate {
                         txtEnterModel.inputView = modelPicker
                         return true
                     }else{
-                        Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+                        Toast.show(title: UrlConstant.Error, message: "Model data is empty", state: .failure)
                     }
                 }
             }else{
@@ -508,7 +508,7 @@ extension AddVehicleVC: UITextFieldDelegate {
                         txtEnterModel.inputView = modelPicker
                         return true
                     }else{
-                        Toast.show(title: UrlConstant.Failed, message: "Model data is empty", state: .failure)
+                        Toast.show(title: UrlConstant.Error, message: "Model data is empty", state: .failure)
                     }
                 }
             }
@@ -526,7 +526,7 @@ extension AddVehicleVC: UITextFieldDelegate {
                     txtEnterColor.inputView = colorPicker
                     return true
                 }else{
-                    Toast.show(title: UrlConstant.Failed, message: "Color data is empty", state: .failure)
+                    Toast.show(title: UrlConstant.Error, message: "Color data is empty", state: .failure)
                 }
 //            }
         case txtStateName:
@@ -543,7 +543,7 @@ extension AddVehicleVC: UITextFieldDelegate {
                     txtStateName.inputView = statePicker
                     return true
                 }else{
-                    Toast.show(title: UrlConstant.Failed, message: "State data is empty", state: .failure)
+                    Toast.show(title: UrlConstant.Error, message: "State data is empty", state: .failure)
                 }
 //            }
         case txtLicencePlateNo:

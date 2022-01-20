@@ -21,7 +21,7 @@ class AddVehicleViewModel{
                 self.addNewVehicleVC?.arrColorList = response?.data ?? []
                 self.addNewVehicleVC?.enableData()
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state:.failure)
+                Toast.show(title: UrlConstant.Error, message: apiMessage, state:.failure)
             }
         })
     }
@@ -34,7 +34,7 @@ class AddVehicleViewModel{
                 self.addNewVehicleVC?.arrMakeList = response?.data ?? []
                 self.addNewVehicleVC?.enableData()
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state:.failure)
+                Toast.show(title: UrlConstant.Error, message: apiMessage, state:.failure)
             }
         })
     }
@@ -47,8 +47,9 @@ class AddVehicleViewModel{
                 Toast.show(title: UrlConstant.Success, message: apiMessage, state: .success)
                 self.addNewVehicleVC?.navigationController?.popViewController(animated: true)
                 NotificationCenter.default.post(name: .refreshVehicleScreen, object: nil)
+                NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state:.failure)
+                Toast.show(title: UrlConstant.Error, message: apiMessage, state:.failure)
             }
         }
     }
@@ -61,8 +62,9 @@ class AddVehicleViewModel{
                 Toast.show(title: UrlConstant.Success, message: apiMessage, state: .success)
                 self.addNewVehicleVC?.navigationController?.popViewController(animated: true)
                 NotificationCenter.default.post(name: .refreshVehicleScreen, object: nil)
+                NotificationCenter.default.post(name: notifRefreshVehicleList, object: nil)
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state:.failure)
+                Toast.show(title: UrlConstant.Error, message: apiMessage, state:.failure)
             }
         }
     }

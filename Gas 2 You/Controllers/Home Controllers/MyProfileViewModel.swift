@@ -24,7 +24,7 @@ class MyProfileViewModel{
     
     func webserviceEditProfile(_ reqModel: UpdateProfileRequestModel){
         WebServiceSubClass.UpdateProfileInfo(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
-            Toast.show(title: status ? UrlConstant.Success :  UrlConstant.Failed, message: apiMessage, state: status ? .success :  .failure){
+            Toast.show(title: status ? UrlConstant.Success :  UrlConstant.Error, message: apiMessage, state: status ? .success :  .failure){
                 if status{
                     Singleton.sharedInstance.userProfilData = response?.data
                     Constants.userDefaults.setUserData()

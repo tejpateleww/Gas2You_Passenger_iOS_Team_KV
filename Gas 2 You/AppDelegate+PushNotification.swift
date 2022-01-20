@@ -118,6 +118,13 @@ extension AppDelegate : MessagingDelegate {
                         self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
                     }
                 }
+            }else if (key as? String ?? "") == "SendBulkPushNotification"{
+                if let topVc = UIApplication.appTopViewController() {
+                    completionHandler([.alert, .sound])
+                    if topVc.isKind(of: NotificationListVC.self) {
+                        NotificationCenter.default.post(name: .refreshNotiScreen, object: nil)
+                    }
+                }
             }
         }
         
@@ -168,6 +175,18 @@ extension AppDelegate : MessagingDelegate {
                         AppDelegate.pushNotificationType = nil
                     }else{
                         NotificationCenter.default.post(name: .goToCompOrderScreen, object: nil)
+                    }
+                }
+                return
+            }
+            
+            if pushObj.type == "SendBulkPushNotification"{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if (UIApplication.appTopViewController()?.isKind(of: NotificationListVC.self) ?? false){
+                        AppDelegate.pushNotificationObj = nil
+                        AppDelegate.pushNotificationType = nil
+                    }else{
+                        NotificationCenter.default.post(name: .goToNotiScreen, object: nil)
                     }
                 }
                 return

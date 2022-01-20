@@ -26,7 +26,7 @@ struct BookingListResModel : Codable {
 }
 struct BookingListDatum : Codable {
 
-    let colorName : String?
+            let colorName : String?
             let completeOrderDateTime : String?
             let customerId : String?
             let date : String?

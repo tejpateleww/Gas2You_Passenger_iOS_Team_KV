@@ -217,7 +217,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
                         Toast.show(title: UrlConstant.Success, message: "Invoice successfully downloaded!", state: .success)
                     }
                 } catch {
-                    Toast.show(title: UrlConstant.Failed, message: "Invoice could not be saved!", state: .failure)
+                    Toast.show(title: UrlConstant.Error, message: "Invoice could not be saved!", state: .failure)
                 }
                 Utilities.hideHud()
             }

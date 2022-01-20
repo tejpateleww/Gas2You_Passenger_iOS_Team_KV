@@ -21,7 +21,7 @@ class AddLocationViewModel{
                 if status{
                     self.AddLocation?.addLocationModel.webserviceLocationList()
                 }else{
-                    Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                    Toast.show(title: UrlConstant.Error, message: apiMessage, state: .failure)
                 }
             }
         })
@@ -44,7 +44,7 @@ class AddLocationViewModel{
                         self.AddLocation?.tblLocationList.reloadData()
                     }
                 }else{
-                    Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                    Toast.show(title: UrlConstant.Error, message: apiMessage, state: .failure)
                 }
             }
         })

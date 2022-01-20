@@ -15,7 +15,7 @@ class ForgotPasswordViewModel {
         self.forgotPasswordVC?.btnSubmit.showLoading()
         WebServiceSubClass.ForgotPasswordApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             self.forgotPasswordVC?.btnSubmit.hideLoading()
-            Toast.show(title: status ? UrlConstant.Success :  UrlConstant.Failed, message: status ?  "Reset password link sent to your email address" : apiMessage, state: status ? .success :  .failure){
+            Toast.show(title: status ? UrlConstant.Success :  UrlConstant.Error, message: status ?  "Reset password link sent to your email address" : apiMessage, state: status ? .success :  .failure){
                 if status{
                     
                 }

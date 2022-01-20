@@ -45,6 +45,8 @@ class BookingListViewModel{
                 DispatchQueue.main.async {
                     self.myordervc?.refreshControl.endRefreshing()
                 }
+                
+                self.myordervc?.redirectToDetail()
             }else{
                 Utilities.ShowAlert(OfMessage: apiMessage)
             }
@@ -66,7 +68,7 @@ class CancelOrder{
                 self.cancelOrder?.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "\(self.cancelOrder?.currentPage ?? 0)")
             }
             else{
-                Toast.show(title: UrlConstant.Failed, message:apiMessage, state: .failure)
+                Toast.show(title: UrlConstant.Error, message:apiMessage, state: .failure)
             }
         })
     }

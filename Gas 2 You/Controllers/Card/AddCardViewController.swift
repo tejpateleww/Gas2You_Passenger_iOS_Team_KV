@@ -150,7 +150,7 @@ class AddCardViewController: BaseVC {
         }
         else if (txtCardNumber.text?.count ?? 0) < 15
         {
-            Toast.show(title: UrlConstant.Failed, message: "Please enter valid Card number", state: .failure)
+            Toast.show(title: UrlConstant.Error, message: "Please enter valid Card number", state: .failure)
             return false
         }
         else  if(!ExpDate.0)
@@ -160,7 +160,7 @@ class AddCardViewController: BaseVC {
         }
         else if (!expDateValidation(dateStr: txtExpiryDate.text ?? ""))
         {
-            Toast.show(title: UrlConstant.Failed, message: "Please select valid expiry date", state: .failure)
+            Toast.show(title: UrlConstant.Error, message: "Please select valid expiry date", state: .failure)
             return false
         }
         else  if(!Cvv.0)
@@ -170,7 +170,7 @@ class AddCardViewController: BaseVC {
         }
         else if (txtCVV.text?.count ?? 0) < 3
         {
-            Toast.show(title: UrlConstant.Failed, message: "Please enter valid CVV", state: .failure)
+            Toast.show(title: UrlConstant.Error, message: "Please enter valid CVV", state: .failure)
             return false
         }
         

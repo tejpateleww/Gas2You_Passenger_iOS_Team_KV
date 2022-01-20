@@ -14,7 +14,7 @@ class SignupViewModel {
     
     func webserviceOtp(reqModel: OTPRequestModel){
         WebServiceSubClass.otpRequestApi(reqModel: reqModel) { (status, apiMessage, response, error) in
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state:status ? .success : .failure){
                 if status{
                     self.signupvc?.StringOTP = "\(response?.otp ?? 0)"
                     self.signupvc?.reversetimer()
@@ -26,7 +26,7 @@ class SignupViewModel {
         self.signupmodel?.btnSignup.showLoading()
         WebServiceSubClass.otpRequestApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             self.signupmodel?.btnSignup.hideLoading()
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state:status ? .success : .failure){
                 if status{
                     self.signupmodel?.strOtp = String(response?.otp ?? 0)
                     self.signupmodel?.storeDataInRegisterModel()
@@ -39,7 +39,7 @@ class SignupViewModel {
         WebServiceSubClass.RegisterApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             self.signupvc?.btnVerify.hideLoading()
             if !status {
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure)
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state:status ? .success : .failure)
             }else{
                 Constants.userDefaults.setValue(true, forKey: UserDefaultsKey.isUserLogin.rawValue)
                 Constants.userDefaults.setValue(response?.data?.xAPIKey, forKey: UserDefaultsKey.X_API_KEY.rawValue)

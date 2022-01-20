@@ -348,7 +348,7 @@ extension ChatViewController : UITableViewDelegate, UITableViewDataSource
                 }
             }else{
                 let NoDatacell = self.tblChat.dequeueReusableCell(withIdentifier: "NoDataCell", for: indexPath) as! NoDataCell
-                NoDatacell.imgNodata.image = UIImage(named: "IC_chatSmall")
+                NoDatacell.imgNodata.image = UIImage(named: "IC_chat")
                 NoDatacell.lblData.text = "No chat available!"
                 if UIDevice.current.userInterfaceIdiom == .phone{
                     NoDatacell.lblData.font = CustomFont.PoppinsRegular.returnFont(16.0)

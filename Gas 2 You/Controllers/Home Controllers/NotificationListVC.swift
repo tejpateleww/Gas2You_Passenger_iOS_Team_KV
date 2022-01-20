@@ -53,7 +53,14 @@ class NotificationListVC: BaseVC {
 //        arrNotification.append(notification(img: #imageLiteral(resourceName: "IC_rightCheck"), msg: "Your Order #1234 has been placed"))
 //        arrNotification.append(notification(img: #imageLiteral(resourceName: "IC_rightCheck"), msg: "Your Order #1234 has been placed"))
         self.prepareView()
+        NotificationCenter.default.removeObserver(self, name: .refreshNotiScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshList), name: .refreshNotiScreen, object: nil)
     }
+    
+    @objc func refreshList(){
+        self.callNotificationListAPI()
+    }
+    
     func prepareView(){
         self.registerNib()
         self.setupUI()

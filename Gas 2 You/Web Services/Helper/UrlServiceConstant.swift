@@ -20,6 +20,7 @@ class UrlConstant{
     static let Success = "Success"
     static let Failed = "Failed"
     static let Status = "status"
+    static let Error = "Error"
     static let SessionExpired = "Your session is expired! Please login again."
     static let SomethingWentWrong = "There is some server side error, Please try again after some time!"
     static let NoInternetConnection =  "The Internet connection appears to be offline, Please connect to the internet."

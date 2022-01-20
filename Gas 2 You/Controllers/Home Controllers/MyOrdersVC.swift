@@ -27,6 +27,7 @@ class MyOrdersVC: BaseVC {
     var pagingSpinner = UIActivityIndicatorView()
     var isFromPayment : Bool = false
     var isFromComplete : Bool = false
+    var isFromPushInvoice : Bool = false
     var bookingid = ""
     
     @IBOutlet weak var myOrdersTV: UITableView!
@@ -39,6 +40,8 @@ class MyOrdersVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         
         myOrdersTV.delegate = self
         myOrdersTV.dataSource = self
@@ -102,6 +105,17 @@ class MyOrdersVC: BaseVC {
         self.isLoading = true
         BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
     }
+    
+    func redirectToDetail(){
+        if(isFromPushInvoice){
+            let orderDetail = self.arrBookingList.filter {$0.id == self.bookingid}
+            print(orderDetail[0].id ?? "0")
+            let completeJobVC: CompleteJobVC = CompleteJobVC.instantiate(fromAppStoryboard: .Main)
+            completeJobVC.orderId = orderDetail[0].id ?? ""
+            navigationController?.pushViewController(completeJobVC, animated: true)
+        }
+    }
+    
     func addTableFooter(){
         if #available(iOS 13.0, *) {
             self.pagingSpinner = UIActivityIndicatorView(style: .medium)
@@ -197,6 +211,7 @@ class MyOrdersVC: BaseVC {
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
         myOrdersTV.reloadData()
+        
     }
 }
 

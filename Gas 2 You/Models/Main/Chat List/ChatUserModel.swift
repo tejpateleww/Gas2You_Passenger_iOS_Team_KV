@@ -23,7 +23,7 @@ class ChatUserModel{
                     self.chatListVC?.refreshControl.endRefreshing()
                 }
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                Toast.show(title: UrlConstant.Error, message: apiMessage, state: .failure)
             }
         })
     }
@@ -36,7 +36,7 @@ class ChatUserModel{
                 self.chatViewController?.filterArrayData(isFromDidLoad: true)
                 self.chatViewController?.delegateChat?.chatListRefreshScreen()
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                Toast.show(title: UrlConstant.Error, message: apiMessage, state: .failure)
             }
         }
     }
@@ -54,7 +54,7 @@ class ChatUserModel{
                     self.chatViewController?.txtviewComment.isUserInteractionEnabled = true
                 }
             }else{
-                Toast.show(title: UrlConstant.Failed, message: apiMessage, state: .failure)
+                Toast.show(title: UrlConstant.Error, message: apiMessage, state: .failure)
                 self.chatViewController?.txtviewComment.isUserInteractionEnabled = true
             }
         })

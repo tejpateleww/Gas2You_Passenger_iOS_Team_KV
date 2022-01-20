@@ -17,7 +17,7 @@ class ChangePasswordViewModel {
         WebServiceSubClass.ChangePasswordApi(reqModel: reqModel) { (status, apiMessage, response, error) in
             self.changePasswordVC?.btnSave.hideLoading()
             self.changePasswordVC?.isApiCalling = false
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state:status ? .success : .failure){
                 if status{
                     self.clearAllFields()
                     Utilities.showAlertAction(AppInfo.appName, message: apiMessage, vc: self.changePasswordVC!) {

@@ -71,7 +71,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var memberPlanModel = memberPlanViewModel()
     var arrTimeList = [DateResDatum]()
     var selectedIndex = 0
-    var SelectIndex = -1
+    var SelectIndex = 0
     var dateSelected = 0
     var serviceid = ""
     var subserviceid = ""
@@ -181,6 +181,9 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         NotificationCenter.default.removeObserver(self, name: .goToCompOrderScreen, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToCompOrderScreen), name: .goToCompOrderScreen, object: nil)
         
+        NotificationCenter.default.removeObserver(self, name: .goToNotiScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.goToNotiScreen), name: .goToNotiScreen, object: nil)
+        
         NotificationCenter.default.removeObserver(self, name: .goToUpcomingOrderScreen, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToUpcomingOrderScreen), name: .goToUpcomingOrderScreen, object: nil)
         
@@ -192,17 +195,30 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         if(AppDelegate.pushNotificationObj != nil){
             if(AppDelegate.pushNotificationType == NotificationTypes.InvoiceGenerated.rawValue){
                 self.goToCompOrderScreen()
+            }else if(AppDelegate.pushNotificationType == "SendBulkPushNotification"){
+                self.goToNotiScreen()
             }
         }
     }
     
     @objc func goToCompOrderScreen() {
         
+        let MyOrdersVC:MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+        MyOrdersVC.isFromComplete = true
+        MyOrdersVC.isFromPushInvoice = true
+        MyOrdersVC.bookingid = AppDelegate.pushNotificationObj?.booking_id ?? ""
+        self.navigationController?.pushViewController(MyOrdersVC, animated: true)
+        
+        AppDelegate.pushNotificationObj = nil
+        AppDelegate.pushNotificationType = nil
+    }
+    
+    @objc func goToNotiScreen() {
+        
         AppDelegate.pushNotificationObj = nil
         AppDelegate.pushNotificationType = nil
 
-        let MyOrdersVC:MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
-        MyOrdersVC.isFromComplete = true
+        let MyOrdersVC:NotificationListVC = NotificationListVC.instantiate(fromAppStoryboard: .Main)
         self.navigationController?.pushViewController(MyOrdersVC, animated: true)
     }
     
@@ -330,29 +346,33 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     }
     
     @IBAction func btnParkingLocationTap(_ sender: UIButton) {
-        let LocationStatus = CLLocationManager.authorizationStatus()
-        if LocationStatus == .notDetermined {
-            AppDelegate.shared.locationService.locationManager?.requestWhenInUseAuthorization()
-        }else if LocationStatus == .restricted || LocationStatus == .denied {
-            Utilities.showAlertWithTitleFromWindow(title: AppInfo.appName, andMessage: "Please turn on permission from settings, to track location in app.", buttons: ["Cancel","Settings"]) { (index) in
-                if index == 1 {
-                    guard let url = URL(string: UIApplication.openSettingsURLString) else {
-                        return
-                    }
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:])
-                    }
-                    if let settingsAppURL = URL(string: UIApplication.openSettingsURLString){
-                        UIApplication.shared.open(settingsAppURL, options: [:], completionHandler: nil)
-                    }
-                }
-            }
-        }else{
-            let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
-            carParkingLocationVC.place = self.PlaceName ?? ""
-            carParkingLocationVC.delegatetext = self
-            navigationController?.pushViewController(carParkingLocationVC, animated: true)
-        }
+//        let LocationStatus = CLLocationManager.authorizationStatus()
+//        if LocationStatus == .notDetermined {
+//            AppDelegate.shared.locationService.locationManager?.requestWhenInUseAuthorization()
+//        }else if LocationStatus == .restricted || LocationStatus == .denied {
+//            Utilities.showAlertWithTitleFromWindow(title: AppInfo.appName, andMessage: "Please turn on permission from settings, to track location in app.", buttons: ["Cancel","Settings"]) { (index) in
+//                if index == 1 {
+//                    guard let url = URL(string: UIApplication.openSettingsURLString) else {
+//                        return
+//                    }
+//                    if UIApplication.shared.canOpenURL(url) {
+//                        UIApplication.shared.open(url, options: [:])
+//                    }
+//                    if let settingsAppURL = URL(string: UIApplication.openSettingsURLString){
+//                        UIApplication.shared.open(settingsAppURL, options: [:], completionHandler: nil)
+//                    }
+//                }
+//            }
+//        }else{
+//            let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
+//            carParkingLocationVC.place = self.PlaceName ?? ""
+//            carParkingLocationVC.delegatetext = self
+//            navigationController?.pushViewController(carParkingLocationVC, animated: true)
+//        }
+        let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
+        carParkingLocationVC.place = self.PlaceName ?? ""
+        carParkingLocationVC.delegatetext = self
+        navigationController?.pushViewController(carParkingLocationVC, animated: true)
     }
     
     @IBAction func btnSelectVehicleTap(_ sender: UIButton) {
@@ -432,6 +452,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
                     }
                     self.collectionViewSubService.reloadData()
                 } else {
+                    self.subserviceid = ""
                     self.LblOctane.text = self.serviceList[row].name
                     self.ViewForShowPrice.isHidden = true
                     self.serviceid = self.serviceList[row].id ?? ""
@@ -683,19 +704,19 @@ extension HomeVC: UITextFieldDelegate {
                 }
                 return true
             }else{
-                Toast.show(title: UrlConstant.Failed, message: "Service list is empty", state: .failure)
+                Toast.show(title: UrlConstant.Error, message: "Service list is empty", state: .failure)
             }
         case txtSelectedVehicle:
             if listOfVehicle.count != 0{
                 return true
             }else{
-                Toast.show(title: UrlConstant.Failed, message: "Vehicle list is empty", state: .failure)
+                Toast.show(title: UrlConstant.Error, message: "Vehicle list is empty", state: .failure)
             }
         case txtDateSelected:
             if availableDate.count != 0{
                 return true
             }else{
-                Toast.show(title: UrlConstant.Failed, message: "Date list is empty", state: .failure)
+                Toast.show(title: UrlConstant.Error, message: "Date list is empty", state: .failure)
             }
         default:
             break

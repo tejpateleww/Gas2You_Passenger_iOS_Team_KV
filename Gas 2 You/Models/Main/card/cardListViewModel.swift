@@ -30,7 +30,7 @@ class cardListViewModel{
         deleteCard.customer_id = Singleton.sharedInstance.userId
         deleteCard.card_id = cardId
         WebServiceSubClass.DeleteCard(reqModel: deleteCard, completion: { (status, apiMessage, response, error)  in
-            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: status ? apiMessage : apiMessage, state: status ? .success : .failure){
+            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: status ? apiMessage : apiMessage, state: status ? .success : .failure){
                 if status{
                     self.cardList?.cardListModel.webserviceCardList()
                 }
@@ -48,7 +48,7 @@ class cardListViewModel{
         WebServiceSubClass.addBooking(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state: status ? .success : .failure)
             }
             if status{
                 NotificationCenter.default.post(name: .clearAddonArray, object: nil)
@@ -68,7 +68,7 @@ class cardListViewModel{
         WebServiceSubClass.purchaseMemberPlan(reqModel: memberPlan, completion: { (status, apiMessage, response, error) in
             Utilities.hideHud()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state: status ? .success : .failure)
+                Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state: status ? .success : .failure)
             }
                 if status{
                     userDefault.setValue(response?.data?.isMembershipUser, forKey: UserDefaultsKey.MemberPlan.rawValue)

@@ -71,7 +71,7 @@ class AddVehicleGetViewModel{
 //        self.addvehicle?.btnSave.showLoading()
 //        WebServiceSubClass.AddVehicleApi(reqModel: reqModel) { (status, apiMessage, response, error) in
 //            self.addvehicle?.btnSave.hideLoading()
-//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+//            Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state:status ? .success : .failure){
 //                if status{
 //                    self.addvehicle?.navigationController?.popViewController(animated: true)
 //                    self.addvehicle?.delegateAdd.refreshVehicleScreen()
@@ -90,7 +90,7 @@ class EditVehicleGetViewModel{
 //        self.addvehicle?.btnSave.showLoading()
 //        WebServiceSubClass.EditVehicleApi(reqModel: reqModel, completion: { (status, apiMessage, response, error) in
 //            self.addvehicle?.btnSave.hideLoading()
-//            Toast.show(title:status ? UrlConstant.Success : UrlConstant.Failed, message: apiMessage, state:status ? .success : .failure){
+//            Toast.show(title:status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state:status ? .success : .failure){
 //                if status{
 //                    self.addvehicle?.setup()
 //                    self.addvehicle?.navigationController?.popViewController(animated: true)

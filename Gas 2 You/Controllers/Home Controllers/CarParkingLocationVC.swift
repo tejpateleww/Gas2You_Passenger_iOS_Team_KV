@@ -178,9 +178,29 @@ class CarParkingLocationVC: BaseVC {
     }
     
     @IBAction func btnCurrentLocation(_ sender: Any) {
-        setupMap()
-        Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Double(self.CurrentLocLat) ?? 0.00, longitude: Double(self.CurrentLocLong) ?? 0.00)
-        delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
+        
+        let LocationStatus = CLLocationManager.authorizationStatus()
+        if LocationStatus == .notDetermined {
+            AppDelegate.shared.locationService.locationManager?.requestWhenInUseAuthorization()
+        }else if LocationStatus == .restricted || LocationStatus == .denied {
+            Utilities.showAlertWithTitleFromWindow(title: AppInfo.appName, andMessage: "Please turn on permission from settings, to track location in app.", buttons: ["Cancel","Settings"]) { (index) in
+                if index == 1 {
+                    guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:])
+                    }
+                    if let settingsAppURL = URL(string: UIApplication.openSettingsURLString){
+                        UIApplication.shared.open(settingsAppURL, options: [:], completionHandler: nil)
+                    }
+                }
+            }
+        }else{
+            setupMap()
+            Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Double(self.CurrentLocLat) ?? 0.00, longitude: Double(self.CurrentLocLong) ?? 0.00)
+            delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
+        }
     }
     
     func locationData(){

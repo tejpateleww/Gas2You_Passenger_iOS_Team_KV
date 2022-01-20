@@ -42,7 +42,7 @@ class MyGarageVC: BaseVC,AddVehicleDelegate,editVehicleDelegate {
     @IBAction func btnAddVehicleTap(_ sender: ThemeButton) {
         
         if(Singleton.sharedInstance.userProfilData?.is_membership_user == false && self.arrVehicalList.count > 0){
-            Toast.show(title: UrlConstant.Failed, message: "Please upgrade your plan to add multiple vehicle", state: .info)
+            Toast.show(title: UrlConstant.Error, message: "Please upgrade your plan to add multiple vehicle", state: .info)
         }else{
             if #available(iOS 13.0, *) {
                 let addVehicleVC = storyboard?.instantiateViewController(identifier: AddNewVehicleVC.className) as! AddNewVehicleVC

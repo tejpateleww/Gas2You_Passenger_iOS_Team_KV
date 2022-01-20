@@ -24,7 +24,7 @@ class AddBookingViewModel{
                 myOrdersVC.getDataModel = objdatamodel
                 self.addbooking?.navigationController?.pushViewController(myOrdersVC, animated: true)
             }else{
-                Toast.show(title:UrlConstant.Failed, message: apiMessage, state: .failure)
+                Toast.show(title:UrlConstant.Error, message: apiMessage, state: .failure)
                 self.addbooking?.ServiceListData.webserviceofDateList(booking_date: (self.addbooking?.dateFormatter.string(from: (self.addbooking?.todaysDate) as Date? ?? Date())) ?? "", isFromToday: true)
             }
         })

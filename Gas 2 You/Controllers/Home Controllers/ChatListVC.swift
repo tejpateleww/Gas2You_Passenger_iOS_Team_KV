@@ -80,9 +80,10 @@ extension ChatListVC: UITableViewDelegate, UITableViewDataSource {
                 cell.lblTime.text = dict.createdAt ?? ""
                 
                 let strUrl = dict.image ?? ""
+                print(strUrl)
                 let strURl = URL(string: strUrl)
                 cell.profileIV.sd_imageIndicator = SDWebImageActivityIndicator.white
-                cell.profileIV.sd_setImage(with: strURl, placeholderImage: UIImage(named: "AppIcon"), options: .refreshCached, completed: nil)
+                cell.profileIV.sd_setImage(with: strURl, placeholderImage: UIImage(named: "icon_Chat_Dummy_User"), options: .refreshCached, completed: nil)
                 
                 return cell
             }else{
@@ -96,10 +97,12 @@ extension ChatListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chatViewController: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
-        chatViewController.userData = self.arrUserList[indexPath.row]
-        chatViewController.delegateChat = self
-        navigationController?.pushViewController(chatViewController, animated: true)
+        if isReload && self.arrUserList.count > 0{
+            let chatViewController: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
+            chatViewController.userData = self.arrUserList[indexPath.row]
+            chatViewController.delegateChat = self
+            navigationController?.pushViewController(chatViewController, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
