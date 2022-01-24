@@ -18,7 +18,7 @@ let screenWidth = UIScreen.main.bounds.width
 let NotificationBadges = NSNotification.Name(rawValue: "NotificationBadges")
 class Constants {
     static let appDel = UIApplication.shared.delegate as! AppDelegate
-    static let kAPPVesion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+    static let kAPPVesion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     static let appName = "Gas2You"
     static let appURL = "itms-apps://itunes.apple.com/app/id1488928328"
     static let defaultCountryCode = "+91"

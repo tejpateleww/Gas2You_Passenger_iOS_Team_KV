@@ -125,6 +125,14 @@ extension AppDelegate : MessagingDelegate {
                         NotificationCenter.default.post(name: .refreshNotiScreen, object: nil)
                     }
                 }
+            }else if (key as? String ?? "") == "cancelRequest"{
+                if let topVc = UIApplication.appTopViewController() {
+                    if topVc.isKind(of: MyOrdersVC.self) {
+                        self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo as [AnyHashable : Any])
+                    } else {
+                        completionHandler([.alert, .sound])
+                    }
+                }
             }
         }
         
@@ -238,7 +246,6 @@ extension AppDelegate : MessagingDelegate {
        
         if let BookingID = userData["gcm.notification.booking_id"] as? String {
             
-            
             if let topVc = UIApplication.appTopViewController() {
                 if topVc.isKind(of: ChatViewController.self) {
                     let chatVc = topVc as! ChatViewController
@@ -259,7 +266,6 @@ extension AppDelegate : MessagingDelegate {
                     topVc.navigationController?.pushViewController(chatVc, animated: true)
                 }
             }
-            
         }
     }
 }
@@ -408,6 +414,28 @@ extension AppDelegate {
             
         case "leavCarDoorCapOpen":
             AppDel.showCarDoorOpenVC()
+            
+            
+        case "cancelRequest":
+            print("cancelRequest")
+            if let topVc = UIApplication.appTopViewController() {
+                if topVc.isKind(of: MyOrdersVC.self) {
+                    let orderVc = topVc as! MyOrdersVC
+                   // if jobVc.orderId == BookingID {
+                    orderVc.isFromComplete = true
+                    orderVc.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")//bookingDetailViewModel.webservicebookingDetails(bookingDetailReqModel(customerid: Singleton.sharedInstance.userId, order_id: BookingID))
+//                    orderVc.btnCompleted.isSelected = true
+                    orderVc.btnCompletedTap(orderVc.btnCompleted)
+                    //
+                } else {
+                    let orderVc : MyOrdersVC = MyOrdersVC.instantiate(fromAppStoryboard: .Main)
+                    orderVc.isFromComplete = true
+                    orderVc.BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "2", page: "1")
+                    orderVc.btnCompletedTap(orderVc.btnCompleted)
+                    topVc.navigationController?.hidesBottomBarWhenPushed = true
+                    topVc.navigationController?.pushViewController(orderVc, animated: true)
+                }
+            }
         default:
             break
         }

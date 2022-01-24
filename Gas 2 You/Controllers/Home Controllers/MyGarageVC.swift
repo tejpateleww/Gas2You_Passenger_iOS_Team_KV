@@ -145,9 +145,13 @@ extension MyGarageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if arrVehicalList.count != 0{
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
-            self.removeVehicle.webserviceofRemovevehical(vehicleId: self.arrVehicalList[indexPath.row].id ?? "", row: indexPath.row)
-            //Perform your action here
-            completion(true)
+            Utilities.showAlertWithTitleFromWindow(title: AppInfo.appName, andMessage: "Are you sure you want to delete this vehicle ?", buttons: ["Ok","Cancel"]) { index in
+                if index == 0{
+                    self.removeVehicle.webserviceofRemovevehical(vehicleId: self.arrVehicalList[indexPath.row].id ?? "", row: indexPath.row)
+                    //Perform your action here
+                    completion(true)
+                }
+            }
         }
 
         let editAction = UIContextualAction(style: .normal, title: nil) { (action, view, completion) in
