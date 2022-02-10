@@ -6,24 +6,28 @@
 import Foundation
 
 struct vehicalListResModel : Codable {
-
-        let data : [VehicleListDatum]?
-        let message : String?
-        let status : Bool?
-
-        enum CodingKeys: String, CodingKey {
-                case data = "data"
-                case message = "message"
-                case status = "status"
-        }
     
-        init(from decoder: Decoder) throws {
-                let values = try decoder.container(keyedBy: CodingKeys.self)
-                data = try values.decodeIfPresent([VehicleListDatum].self, forKey: .data)
-                message = try values.decodeIfPresent(String.self, forKey: .message)
-                status = try values.decodeIfPresent(Bool.self, forKey: .status)
-        }
-
+    let data : [VehicleListDatum]?
+    let message : String?
+    let status : Bool?
+    let isLimitExceed : Bool?
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case data = "data"
+        case message = "message"
+        case status = "status"
+        case isLimitExceed = "is_limit_exceed"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        data = try values.decodeIfPresent([VehicleListDatum].self, forKey: .data)
+        message = try values.decodeIfPresent(String.self, forKey: .message)
+        status = try values.decodeIfPresent(Bool.self, forKey: .status)
+        isLimitExceed = try values.decodeIfPresent(Bool.self, forKey: .isLimitExceed)
+    }
+    
 }
 struct VehicleListDatum : Codable {
     

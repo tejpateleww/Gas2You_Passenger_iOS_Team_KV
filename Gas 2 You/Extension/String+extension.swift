@@ -8,6 +8,15 @@
 import Foundation
 import UIKit
 
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
+    }
+}
+
 extension UILabel {
     func setLineHeight(lineHeight: CGFloat) {
         let paragraphStyle = NSMutableParagraphStyle()

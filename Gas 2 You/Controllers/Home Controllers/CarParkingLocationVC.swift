@@ -26,7 +26,7 @@ class CarParkingLocationVC: BaseVC {
     
     var delegatetext : searchDataDelegate!
     var locationManager = CLLocationManager()
-    var place = ""
+    var searchText = ""
     var sublocality = ""
     var thoroughfare = ""
     var path = GMSPath()
@@ -44,14 +44,14 @@ class CarParkingLocationVC: BaseVC {
         addLocationModel.webserviceLocationList()
         
         mapView.delegate = self
-        
+        self.txtSearchBar.text = searchText
         if(Singleton.sharedInstance.carParkingLocation.coordinate.latitude != 0.0 && Singleton.sharedInstance.carParkingLocation.coordinate.longitude != 0.0){
-            location(Lat: Singleton.sharedInstance.carParkingLocation.coordinate.latitude, Long: Singleton.sharedInstance.carParkingLocation.coordinate.longitude)
+            self.location(Lat: Singleton.sharedInstance.carParkingLocation.coordinate.latitude, Long: Singleton.sharedInstance.carParkingLocation.coordinate.longitude)
+          //  self.getAddressFromLatLon(pdblLatitude: String( Singleton.sharedInstance.carParkingLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.carParkingLocation.coordinate.longitude))
         }else{
-            location(Lat: Singleton.sharedInstance.userCurrentLocation.coordinate.latitude, Long: Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
+            self.location(Lat: Singleton.sharedInstance.userCurrentLocation.coordinate.latitude, Long: Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
+      //      self.getAddressFromLatLon(pdblLatitude: String( Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
         }
-        
-        self.getAddressFromLatLon(pdblLatitude: String( Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
         
         self.vwThemeview.isHidden = true
         self.tblLocationList.delegate = self
@@ -167,7 +167,7 @@ class CarParkingLocationVC: BaseVC {
         self.CurrentLocLong = String(Long)
         
         let camera = GMSCameraPosition.camera(withLatitude: Double(self.CurrentLocLat) ?? 0.0, longitude:  Double(self.CurrentLocLong) ?? 0.0, zoom: 18.0)
-        self.mapView.camera = camera
+        self.mapView.animate(to: camera)
         
         let marker = GMSMarker()
         let markerImage = UIImage(named: "IC_pinImg")
@@ -197,9 +197,14 @@ class CarParkingLocationVC: BaseVC {
                 }
             }
         }else{
+            self.txtSearchBar.text = ""
             setupMap()
-            Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Double(self.CurrentLocLat) ?? 0.00, longitude: Double(self.CurrentLocLong) ?? 0.00)
-            delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
+            Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Singleton.sharedInstance.userCurrentLocation.coordinate.latitude, longitude: Singleton.sharedInstance.userCurrentLocation.coordinate.longitude)
+            self.getAddressFromLatLon(pdblLatitude: String( Singleton.sharedInstance.userCurrentLocation.coordinate.latitude), withLongitude: String(Singleton.sharedInstance.userCurrentLocation.coordinate.longitude))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.delegatetext.refreshSearchLIstScreen(text: self.txtSearchBar.text ?? "")
+            }
+            
         }
     }
     
@@ -291,7 +296,6 @@ extension CarParkingLocationVC: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         let view = MarkerInfoWindowView()
         view.titleLabel.numberOfLines = 1
-        
         if(marker == self.CurrentLocMarker){
             view.titleLabel.text = "You"
             view.titleLabel.textAlignment = .center
@@ -301,7 +305,7 @@ extension CarParkingLocationVC: GMSMapViewDelegate {
             view.frame.size.height = view.titleLabel.bounds.size.height - 15
             view.sizeToFit()
         }else{
-            view.titleLabel.text = place
+            view.titleLabel.text = self.txtSearchBar.text ?? ""
             view.titleLabel.textAlignment = .left
             view.imgArrow.isHidden = false
             view.imgArrowHeigh.constant = 20
@@ -317,7 +321,28 @@ extension CarParkingLocationVC: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         if(marker != self.CurrentLocMarker){
-            Utilities.showAlert("Parking Location", message: "Parking Location", vc: self)
+            Utilities.showAlert("Parking Location", message: self.txtSearchBar.text ?? "", vc: self)
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D){
+        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+        self.mapView.clear()
+        self.location(Lat: coordinate.latitude, Long: coordinate.longitude)
+        Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            guard let placemark = placemarks?.first else {
+                let errorString = error?.localizedDescription ?? "Unexpected Error"
+                print("Unable to reverse geocode the given location. Error: \(errorString)")
+                return
+            }
+            let reversedGeoLocation = ReversedGeoLocation(with: placemark)
+            
+            print(reversedGeoLocation.formattedAddress)
+            self.txtSearchBar.text =  reversedGeoLocation.formattedAddress
+            self.delegatetext.refreshSearchLIstScreen(text: self.txtSearchBar.text ?? "")
         }
     }
 }
@@ -374,5 +399,34 @@ extension CarParkingLocationVC:UITableViewDelegate,UITableViewDataSource{
         Singleton.sharedInstance.carParkingLocation = CLLocation(latitude: Double(arrLocation[indexPath.row].latitude) ?? 0.00, longitude: Double(arrLocation[indexPath.row].longitude) ?? 0.00)
         delegatetext.refreshSearchLIstScreen(text: txtSearchBar.text ?? "")
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+
+struct ReversedGeoLocation {
+    let name: String            // eg. Apple Inc.
+    let city: String            // eg. Cupertino
+    let state: String           // eg. CA
+    let zipCode: String         // eg. 95014
+    let country: String         // eg. United States
+    let isoCountryCode: String  // eg. US
+
+    var formattedAddress: String {
+        return """
+        \(name),
+        \(city),
+        \(state) \(zipCode)
+        \(country)
+        """
+    }
+
+    // Handle optionals as needed
+    init(with placemark: CLPlacemark) {
+        self.name           = placemark.name ?? ""
+        self.city           = placemark.locality ?? ""
+        self.state          = placemark.administrativeArea ?? ""
+        self.zipCode        = placemark.postalCode ?? ""
+        self.country        = placemark.country ?? ""
+        self.isoCountryCode = placemark.isoCountryCode ?? ""
     }
 }

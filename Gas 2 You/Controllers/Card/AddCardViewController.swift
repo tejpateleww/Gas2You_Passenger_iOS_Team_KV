@@ -255,6 +255,7 @@ class AddCardViewController: BaseVC {
             textField.selectedTextRange = textField.textRange(from: targetPosition, to: targetPosition)
         }
     }
+    
     func removeNonDigits(string: String, andPreserveCursorPosition cursorPosition: inout Int) -> String {
         var digitsOnlyString = ""
         let originalCursorPosition = cursorPosition

@@ -35,7 +35,8 @@ class LeftViewController: MenuViewController {
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblVersion.text = "Version : " + (appVersion ?? "")
+        let Version = "Version : \(Bundle.main.releaseVersionNumber ?? "")(\(Bundle.main.buildVersionNumber ?? ""))"
+        lblVersion.text = Version
         self.MenuTblView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
     }
     

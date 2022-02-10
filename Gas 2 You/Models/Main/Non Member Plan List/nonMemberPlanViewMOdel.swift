@@ -22,6 +22,7 @@ class nonMemberPlanViewMOdel{
             }
             
             if status{
+                NotificationCenter.default.post(name: .clearAddonArray, object: nil)
                 if let model = response?.data{
                     self.homevc?.nonmemberplanlist = model
                     self.homevc?.tblNonMemberPLan.reloadData()

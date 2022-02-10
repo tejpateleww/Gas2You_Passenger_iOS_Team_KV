@@ -370,8 +370,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
 //            navigationController?.pushViewController(carParkingLocationVC, animated: true)
 //        }
         let carParkingLocationVC = storyboard?.instantiateViewController(withIdentifier: "CarParkingLocationVC") as! CarParkingLocationVC
-        carParkingLocationVC.place = self.PlaceName ?? ""
         carParkingLocationVC.delegatetext = self
+        carParkingLocationVC.searchText = ((self.locationLabel.text == "" || self.locationLabel.text == "Please Select Address") ? "" : self.locationLabel.text) ?? ""
         navigationController?.pushViewController(carParkingLocationVC, animated: true)
     }
     
@@ -538,6 +538,11 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         if Singleton.sharedInstance.userProfilData?.is_membership_user == true{
             if nonmemberplanlist[indexPath.row].title == "Service Charge" || nonmemberplanlist[indexPath.row].title == "Windshield Washer Fluid Refill"{
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
+                if(nonmemberplanlist[indexPath.row].isChecked ?? false){
+                    if(!self.addonid.contains(nonmemberplanlist[indexPath.row].id ?? "-1")){
+                        self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+                    }
+                }
             }else{
                 cell.lblPrice.text = "Free"
                 if nonmemberplanlist[indexPath.row].isChecked ?? false{

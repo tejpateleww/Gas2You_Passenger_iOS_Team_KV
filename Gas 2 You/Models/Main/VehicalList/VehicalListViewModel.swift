@@ -22,10 +22,10 @@ class VehicalListViewModel{
                     self.mygaragevc?.arrVehicalList =  userdevice
                     self.mygaragevc?.isLoading = false
                     self.mygaragevc?.isReload = true
-                    if(self.mygaragevc?.arrVehicalList.count ?? 0 < 2){
-                        self.mygaragevc?.btnAddVehicle.isHidden = false
-                    }else{
+                    if(response?.isLimitExceed ?? false){
                         self.mygaragevc?.btnAddVehicle.isHidden = true
+                    }else{
+                        self.mygaragevc?.btnAddVehicle.isHidden = false
                     }
                     self.mygaragevc?.vehicleListTV.reloadData()
                 }

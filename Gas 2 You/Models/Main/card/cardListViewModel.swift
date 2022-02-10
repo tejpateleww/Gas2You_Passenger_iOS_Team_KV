@@ -71,6 +71,7 @@ class cardListViewModel{
                 Toast.show(title: status ? UrlConstant.Success : UrlConstant.Error, message: apiMessage, state: status ? .success : .failure)
             }
                 if status{
+                    NotificationCenter.default.post(name: .clearAddonArray, object: nil)
                     userDefault.setValue(response?.data?.isMembershipUser, forKey: UserDefaultsKey.MemberPlan.rawValue)
                     Singleton.sharedInstance.userProfilData?.type = self.cardList?.memberDataModel?.type
                     Singleton.sharedInstance.userProfilData?.amount = self.cardList?.memberDataModel?.amount

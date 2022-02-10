@@ -27,11 +27,15 @@ class CheckTimeReqModel: Encodable{
     var booking_time : String?
     var booking_date : String?
     var vehicle_id : String?
+    var longitude : String?
+    var latitude : String?
     
     enum CodingKeys: String, CodingKey {
         case booking_time = "booking_time"
         case booking_date = "booking_date"
         case vehicle_id = "vehicle_id"
         case customerid = "user_id"
+        case longitude = "longitude"
+        case latitude = "latitude"
     }
 }
