@@ -84,6 +84,8 @@ enum ApiKey: String {
     case addLocation        = "add_location"
     case LocationList       = "location_list"
     case logout             = "logout/"
+    case cancelMembershipConfirmation             = "cancel_membership_confirmation"
+    
 }
 
   

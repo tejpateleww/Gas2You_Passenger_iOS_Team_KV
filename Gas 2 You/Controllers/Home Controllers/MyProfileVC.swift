@@ -12,6 +12,7 @@ class MyProfileVC: BaseVC{
     
     var updateprofileviewmodel = MyProfileViewModel()
     var cancelPlanModel = cancelPlanViewModel()
+    var vancelMembershipConfirmViewModel = cancelMembershipConfirmViewModel()
     let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
     let ACCEPTABLE_CHARACTERS_FOR_PHONE = "0123456789"
     
@@ -122,6 +123,32 @@ class MyProfileVC: BaseVC{
         
         return true
     }
+    
+    func CancelMembershipStatus(strMsg:String){
+        let alert = UIAlertController(title: AppInfo.appName, message: strMsg , preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.CancelMembership()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel,handler: { UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func CancelMembership(){
+        let alert = UIAlertController(title: AppInfo.appName, message: "Are you sure you want to cancel your membership?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
+            self.cancelPlanModel.webservicecancelPlan()
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel,handler: { UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func btnMyGarageTap(_ sender: UIButton) {
         let myGarageVC: MyGarageVC = MyGarageVC.instantiate(fromAppStoryboard: .Main)
         navigationController?.pushViewController(myGarageVC, animated: true)
@@ -132,18 +159,7 @@ class MyProfileVC: BaseVC{
 //        self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func btnCancel(_ sender: UIButton) {
-        let alert = UIAlertController(title: AppInfo.appName, message: "Are you sure you want to cancel your membership?", preferredStyle: UIAlertController.Style.alert)
-
-                // add the actions (buttons)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default,handler: { Date in
-            self.cancelPlanModel.webservicecancelPlan()
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel,handler: { UIAlertAction in
-            self.dismiss(animated: true, completion: nil)
-        }))
-
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
+        self.callCancelMemberPalnAPI()
     }
     @IBAction func btnChangePasswordTap(_ sender: ThemeButton) {
         self.push(ChangePasswordVC.getNewInstance())
@@ -160,6 +176,17 @@ class MyProfileVC: BaseVC{
         }
     }
 }
+
+extension MyProfileVC{
+    
+    func callCancelMemberPalnAPI(){
+        self.vancelMembershipConfirmViewModel.myProfileVC = self
+        let ReqModel = cancelMembershipConfirmReqModel()
+        ReqModel.customerid = Singleton.sharedInstance.userId
+        self.vancelMembershipConfirmViewModel.webserviceofRemovevehical(reqModel: ReqModel)
+    }
+}
+
 extension MyProfileVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -13,3 +13,11 @@ class vehicalListReqModel: Encodable{
         case customerid = "customer_id"
     }
 }
+
+class cancelMembershipConfirmReqModel: Encodable{
+    var customerid : String?
+
+    enum CodingKeys: String, CodingKey {
+        case customerid = "customer_id"
+    }
+}

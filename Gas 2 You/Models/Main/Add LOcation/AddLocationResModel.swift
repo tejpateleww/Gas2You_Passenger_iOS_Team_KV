@@ -51,3 +51,4 @@ class LocationListReqModel: Encodable{
         case customer_id = "customer_id"
     }
 }
+

@@ -86,6 +86,8 @@
 		886DF1B926FC347100A36B51 /* LogoutUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF1B826FC347100A36B51 /* LogoutUserModel.swift */; };
 		886DF20626FC798F00A36B51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 886DF20526FC798F00A36B51 /* GoogleService-Info.plist */; };
 		886DF20926FC8FD700A36B51 /* timeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF20826FC8FD700A36B51 /* timeListCell.swift */; };
+		8871A59627B69094008E36E2 /* cancelMembershipConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8871A59527B69094008E36E2 /* cancelMembershipConfirmViewModel.swift */; };
+		8871A59827B69167008E36E2 /* CancelMemberConfirmResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8871A59727B69167008E36E2 /* CancelMemberConfirmResModel.swift */; };
 		8873CA70274B588800881458 /* purchaseMemberPlanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873CA6F274B588800881458 /* purchaseMemberPlanResModel.swift */; };
 		8873CA72274B668E00881458 /* cancelMemberPlanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873CA71274B668D00881458 /* cancelMemberPlanResModel.swift */; };
 		8873CA74274B679C00881458 /* cancelPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873CA73274B679C00881458 /* cancelPlanViewModel.swift */; };
@@ -301,6 +303,8 @@
 		886DF1B826FC347100A36B51 /* LogoutUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUserModel.swift; sourceTree = "<group>"; };
 		886DF20526FC798F00A36B51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		886DF20826FC8FD700A36B51 /* timeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timeListCell.swift; sourceTree = "<group>"; };
+		8871A59527B69094008E36E2 /* cancelMembershipConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cancelMembershipConfirmViewModel.swift; sourceTree = "<group>"; };
+		8871A59727B69167008E36E2 /* CancelMemberConfirmResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelMemberConfirmResModel.swift; sourceTree = "<group>"; };
 		8873CA6F274B588800881458 /* purchaseMemberPlanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = purchaseMemberPlanResModel.swift; sourceTree = "<group>"; };
 		8873CA71274B668D00881458 /* cancelMemberPlanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cancelMemberPlanResModel.swift; sourceTree = "<group>"; };
 		8873CA73274B679C00881458 /* cancelPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cancelPlanViewModel.swift; sourceTree = "<group>"; };
@@ -686,6 +690,7 @@
 		8812771B26F84C6F005E8F37 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				8871A59427B6907E008E36E2 /* Cancel Member Confirm */,
 				88E8187D275A21FA00904F6F /* Add LOcation */,
 				88DF12672757715B009B546F /* Notofication */,
 				88C13C94274F813E0008173C /* card */,
@@ -738,6 +743,15 @@
 				881277B326F8AB7F005E8F37 /* DeleteVehicle.swift */,
 			);
 			path = "Delete Vehicle";
+			sourceTree = "<group>";
+		};
+		8871A59427B6907E008E36E2 /* Cancel Member Confirm */ = {
+			isa = PBXGroup;
+			children = (
+				8871A59727B69167008E36E2 /* CancelMemberConfirmResModel.swift */,
+				8871A59527B69094008E36E2 /* cancelMembershipConfirmViewModel.swift */,
+			);
+			path = "Cancel Member Confirm";
 			sourceTree = "<group>";
 		};
 		8877AD59270335470083C883 /* Member Plan list */ = {
@@ -1475,6 +1489,7 @@
 				8877AD5F27033E4E0083C883 /* memberPlanViewModel.swift in Sources */,
 				84EEA59B26E2478A0026558F /* LocationService.swift in Sources */,
 				886DF1B926FC347100A36B51 /* LogoutUserModel.swift in Sources */,
+				8871A59827B69167008E36E2 /* CancelMemberConfirmResModel.swift in Sources */,
 				9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */,
 				88C13C98274F818E0008173C /* cardListResModel.swift in Sources */,
 				88AD5BC227073364000CFA25 /* appleLoginResModel.swift in Sources */,
@@ -1488,6 +1503,7 @@
 				9A3A913D26C141700041D7D9 /* ChatListVC.swift in Sources */,
 				9A5B093C26B2788500BA0CB4 /* UIImage+Extension.swift in Sources */,
 				844F7BEF26E5E6A70047DFF4 /* LoginViewModel.swift in Sources */,
+				8871A59627B69094008E36E2 /* cancelMembershipConfirmViewModel.swift in Sources */,
 				88E81881275A2D2600904F6F /* locationListCell.swift in Sources */,
 				8896401A27423B9100B3379B /* chatListResModel.swift in Sources */,
 				84EEA58426E227BA0026558F /* CodableResponseServiceClass.swift in Sources */,
@@ -1688,7 +1704,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gas 2 You/Gas 2 You.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.2;
+				CURRENT_PROJECT_VERSION = 1.1.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8U3VM88NZ7;
 				INFOPLIST_FILE = "Gas 2 You/Application/Info.plist";
@@ -1715,7 +1731,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gas 2 You/Gas 2 You.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.2;
+				CURRENT_PROJECT_VERSION = 1.1.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8U3VM88NZ7;
 				INFOPLIST_FILE = "Gas 2 You/Application/Info.plist";

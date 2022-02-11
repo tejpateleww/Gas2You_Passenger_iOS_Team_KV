@@ -210,5 +210,10 @@ class WebServiceSubClass{
             completion(status, message, response, error)
         }
     }
+    class func ConfirmCancemMemberShip(reqModel : cancelMembershipConfirmReqModel , completion: @escaping (Bool,String,CancelMemberConfirmResModel?,Any) -> ()){
+        URLSessionRequestManager.makePostRequest(urlString: ApiKey.cancelMembershipConfirmation.rawValue, requestModel: reqModel, responseModel: CancelMemberConfirmResModel.self) { (status, message, response, error) in
+            completion(status, message, response, error)
+        }
+    }
 }
 
