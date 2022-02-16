@@ -557,12 +557,21 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             if nonmemberplanlist[indexPath.row].title == "Service Charge"{ // || nonmemberplanlist[indexPath.row].title == "Windshield Washer Fluid Refill"
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
                 cell.imgCheck.image = UIImage(named: "IC_selectedBlue")
-                if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
-                    self.addonid.remove(at: index)
+                //Tej's Code
+                if(nonmemberplanlist[indexPath.row].isChecked ?? false){
+                    if(!self.addonid.contains(nonmemberplanlist[indexPath.row].id ?? "-1")){
+                        self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+                    }
                 }
-                if nonmemberplanlist[indexPath.row].isChecked ?? false{
-                    self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
-                }
+                //Tej's Code Complete
+                
+                
+//                if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
+//                    self.addonid.remove(at: index)
+//                }
+//                if nonmemberplanlist[indexPath.row].isChecked ?? false{
+//                    self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+//                }
             }else{
                 cell.lblPrice.text = CurrencySymbol + (nonmemberplanlist[indexPath.row].price ?? "")
                 if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
@@ -584,33 +593,45 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             if(nonmemberplanlist[indexPath.row].isChecked == true && nonmemberplanlist[indexPath.row].title != "Windshield Washer Fluid Refill"){
                 return
             }else{
-                nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
-                
+          
                 if(self.addonid.contains(nonmemberplanlist[indexPath.row].id ?? "-1")){
                     if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
                         self.addonid.remove(at: index)
+                        nonmemberplanlist[indexPath.row].isChecked = false
                     }
                 }else{
                     self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+                    nonmemberplanlist[indexPath.row].isChecked = true
                 }
-                
+                print(self.addonid)
+                    
                 tblNonMemberPLan.reloadData()
             }
               
         }else{
-            nonmemberplanlist[indexPath.row].isChecked = (nonmemberplanlist[indexPath.row].isChecked == true) ? false : true
+           
+            if(nonmemberplanlist[indexPath.row].isChecked == true && nonmemberplanlist[indexPath.row].title == "Service Charge"){
+                return
+            }
             
             if(self.addonid.contains(nonmemberplanlist[indexPath.row].id ?? "-1")){
                 if let index = self.addonid.firstIndex(where: {$0 == self.nonmemberplanlist[indexPath.row].id ?? ""}){
                     self.addonid.remove(at: index)
+                    nonmemberplanlist[indexPath.row].isChecked = false
                 }
             }else{
                 self.addonid.append(self.nonmemberplanlist[indexPath.row].id ?? "")
+                nonmemberplanlist[indexPath.row].isChecked = true
             }
             
+            print(self.addonid)
             tblNonMemberPLan.reloadData()
         }
     }
+    
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionViewSubService{
             if serviceList.count != 0{
