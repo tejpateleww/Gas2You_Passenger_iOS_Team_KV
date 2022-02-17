@@ -156,7 +156,12 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
     func setData(){
         let makename = objBookingDetail?.makeName ?? ""
         let modelName = objBookingDetail?.modelName ?? ""
-        lblGas.text = objBookingDetail?.mainServiceName
+        
+        let FuelType = self.objBookingDetail?.mainServiceName ?? ""
+        let FuelSubType = " (" + "\(objBookingDetail?.subServiceName ?? "")" + ")"
+        lblGas.text = (objBookingDetail?.subServiceName != "") ? FuelType + FuelSubType : FuelType
+        
+        //lblGas.text = objBookingDetail?.mainServiceName
         lblCarName.text = makename + "(" + modelName + ")"
         lblAddress.text = objBookingDetail?.parkingLocation
         lblTimeandDate.text = (objBookingDetail?.time ?? "") + ", " + (objBookingDetail?.date ?? "")

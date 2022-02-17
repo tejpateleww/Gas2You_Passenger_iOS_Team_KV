@@ -238,7 +238,13 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             }else{
                 if arrBookingList.count != 0{
                     let upcomingCell = myOrdersTV.dequeueReusableCell(withIdentifier: UpcomingCell.className) as! UpcomingCell
-                    upcomingCell.lblService.text = arrBookingList[indexPath.row].mainServiceName
+                    
+                    let FuelType = self.arrBookingList[indexPath.row].mainServiceName ?? ""
+                    let FuelSubType = " (" + "\(self.arrBookingList[indexPath.row].subServiceName ?? "")" + ")"
+                    upcomingCell.lblService.text = (self.arrBookingList[indexPath.row].subServiceName != "") ? FuelType + FuelSubType : FuelType
+                    
+                    
+                    //upcomingCell.lblService.text = arrBookingList[indexPath.row].mainServiceName
                     upcomingCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     upcomingCell.lblDateandTime.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
 //                    upcomingCell.lblVehicleDetail.text = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
@@ -290,7 +296,12 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             }else{
                 if arrBookingList.count != 0{
                     let inprogressCell = myOrdersTV.dequeueReusableCell(withIdentifier: InProgressCell.className) as! InProgressCell
-                    inprogressCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
+                    
+                    let FuelType = self.arrBookingList[indexPath.row].mainServiceName ?? ""
+                    let FuelSubType = " (" + "\(self.arrBookingList[indexPath.row].subServiceName ?? "")" + ")"
+                    inprogressCell.lblServices.text = (self.arrBookingList[indexPath.row].subServiceName != "") ? FuelType + FuelSubType : FuelType
+                    
+                    //inprogressCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
                     inprogressCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     inprogressCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
 //                    inprogressCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
@@ -354,7 +365,12 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             }else{
                 if arrBookingList.count != 0{
                     let completedCell = myOrdersTV.dequeueReusableCell(withIdentifier: CompletedCell.className) as! CompletedCell
-                    completedCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
+                    
+                    let FuelType = self.arrBookingList[indexPath.row].mainServiceName ?? ""
+                    let FuelSubType = " (" + "\(self.arrBookingList[indexPath.row].subServiceName ?? "")" + ")"
+                    completedCell.lblServices.text = (self.arrBookingList[indexPath.row].subServiceName != "") ? FuelType + FuelSubType : FuelType
+                    
+                    //completedCell.lblServices.text = arrBookingList[indexPath.row].mainServiceName
                     completedCell.lblLocation.text = arrBookingList[indexPath.row].parkingLocation
                     completedCell.lblTimeandDate.text = (arrBookingList[indexPath.row].time ?? "") + ", " + (arrBookingList[indexPath.row].date ?? "")
                     //                    completedCell.lblVehicleDetails.text = (arrBookingList[indexPath.row].makeName ?? "") + " " + (arrBookingList[indexPath.row].plateNumber ?? "")
