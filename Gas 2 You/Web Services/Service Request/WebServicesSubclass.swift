@@ -12,7 +12,7 @@ class WebServiceSubClass{
     
     //MARK:- Init
     class func InitApi(completion: @escaping (Bool, String, InitResponseModel?, Any) -> ()) {
-        URLSessionRequestManager.makeGetRequest(urlString: ApiKey.Init.rawValue + Constants.kAPPVesion, responseModel: InitResponseModel.self) { (status, message, response, error) in
+        URLSessionRequestManager.makeGetRequest(urlString: ApiKey.Init.rawValue + Constants.kAPPVesion + "/" + Singleton.sharedInstance.userId , responseModel: InitResponseModel.self) { (status, message, response, error) in
             completion(status, message, response, error)
         }
     }

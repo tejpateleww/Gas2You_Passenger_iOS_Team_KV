@@ -159,7 +159,7 @@ class CompleteJobVC: BaseVC,rateandreviewDelegate {
         
         let FuelType = self.objBookingDetail?.mainServiceName ?? ""
         let FuelSubType = " (" + "\(objBookingDetail?.subServiceName ?? "")" + ")"
-        lblGas.text = (objBookingDetail?.subServiceName != "") ? FuelType + FuelSubType : FuelType
+        self.lblGas.text = (objBookingDetail?.subServiceName != "") ? FuelType + FuelSubType : FuelType
         
         //lblGas.text = objBookingDetail?.mainServiceName
         lblCarName.text = makename + "(" + modelName + ")"

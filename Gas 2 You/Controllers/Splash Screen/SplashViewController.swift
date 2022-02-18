@@ -30,6 +30,10 @@ class SplashViewController: BaseVC {
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let _ = Constants.userDefaults.getUserData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

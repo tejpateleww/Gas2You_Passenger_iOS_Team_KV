@@ -95,7 +95,7 @@ class SignUpVC: BaseVC {
     
     @IBAction func btnTermsClick(_ sender: Any) {
         var TC = ""
-        if let TCLink = Singleton.sharedInstance.appInitModel?.appLinks.filter({ $0.name == "terms_and_condition"}) {
+        if let TCLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "terms_and_condition"}) {
             if TCLink.count > 0 {
                 TC = TCLink[0].url ?? ""
                 self.previewDocument(strURL: TC)
@@ -104,7 +104,7 @@ class SignUpVC: BaseVC {
     }
     @IBAction func btnPrivacyClick(_ sender: Any) {
         var PP = ""
-        if let PPLink = Singleton.sharedInstance.appInitModel?.appLinks.filter({ $0.name == "privacy_policy"}) {
+        if let PPLink = Singleton.sharedInstance.appInitModel?.appLinks?.filter({ $0.name == "privacy_policy"}) {
             if PPLink.count > 0 {
                 PP = PPLink[0].url ?? ""
                 self.previewDocument(strURL: PP)

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 class BookingListViewModel{
     var myordervc : MyOrdersVC?
     func doBookingList(customerid: String, status: String, page: String) {
@@ -86,9 +87,7 @@ class bookingDetailsViewModel{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.BookingDetails?.view.setTemplateWithSubviews(false)
                 }
-            }
-            else
-            {
+            }else{
                 Utilities.ShowAlert(OfMessage: apiMessage)
                 print(error)
             }

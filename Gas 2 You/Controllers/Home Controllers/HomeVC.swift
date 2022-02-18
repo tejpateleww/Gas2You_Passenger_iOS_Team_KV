@@ -64,6 +64,7 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     var memberPlanList = [memberPlanListDatum]()
     var datePicker  = UIPickerView()
     let dateFormatter = DateFormatter()
+    var homeVM = HomeViewModel()
     var ServiceListData = ServiceListViewModel()
     var vehicleListData = VehicalListViewModel()
     var nonmemberListData = nonMemberPlanViewMOdel()
@@ -141,6 +142,8 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         LblOctane.text = "93 Octane"
         dismissPickerView()
         
+        callInitAPI()
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -172,6 +175,10 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     }
     
     func addNotificationObs(){
+        
+        NotificationCenter.default.removeObserver(self, name: .reCallInitAPI, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reCallInitAPI), name: .reCallInitAPI, object: nil)
+        
         NotificationCenter.default.removeObserver(self, name: .openCarDoorScreen, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.openCarDoor), name: .openCarDoorScreen, object: nil)
         
@@ -187,6 +194,9 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         NotificationCenter.default.removeObserver(self, name: .goToUpcomingOrderScreen, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToUpcomingOrderScreen), name: .goToUpcomingOrderScreen, object: nil)
         
+        NotificationCenter.default.removeObserver(self, name: .goToProfileScreen, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.goToProfileScreen), name: .goToProfileScreen, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(refreshVehicleList), name: notifRefreshVehicleList, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshhomescreen), name: notifRefreshHomeScreen, object: nil)
     }
@@ -197,8 +207,19 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
                 self.goToCompOrderScreen()
             }else if(AppDelegate.pushNotificationType == "SendBulkPushNotification"){
                 self.goToNotiScreen()
+            }else if(AppDelegate.pushNotificationType == "membershipUpdate"){
+                self.goToProfileScreen()
             }
         }
+    }
+    
+    @objc func goToProfileScreen() {
+        
+        let MyProfileVC : MyProfileVC = MyProfileVC.instantiate(fromAppStoryboard: .Main)
+        self.navigationController?.pushViewController(MyProfileVC, animated: true)
+        
+        AppDelegate.pushNotificationObj = nil
+        AppDelegate.pushNotificationType = nil
     }
     
     @objc func goToCompOrderScreen() {
@@ -246,6 +267,14 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         dateSelected = 0
         collectionTimeList.reloadData()
+    }
+    
+    @objc func reCallInitAPI() {
+        self.callInitAPI()
+    }
+    
+    func ReloadAddonsAfterInitResponse(){
+        nonmemberListData.webserviceofNonMemberPlanList()
     }
     
 //    func setup(){
@@ -750,3 +779,11 @@ extension HomeVC: UITextFieldDelegate {
         return false
     }
 }
+
+extension HomeVC {
+    func callInitAPI(){
+        self.homeVM.homeVC = self
+        self.homeVM.callInitAPI()
+    }
+}
+

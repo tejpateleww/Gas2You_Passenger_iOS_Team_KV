@@ -13,6 +13,7 @@ let CurrencySymbol = "$"
 let arrow = " -"
 let notifRefreshVehicleList = NSNotification.Name("refreshVehicleList")
 let notifRefreshHomeScreen = NSNotification.Name("refreshHomeScreen")
+
 let themeColor = hexStringToUIColor(hex: "#00AA7E")
 let screenWidth = UIScreen.main.bounds.width
 let NotificationBadges = NSNotification.Name(rawValue: "NotificationBadges")

@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D2CBBBB9-046D-4DBB-9A7F-BF45BC6968A9"
+            uuid = "AE605771-BB37-434B-A00C-03744879A20B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gas 2 You/Models/Main/Booking List/BookingListViewModel.swift"
+            filePath = "Gas 2 You/Controllers/Home Controllers/MyProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "webservicebookingDetails(_:)"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "setData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

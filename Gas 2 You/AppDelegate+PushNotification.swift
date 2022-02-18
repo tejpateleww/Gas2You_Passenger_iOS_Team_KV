@@ -133,6 +133,9 @@ extension AppDelegate : MessagingDelegate {
                         completionHandler([.alert, .sound])
                     }
                 }
+            }else if (key as? String ?? "") == "membershipUpdate"{
+                completionHandler([.alert, .sound])
+                NotificationCenter.default.post(name: .reCallInitAPI, object: nil)
             }
         }
         
@@ -199,10 +202,20 @@ extension AppDelegate : MessagingDelegate {
                 }
                 return
             }
+            
+            if pushObj.type == "membershipUpdate"{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if (UIApplication.appTopViewController()?.isKind(of: MyProfileVC.self) ?? false || self.isProfileScreen){
+                        AppDelegate.pushNotificationObj = nil
+                        AppDelegate.pushNotificationType = nil
+                    }else{
+                        NotificationCenter.default.post(name: .goToProfileScreen, object: nil)
+                    }
+                }
+                return
+            }
         }
 
-        
-        
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")
         if UIApplication.shared.applicationState == .active {
             self.handlePushnotifications(NotificationType: key as? String ?? "", userData: userInfo)

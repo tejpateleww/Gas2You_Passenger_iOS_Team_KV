@@ -34,8 +34,20 @@ class MyProfileVC: BaseVC{
     @IBOutlet weak var lblPrice: ThemeLabel!
     @IBOutlet weak var lblExpiryDate: ThemeLabel!
     
+    override func viewWillAppear(_ animated: Bool) {
+        AppDelegate.shared.isProfileScreen = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        AppDelegate.shared.isProfileScreen = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.removeObserver(self, name: .updateMembershipUI, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateMmberUI), name: .updateMembershipUI, object: nil)
+        
         cancelPlanModel.cancelplanvc = self
         updateprofileviewmodel.myprofilevc = self
         NavBarTitle(isOnlyTitle: false, isMenuButton: false, title: "My Profile", controller: self)
@@ -59,22 +71,25 @@ class MyProfileVC: BaseVC{
         }
         changePassButton.setTitleColor(UIColor.appColor(.themeBlue), for: .normal)
     }
-    func setData(){
-        let userData = Singleton.sharedInstance.userProfilData
-        txtEmail.text = userData?.email
-        txtMobile.text = userData?.mobileNo
-        txtUserName.text = userData?.firstName
-        txtLastName.text = userData?.lastName
-        setupPhoneTextField()
-        if userData?.is_membership_user == true{
+    
+    @objc func updateMmberUI() {
+        self.setupMemberUIAfterAPI()
+    }
+    
+    func setupMemberUIAfterAPI(){
+        let memberShipStatus = (Singleton.sharedInstance.appInitModel?.type == "" || Singleton.sharedInstance.appInitModel?.type == nil) ? Singleton.sharedInstance.userProfilData?.is_membership_user : Singleton.sharedInstance.appInitModel?.isMembershipUser
+        if memberShipStatus == true{
             navBarRightImage()
             vwMember.isHidden = false
-            lblType.text = (Singleton.sharedInstance.userProfilData?.type ?? "") + arrow
-            lblPrice.text = CurrencySymbol + (Singleton.sharedInstance.userProfilData?.amount ?? "")
+            lblType.text = (Singleton.sharedInstance.appInitModel?.type == "" || Singleton.sharedInstance.appInitModel?.type == nil) ? Singleton.sharedInstance.userProfilData?.type : Singleton.sharedInstance.appInitModel?.type ?? "" + arrow
             
+            let price = Singleton.sharedInstance.appInitModel?.amount == ""  || Singleton.sharedInstance.appInitModel?.amount == nil ? Singleton.sharedInstance.userProfilData?.amount ?? "" : Singleton.sharedInstance.appInitModel?.amount ?? ""
+            lblPrice.text = CurrencySymbol + price
+            
+            let expDate = Singleton.sharedInstance.appInitModel?.expiryDate == ""  || Singleton.sharedInstance.appInitModel?.expiryDate == nil ? Singleton.sharedInstance.userProfilData?.expiry_date ?? "" : Singleton.sharedInstance.appInitModel?.expiryDate  ?? ""
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let dateObj = dateFormatter.date(from: Singleton.sharedInstance.userProfilData?.expiry_date ?? "")
+            let dateObj = dateFormatter.date(from: expDate)
             dateFormatter.dateFormat = "d MMM yyyy"
             lblExpiryDate.text = (dateFormatter.string(from: dateObj ?? Date()))
 
@@ -83,6 +98,39 @@ class MyProfileVC: BaseVC{
             vwMember.isHidden = true
             vwNonmember.isHidden = false
         }
+    }
+    
+    func setData(){
+        let userData = Singleton.sharedInstance.userProfilData
+        txtEmail.text = userData?.email
+        txtMobile.text = userData?.mobileNo
+        txtUserName.text = userData?.firstName
+        txtLastName.text = userData?.lastName
+        setupPhoneTextField()
+        
+        
+        let memberShipStatus = (Singleton.sharedInstance.appInitModel?.type == "" || Singleton.sharedInstance.appInitModel?.type == nil) ? Singleton.sharedInstance.userProfilData?.is_membership_user : Singleton.sharedInstance.appInitModel?.isMembershipUser
+        if memberShipStatus == true{
+            navBarRightImage()
+            vwMember.isHidden = false
+            lblType.text = (Singleton.sharedInstance.appInitModel?.type == "" || Singleton.sharedInstance.appInitModel?.type == nil) ? Singleton.sharedInstance.userProfilData?.type : Singleton.sharedInstance.appInitModel?.type ?? "" + arrow
+            
+            let price = Singleton.sharedInstance.appInitModel?.amount == ""  || Singleton.sharedInstance.appInitModel?.amount == nil ? Singleton.sharedInstance.userProfilData?.amount ?? "" : Singleton.sharedInstance.appInitModel?.amount ?? ""
+            lblPrice.text = CurrencySymbol + price
+            
+            let expDate = Singleton.sharedInstance.appInitModel?.expiryDate == ""  || Singleton.sharedInstance.appInitModel?.expiryDate == nil ? Singleton.sharedInstance.userProfilData?.expiry_date ?? "" : Singleton.sharedInstance.appInitModel?.expiryDate  ?? ""
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let dateObj = dateFormatter.date(from: expDate)
+            dateFormatter.dateFormat = "d MMM yyyy"
+            lblExpiryDate.text = (dateFormatter.string(from: dateObj ?? Date()))
+
+            vwNonmember.isHidden = true
+        }else{
+            vwMember.isHidden = true
+            vwNonmember.isHidden = false
+        }
+        
     }
     func memberDisplay(){
         vwMember.isHidden = false

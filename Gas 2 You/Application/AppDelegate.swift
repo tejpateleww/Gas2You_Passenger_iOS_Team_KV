@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
     var window: UIWindow?
     var locationManager: CLLocationManager?
     var isChatScreen : Bool = false
+    var isProfileScreen : Bool = false
     var notificationType : NotificationTypes?
     var orderid = String()
     var status = 0
@@ -237,6 +238,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         Constants.userDefaults.synchronize()
         AppDel.navigateToLogin()
     }
+    
+    func updateUiAfterInit(){
+        if let topVc = UIApplication.appTopViewController() {
+            if topVc.isKind(of: MyProfileVC.self) || self.isProfileScreen {
+                NotificationCenter.default.post(name: .updateMembershipUI, object: nil)
+            }
+        }
+    }
 }
 
 
@@ -257,8 +266,11 @@ extension Notification.Name {
     static let refreshCompOrderScreen = NSNotification.Name("refreshCompOrderScreen")
     static let goToCompOrderScreen = NSNotification.Name("goToCompOrderScreen")
     static let goToNotiScreen = NSNotification.Name("goToNotiScreen")
+    static let goToProfileScreen = NSNotification.Name("goToProfileScreen")
     static let refreshNotiScreen = NSNotification.Name("refreshNotiScreen")
     static let goToUpcomingOrderScreen = NSNotification.Name("goToUpcomingOrderScreen")
+    static let reCallInitAPI = NSNotification.Name("reCallInitAPI")
+    static let updateMembershipUI = NSNotification.Name("updateMembershipUI")
 }
 
 enum NotificationTypes : String {

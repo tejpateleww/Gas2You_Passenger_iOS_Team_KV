@@ -82,6 +82,7 @@
 		881277B426F8AB7F005E8F37 /* DeleteVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881277B326F8AB7F005E8F37 /* DeleteVehicle.swift */; };
 		881277B826F8AD07005E8F37 /* RemoveVehicleResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881277B626F8AD07005E8F37 /* RemoveVehicleResModel.swift */; };
 		882963C7278D6F3D0072CB0E /* AddNewVehicleReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882963C6278D6F3D0072CB0E /* AddNewVehicleReqModel.swift */; };
+		885A27C527BF703C00BE7A6B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A27C427BF703C00BE7A6B /* HomeViewModel.swift */; };
 		886DF1B626FC325B00A36B51 /* logoutResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF1B526FC325A00A36B51 /* logoutResModel.swift */; };
 		886DF1B926FC347100A36B51 /* LogoutUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF1B826FC347100A36B51 /* LogoutUserModel.swift */; };
 		886DF20626FC798F00A36B51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 886DF20526FC798F00A36B51 /* GoogleService-Info.plist */; };
@@ -299,6 +300,7 @@
 		881277B626F8AD07005E8F37 /* RemoveVehicleResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveVehicleResModel.swift; sourceTree = "<group>"; };
 		8816E0912701F649004D0272 /* Gas 2 You.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Gas 2 You.entitlements"; sourceTree = "<group>"; };
 		882963C6278D6F3D0072CB0E /* AddNewVehicleReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewVehicleReqModel.swift; sourceTree = "<group>"; };
+		885A27C427BF703C00BE7A6B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		886DF1B526FC325A00A36B51 /* logoutResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutResModel.swift; sourceTree = "<group>"; };
 		886DF1B826FC347100A36B51 /* LogoutUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUserModel.swift; sourceTree = "<group>"; };
 		886DF20526FC798F00A36B51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				9A5B08B926B266EA00BA0CB4 /* Info.plist */,
 				9A5B08A826B266E800BA0CB4 /* AppDelegate.swift */,
 				88DC0C032743B974002A2BD3 /* AppDelegate+PushNotification.swift */,
+				885A27C327BF702D00BE7A6B /* Home View Model */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -743,6 +746,14 @@
 				881277B326F8AB7F005E8F37 /* DeleteVehicle.swift */,
 			);
 			path = "Delete Vehicle";
+			sourceTree = "<group>";
+		};
+		885A27C327BF702D00BE7A6B /* Home View Model */ = {
+			isa = PBXGroup;
+			children = (
+				885A27C427BF703C00BE7A6B /* HomeViewModel.swift */,
+			);
+			path = "Home View Model";
 			sourceTree = "<group>";
 		};
 		8871A59427B6907E008E36E2 /* Cancel Member Confirm */ = {
@@ -1508,6 +1519,7 @@
 				8896401A27423B9100B3379B /* chatListResModel.swift in Sources */,
 				84EEA58426E227BA0026558F /* CodableResponseServiceClass.swift in Sources */,
 				844F7C0726E64F290047DFF4 /* ForgotPasswordViewModel.swift in Sources */,
+				885A27C527BF703C00BE7A6B /* HomeViewModel.swift in Sources */,
 				9A5B08E826B26C7800BA0CB4 /* Themes.swift in Sources */,
 				889AB3AD2702E3A7003A1955 /* rateResModel.swift in Sources */,
 				9A3A913226C133AC0041D7D9 /* MenuAnimator.swift in Sources */,
