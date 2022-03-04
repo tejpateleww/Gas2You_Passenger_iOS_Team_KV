@@ -12,9 +12,9 @@ enum APIEnvironment : String {
  
 //Development URL : Pick A Ride Customer
     case AssetsUrl = "http://65.1.154.172/"
-    case Development = "https://gas2youcenla.com/api/customer_api/"
+    case Development = "http://dev.gas2youcenla.com/api/customer_api/"
     case Profilebu = "http://65.1.154.172/api/"
-    case Live = "not provided"
+    case Live = "https://gas2youcenla.com/api/customer_api/"
      
     static var baseURL: String{
         return APIEnvironment.environment.rawValue
