@@ -37,6 +37,8 @@ class AddCardViewController: BaseVC {
     @IBOutlet weak var txtExpiryDate: UITextField!
     @IBOutlet weak var txtCVV: UITextField!
     @IBOutlet weak var btnAddCart: ThemeButton!
+    @IBOutlet weak var txtZip: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addcardmodel.addCard = self
@@ -49,13 +51,13 @@ class AddCardViewController: BaseVC {
         txtCVV.delegate = self
         txtCVV.keyboardType = .numberPad
         txtCardNumber.keyboardType = .numberPad
-        expiryDatePicker.onDateSelected = { (month: Int, year: Int) in
-            let string = String(format: "%02d/%d", month, year % 100)
-            self.txtExpiryDate.text = string
-//            if month < 9
-            self.strMonth = month <= 9 ? "0" + "\(month)" : "\(month)"
-            self.strYear = String(format: "%d", year % 100)
-        }
+//        expiryDatePicker.onDateSelected = { (month: Int, year: Int) in
+//            let string = String(format: "%02d/%d", month, year % 100)
+//            self.txtExpiryDate.text = string
+////            if month < 9
+//            self.strMonth = month <= 9 ? "0" + "\(month)" : "\(month)"
+//            self.strYear = String(format: "%d", year % 100)
+//        }
         txtExpiryDate.inputView = expiryDatePicker
         txtExpiryDate.delegate = self
         dismissPickerView()
@@ -173,6 +175,16 @@ class AddCardViewController: BaseVC {
             Toast.show(title: UrlConstant.Error, message: "Please enter valid CVV", state: .failure)
             return false
         }
+        else if (txtZip.text?.count ?? 0) == 0
+        {
+            Toast.show(title: UrlConstant.Error, message: "Please enter ZIP Code", state: .failure)
+            return false
+        }
+        else if (txtZip.text?.count ?? 0) < 5
+        {
+            Toast.show(title: UrlConstant.Error, message: "Please enter valid ZIP Code", state: .failure)
+            return false
+        }
         
         return true
     }
@@ -182,6 +194,14 @@ class AddCardViewController: BaseVC {
             if let text = txtCVV.text, let range = Range(range, in: text) {
                 let proposedText = text.replacingCharacters(in: range, with: string)
                 guard proposedText.count <= 4 else {
+                    return false
+                }
+            }
+        }
+        if textField == txtZip{
+            if let text = txtZip.text, let range = Range(range, in: text) {
+                let proposedText = text.replacingCharacters(in: range, with: string)
+                guard proposedText.count <= 5 else {
                     return false
                 }
             }
@@ -198,6 +218,8 @@ class AddCardViewController: BaseVC {
             txtExpiryDate.becomeFirstResponder()
         case txtExpiryDate:
             txtCVV.becomeFirstResponder()
+        case txtExpiryDate:
+            txtZip.becomeFirstResponder()
         default:
             textField.resignFirstResponder()
         }
@@ -336,7 +358,7 @@ class AddCardViewController: BaseVC {
     }
     @IBAction func btnAddCardClick(_ sender: UIButton) {
         if (validation()){
-            addcardmodel.webservieAddCard(number: txtCardNumber.text ?? "", name: txtCardName.text?.trimmedString ?? "", expDate: txtExpiryDate.text ?? "", cvv: txtCVV.text ?? "")
+            addcardmodel.webservieAddCard(number: txtCardNumber.text ?? "", name: txtCardName.text?.trimmedString ?? "", expDate: txtExpiryDate.text ?? "", cvv: txtCVV.text ?? "", zip: txtZip.text ?? "")
         }
     }
 }

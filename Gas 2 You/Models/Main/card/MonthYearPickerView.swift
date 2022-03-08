@@ -162,6 +162,7 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
             }
             else {
                 months = allMonths
+                selectRow(0, inComponent: 0, animated: false)
                 self.reloadComponent(0)
             }
      }
