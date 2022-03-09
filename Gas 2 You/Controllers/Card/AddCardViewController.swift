@@ -143,6 +143,7 @@ class AddCardViewController: BaseVC {
         let CardNumber = txtCardNumber.validatedText(validationType: .requiredField(field: txtCardNumber.placeholder?.lowercased() ?? ""))
         let ExpDate = txtExpiryDate.validatedText(validationType: .requiredField(field: txtExpiryDate.placeholder?.lowercased() ?? ""))
         let Cvv = txtCVV.validatedText(validationType: .requiredField(field: txtCVV.placeholder ?? ""))
+        let ZipCode = txtZip.validatedText(validationType: .requiredField(field: txtZip.placeholder ?? ""))
         if (!CardHolderName.0) {
             Toast.show(title: UrlConstant.Required, message: CardHolderName.1, state: .info)
             return CardHolderName.0
@@ -175,10 +176,10 @@ class AddCardViewController: BaseVC {
             Toast.show(title: UrlConstant.Error, message: "Please enter valid CVV", state: .failure)
             return false
         }
-        else if (txtZip.text?.count ?? 0) == 0
+        else if (!ZipCode.0)
         {
-            Toast.show(title: UrlConstant.Error, message: "Please enter ZIP Code", state: .failure)
-            return false
+            Toast.show(title: UrlConstant.Error, message: ZipCode.1, state: .info)
+            return ZipCode.0
         }
         else if (txtZip.text?.count ?? 0) < 5
         {

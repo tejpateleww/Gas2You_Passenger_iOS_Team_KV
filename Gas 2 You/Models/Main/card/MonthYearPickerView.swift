@@ -16,6 +16,7 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
     var allMonths: [Int]!
     var currentMonth: String = ""
     var currentYear: String = ""
+    var lastSelMonth: String?
 
     
     var month = Calendar.current.component(.month, from: Date()) {
@@ -155,15 +156,20 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
            if years[row] == Int(currentYear) {
               //Current year
                 let currentMonthInt = Int(currentMonth) ?? 0
+               lastSelMonth = selectedMonth
                 months.removeAll(where:{
                   return Int($0) < currentMonthInt
                 })
-                self.reloadComponent(0)
+               self.reloadComponent(0)
+               let index = months.firstIndex(of: Int(lastSelMonth ?? "1") ?? 1)
+               selectRow(index ?? 0, inComponent: 0, animated: false)
             }
             else {
+                lastSelMonth = selectedMonth
                 months = allMonths
-                selectRow(0, inComponent: 0, animated: false)
                 self.reloadComponent(0)
+                let index = months.firstIndex(of: Int(lastSelMonth ?? "1") ?? 1)
+                selectRow(index ?? 0, inComponent: 0, animated: false)
             }
      }
     
