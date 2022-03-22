@@ -74,8 +74,12 @@
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>gas2You would like to access your location to display route to destination</string>
+	<key>NSLocationUsageDescription</key>
+	<string>gas2You would like to access your location to display route to destination</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Use Location</string>
+	<string>gas2You would like to access your location to display route to destination</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Black.ttf</string>

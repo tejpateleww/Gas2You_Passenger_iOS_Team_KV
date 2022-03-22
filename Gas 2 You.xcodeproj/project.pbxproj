@@ -1716,7 +1716,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gas 2 You/Gas 2 You.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.1;
+				CURRENT_PROJECT_VERSION = 2.0.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8U3VM88NZ7;
 				INFOPLIST_FILE = "Gas 2 You/Application/Info.plist";
@@ -1743,7 +1743,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gas 2 You/Gas 2 You.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.1;
+				CURRENT_PROJECT_VERSION = 2.0.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8U3VM88NZ7;
 				INFOPLIST_FILE = "Gas 2 You/Application/Info.plist";
