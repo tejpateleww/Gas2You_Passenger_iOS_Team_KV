@@ -9,6 +9,7 @@ target 'Gas 2 You' do
   
   pod 'IQKeyboardManagerSwift'
   pod 'GoogleMaps'
+  pod 'GrowingTextView'
   pod 'MTSlideToOpen'
   pod 'Cosmos', '~> 23.0'
   pod 'lottie-ios'
@@ -21,4 +22,5 @@ target 'Gas 2 You' do
   pod 'SDWebImage'
   pod 'Firebase/Messaging'
   pod 'Firebase/Crashlytics'
+  pod 'EasyTipView'
 end

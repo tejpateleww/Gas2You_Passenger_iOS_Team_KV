@@ -51,36 +51,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="prd-gV-ekx">
                                 <rect key="frame" x="17" y="17" width="487" height="216"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YqD-uj-3Lo">
-                                        <rect key="frame" x="0.0" y="0.0" width="487" height="20.5"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ep-Gb-YEH">
-                                                <rect key="frame" x="0.0" y="0.0" width="136.5" height="20.5"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking_id :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvI-kh-JHv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8p-Dl-voh">
-                                                        <rect key="frame" x="95" y="0.0" width="41.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="8ep-Gb-YEH" secondAttribute="bottom" id="G4P-yy-SHK"/>
-                                            <constraint firstItem="8ep-Gb-YEH" firstAttribute="top" secondItem="YqD-uj-3Lo" secondAttribute="top" id="mW4-yH-Zpt"/>
-                                            <constraint firstItem="8ep-Gb-YEH" firstAttribute="leading" secondItem="YqD-uj-3Lo" secondAttribute="leading" id="uHR-XP-XA9"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXe-nn-iDP">
-                                        <rect key="frame" x="0.0" y="43.5" width="487" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="487" height="25"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_gasPump" translatesAutoresizingMaskIntoConstraints="NO" id="FSs-Ig-fsU">
                                                 <rect key="frame" x="0.0" y="2.5" width="20" height="20"/>
@@ -90,7 +62,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21W-Ej-y8r" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="4" width="457" height="17"/>
+                                                <rect key="frame" x="30" y="4" width="417" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -101,19 +73,33 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkL-X9-uo1">
+                                                <rect key="frame" x="452" y="-2.5" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="t1q-2c-2PX"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="icon_notes"/>
+                                                <connections>
+                                                    <action selector="btnNotescall:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hK1-He-TR1"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="jkL-X9-uo1" secondAttribute="trailing" constant="5" id="AR9-sa-CKT"/>
                                             <constraint firstItem="FSs-Ig-fsU" firstAttribute="centerY" secondItem="UXe-nn-iDP" secondAttribute="centerY" id="Cjp-hC-MCv"/>
+                                            <constraint firstItem="jkL-X9-uo1" firstAttribute="centerY" secondItem="UXe-nn-iDP" secondAttribute="centerY" id="DRC-Y4-nJV"/>
+                                            <constraint firstItem="jkL-X9-uo1" firstAttribute="width" secondItem="jkL-X9-uo1" secondAttribute="height" id="IAm-9g-fxu"/>
                                             <constraint firstItem="21W-Ej-y8r" firstAttribute="leading" secondItem="FSs-Ig-fsU" secondAttribute="trailing" constant="10" id="K2G-MM-IjA"/>
+                                            <constraint firstItem="jkL-X9-uo1" firstAttribute="leading" secondItem="21W-Ej-y8r" secondAttribute="trailing" constant="5" id="TOe-IQ-30h"/>
                                             <constraint firstAttribute="height" constant="25" id="qmB-RY-T2n"/>
-                                            <constraint firstAttribute="trailing" secondItem="21W-Ej-y8r" secondAttribute="trailing" id="uEN-9e-1c4"/>
                                             <constraint firstItem="21W-Ej-y8r" firstAttribute="centerY" secondItem="FSs-Ig-fsU" secondAttribute="centerY" id="w4U-F7-c8v"/>
                                             <constraint firstItem="FSs-Ig-fsU" firstAttribute="leading" secondItem="UXe-nn-iDP" secondAttribute="leading" id="xL3-l5-5QB"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NL0-ab-74F">
-                                        <rect key="frame" x="0.0" y="91.5" width="487" height="25"/>
+                                        <rect key="frame" x="0.0" y="48" width="487" height="25"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_car" translatesAutoresizingMaskIntoConstraints="NO" id="NFP-bU-Yf6">
                                                 <rect key="frame" x="0.0" y="2.5" width="20" height="20"/>
@@ -140,17 +126,17 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-Dh-736">
-                                        <rect key="frame" x="0.0" y="139.5" width="487" height="28.5"/>
+                                        <rect key="frame" x="0.0" y="96" width="487" height="72"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_locoations" translatesAutoresizingMaskIntoConstraints="NO" id="33z-b3-6pR">
-                                                <rect key="frame" x="0.0" y="4.5" width="20" height="20"/>
+                                                <rect key="frame" x="0.0" y="26" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="XMc-8a-O03"/>
                                                     <constraint firstAttribute="height" constant="20" id="uxe-WG-Ir4"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHB-9U-UTt" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="0.0" width="457" height="28.5"/>
+                                                <rect key="frame" x="30" y="0.0" width="457" height="72"/>
                                                 <string key="text">123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -237,11 +223,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnNotes" destination="jkL-X9-uo1" id="TB5-gm-ySR"/>
                 <outlet property="imgCalender" destination="869-tG-y4v" id="5hg-EX-sog"/>
                 <outlet property="imgCar" destination="NFP-bU-Yf6" id="IUr-Mp-Mbj"/>
                 <outlet property="imgLocation" destination="33z-b3-6pR" id="9gh-aj-SMl"/>
                 <outlet property="imgPetrol" destination="FSs-Ig-fsU" id="ics-1a-UNP"/>
-                <outlet property="lblBookingid" destination="k8p-Dl-voh" id="s38-hL-hVB"/>
                 <outlet property="lblLocation" destination="EHB-9U-UTt" id="DJA-7w-BWq"/>
                 <outlet property="lblServices" destination="21W-Ej-y8r" id="Fwn-Yb-7pi"/>
                 <outlet property="lblTimeandDate" destination="ima-rQ-dtB" id="BfX-N7-Cgj"/>
@@ -257,6 +243,7 @@
         <image name="IC_car" width="20.5" height="16.5"/>
         <image name="IC_gasPump" width="19" height="20.5"/>
         <image name="IC_locoations" width="18.5" height="21"/>
+        <image name="icon_notes" width="42.5" height="42.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -31,6 +31,8 @@ class LeftViewController: MenuViewController {
                                                    ("Payment Method","IC_membership"),
                                                    ("Settings","IC_settings"),
                                                    ("Notifications","IC_bell")]
+//                                                   ("PromoCode","IC_gas"),
+//                                                   ("GiftCard","icon_TitleGiftCard")
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -145,6 +147,16 @@ extension LeftViewController : UITableViewDelegate, UITableViewDataSource {
             menuContainerViewController.hideSideMenu()
         case 6:
             let vc : NotificationListVC = NotificationListVC.instantiate(fromAppStoryboard: .Main)
+            (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
+            
+            menuContainerViewController.hideSideMenu()
+        case 7:
+            let vc : MyGiftCardListVC = MyGiftCardListVC.instantiate(fromAppStoryboard: .PromoCode)
+            (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
+            
+            menuContainerViewController.hideSideMenu()
+        case 8:
+            let vc : GiftCardVC = GiftCardVC.instantiate(fromAppStoryboard: .PromoCode)
             (menuContainerViewController.contentViewControllers[0] as? NavigationController)?.pushViewController(vc, animated: false)
             
             menuContainerViewController.hideSideMenu()

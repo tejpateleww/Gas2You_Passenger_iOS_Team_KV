@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 struct GetData{
-    let serviceID, subserviceId, parkingLocation, date, time, vehicleId, addonId : String
+    let serviceID, subserviceId, parkingLocation, date, time, vehicleId, addonId, notes : String
 }
 struct memberData{
     let type, amount, Planid : String
@@ -123,7 +123,8 @@ extension PaymentMethodVC:UITableViewDelegate,UITableViewDataSource{
                                                                 time: self.getDataModel?.time ?? "",
                                                                 vehicleid: self.getDataModel?.vehicleId ?? "", totalAmount: "0",
                                                                 addonid: self.getDataModel?.addonId ?? "",
-                                                                card_id: self.arrCardList[indexPath.row].id ?? "")
+                                                                card_id: self.arrCardList[indexPath.row].id ?? "",
+                                                                note: self.getDataModel?.notes ?? "")
                                 self.dismiss(animated: false, completion: nil)
                             }
                             slideToConfirmVC.modalPresentationStyle = .overFullScreen

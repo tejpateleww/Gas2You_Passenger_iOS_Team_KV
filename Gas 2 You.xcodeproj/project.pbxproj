@@ -81,6 +81,9 @@
 		881277A426F89886005E8F37 /* AddVehicleResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881277A226F89886005E8F37 /* AddVehicleResModel.swift */; };
 		881277B426F8AB7F005E8F37 /* DeleteVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881277B326F8AB7F005E8F37 /* DeleteVehicle.swift */; };
 		881277B826F8AD07005E8F37 /* RemoveVehicleResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881277B626F8AD07005E8F37 /* RemoveVehicleResModel.swift */; };
+		8816E5C62820FEA500F2C4B1 /* MyGiftCardListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816E5C52820FEA500F2C4B1 /* MyGiftCardListVC.swift */; };
+		8816E5CA2821037600F2C4B1 /* GiftCardCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816E5C82821037600F2C4B1 /* GiftCardCellTableViewCell.swift */; };
+		8816E5CB2821037600F2C4B1 /* GiftCardCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8816E5C92821037600F2C4B1 /* GiftCardCellTableViewCell.xib */; };
 		882963C7278D6F3D0072CB0E /* AddNewVehicleReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882963C6278D6F3D0072CB0E /* AddNewVehicleReqModel.swift */; };
 		885A27C527BF703C00BE7A6B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885A27C427BF703C00BE7A6B /* HomeViewModel.swift */; };
 		886DF1B626FC325B00A36B51 /* logoutResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DF1B526FC325A00A36B51 /* logoutResModel.swift */; };
@@ -95,6 +98,11 @@
 		8877AD582703334D0083C883 /* membershipPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD572703334D0083C883 /* membershipPlanCell.swift */; };
 		8877AD5D2703358A0083C883 /* membershipplanResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5B2703358A0083C883 /* membershipplanResModel.swift */; };
 		8877AD5F27033E4E0083C883 /* memberPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */; };
+		8879CC26281911E000EA357D /* PromoCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8879CC25281911E000EA357D /* PromoCode.storyboard */; };
+		8879CC28281911FD00EA357D /* PromoCodeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8879CC27281911FD00EA357D /* PromoCodeListVC.swift */; };
+		8879CC2C28191AFE00EA357D /* promoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8879CC2A28191AFE00EA357D /* promoCell.swift */; };
+		8879CC2D28191AFE00EA357D /* promoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8879CC2B28191AFE00EA357D /* promoCell.xib */; };
+		8879CC2F28192D3100EA357D /* TermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8879CC2E28192D3100EA357D /* TermsVC.swift */; };
 		88828847275F729600F657BF /* CompleteJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88828846275F729600F657BF /* CompleteJobCell.swift */; };
 		888BD78A27508FEC00BE17D4 /* addCardResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78927508FEC00BE17D4 /* addCardResModel.swift */; };
 		888BD78C2750917300BE17D4 /* addCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888BD78B2750917300BE17D4 /* addCardViewModel.swift */; };
@@ -117,6 +125,7 @@
 		88AD5BB9270725D8000CFA25 /* NoDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD5BB7270725D8000CFA25 /* NoDataCell.swift */; };
 		88AD5BBA270725D8000CFA25 /* NoDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AD5BB8270725D8000CFA25 /* NoDataCell.xib */; };
 		88AD5BC227073364000CFA25 /* appleLoginResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD5BC027073364000CFA25 /* appleLoginResModel.swift */; };
+		88AF7F9F281FB6CF002A4AF1 /* GiftCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF7F9E281FB6CF002A4AF1 /* GiftCardVC.swift */; };
 		88C13C8F274F6A8F0008173C /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C8E274F6A8F0008173C /* AddCardViewController.swift */; };
 		88C13C91274F751F0008173C /* PaymentMethodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C90274F751F0008173C /* PaymentMethodVC.swift */; };
 		88C13C93274F76130008173C /* PaymentMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13C92274F76130008173C /* PaymentMethodCell.swift */; };
@@ -299,6 +308,9 @@
 		881277B326F8AB7F005E8F37 /* DeleteVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteVehicle.swift; sourceTree = "<group>"; };
 		881277B626F8AD07005E8F37 /* RemoveVehicleResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveVehicleResModel.swift; sourceTree = "<group>"; };
 		8816E0912701F649004D0272 /* Gas 2 You.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Gas 2 You.entitlements"; sourceTree = "<group>"; };
+		8816E5C52820FEA500F2C4B1 /* MyGiftCardListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGiftCardListVC.swift; sourceTree = "<group>"; };
+		8816E5C82821037600F2C4B1 /* GiftCardCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardCellTableViewCell.swift; sourceTree = "<group>"; };
+		8816E5C92821037600F2C4B1 /* GiftCardCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GiftCardCellTableViewCell.xib; sourceTree = "<group>"; };
 		882963C6278D6F3D0072CB0E /* AddNewVehicleReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewVehicleReqModel.swift; sourceTree = "<group>"; };
 		885A27C427BF703C00BE7A6B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		886DF1B526FC325A00A36B51 /* logoutResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutResModel.swift; sourceTree = "<group>"; };
@@ -313,6 +325,11 @@
 		8877AD572703334D0083C883 /* membershipPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = membershipPlanCell.swift; sourceTree = "<group>"; };
 		8877AD5B2703358A0083C883 /* membershipplanResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = membershipplanResModel.swift; sourceTree = "<group>"; };
 		8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memberPlanViewModel.swift; sourceTree = "<group>"; };
+		8879CC25281911E000EA357D /* PromoCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PromoCode.storyboard; sourceTree = "<group>"; };
+		8879CC27281911FD00EA357D /* PromoCodeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCodeListVC.swift; sourceTree = "<group>"; };
+		8879CC2A28191AFE00EA357D /* promoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = promoCell.swift; sourceTree = "<group>"; };
+		8879CC2B28191AFE00EA357D /* promoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = promoCell.xib; sourceTree = "<group>"; };
+		8879CC2E28192D3100EA357D /* TermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsVC.swift; sourceTree = "<group>"; };
 		88828846275F729600F657BF /* CompleteJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteJobCell.swift; sourceTree = "<group>"; };
 		888BD78927508FEC00BE17D4 /* addCardResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCardResModel.swift; sourceTree = "<group>"; };
 		888BD78B2750917300BE17D4 /* addCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addCardViewModel.swift; sourceTree = "<group>"; };
@@ -335,6 +352,7 @@
 		88AD5BB7270725D8000CFA25 /* NoDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataCell.swift; sourceTree = "<group>"; };
 		88AD5BB8270725D8000CFA25 /* NoDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataCell.xib; sourceTree = "<group>"; };
 		88AD5BC027073364000CFA25 /* appleLoginResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = appleLoginResModel.swift; sourceTree = "<group>"; };
+		88AF7F9E281FB6CF002A4AF1 /* GiftCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardVC.swift; sourceTree = "<group>"; };
 		88C13C8E274F6A8F0008173C /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		88C13C90274F751F0008173C /* PaymentMethodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodVC.swift; sourceTree = "<group>"; };
 		88C13C92274F76130008173C /* PaymentMethodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCell.swift; sourceTree = "<group>"; };
@@ -748,6 +766,24 @@
 			path = "Delete Vehicle";
 			sourceTree = "<group>";
 		};
+		8816E5C42820FE8400F2C4B1 /* MyGiftCards */ = {
+			isa = PBXGroup;
+			children = (
+				8816E5C72821032400F2C4B1 /* GiftCardCell */,
+				8816E5C52820FEA500F2C4B1 /* MyGiftCardListVC.swift */,
+			);
+			path = MyGiftCards;
+			sourceTree = "<group>";
+		};
+		8816E5C72821032400F2C4B1 /* GiftCardCell */ = {
+			isa = PBXGroup;
+			children = (
+				8816E5C82821037600F2C4B1 /* GiftCardCellTableViewCell.swift */,
+				8816E5C92821037600F2C4B1 /* GiftCardCellTableViewCell.xib */,
+			);
+			path = GiftCardCell;
+			sourceTree = "<group>";
+		};
 		885A27C327BF702D00BE7A6B /* Home View Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +810,25 @@
 				8877AD5E27033E4E0083C883 /* memberPlanViewModel.swift */,
 			);
 			path = "Member Plan list";
+			sourceTree = "<group>";
+		};
+		8879CC24281911BD00EA357D /* PromoCode */ = {
+			isa = PBXGroup;
+			children = (
+				8879CC27281911FD00EA357D /* PromoCodeListVC.swift */,
+				8879CC2E28192D3100EA357D /* TermsVC.swift */,
+				8879CC2928191AE800EA357D /* PromoCell */,
+			);
+			path = PromoCode;
+			sourceTree = "<group>";
+		};
+		8879CC2928191AE800EA357D /* PromoCell */ = {
+			isa = PBXGroup;
+			children = (
+				8879CC2A28191AFE00EA357D /* promoCell.swift */,
+				8879CC2B28191AFE00EA357D /* promoCell.xib */,
+			);
+			path = PromoCell;
 			sourceTree = "<group>";
 		};
 		8894B3EE278D3D94009F8160 /* Add Vehicle */ = {
@@ -835,6 +890,15 @@
 				88AD5BB8270725D8000CFA25 /* NoDataCell.xib */,
 			);
 			path = "No Data Cell";
+			sourceTree = "<group>";
+		};
+		88AF7F9D281FB6AE002A4AF1 /* Gift Cards */ = {
+			isa = PBXGroup;
+			children = (
+				88AF7F9E281FB6CF002A4AF1 /* GiftCardVC.swift */,
+				8816E5C42820FE8400F2C4B1 /* MyGiftCards */,
+			);
+			path = "Gift Cards";
 			sourceTree = "<group>";
 		};
 		88C13C8D274F6A700008173C /* Card */ = {
@@ -1082,6 +1146,8 @@
 		9A5B08F326B2721A00BA0CB4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				88AF7F9D281FB6AE002A4AF1 /* Gift Cards */,
+				8879CC24281911BD00EA357D /* PromoCode */,
 				88C13C8D274F6A700008173C /* Card */,
 				88D296F92701993300BC6AE2 /* SocialSignInManager */,
 				88D296F42701904200BC6AE2 /* Social Login */,
@@ -1166,6 +1232,7 @@
 		9AC568C726B7C7B60039FCCF /* Web Services */ = {
 			isa = PBXGroup;
 			children = (
+				8879CC25281911E000EA357D /* PromoCode.storyboard */,
 				84EEA57326E2274D0026558F /* Service Request */,
 				84EEA57826E227980026558F /* Helper */,
 			);
@@ -1281,6 +1348,7 @@
 				18F4012E26CBC8F3002C1ABB /* Poppins-Italic.ttf in Resources */,
 				18F4012626CBC8F3002C1ABB /* Poppins-BlackItalic.ttf in Resources */,
 				18F4012826CBC8F3002C1ABB /* Poppins-Regular.ttf in Resources */,
+				8816E5CB2821037600F2C4B1 /* GiftCardCellTableViewCell.xib in Resources */,
 				18F4012426CBC8F3002C1ABB /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				18F4011D26CBC8F3002C1ABB /* Poppins-ExtraLight.ttf in Resources */,
 				9A5512BD26C4D86800DDA313 /* Auth.storyboard in Resources */,
@@ -1288,6 +1356,7 @@
 				88DF127427577858009B546F /* NotiShimmerCell.xib in Resources */,
 				90C83A99270C318400BAFA92 /* animation.json in Resources */,
 				90C83AA5270C3A7200BAFA92 /* Splash.json in Resources */,
+				8879CC2D28191AFE00EA357D /* promoCell.xib in Resources */,
 				9A4A8B9A26C3E70500966B2D /* InProgressCell.xib in Resources */,
 				18F4012A26CBC8F3002C1ABB /* Poppins-Bold.ttf in Resources */,
 				88F57B1C2760DC3100F6873D /* cardShimmerCell.xib in Resources */,
@@ -1296,6 +1365,7 @@
 				88AD5BBA270725D8000CFA25 /* NoDataCell.xib in Resources */,
 				18F4012F26CBC8F3002C1ABB /* Poppins-MediumItalic.ttf in Resources */,
 				8896402F274291AC00B3379B /* ChatListShimmerCell.xib in Resources */,
+				8879CC26281911E000EA357D /* PromoCode.storyboard in Resources */,
 				18F4012126CBC8F3002C1ABB /* Poppins-Light.ttf in Resources */,
 				84593CC526E1EEE000BB5A48 /* MarkerInfoWindowView.xib in Resources */,
 				18F4011F26CBC8F3002C1ABB /* Poppins-ExtraLightItalic.ttf in Resources */,
@@ -1492,6 +1562,7 @@
 				9A873B5226C62773004C37CF /* LeftViewController.swift in Sources */,
 				9A5512C026C505C100DDA313 /* GasDoorOpenPopUpVC.swift in Sources */,
 				9A3A913B26C140AA0041D7D9 /* ChatListCell.swift in Sources */,
+				8879CC2C28191AFE00EA357D /* promoCell.swift in Sources */,
 				888BD7902750D5C100BE17D4 /* WebViewVC.swift in Sources */,
 				88F4171926F9E01900400594 /* vehicalListResModel.swift in Sources */,
 				90F21FEE27214456001732ED /* MessageBarController.swift in Sources */,
@@ -1502,6 +1573,7 @@
 				886DF1B926FC347100A36B51 /* LogoutUserModel.swift in Sources */,
 				8871A59827B69167008E36E2 /* CancelMemberConfirmResModel.swift in Sources */,
 				9AC568C226B7C0B70039FCCF /* BaseVC.swift in Sources */,
+				8879CC2F28192D3100EA357D /* TermsVC.swift in Sources */,
 				88C13C98274F818E0008173C /* cardListResModel.swift in Sources */,
 				88AD5BC227073364000CFA25 /* appleLoginResModel.swift in Sources */,
 				9A3A914526C16E690041D7D9 /* ChangePasswordVC.swift in Sources */,
@@ -1509,6 +1581,7 @@
 				9A5B08A926B266E800BA0CB4 /* AppDelegate.swift in Sources */,
 				888BD78E275099F300BE17D4 /* MonthYearPickerView.swift in Sources */,
 				9A5B08EB26B26CEF00BA0CB4 /* Fonts.swift in Sources */,
+				8816E5C62820FEA500F2C4B1 /* MyGiftCardListVC.swift in Sources */,
 				8877AD5D2703358A0083C883 /* membershipplanResModel.swift in Sources */,
 				8877AD582703334D0083C883 /* membershipPlanCell.swift in Sources */,
 				9A3A913D26C141700041D7D9 /* ChatListVC.swift in Sources */,
@@ -1542,16 +1615,19 @@
 				880B76A02747A6600058FD1A /* yearcolorstateListResModel.swift in Sources */,
 				9A4A8B9926C3E70500966B2D /* InProgressCell.swift in Sources */,
 				88C13C9C274F99D80008173C /* DeleteCardResModel.swift in Sources */,
+				8816E5CA2821037600F2C4B1 /* GiftCardCellTableViewCell.swift in Sources */,
 				844F7BFA26E622240047DFF4 /* AuthViewModelChange.swift in Sources */,
 				88DC0C002743A7BB002A2BD3 /* SendMessageReqModel.swift in Sources */,
 				84EEA59726E240110026558F /* AppInfo.swift in Sources */,
 				84C4951B26E72D0200659A5D /* PasswordModel.swift in Sources */,
 				88D296F62701906700BC6AE2 /* socialLoginReqModel.swift in Sources */,
 				880F42B526FD8BBD0076C9EA /* AddBookingReqModel.swift in Sources */,
+				8879CC28281911FD00EA357D /* PromoCodeListVC.swift in Sources */,
 				8894B3F0278D3DAA009F8160 /* AddNewVehicleVC.swift in Sources */,
 				88DF127327577858009B546F /* NotiShimmerCell.swift in Sources */,
 				88964020274251AD00B3379B /* chatHistoryResModel.swift in Sources */,
 				9A5B08F026B2703000BA0CB4 /* String+extension.swift in Sources */,
+				88AF7F9F281FB6CF002A4AF1 /* GiftCardVC.swift in Sources */,
 				84C4951E26E7473900659A5D /* OtpVC.swift in Sources */,
 				9A730ABB26C6889700D01F6B /* ChatViewController.swift in Sources */,
 				889AB3B02702E553003A1955 /* rateandreviewmodel.swift in Sources */,

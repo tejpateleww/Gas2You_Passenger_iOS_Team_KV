@@ -259,6 +259,7 @@ class CarParkingLocationVC: BaseVC {
         autocompleteController.placeFields = fields
         present(autocompleteController, animated: true, completion: nil)
     }
+    
     func imageWithView(view: UIView) -> UIImage {
         var image: UIImage?
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.0)

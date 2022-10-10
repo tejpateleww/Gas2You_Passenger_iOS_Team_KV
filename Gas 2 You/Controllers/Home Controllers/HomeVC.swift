@@ -9,8 +9,7 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import GooglePlaces
-
-
+import GrowingTextView
 
 class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     
@@ -52,7 +51,9 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
     @IBOutlet weak var btnAddBooking: ThemeButton!
     @IBOutlet weak var imgSubserviceArrow: UIImageView!
     @IBOutlet weak var btnAddVehicleData: UIButton!
-
+    @IBOutlet weak var txtViewNotes: GrowingTextView!
+    @IBOutlet weak var scrollVw: UIScrollView!
+    
     var toolBarForService = UIToolbar()
     var toolBarForVehicle = UIToolbar()
     var toolBar = UIToolbar()
@@ -141,6 +142,19 @@ class HomeVC: BaseVC,searchDataDelegate,AddVehicleDelegate {
         
         LblOctane.text = "93 Octane"
         dismissPickerView()
+        self.scrollVw.showsHorizontalScrollIndicator = false
+        self.scrollVw.showsVerticalScrollIndicator = false
+
+        
+        //Notes section
+        self.txtViewNotes.trimWhiteSpaceWhenEndEditing = false
+        self.txtViewNotes.placeholder = "Please provide note.. (Optional)"
+        self.txtViewNotes.placeholderColor = UIColor.lightGray
+        self.txtViewNotes.minHeight = 100
+        self.txtViewNotes.maxHeight = 150
+        self.txtViewNotes.layer.cornerRadius = 5
+        self.txtViewNotes.layer.borderColor = hexStringToUIColor(hex: "1C75BB").cgColor
+        self.txtViewNotes.layer.borderWidth = 2
         
         callInitAPI()
         
@@ -786,4 +800,17 @@ extension HomeVC {
         self.homeVM.callInitAPI()
     }
 }
+
+
+extension HomeVC: GrowingTextViewDelegate {
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+        UIView.animate(withDuration: 0.2) {
+            DispatchQueue.main.async {
+                self.scrollVw.scrollToBottom()
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
 

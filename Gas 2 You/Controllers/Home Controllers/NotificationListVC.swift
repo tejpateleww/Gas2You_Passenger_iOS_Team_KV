@@ -33,6 +33,7 @@ class NotificationListVC: BaseVC {
             self.notificationTV.reloadData()
         }
     }
+    private var finishedLoadingInitialTableCells = false
     
     //Pull to refresh
     let refreshControl = UIRefreshControl()
@@ -228,6 +229,31 @@ extension NotificationListVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.setTemplateWithSubviews(isLoading, animate: true, viewBackgroundColor: UIColor.lightGray.withAlphaComponent(0.3))
         }
+        
+        // Animation
+        var lastInitialDisplayableCell = false
+        if self.arrNotification.count > 0 && !finishedLoadingInitialTableCells {
+            if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows,
+                let lastIndexPath = indexPathsForVisibleRows.last, lastIndexPath.row == indexPath.row {
+                lastInitialDisplayableCell = true
+            }
+        }
+
+        if !finishedLoadingInitialTableCells {
+
+            if lastInitialDisplayableCell {
+                finishedLoadingInitialTableCells = true
+            }
+
+            //animates the cell as it is being displayed for the first time
+            cell.transform = CGAffineTransform(translationX: 0, y: UITableView.automaticDimension / 2)
+            cell.alpha = 0
+
+            UIView.animate(withDuration: 0.5, delay: 0.05*Double(indexPath.row), options: [.curveEaseInOut], animations: {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0)
+                cell.alpha = 1
+            }, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -254,11 +280,8 @@ extension NotificationListVC: UITableViewDelegate, UITableViewDataSource {
 //        present(vc, animated: false, completion: nil)
     }
     
-    
-    
-    
-    
 }
+
 extension NotificationListVC{
     
     func callNotificationListAPI(){

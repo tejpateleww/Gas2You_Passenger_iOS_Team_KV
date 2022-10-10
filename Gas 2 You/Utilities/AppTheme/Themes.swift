@@ -63,15 +63,15 @@ class ThemeLabel: UILabel{
     override func layoutSubviews() {
         super.layoutSubviews()
         
-            if is50Oppacity == true {
-                self.textColor =  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
-            }
-            else if is8ppacity == true {
-                self.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha:0.13)
-            }
-            else {
-                self.textColor = isThemeColour == true ? UIColor.appColor(ThemeColor.themeBlue) : fontColor
-            }
+        if is50Oppacity == true {
+            self.textColor =  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
+        }
+        else if is8ppacity == true {
+            self.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha:0.13)
+        }
+        else {
+            self.textColor = isThemeColour == true ? UIColor.appColor(ThemeColor.themeBlue) : fontColor
+        }
     }
 }
 
@@ -202,7 +202,7 @@ class ThemeButton: UIButton {
     override var isEnabled: Bool {
         didSet {
             UIView.animate(withDuration: 0.3) {
-                self.backgroundColor = self.isEnabled ? self.background : self.background.withAlphaComponent(0.5)
+                self.backgroundColor = self.background
             }
         }
     }
@@ -218,8 +218,6 @@ class ThemeCompleteButton : UIButton {
             self.layer.borderColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha:0.23).cgColor
             self.layer.borderWidth = 1.0
             self.layer.cornerRadius = 10
-            
-
     }
 }
 
@@ -228,13 +226,12 @@ class ThemeRoundBtn : UIButton {
     @IBInspectable var isRed : Bool = false
     @IBInspectable var isCornerRound : Bool = false
     override func awakeFromNib() {
-           super.awakeFromNib()
+        super.awakeFromNib()
         self.layer.cornerRadius = isCornerRound == true ? 8 : self.frame.height / 2
-           self.clipsToBounds = true
+        self.clipsToBounds = true
         self.backgroundColor = isRed == true ? UIColor(hexString: "C94B4B") : .white
         
-       }
-       
+    }
 }
 
 class ThemeCustomShadowButton : UIControl {
@@ -271,8 +268,6 @@ class ThemeCustomShadowButton : UIControl {
         if isYellowBG {
             label.textColor = .black
         }
-        
-        
     }
 }
 

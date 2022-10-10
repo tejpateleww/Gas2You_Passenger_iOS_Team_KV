@@ -7,6 +7,8 @@
 
 import UIKit
 import UIView_Shimmer
+import EasyTipView
+
 
 class MyOrdersVC: BaseVC {
     var isLoading = true {
@@ -29,6 +31,11 @@ class MyOrdersVC: BaseVC {
     var isFromComplete : Bool = false
     var isFromPushInvoice : Bool = false
     var bookingid = ""
+    
+    //TipView
+    var preferences = EasyTipView.Preferences()
+    var tipView: EasyTipView?
+    var timerHidePop : Timer?
     
     @IBOutlet weak var myOrdersTV: UITableView!
     @IBOutlet weak var btnUpcoming: ThemeButton!
@@ -70,6 +77,7 @@ class MyOrdersVC: BaseVC {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         
         isLoading = true
+        self.setUpPopTip()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -156,6 +164,42 @@ class MyOrdersVC: BaseVC {
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
         myOrdersTV.reloadData()
+    }
+    
+    //MARK: - TipView methods
+    func setUpPopTip() {
+        self.preferences.drawing.font = CustomFont.regular.returnFont(14)
+        self.preferences.drawing.foregroundColor = UIColor.white
+        self.preferences.drawing.backgroundColor = UIColor.init(hexString: "#1F79CD")
+        self.preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
+    }
+    
+    func showPopTip(index : IndexPath, sender: UIButton){
+        if let tipView = self.tipView {
+            tipView.dismiss(withCompletion: {
+                self.tipView = nil
+                self.timerHidePop?.invalidate()
+                self.timerHidePop = nil
+            })
+        } else {
+            let view = EasyTipView(text: self.arrBookingList[index.row].note ?? "", preferences: self.preferences, delegate: self)
+            view.show(forView: sender, withinSuperview: self.navigationController?.view)
+            self.tipView = view
+        }
+    }
+    
+    func startTimer() {
+        if(self.timerHidePop == nil){
+            self.timerHidePop = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
+                if let tipView = self.tipView {
+                    tipView.dismiss(withCompletion: {
+                        self.tipView = nil
+                        self.timerHidePop?.invalidate()
+                        self.timerHidePop = nil
+                    })
+                }
+            })
+        }
     }
     
     @IBAction func btnInProgressTap(_ sender: ThemeButton) {
@@ -260,7 +304,6 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     upcomingCell.lblVehicleDetail.attributedText = mutableAttributedString
                     
                     
-                    upcomingCell.lblBookingid.text = arrBookingList[indexPath.row].id ?? ""
                     upcomingCell.buttonCancel = {
                         self.showAlertWithTitleFromVC( title: "Cancel Order", message: "Are you sure want to cancel order?", buttons: ["No", "Yes"]) { index in
                             if index == 1 {
@@ -269,8 +312,15 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                                 self.dismiss(animated: true, completion: nil)
                             }
                         }
-                        
                     }
+                    
+                    upcomingCell.btnNotes.isHidden = (self.arrBookingList[indexPath.row].note == "")
+                    upcomingCell.buttonNotesClouser = {
+                        self.showPopTip(index: indexPath, sender: upcomingCell.btnNotes)
+                        self.startTimer()
+                        self.myOrdersTV.isScrollEnabled = false
+                    }
+                    
                     return upcomingCell
                 }else{
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
@@ -323,23 +373,30 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                         inprogressCell.vwCallandChat.isHidden = true
                         inprogressCell.lblOnTheWay.isHidden = true
                     }
-                    inprogressCell.lblBookingID.text = arrBookingList[indexPath.row].id
+                   
                     inprogressCell.chatClick = {
                         let chatVC: ChatViewController = ChatViewController.instantiate(fromAppStoryboard: .Main)
                         chatVC.bookingID = self.arrBookingList[indexPath.row].id ?? ""// self.bookingid//
                         chatVC.isFromPush = true
                         self.navigationController?.pushViewController(chatVC, animated: true)
                     }
+                    
                     inprogressCell.callClick = {
-                        
-                            if let phoneCallURL = URL(string: "tel://\(self.arrBookingList[indexPath.row].driverContactNumber ?? "")") {
-                                
-                                let application:UIApplication = UIApplication.shared
-                                if (application.canOpenURL(phoneCallURL)) {
-                                    application.open(phoneCallURL, options: [:], completionHandler: nil)
-                                }
+                        if let phoneCallURL = URL(string: "tel://\(self.arrBookingList[indexPath.row].driverContactNumber ?? "")") {
+                            let application:UIApplication = UIApplication.shared
+                            if (application.canOpenURL(phoneCallURL)) {
+                                application.open(phoneCallURL, options: [:], completionHandler: nil)
                             }
+                        }
                     }
+                    
+                    inprogressCell.btnNotes.isHidden = (self.arrBookingList[indexPath.row].note == "")
+                    inprogressCell.btnNotesClouser = {
+                        self.showPopTip(index: indexPath, sender: inprogressCell.btnNotes)
+                        self.startTimer()
+                        self.myOrdersTV.isScrollEnabled = false
+                    }
+                    
                     return inprogressCell
                 }else{
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
@@ -386,7 +443,6 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                     mutableAttributedString.addAttribute(.font, value: FontBook.semibold.of(size: 14), range: fullRange)
                     completedCell.lblVehicleDetails.attributedText = mutableAttributedString
                     
-                    completedCell.lblBookingid.text = arrBookingList[indexPath.row].id ?? ""
                     if arrBookingList[indexPath.row].statuslabel == "Cancelled" {
                         completedCell.lblTopHalf.text = "Cancelled"
                         completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.9433980584, green: 0.3328252435, blue: 0.4380534887, alpha: 1)
@@ -394,6 +450,14 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
                         completedCell.lblTopHalf.text = "Completed"
                         completedCell.viewTopHalf?.backgroundColor = #colorLiteral(red: 0.4391005337, green: 0.8347155452, blue: 0.5683938265, alpha: 1)
                     }
+                    
+                    completedCell.btnNotes.isHidden = (self.arrBookingList[indexPath.row].note == "")
+                    completedCell.btnNotesClouser = {
+                        self.showPopTip(index: indexPath, sender: completedCell.btnNotes)
+                        self.startTimer()
+                        self.myOrdersTV.isScrollEnabled = false
+                    }
+                    
                     return completedCell
                 }else{
                     let noDataCell:NoDataCell = myOrdersTV.dequeueReusableCell(withIdentifier: NoDataCell.className) as! NoDataCell
@@ -461,4 +525,19 @@ extension MyOrdersVC: UITableViewDelegate, UITableViewDataSource {
             BookingList.doBookingList(customerid: Singleton.sharedInstance.userId, status: "\(isInProcess)", page: "\(currentPage)")
         }
     }
+}
+
+extension MyOrdersVC : EasyTipViewDelegate {
+    func easyTipViewDidTap(_ tipView: EasyTipView) {
+        self.myOrdersTV.isScrollEnabled = true
+    }
+    
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        self.myOrdersTV.isScrollEnabled = true
+        self.tipView = nil
+        self.timerHidePop?.invalidate()
+        self.timerHidePop = nil
+    }
+    
+    
 }

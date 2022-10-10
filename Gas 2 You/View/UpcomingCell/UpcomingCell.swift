@@ -19,9 +19,13 @@ class UpcomingCell: UITableViewCell,ShimmeringViewProtocol {
     @IBOutlet weak var imgPetrol: UIImageView!
     @IBOutlet weak var imgLocation: UIImageView!
     @IBOutlet weak var imgCalender: UIImageView!
-    @IBOutlet weak var lblBookingid: UILabel!
+    @IBOutlet weak var btnNotes: UIButton!
+    
+    var buttonCancel : (()->())?
+    var buttonNotesClouser : (()->())?
+    
     var shimmeringAnimatedItems: [UIView] {
-           [
+        [
             lblService,
             lblVehicleDetail,
             lblLocation,
@@ -30,22 +34,28 @@ class UpcomingCell: UITableViewCell,ShimmeringViewProtocol {
             imgCar,
             imgPetrol,
             imgLocation,
-            imgCalender,
-            lblBookingid
-           ]
-       }
+            imgCalender
+        ]
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.btnNotes.isHidden = true
     }
-    var buttonCancel : (()->())?
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
     @IBAction func btnCancelClick(_ sender: Any) {
         if let click = self.buttonCancel{
             click()
         }
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
+    @IBAction func btnCNotesClick(_ sender: Any) {
+        if let click = self.buttonNotesClouser{
+            click()
+        }
+    }
 }

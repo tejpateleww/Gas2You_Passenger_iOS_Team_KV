@@ -74,48 +74,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="mA4-65-dYA">
                                                 <rect key="frame" x="17" y="0.0" width="439" height="327"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD2-9C-Vll">
-                                                        <rect key="frame" x="0.0" y="0.0" width="439" height="20.5"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="a8z-6T-ldc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="142" height="20.5"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking_Id :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5k-NE-eev" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="95.5" height="20.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                                                                <real key="value" value="14"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDf-ng-QsM" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                        <rect key="frame" x="100.5" y="0.0" width="41.5" height="20.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="Font_Size">
-                                                                                <real key="value" value="14"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstItem="a8z-6T-ldc" firstAttribute="top" secondItem="FD2-9C-Vll" secondAttribute="top" id="8Dc-eX-dXj"/>
-                                                            <constraint firstAttribute="bottom" secondItem="a8z-6T-ldc" secondAttribute="bottom" id="S37-8z-3hW"/>
-                                                            <constraint firstItem="a8z-6T-ldc" firstAttribute="leading" secondItem="FD2-9C-Vll" secondAttribute="leading" id="nhg-aG-Fxb"/>
-                                                        </constraints>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7L-dA-60G">
-                                                        <rect key="frame" x="0.0" y="43.5" width="439" height="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="439" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_gasPump" translatesAutoresizingMaskIntoConstraints="NO" id="LRx-Se-Wve">
                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -125,7 +85,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4u-mg-2hu" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                <rect key="frame" x="28" y="1.5" width="411" height="17"/>
+                                                                <rect key="frame" x="28" y="1.5" width="371" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -136,19 +96,33 @@
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSemibold" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc8-i5-gXa">
+                                                                <rect key="frame" x="404" y="-2.5" width="30" height="30"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="sdW-5e-hnl"/>
+                                                                </constraints>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="icon_notes"/>
+                                                                <connections>
+                                                                    <action selector="btnNotescall:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="saP-we-g3S"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
+                                                            <constraint firstItem="Jc8-i5-gXa" firstAttribute="width" secondItem="Jc8-i5-gXa" secondAttribute="height" id="D71-aQ-LlF"/>
                                                             <constraint firstAttribute="height" constant="25" id="Dsz-SJ-5Q8"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Jc8-i5-gXa" secondAttribute="trailing" constant="5" id="NtJ-3U-3Rp"/>
+                                                            <constraint firstItem="Jc8-i5-gXa" firstAttribute="centerY" secondItem="d7L-dA-60G" secondAttribute="centerY" id="OMn-sC-A2g"/>
                                                             <constraint firstItem="T4u-mg-2hu" firstAttribute="centerY" secondItem="LRx-Se-Wve" secondAttribute="centerY" id="OZk-H5-iM0"/>
                                                             <constraint firstItem="LRx-Se-Wve" firstAttribute="leading" secondItem="d7L-dA-60G" secondAttribute="leading" id="W7h-9f-KOW"/>
                                                             <constraint firstItem="LRx-Se-Wve" firstAttribute="top" secondItem="d7L-dA-60G" secondAttribute="top" id="Zbu-Ge-qbO"/>
+                                                            <constraint firstItem="Jc8-i5-gXa" firstAttribute="leading" secondItem="T4u-mg-2hu" secondAttribute="trailing" constant="5" id="he5-aG-jOS"/>
                                                             <constraint firstItem="T4u-mg-2hu" firstAttribute="leading" secondItem="LRx-Se-Wve" secondAttribute="trailing" constant="8" id="piV-S7-sUh"/>
-                                                            <constraint firstAttribute="trailing" secondItem="T4u-mg-2hu" secondAttribute="trailing" id="xJP-4V-ne5"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMy-Pa-ugM">
-                                                        <rect key="frame" x="0.0" y="91.5" width="439" height="25"/>
+                                                        <rect key="frame" x="0.0" y="48" width="439" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_car" translatesAutoresizingMaskIntoConstraints="NO" id="JIE-oe-UD9">
                                                                 <rect key="frame" x="0.0" y="2.5" width="20" height="20"/>
@@ -175,17 +149,17 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc1-h3-P1r">
-                                                        <rect key="frame" x="0.0" y="139.5" width="439" height="139.5"/>
+                                                        <rect key="frame" x="0.0" y="96" width="439" height="183"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IC_locoations" translatesAutoresizingMaskIntoConstraints="NO" id="9lG-GB-UNt">
-                                                                <rect key="frame" x="0.0" y="60" width="20" height="20"/>
+                                                                <rect key="frame" x="0.0" y="81.5" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="1Jp-eO-t1N"/>
                                                                     <constraint firstAttribute="height" constant="20" id="get-qY-wep"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOb-93-4bi" customClass="ThemeLabel" customModule="Gas_2_You" customModuleProvider="target">
-                                                                <rect key="frame" x="30" y="0.0" width="409" height="139.5"/>
+                                                                <rect key="frame" x="30" y="0.0" width="409" height="183"/>
                                                                 <string key="text">123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203123. West St, 46203</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -371,12 +345,12 @@
             <connections>
                 <outlet property="btnCall" destination="tix-de-SEs" id="UDc-uu-na6"/>
                 <outlet property="btnChat" destination="9Mj-8C-hr3" id="7US-8Z-ihL"/>
+                <outlet property="btnNotes" destination="Jc8-i5-gXa" id="7Rg-r0-ZJz"/>
                 <outlet property="imgCalender" destination="91y-VI-NkL" id="Mk8-VR-nzM"/>
                 <outlet property="imgCar" destination="JIE-oe-UD9" id="ENr-Va-13e"/>
                 <outlet property="imgLocation" destination="9lG-GB-UNt" id="gSr-JO-WCZ"/>
                 <outlet property="imgPetrol" destination="LRx-Se-Wve" id="Haw-8A-eBO"/>
                 <outlet property="imgTruck" destination="G4k-59-aKb" id="lsb-fK-VyT"/>
-                <outlet property="lblBookingID" destination="RDf-ng-QsM" id="tdx-Ww-vZH"/>
                 <outlet property="lblLocation" destination="xOb-93-4bi" id="SbA-6D-CIH"/>
                 <outlet property="lblOnTheWay" destination="Bda-s3-bD4" id="m9A-bu-ZHR"/>
                 <outlet property="lblServices" destination="T4u-mg-2hu" id="QmJ-6h-3yl"/>
@@ -395,6 +369,7 @@
         <image name="IC_locoations" width="18.5" height="21"/>
         <image name="IC_phone" width="17.5" height="17.5"/>
         <image name="IC_truck" width="109" height="49.5"/>
+        <image name="icon_notes" width="42.5" height="42.5"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

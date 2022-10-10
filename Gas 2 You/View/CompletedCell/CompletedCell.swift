@@ -20,7 +20,9 @@ class CompletedCell: UITableViewCell, ShimmeringViewProtocol{
     @IBOutlet weak var imgLocation: UIImageView!
     @IBOutlet weak var imgCalender: UIImageView!
     @IBOutlet weak var lblTimeandDate: ThemeLabel!
-    @IBOutlet weak var lblBookingid: UILabel!
+    @IBOutlet weak var btnNotes: UIButton!
+    
+    
     var shimmeringAnimatedItems: [UIView] {
            [
             lblServices,
@@ -35,6 +37,8 @@ class CompletedCell: UITableViewCell, ShimmeringViewProtocol{
             imgCalender
            ]
        }
+    var btnNotesClouser : (()->())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         viewTopHalf?.layer.masksToBounds = true
@@ -43,6 +47,12 @@ class CompletedCell: UITableViewCell, ShimmeringViewProtocol{
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    @IBAction func btnNotescall(_ sender: UIButton) {
+        if let click = btnNotesClouser {
+            click()
+        }
     }
     
 }

@@ -23,7 +23,7 @@ class AddBookingViewModel{
             self.addbooking?.btnAddBooking.hideLoading()
             if status{
                 let myOrdersVC: PaymentMethodVC = PaymentMethodVC.instantiate(fromAppStoryboard: .Main)
-                let objdatamodel = GetData(serviceID: self.addbooking?.serviceid ?? "", subserviceId: self.addbooking?.subserviceid ?? "", parkingLocation: self.addbooking?.locationLabel.text ?? "", date: self.addbooking?.txtDateSelected.text ?? "", time: self.addbooking?.time ?? "", vehicleId: self.addbooking?.vehicalid ?? "", addonId: self.addbooking?.addonid.joined(separator: ",") ?? "")
+                let objdatamodel = GetData(serviceID: self.addbooking?.serviceid ?? "", subserviceId: self.addbooking?.subserviceid ?? "", parkingLocation: self.addbooking?.locationLabel.text ?? "", date: self.addbooking?.txtDateSelected.text ?? "", time: self.addbooking?.time ?? "", vehicleId: self.addbooking?.vehicalid ?? "", addonId: self.addbooking?.addonid.joined(separator: ",") ?? "", notes: self.addbooking?.txtViewNotes.text.trimmedString ?? "")
                 myOrdersVC.getDataModel = objdatamodel
                 self.addbooking?.navigationController?.pushViewController(myOrdersVC, animated: true)
             }else{
